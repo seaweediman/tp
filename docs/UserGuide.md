@@ -1,3 +1,22 @@
+## Features & Usage
+### Feature: Candidate Management
+<u>**List all candidates: `list c`**</u>
+
+List out all the candidates in the app.
+
+<u>Format:</u>
+
+    list c
+
+<u>**View a candidate: `view c`**</u>
+
+View all details of a specific candidate, specified by its index in the `list`.
+
+<u>Format:</u>
+
+    view c <CANDIDATE INDEX>
+
+
 ## Command summary
 Action | Format, Examples | Expected result
 --------|------------------|------------------|
