@@ -1,5 +1,29 @@
 ## Features & Usage
 ### Feature: Candidate Management
+
+<u>**Add a candidate: `add c`**</u>
+
+Adds a candidate to the list of candidates.
+
+<u>Format:</u>
+
+    add c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
+
+<u>Example:</u><br/><br/>
+`add c name=<Bryan Seah> email=<bsah@gmail.com> phone=<12345678>` adds a candidate named Bryan Seah 
+with email bsah@gmail.com and phone number 12345678.
+
+<u>**Delete a candidate: `delete c`**</u>
+
+Deletes a candidate to the list of candidates.
+
+<u>Format:</u>
+
+    delete c <INDEX>
+
+<u>Example:</u><br/><br/>
+`delete c 3` deletes the 3rd candidate from the list of candidates.
+
 <u>**List all candidates: `list c`**</u>
 
 List out all the candidates in the app.
