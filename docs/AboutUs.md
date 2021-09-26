@@ -23,7 +23,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="docs/images/jiheng.png" width="200px">
 
-[[github](http://github.com/JeffZincatz)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/JeffZincatz)] [[portfolio](team/jiheng.md)]
 
 * Role: Developer
 * Responsibilities: WIP
