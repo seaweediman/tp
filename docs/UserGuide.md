@@ -1,3 +1,14 @@
+#User Guide
+
+## Introduction
+HR manager will help you manage the candidates to be interviewed, 
+making the scheduling process easier and faster for your company!<br>
+Tired of losing track of scheduled interviews?<br>
+HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
+The data you have provided will also be stored safely and securely for subsequent uses, 
+transferable to other devices too!
+
+
 ## Features & Usage
 ### Feature: Candidate Management
 <u>**List all candidates: `list c`**</u>
@@ -16,6 +27,19 @@ View all details of a specific candidate, specified by its index in the `list`.
 
     view c <CANDIDATE INDEX>
 
+
+## FAQs
+
+**Q**: What is this application? <br>
+**A**: This is an easy and fast application to track candidates applying for job roles in your company.
+You will interact with the application through typed commands.
+
+**Q**: When will my data be saved? <br>
+**A**: Your data will be automatically saved after any command.
+
+**Q**: How can I export my data? <br>
+**A**: You can copy the save file at ‘/data/save.json and transfer it to another system in the data folder.
+The saved data will be loaded on the next system.
 
 ## Command summary
 Action | Format, Examples | Expected result
