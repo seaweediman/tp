@@ -21,7 +21,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 ### Xu Jiheng
 
-<img src="images/jiheng.png" width="200px">
+<img src="docs/images/jiheng.png" width="200px">
 
 [[github](http://github.com/JeffZincatz)] [[portfolio](team/johndoe.md)]
 
