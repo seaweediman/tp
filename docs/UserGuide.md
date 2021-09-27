@@ -53,6 +53,25 @@ View all details of a specific candidate, specified by its index in the `list`.
 
     view c <CANDIDATE INDEX>
 
+### Feature: Storage
+Save all of the candidates’ records into a data file locally.
+
+When a candidate record is added, edited or deleted, the change will be done accordingly in the local save file in real time.
+
+The data file will be saved at `/data/candidates.json` and `/data/interviews.json` (coming soon). By replacing it with an existing save file with the same name, the record data will be loaded accordingly in the app, if the data format is valid.
+
+The candidate information will be saved using the JSON format below.
+For candidates,
+```
+ [{
+  "name" : "Charlotte Oliveiro",
+  "phone" : "93210283",
+  "email" : "charlotte@example.com",
+  "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
+  "remark" : "",
+  "tagged" : [ "rejected" ]
+ }]
+```
 
 ## FAQs
 
