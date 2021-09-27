@@ -21,7 +21,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 ### Xu Jiheng
 
-<img src="docs/images/jiheng.png" width="200px">
+<img src="images/jeffzincatz.png" width="200px">
 
 [[github](http://github.com/JeffZincatz)] [[portfolio](team/jiheng.md)]
 
@@ -32,8 +32,17 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="images/sueann-chua.png" width="200px">
 
-[[github](http://github.com/sueann-chua)]
-[[portfolio](team/sueann-chua.md)]
+[[github](http://github.com/sueann-chua)] [[portfolio](team/sueann-chua.md)]
 
 * Role: Developer
 * Responsibilities: 
+
+### Mohamed Noriman
+
+<img src="images/seaweediman.png" width="200px">
+
+[[github](http://github.com/seaweediman)] [[portfolio](team/noriman.md)]
+
+* Role: Developer
+* Responsibilities: WIP
+
