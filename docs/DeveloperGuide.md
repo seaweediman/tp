@@ -72,74 +72,85 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a candidate**
+<u>**Use case: Add a candidate**</u>
 
 **MSS**
 
-1. User inputs the command to add a new candidate, with the initial details of the new candidate
-2. User can see the added candidate
+1. User requests to add a new candidate, with the initial details of the new candidate.
+2. User can see the added candidate.
 
    Use case ends.
 
 **Extensions**
 
-**Use case: List all candidate**
+* 1a. The format when adding a candidate is incorrect.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case ends.
+
+<u>**Use case: List all candidate**</u>
 
 **MSS**
 
 1. User requests to list all candidates
-2. HR manager shows a list of all candidates
+2. HR Manager shows a list of all candidates
 
    User case ends.
 
 **Extensions**
 
-**Use case: View a candidate**
+* 2a. The list of candidates is empty.
+    * 2a1. HR Manager shows that list is empty.
+
+      Use case ends.
+    
+<u>**Use case: View a candidate**</u>
 
 **MSS**
 
-1. User inputs view and an index for candidate
-2. HR Manager displays the relevant information for that specific candidate
+1. User requests to list candidates.
+2. HR Manager shows a list of candidates.
+3. User requests to view details of a specific candidate.
+4. HR Manager displays the relevant information for that specific candidate.
 
-   User case ends.
-
-**Extensions**
-
-**Use case: Delete a candidate**
-
-**MSS**
-
-1. User inputs delete and an index for candidate
-2. HR Manager deletes the corresponding candidate and displays result
-
-   Use case ends
+   Use case ends.
 
 **Extensions**
 
-[Sample use case] **Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 2a. The list of candidates is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HR Manager shows an error message.
 
       Use case resumes at step 2.
 
+<u>**Use case: Delete a candidate**</u>
 
+**MSS**
+
+1. User requests to list candidates.
+2. HR Manager shows a list of candidates.
+3. User requests to delete a specific candidate.
+4. HR Manager deletes the corresponding candidate and displays result.
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list of candidates is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HR Manager shows an error message.
+
+      Use case resumes at step 2.
+    
 
 ### Non-Functional Requirements
 
