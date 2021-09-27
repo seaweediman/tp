@@ -85,7 +85,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. The format when adding a candidate is incorrect.
 
-    * 3a1. AddressBook shows an error message.
+    * 1a1. HR Manager shows an error message.
 
       Use case ends.
 
@@ -96,7 +96,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list all candidates
 2. HR Manager shows a list of all candidates
 
-   User case ends.
+   Use case ends.
 
 **Extensions**
 
