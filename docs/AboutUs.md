@@ -54,3 +54,12 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: WIP
+
+### Nobel Ang
+
+<img src="images/angnobel.png" width="200px">
+
+[[github](http://github.com/angnobel)] [[portfolio](team/nobel.md)]
+
+* Role: Developer
+* Responsibilities: WIP
