@@ -46,3 +46,11 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 * Role: Developer
 * Responsibilities: WIP
 
+### Liu Wanyu
+
+<img src="images/wanyu-l.png" width="200px">
+
+[[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu.md)]
+
+* Role: Developer
+* Responsibilities: WIP
