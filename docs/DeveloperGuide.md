@@ -3,10 +3,9 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Acknowledgements**
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
@@ -224,13 +223,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -257,35 +256,105 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* is HR professional
+* has to manage multiple applicants, roles, and interviews
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* is reasonably comfortable using CLI apps 
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: help them quickly enter the data into the system, reminders of interview timings and ranking of candidates for roles
+
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+                               
+| Priority | As a …​ | I want to …​                | So that I can…​                                                        |
+| -------- | ---------- | ------------------------------ | ---------------------------------------------------------------------- |
+| `* * *`  | user       | be able to add a candidate with all relevant information such as full name, age, contact information, scheduled interview time and date.|                  |
+| `* * *`  | user       | be able to delete a candidate | remove the application if it was withdrawn entirely                                                                       |
+| `* * *`  | user       | be able to see all active candidates | |
+| `* * *`  | user       | be able to see the details of a specific candidate | |
+| `* * *`  | user       | be able to edit the information related to a candidate | correct any wrongly filled information |
+| `* * *`  | user       | be able to categorize the candidate, whether it was self-applied or referred | carry out administrative processes afterwards more easily |
+| `* * *`  | user       | be able to add a remark/status to a candidate | make it more visible for the next course of administrative action|
+| `* * *`  | user       | be able to edit comments of a candidate | update any further remarks for them|
+| `* * *`  | user       | be able to delete comments of a candidate | remove mistakenly put remarks entirely |
+| `* * *`  | user preparing interviews | be able to know the number of candidates on a certain day | |
+| ` * * `  | user preparing interviews | be reminded what interviews I have the next day | not forget about them |
+| ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | |
+| `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
+| ` * * `  | user preparing interviews | be able to schedule a new interview for a candidate | recruit more members |
+| ` * * `  | user preparing interviews | be able to delete all other scheduled interview sessions for a particular candidate once I decide to assign him a particular post | |
+| `* * *`  | user preparing interviews | be able to view all candidates who will be interviewed on a particular date | keep track of the interviews planned for that day |
+| ` * * `  | user preparing interviews | be able to delete the interview sessions on a particular date | |
+| `  *  `  | user preparing interviews | add a co-interviewer to an interview | I know who I will be interviewing the candidate with |
+| ` * * `  | user after interviews | be able to mark a candidate as ‘Interviewed’ | |
+| `* * *`  | user after interviews | be able to tag a candidate e.g. by the position they are applying for | group them according to the tags |
+| `* * *`  | user       | want to be able to edit existing tags of a candidate | |
+| `* * *`  | user       | be able to remove existing tags of a candidate | |
+| ` * * `  | user searching for candidates | be able to filter the candidates for some specific requirements | find the right person for the post more efficiently |
+| `* * *`  | user searching for candidates | be able to search for candidates who have a certain remark/description | find candidates by criteria |
+| ` * * `  | user searching for candidates |  be able to search who applied for certain positions |  I know all the candidates for that specific position |
+| ` * * `  | user preparing interviews | search what interviews I have for a particular date | better prepare for that day |
+| ` * * `  | user       | see all the candidates scheduled for interview sessions for a particular job posting | |
+| `* * *`  | user       | be able to search for a particular candidate to see his/her upcoming sessions | |
+| `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
+| `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Add a candidate**
+
+**MSS**
+
+1. User inputs the command to add a new candidate, with the initial details of the new candidate
+2. User can see the added candidate
+
+   Use case ends.
+
+**Extensions**
+
+**Use case: List all candidate**
+
+**MSS**
+
+1. User requests to list all candidates
+2. HR manager shows a list of all candidates
+
+   User case ends.
+
+**Extensions**
+
+**Use case: View a candidate**
+
+**MSS**
+
+1. User inputs view and an index for candidate
+2. HR Manager displays the relevant information for that specific candidate
+
+   User case ends.
+
+**Extensions**
+
+**Use case: Delete a candidate**
+
+**MSS**
+
+1. User inputs delete and an index for candidate
+2. HR Manager deletes the corresponding candidate and displays result
+
+   Use case ends
+
+**Extensions**
+
+[Sample use case] **Use case: Delete a person**
 
 **MSS**
 
@@ -312,9 +381,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1. Program needs to run on all operating systems with Java 11 installed.
+2. Application needs to handle at least 500 candidates and 500 interviews without a noticeable sluggishness in performance for typical usage and no graphical errors.
+3. A user with above average typing speed should be able to complete tasks faster using commands than they would have using a click-based interface.
+
 
 *{More to be added}*
 
@@ -338,15 +408,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -355,16 +425,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -372,6 +442,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
