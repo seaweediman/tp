@@ -27,3 +27,13 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 * Role: Developer
 * Responsibilities: WIP
+
+### Chua Sue-Ann
+
+<img src="images/sueann-chua.png" width="200px">
+
+[[github](http://github.com/sueann-chua)]
+[[portfolio](team/sueann-chua.md)]
+
+* Role: Developer
+* Responsibilities: 
