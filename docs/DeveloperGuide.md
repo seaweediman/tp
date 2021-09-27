@@ -68,8 +68,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
 | `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
 
-*{More to be added}*
-
 ### Use cases
 
 (For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
@@ -141,16 +139,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+
 
 ### Non-Functional Requirements
 
 1. Program needs to run on all operating systems with Java 11 installed.
 2. Application needs to handle at least 500 candidates and 500 interviews without a noticeable sluggishness in performance for typical usage and no graphical errors.
 3. A user with above average typing speed should be able to complete tasks faster using commands than they would have using a click-based interface.
-
-
-*{More to be added}*
 
 ### Glossary
 
