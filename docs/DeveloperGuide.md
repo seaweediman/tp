@@ -105,29 +105,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: View a candidate**</u>
-
-**MSS**
-
-1. User requests to list candidates.
-2. HR Manager shows a list of candidates.
-3. User requests to view details of a specific candidate.
-4. HR Manager displays the relevant information for that specific candidate.
-
-   Use case ends.
-
-**Extensions**
-
-* 2a. The list of candidates is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. HR Manager shows an error message.
-
-      Use case resumes at step 2.
-
 <u>**Use case: Delete a candidate**</u>
 
 **MSS**
