@@ -134,4 +134,12 @@ public class UniquePersonList implements Iterable<Person> {
         }
         return true;
     }
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        for(Person p : internalList) {
+            sb.append(p.toString() + "\n");
+        }
+        return sb.toString();
+    }
 }
