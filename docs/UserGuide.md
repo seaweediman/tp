@@ -5,7 +5,7 @@ HR manager will help you manage the candidates to be interviewed,
 making the scheduling process easier and faster for your company!<br>
 Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
-The data you have provided will also be stored safely and securely for subsequent uses, 
+The data you have provided will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
 
 
@@ -22,7 +22,7 @@ Adds a candidate to the list of candidates.
 
 <u>Example:</u>
  `add c name=<Bryan Seah> email=<bsah@gmail.com> phone=<12345678>`
-* Adds a candidate named Bryan Seah 
+* Adds a candidate named Bryan Seah
 with email bsah@gmail.com and phone number 12345678.
 
 <u>**Delete a candidate: `delete c`**</u>
@@ -34,7 +34,7 @@ Deletes a candidate to the list of candidates.
     delete c <INDEX>
 
 <u>Example:</u>
- `delete c 3` 
+ `delete c 3`
 * Deletes the 3rd candidate from the list of candidates.
 
 <u>**List all candidates: `list c`**</u>

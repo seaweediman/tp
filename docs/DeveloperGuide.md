@@ -27,14 +27,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps 
+* is reasonably comfortable using CLI apps
 
 **Value proposition**: help them quickly enter the data into the system, reminders of interview timings and ranking of candidates for roles
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-                               
+
 | Priority | As a …​ | I want to …​                | So that I can…​                                                        |
 | -------- | ---------- | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user       | be able to add a candidate with all relevant information such as full name, age, contact information, scheduled interview time and date.|                  |
@@ -104,7 +104,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. HR Manager shows that list is empty.
 
       Use case ends.
-    
+
 <u>**Use case: View a candidate**</u>
 
 **MSS**
@@ -150,7 +150,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HR Manager shows an error message.
 
       Use case resumes at step 2.
-    
+
 
 ### Non-Functional Requirements
 
