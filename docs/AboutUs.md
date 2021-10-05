@@ -35,7 +35,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/sueann-chua)] [[portfolio](team/sueann-chua.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
 
 ### Mohamed Noriman
 
