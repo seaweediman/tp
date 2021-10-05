@@ -54,8 +54,6 @@ public class PersonTest {
     public void equals() {
         // same values -> returns true
         Person aliceCopy = new PersonBuilder(ALICE).build();
-        System.out.println(ALICE.toString());
-        System.out.println(aliceCopy.toString());
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
