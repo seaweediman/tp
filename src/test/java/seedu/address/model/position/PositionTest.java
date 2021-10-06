@@ -1,5 +1,6 @@
 package seedu.address.model.position;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -26,6 +27,19 @@ class PositionTest {
 
     @Test
     public void variousPositionNames() {
+        //invalid position names
+        assertFalse(Position.isValidPositionName(("Administrative & Finance Assistant")));
+        assertFalse(Position.isValidPositionName(("Administrative Assistant #2")));
+        assertFalse(Position.isValidPositionName(("Administrative Assistant *")));
+        assertFalse(Position.isValidPositionName(("Administrative Assistant ^^")));
+        assertFalse(Position.isValidPositionName(("Acc-Manager")));
+        assertFalse(Position.isValidPositionName(("")));
+        assertFalse(Position.isValidPositionName((" ")));
+        assertFalse(Position.isValidPositionName(("Administrative Manager (temp)")));
+        assertFalse(Position.isValidPositionName(("'Fun!' project manager")));
+        assertFalse(Position.isValidPositionName(("data + admin clerk")));
+
+        //valid position names
         assertTrue(Position.isValidPositionName(("Administrative Assistant")));
         assertTrue(Position.isValidPositionName(("Receptionist")));
         assertTrue(Position.isValidPositionName(("Office Manager")));
