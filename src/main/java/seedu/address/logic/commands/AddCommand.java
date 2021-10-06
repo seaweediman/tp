@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "pending "
-            + PREFIX_TAG + "review_required";
+            + PREFIX_TAG + "reviewRequired";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the HR Manager";
