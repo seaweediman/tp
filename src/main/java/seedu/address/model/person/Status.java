@@ -37,7 +37,7 @@ public enum Status {
     public boolean isCompleted() {
         return this.isCompleted;
     }
-    
+
     @Override
     public String toString() {
         return this.index + "." + this.name();
