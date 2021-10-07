@@ -29,9 +29,9 @@ import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 
-public class HRManagerParserTest {
+public class HrManagerParserTest {
 
-    private final HRManagerParser parser = new HRManagerParser();
+    private final HrManagerParser parser = new HrManagerParser();
 
     @Test
     public void parseCommand_add() throws Exception {
