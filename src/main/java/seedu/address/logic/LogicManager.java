@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getHrManagerFilePath() {
-        return model.getHrManagerCandidateFilePath();
+    public Path getHrManagerCandidatesFilePath() {
+        return model.getHrManagerCandidatesFilePath();
     }
 
     @Override

@@ -21,7 +21,7 @@ import seedu.address.model.ReadOnlyHrManager;
 
 public class JsonHRManagerStorageTest {
     private static final Path TEST_DATA_FOLDER =
-            Paths.get("src", "test", "data", "JsonAddressBookStorageTest"); //todo
+            Paths.get("src", "test", "data", "JsonHrManagerStorageTest");
 
     @TempDir
     public Path testFolder;
@@ -43,54 +43,54 @@ public class JsonHRManagerStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readHrManager("NonExistentFile.json").isPresent()); //todo name of file
+        assertFalse(readHrManager("NonExistentFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readHrManager("notJsonFormatAddressBook.json")); //todo name of file
+        assertThrows(DataConversionException.class, () -> readHrManager("notJsonFormatHrManager.json"));
     }
 
     @Test
     public void readHrManager_invalidPersonHrManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readHrManager("invalidPersonAddressBook.json")); //todo name of file
+        assertThrows(DataConversionException.class, () -> readHrManager("invalidPersonHrManager.json"));
     }
 
     @Test
     public void readHrManager_invalidAndValidPersonHrManager_throwDataConversionException() {
         assertThrows(DataConversionException.class,
-                () -> readHrManager("invalidAndValidPersonAddressBook.json")); //todo name of file
+                () -> readHrManager("invalidAndValidPersonHrManager.json"));
     }
 
     @Test
     public void readAndSaveHrManager_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json"); //todo name of file
+        Path filePath = testFolder.resolve("TempAddressBook.json");
         HrManager original = getTypicalHrManager();
-        JsonHRManagerStorage jsonAddressBookStorage = new JsonHRManagerStorage(filePath);
+        JsonHRManagerStorage jsonHrManagerStorage = new JsonHRManagerStorage(filePath);
 
         // Save in new file and read back
-        jsonAddressBookStorage.saveHrManager(original, filePath);
-        ReadOnlyHrManager readBack = jsonAddressBookStorage.readHrManager(filePath).get(); //todo name of file
+        jsonHrManagerStorage.saveHrManager(original, filePath);
+        ReadOnlyHrManager readBack = jsonHrManagerStorage.readHrManager(filePath).get();
         assertEquals(original, new HrManager(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonAddressBookStorage.saveHrManager(original, filePath);
-        readBack = jsonAddressBookStorage.readHrManager(filePath).get();
+        jsonHrManagerStorage.saveHrManager(original, filePath);
+        readBack = jsonHrManagerStorage.readHrManager(filePath).get();
         assertEquals(original, new HrManager(readBack));
 
         // Save and read without specifying file path
         original.addPerson(IDA);
-        jsonAddressBookStorage.saveHrManager(original); // file path not specified
-        readBack = jsonAddressBookStorage.readHrManager().get(); // file path not specified
+        jsonHrManagerStorage.saveHrManager(original); // file path not specified
+        readBack = jsonHrManagerStorage.readHrManager().get(); // file path not specified
         assertEquals(original, new HrManager(readBack));
 
     }
 
     @Test
     public void saveHrManager_nullHrManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveHrManager(null, "SomeFile.json")); //todo name of file
+        assertThrows(NullPointerException.class, () -> saveHrManager(null, "SomeFile.json"));
     }
 
     /**

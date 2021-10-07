@@ -66,14 +66,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getHrManagerCandidateFilePath() {
+    public Path getHrManagerCandidatesFilePath() {
         return userPrefs.getHrManagerCandidatesFilePath();
     }
 
     @Override
-    public void setHrManagerCandidateFilePath(Path hrManagerCandidateFilePath) {
-        requireNonNull(hrManagerCandidateFilePath);
-        userPrefs.setHrManagerCandidatesFilePath(hrManagerCandidateFilePath);
+    public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
+        requireNonNull(hrManagerCandidatesFilePath);
+        userPrefs.setHrManagerCandidatesFilePath(hrManagerCandidatesFilePath);
     }
 
     //=========== AddressBook ================================================================================

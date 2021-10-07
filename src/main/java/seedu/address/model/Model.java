@@ -37,12 +37,12 @@ public interface Model {
     /**
      * Returns the user prefs' HR Manager Candidate file path.
      */
-    Path getHrManagerCandidateFilePath();
+    Path getHrManagerCandidatesFilePath();
 
     /**
      * Sets the user prefs' HR Manager file path.
      */
-    void setHrManagerCandidateFilePath(Path hrManagerCandidateFilePath);
+    void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath);
 
     /**
      * Replaces HR Manager data with the data in {@code addressBook}.

@@ -50,13 +50,13 @@ public class StorageManager implements Storage {
     // ================ AddressBook methods ==============================
 
     @Override
-    public Path getHrManagerCandidateFilePath() {
-        return hrManagerStorage.getHrManagerCandidateFilePath();
+    public Path getHrManagerCandidatesFilePath() {
+        return hrManagerStorage.getHrManagerCandidatesFilePath();
     }
 
     @Override
     public Optional<ReadOnlyHrManager> readHrManager() throws DataConversionException, IOException {
-        return readHrManager(hrManagerStorage.getHrManagerCandidateFilePath());
+        return readHrManager(hrManagerStorage.getHrManagerCandidatesFilePath());
     }
 
     @Override
@@ -67,7 +67,7 @@ public class StorageManager implements Storage {
 
     @Override
     public void saveHrManager(ReadOnlyHrManager hrManager) throws IOException {
-        saveHrManager(hrManager, hrManagerStorage.getHrManagerCandidateFilePath());
+        saveHrManager(hrManager, hrManagerStorage.getHrManagerCandidatesFilePath());
     }
 
     @Override

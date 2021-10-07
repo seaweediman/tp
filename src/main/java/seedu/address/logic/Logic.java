@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getHrManagerFilePath();
+    Path getHrManagerCandidatesFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

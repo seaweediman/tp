@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setHrManagerCandidateFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setHrManagerCandidateFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setHrManagerCandidatesFilePath(null));
     }
 
     @Test
     public void setHrManagerCandidateFilePath_validPath_setsHrManagerCandidateFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setHrManagerCandidateFilePath(path);
-        assertEquals(path, modelManager.getHrManagerCandidateFilePath());
+        modelManager.setHrManagerCandidatesFilePath(path);
+        assertEquals(path, modelManager.getHrManagerCandidatesFilePath());
     }
 
     @Test

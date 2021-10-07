@@ -27,7 +27,7 @@ public class JsonHRManagerStorage implements HRManagerStorage {
         this.filePath = filePath;
     }
 
-    public Path getHrManagerCandidateFilePath() {
+    public Path getHrManagerCandidatesFilePath() {
         return filePath;
     }
 

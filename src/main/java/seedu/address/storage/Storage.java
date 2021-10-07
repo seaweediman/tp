@@ -21,7 +21,7 @@ public interface Storage extends HRManagerStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getHrManagerCandidateFilePath();
+    Path getHrManagerCandidatesFilePath();
 
     @Override
     Optional<ReadOnlyHrManager> readHrManager() throws DataConversionException, IOException;

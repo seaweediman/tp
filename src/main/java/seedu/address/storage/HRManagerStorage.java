@@ -16,7 +16,7 @@ public interface HRManagerStorage {
     /**
      * Returns the file path of the data file for candidates.
      */
-    Path getHrManagerCandidateFilePath();
+    Path getHrManagerCandidatesFilePath();
 
     /**
      * Returns AddressBook data as a {@link ReadOnlyHrManager}.
@@ -27,7 +27,7 @@ public interface HRManagerStorage {
     Optional<ReadOnlyHrManager> readHrManager() throws DataConversionException, IOException;
 
     /**
-     * @see #getHrManagerCandidateFilePath()
+     * @see #getHrManagerCandidatesFilePath()
      */
     Optional<ReadOnlyHrManager> readHrManager(Path filePath) throws DataConversionException, IOException;
 

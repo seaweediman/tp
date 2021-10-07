@@ -99,12 +99,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getHrManagerCandidateFilePath() {
+        public Path getHrManagerCandidatesFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setHrManagerCandidateFilePath(Path hrManagerCandidateFilePath) {
+        public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
