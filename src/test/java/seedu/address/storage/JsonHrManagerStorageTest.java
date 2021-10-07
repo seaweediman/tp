@@ -58,8 +58,7 @@ public class JsonHrManagerStorageTest {
 
     @Test
     public void readHrManager_invalidAndValidPersonHrManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class,
-                () -> readHrManager("invalidAndValidPersonHrManager.json"));
+        assertThrows(DataConversionException.class, () -> readHrManager("invalidAndValidPersonHrManager.json"));
     }
 
     @Test

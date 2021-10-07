@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHrManagerStorage addressBookStorage =
+        JsonHrManagerStorage hrManagerStorage =
                 new JsonHrManagerStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(hrManagerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
