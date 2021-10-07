@@ -27,7 +27,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.storage.JsonHRManagerStorage;
+import seedu.address.storage.JsonHrManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.PersonBuilder;
@@ -43,8 +43,8 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHRManagerStorage addressBookStorage =
-                new JsonHRManagerStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonHrManagerStorage addressBookStorage =
+                new JsonHrManagerStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -71,8 +71,8 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonHRManagerStorage addressBookStorage =
-                new JsonHRManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonHrManagerStorage addressBookStorage =
+                new JsonHrManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -149,8 +149,8 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonHRManagerIoExceptionThrowingStub extends JsonHRManagerStorage {
-        private JsonHRManagerIoExceptionThrowingStub(Path filePath) {
+    private static class JsonHrManagerIoExceptionThrowingStub extends JsonHrManagerStorage {
+        private JsonHrManagerIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 

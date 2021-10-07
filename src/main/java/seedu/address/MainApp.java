@@ -22,8 +22,8 @@ import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.HRManagerStorage;
-import seedu.address.storage.JsonHRManagerStorage;
+import seedu.address.storage.HrManagerStorage;
+import seedu.address.storage.JsonHrManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        HRManagerStorage HRManagerStorage = new JsonHRManagerStorage(userPrefs.getHrManagerCandidatesFilePath());
+        HrManagerStorage HRManagerStorage = new JsonHrManagerStorage(userPrefs.getHrManagerCandidatesFilePath());
         storage = new StorageManager(HRManagerStorage, userPrefsStorage);
 
         initLogging(config);

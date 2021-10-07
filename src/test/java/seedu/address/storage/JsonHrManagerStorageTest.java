@@ -19,7 +19,7 @@ import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.HrManager;
 import seedu.address.model.ReadOnlyHrManager;
 
-public class JsonHRManagerStorageTest {
+public class JsonHrManagerStorageTest {
     private static final Path TEST_DATA_FOLDER =
             Paths.get("src", "test", "data", "JsonHrManagerStorageTest");
 
@@ -32,7 +32,7 @@ public class JsonHRManagerStorageTest {
     }
 
     private java.util.Optional<ReadOnlyHrManager> readHrManager(String filePath) throws Exception {
-        return new JsonHRManagerStorage(Paths.get(filePath)).readHrManager(addToTestDataPathIfNotNull(filePath));
+        return new JsonHrManagerStorage(Paths.get(filePath)).readHrManager(addToTestDataPathIfNotNull(filePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -66,7 +66,7 @@ public class JsonHRManagerStorageTest {
     public void readAndSaveHrManager_allInOrder_success() throws Exception {
         Path filePath = testFolder.resolve("TempAddressBook.json");
         HrManager original = getTypicalHrManager();
-        JsonHRManagerStorage jsonHrManagerStorage = new JsonHRManagerStorage(filePath);
+        JsonHrManagerStorage jsonHrManagerStorage = new JsonHrManagerStorage(filePath);
 
         // Save in new file and read back
         jsonHrManagerStorage.saveHrManager(original, filePath);
@@ -98,7 +98,7 @@ public class JsonHRManagerStorageTest {
      */
     private void saveHrManager(ReadOnlyHrManager hrManager, String filePath) {
         try {
-            new JsonHRManagerStorage(Paths.get(filePath))
+            new JsonHrManagerStorage(Paths.get(filePath))
                     .saveHrManager(hrManager, addToTestDataPathIfNotNull(filePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);

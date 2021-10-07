@@ -11,7 +11,7 @@ import seedu.address.model.ReadOnlyHrManager;
 /**
  * Represents a storage for {@link HrManager}.
  */
-public interface HRManagerStorage {
+public interface HrManagerStorage {
 
     /**
      * Returns the file path of the data file for candidates.
