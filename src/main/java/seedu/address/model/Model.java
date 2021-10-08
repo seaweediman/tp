@@ -35,22 +35,22 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' HR Manager Candidate file path.
      */
-    Path getAddressBookFilePath();
+    Path getHrManagerCandidatesFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' HR Manager file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces HR Manager data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setHrManager(ReadOnlyHrManager addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyHrManager getHrManager();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
