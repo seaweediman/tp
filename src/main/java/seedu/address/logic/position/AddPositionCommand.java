@@ -1,4 +1,4 @@
-package seedu.address.logic.positionCommands;
+package seedu.address.logic.position;
 
 public class AddPositionCommand {
 }

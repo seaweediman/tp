@@ -1,15 +1,15 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.DESC_AMY;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.DESC_BOB;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.candidate.CommandTestUtil.DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.candidateCommands.EditCandidateCommand.EditPersonDescriptor;
+import seedu.address.logic.candidate.EditCandidateCommand.EditPersonDescriptor;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
@@ -72,7 +72,8 @@ public class EditCandidateCommandTest {
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON, new EditPersonDescriptor());
+        EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
+                new EditPersonDescriptor());
         Person editedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         String expectedMessage = String.format(EditCandidateCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

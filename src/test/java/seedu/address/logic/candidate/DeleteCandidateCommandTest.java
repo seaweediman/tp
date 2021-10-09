@@ -1,10 +1,10 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;

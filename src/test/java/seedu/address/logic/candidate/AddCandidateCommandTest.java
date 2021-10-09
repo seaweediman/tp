@@ -1,4 +1,4 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidateCommands.exceptions.CommandException;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
@@ -38,7 +38,8 @@ public class AddCandidateCommandTest {
 
         CommandResult commandResult = new AddCandidateCommand(validPerson).execute(modelStub);
 
-        assertEquals(String.format(AddCandidateCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddCandidateCommand.MESSAGE_SUCCESS, validPerson),
+                commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
     }
 
@@ -48,7 +49,8 @@ public class AddCandidateCommandTest {
         AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, () -> addCandidateCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addCandidateCommand.execute(modelStub));
     }
 
     @Test

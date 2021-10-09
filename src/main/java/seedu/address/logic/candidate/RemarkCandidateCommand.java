@@ -1,4 +1,4 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -9,7 +9,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidateCommands.exceptions.CommandException;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;

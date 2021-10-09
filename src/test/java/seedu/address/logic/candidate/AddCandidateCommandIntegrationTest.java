@@ -1,7 +1,7 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -39,7 +39,8 @@ public class AddCandidateCommandIntegrationTest {
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getHrManager().getPersonList().get(0);
-        assertCommandFailure(new AddCandidateCommand(personInList), model, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddCandidateCommand(personInList), model,
+                AddCandidateCommand.MESSAGE_DUPLICATE_PERSON);
     }
 
 }

@@ -1,6 +1,6 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
-import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.general.HelpCommand.SHOWING_HELP_MESSAGE;
 
 import org.junit.jupiter.api.Test;

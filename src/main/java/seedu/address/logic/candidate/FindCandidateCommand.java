@@ -1,4 +1,4 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static java.util.Objects.requireNonNull;
 

@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.address.logic.commands.AddCandidateCommand;
+import seedu.address.logic.candidate.AddCandidateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -23,7 +23,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddCommandParser implements Parser<AddCandidateCommand> {
+public class AddCandidateCommandParser implements Parser<AddCandidateCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand

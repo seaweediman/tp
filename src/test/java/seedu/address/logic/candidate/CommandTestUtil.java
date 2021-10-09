@@ -1,4 +1,4 @@
-package seedu.address.logic.candidateCommands;
+package seedu.address.logic.candidate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -16,7 +16,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidateCommands.exceptions.CommandException;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
