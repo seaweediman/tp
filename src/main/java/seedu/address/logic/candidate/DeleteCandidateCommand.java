@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.candidateCommands;
 
 import static java.util.Objects.requireNonNull;
 
@@ -6,14 +6,16 @@ import java.util.List;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidateCommands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
  * Deletes a candidate identified using it's displayed index from the HR Manager.
  */
-public class DeleteCommand extends Command {
+public class DeleteCandidateCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_c";
 
@@ -26,7 +28,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteCandidateCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -47,7 +49,7 @@ public class DeleteCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteCandidateCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteCandidateCommand) other).targetIndex)); // state check
     }
 }

@@ -1,14 +1,16 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.candidateCommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
 import seedu.address.model.Model;
 
 /**
  * Lists all candidates in the HR Manager to the user.
  */
-public class ListCommand extends Command {
+public class ListCandidateCommand extends Command {
 
     public static final String COMMAND_WORD = "list_c";
 

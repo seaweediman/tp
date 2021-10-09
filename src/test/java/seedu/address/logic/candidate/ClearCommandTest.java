@@ -1,10 +1,11 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.candidateCommands;
 
-import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidateCommands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

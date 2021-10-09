@@ -1,7 +1,9 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.generalCommands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 
