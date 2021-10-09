@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -22,6 +23,7 @@ public class ModelManager implements Model {
     private final HrManager hrManager;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final FilteredList<Position> filteredPositions;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -30,11 +32,12 @@ public class ModelManager implements Model {
         super();
         requireAllNonNull(hrManager, userPrefs);
 
-        logger.fine("Initializing with address book: " + hrManager + " and user prefs " + userPrefs);
+        logger.fine("Initializing with HR Manager: " + hrManager + " and user prefs " + userPrefs);
 
         this.hrManager = new HrManager(hrManager);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.hrManager.getPersonList());
+        filteredPositions = new FilteredList<>(this.hrManager.getPositionList());
     }
 
     public ModelManager() {
@@ -76,11 +79,11 @@ public class ModelManager implements Model {
         userPrefs.setHrManagerCandidatesFilePath(hrManagerCandidatesFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== HrManager ================================================================================
 
     @Override
-    public void setHrManager(ReadOnlyHrManager addressBook) {
-        this.hrManager.resetData(addressBook);
+    public void setHrManager(ReadOnlyHrManager hrManager) {
+        this.hrManager.resetData(hrManager);
     }
 
     @Override
@@ -108,25 +111,62 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         hrManager.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public boolean hasPosition(Position position) {
+        requireNonNull(position);
+        return hrManager.hasPosition(position);
+    }
+
+    @Override
+    public void deletePosition(Position target) {
+        hrManager.removePosition(target);
+    }
+
+    @Override
+    public void addPosition(Position position) {
+        hrManager.addPosition(position);
+        updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
+    }
+
+    @Override
+    public void setPosition(Position target, Position editedPosition) {
+        requireAllNonNull(target, editedPosition);
+        hrManager.setPosition(target, editedPosition);
     }
 
     //=========== Filtered Person List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedHrManager}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return filteredPersons;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Position} backed by the internal list of
+     * {@code versionedHrManager}
+     */
+    @Override
+    public ObservableList<Position> getFilteredPositionList() {
+        return filteredPositions;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredPositionList(Predicate<Position> predicate) {
+        requireNonNull(predicate);
+        filteredPositions.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +185,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return hrManager.equals(other.hrManager)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredPositions.equals(other.filteredPositions);
     }
 
 }
