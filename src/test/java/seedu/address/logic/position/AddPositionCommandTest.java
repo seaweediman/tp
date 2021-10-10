@@ -1,7 +1,17 @@
 package seedu.address.logic.position;
 
-import javafx.collections.ObservableList;
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
@@ -11,17 +21,8 @@ import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-
 import seedu.address.testutil.PositionBuilder;
 
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.Predicate;
-
-import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
 
 public class AddPositionCommandTest {
 
@@ -32,8 +33,8 @@ public class AddPositionCommandTest {
 
     @Test
     public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        AddPositionCommandTest.ModelStubAcceptingPositionAdded modelStub = new AddPositionCommandTest.
-                ModelStubAcceptingPositionAdded();
+        AddPositionCommandTest.ModelStubAcceptingPositionAdded modelStub = new AddPositionCommandTest
+                .ModelStubAcceptingPositionAdded();
         Position validPosition = new PositionBuilder().build();
 
         CommandResult commandResult = new AddPositionCommand(validPosition).execute(modelStub);
