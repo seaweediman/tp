@@ -23,6 +23,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
+    public static final String DEFAULT_POSITION = "Accountant";
 
     private Name name;
     private Phone phone;
@@ -55,6 +56,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
+        positions = new HashSet<>(personToCopy.getPositions());
     }
 
     /**
@@ -70,6 +72,14 @@ public class PersonBuilder {
      */
     public PersonBuilder withTags(String ... tags) {
         this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPositions(String ... positions) {
+        this.positions = SampleDataUtil.getPositionSet(positions);
         return this;
     }
 

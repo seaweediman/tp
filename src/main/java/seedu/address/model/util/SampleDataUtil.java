@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.HrManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.person.Address;
@@ -68,11 +69,14 @@ public class SampleDataUtil {
      */
     public static Set<Position> getPositionSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Position::new)
+                .map(SampleDataUtil::helper)
                 .collect(Collectors.toSet());
     }
 
-
+    public static Position helper(String position) {
+        HrManager hrManager = new HrManager();
+        return hrManager.getPosition(position);
+    }
 
     /**
      * Returns a person set containing the list of persons given.

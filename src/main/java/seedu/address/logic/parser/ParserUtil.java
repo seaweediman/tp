@@ -133,14 +133,9 @@ public class ParserUtil {
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
         String trimmedPosition = position.trim();
-        Position toAdd = new Position(trimmedPosition);
         HrManager hrManager = new HrManager();
 
-        if (!hrManager.hasPosition(toAdd)) {
-            throw new ParseException(String.format(Position.NOT_FOUND, position));
-        }
-
-        return hrManager.getPosition(position);
+        return hrManager.getPosition(trimmedPosition);
     }
 
     /**

@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.position.Position;
@@ -148,6 +149,10 @@ public class HrManager implements ReadOnlyHrManager {
     }
 
     public Position getPosition(String position) {
+        Position toFind = new Position(position);
+        if (!hasPosition(toFind)) {
+             //TODO Change exception
+        }
         return positions.get(position);
     }
 
