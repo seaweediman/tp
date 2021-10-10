@@ -2,7 +2,7 @@ package seedu.address.model.position;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
