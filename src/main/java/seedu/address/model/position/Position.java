@@ -32,8 +32,8 @@ public class Position {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both positions have the same name.
+     * This defines a weaker notion of equality between two positions.
      */
     public boolean isSamePosition(Position otherPosition) {
         if (otherPosition == this) {
