@@ -57,7 +57,7 @@ Adds a remark to a candidate.
     remark_c <INDEX> remark=<REMARK>
 
 <u>Example:</u>
-`remark 1 remark=20 years of experience`
+`remark_c 1 remark=20 years of experience`
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
 
 ### Feature: Storage
