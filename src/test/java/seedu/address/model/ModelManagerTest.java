@@ -4,9 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POSITIONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
+import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -16,6 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.HrManagerBuilder;
 
 public class ModelManagerTest {
@@ -94,8 +98,32 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasPosition_nullPosition_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPosition(null));
+    }
+
+    @Test
+    public void hasPosition_positionNotInHrManager_returnsFalse() {
+        assertFalse(modelManager.hasPosition(ADMIN_ASSISTANT));
+    }
+
+    @Test
+    public void hasPosition_positionInHrManager_returnsTrue() {
+        modelManager.addPosition(ADMIN_ASSISTANT);
+        assertTrue(modelManager.hasPosition(ADMIN_ASSISTANT));
+    }
+
+    @Test
+    public void getFilteredPositionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPositionList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        HrManager hrManager = new HrManagerBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        HrManager hrManager = new HrManagerBuilder()
+                .withPerson(ALICE).withPerson(BENSON)
+                .withPosition(ADMIN_ASSISTANT).withPosition(BOOKKEEPER)
+                .build();
         HrManager differentHrManager = new HrManager();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -121,8 +149,13 @@ public class ModelManagerTest {
         modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hrManager, userPrefs)));
 
+        String[] keywordsTitle = ADMIN_ASSISTANT.getTitle().fullTitle.split("\\s+");
+        modelManager.updateFilteredPositionList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(hrManager, userPrefs)));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
