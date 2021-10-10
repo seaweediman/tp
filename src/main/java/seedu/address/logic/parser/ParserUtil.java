@@ -123,6 +123,12 @@ public class ParserUtil {
         return tagSet;
     }
 
+    /**
+     * Parses {@code String title} into a {@code Title}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException
+     */
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
         String trimmedTitle = title.trim();

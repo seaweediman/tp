@@ -1,13 +1,13 @@
 package seedu.address.logic.position;
 
-import seedu.address.logic.candidate.exceptions.CommandException;
-import seedu.address.logic.Command;
-import seedu.address.logic.CommandResult;
-import seedu.address.model.Model;
-import seedu.address.model.position.Position;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.position.Position;
 
 public class AddPositionCommand extends Command {
 

@@ -1,19 +1,17 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.position.AddPositionCommand;
-
-import seedu.address.model.position.Position;
-import seedu.address.model.position.Title;
-
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.HashSet;
 import java.util.stream.Stream;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.position.AddPositionCommand;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 
-public class AddPositionCommandParser implements Parser<AddPositionCommand>{
+public class AddPositionCommandParser implements Parser<AddPositionCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
