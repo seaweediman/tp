@@ -138,6 +138,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<Position> positions = getPositions();
+        if (!positions.isEmpty()) {
+            builder.append("; Positions: ");
+            positions.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
