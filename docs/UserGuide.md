@@ -48,6 +48,17 @@ Displays a list of all the candidates stored in the application.
 
     list c
 
+<u>**Remark a candidate: `remark`**</u>
+
+Adds a remark to a candidate.
+
+<u>Format:</u>
+
+    remark <INDEX> remark=<REMARK>
+
+<u>Example:</u>
+`remark 1 remark=20 years of experience`
+* Adds a remark to the 1st candidate that he/she has 20 years of experience.
 
 ### Feature: Storage
 Save all candidates’ records into a data file locally, on your device itself.
