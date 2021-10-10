@@ -6,16 +6,16 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.RemarkCommand;
+import seedu.address.logic.Command;
+import seedu.address.logic.candidate.AddCandidateCommand;
+import seedu.address.logic.candidate.DeleteCandidateCommand;
+import seedu.address.logic.candidate.EditCandidateCommand;
+import seedu.address.logic.candidate.FindCandidateCommand;
+import seedu.address.logic.candidate.ListCandidateCommand;
+import seedu.address.logic.candidate.RemarkCandidateCommand;
+import seedu.address.logic.general.ClearCommand;
+import seedu.address.logic.general.ExitCommand;
+import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -45,23 +45,23 @@ public class HrManagerParser {
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddCandidateCommand.COMMAND_WORD:
+            return new AddCandidateCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditCandidateCommand.COMMAND_WORD:
+            return new EditCandidateCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteCandidateCommand.COMMAND_WORD:
+            return new DeleteCandidateCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case FindCandidateCommand.COMMAND_WORD:
+            return new FindCandidateCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case ListCandidateCommand.COMMAND_WORD:
+            return new ListCandidateCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
@@ -69,8 +69,8 @@ public class HrManagerParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+        case RemarkCandidateCommand.COMMAND_WORD:
+            return new RemarkCandidateCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
