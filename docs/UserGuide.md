@@ -48,13 +48,13 @@ Displays a list of all the candidates stored in the application.
 
     list c
 
-<u>**Remark a candidate: `remark`**</u>
+<u>**Remark a candidate: `remark_c`**</u>
 
 Adds a remark to a candidate.
 
 <u>Format:</u>
 
-    remark <INDEX> remark=<REMARK>
+    remark_c <INDEX> remark=<REMARK>
 
 <u>Example:</u>
 `remark 1 remark=20 years of experience`
