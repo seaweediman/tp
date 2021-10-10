@@ -30,15 +30,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags
-                  ) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags,
+                  Set<Position> positions) {
+        requireAllNonNull(name, phone, email, address, tags, positions);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.positions.addAll(positions);
     }
 
     public Name getName() {
@@ -67,6 +68,14 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable position set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Position> getPositions() {
+        return Collections.unmodifiableSet(positions);
     }
 
     /**
