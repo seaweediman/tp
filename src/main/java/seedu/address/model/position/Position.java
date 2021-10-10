@@ -1,53 +1,74 @@
 package seedu.address.model.position;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+
+import seedu.address.model.person.Person;
 
 /**
  * Represents a Position in the HR Manager.
- * Guarantees: immutable; name is valid as declared in {@link #isValidPositionName(String)}
+ * Guarantees: immutable; title is valid and not null.
  */
 public class Position {
 
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String positionName;
+    public final Title title;
+
+    private final Set<Person> candidates = new HashSet<>();
 
     /**
      * Constructs a {@code Position}.
      *
-     * @param positionName A valid position name.
+     * @param title A valid position title.
      */
-    public Position(String positionName) {
-        requireNonNull(positionName);
-        checkArgument(isValidPositionName(positionName), MESSAGE_CONSTRAINTS);
-        this.positionName = positionName;
+    public Position(Title title, Set<Person> candidates) {
+        requireNonNull(title);
+        this.title = title;
+        this.candidates.addAll(candidates);
     }
 
     /**
-     * Returns true if a given string is a valid position name.
+     * Returns true if both positions have the same name.
+     * This defines a weaker notion of equality between two positions.
      */
-    public static boolean isValidPositionName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public boolean isSamePosition(Position otherPosition) {
+        if (otherPosition == this) {
+            return true;
+        }
+
+        return otherPosition != null
+                && otherPosition.getTitle().equals(getTitle());
+    }
+
+    public Title getTitle() {
+        return this.title;
+    }
+
+    public Set<Person> getCandidates() {
+        return Collections.unmodifiableSet(candidates);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && positionName.equals(((Position) other).positionName)); // state check
+                && title.equals(((Position) other).title))
+                && candidates.equals(((Position) other).candidates); // state check
     }
 
     @Override
     public int hashCode() {
-        return positionName.hashCode();
+        return title.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + positionName + ']';
+        return '[' + title.toString() + ']';
     }
 }

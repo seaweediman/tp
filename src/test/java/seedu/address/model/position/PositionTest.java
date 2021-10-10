@@ -2,68 +2,75 @@ package seedu.address.model.position;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
+import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 
 import org.junit.jupiter.api.Test;
 
-class PositionTest {
+import seedu.address.testutil.PositionBuilder;
+
+public class PositionTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new Position(null));
+    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
+        Position position = new PositionBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> position.getCandidates().remove(0));
     }
 
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidPositionName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Position(invalidPositionName));
+    public void isSamePosition() {
+        // same object -> returns true
+        assertTrue(ADMIN_ASSISTANT.isSamePosition(ADMIN_ASSISTANT));
+
+        // null -> returns false
+        assertFalse(ADMIN_ASSISTANT.isSamePosition(null));
+
+        // same name, different candidates -> returns true
+        Position editedAdminAssistance = new PositionBuilder(ADMIN_ASSISTANT).withCandidates(BOB).build();
+        assertTrue(ADMIN_ASSISTANT.isSamePosition(editedAdminAssistance));
+
+        // different name, all other attributes same -> returns false
+        editedAdminAssistance = new PositionBuilder(ADMIN_ASSISTANT).withTitle(VALID_TITLE_BOOKKEEPER).build();
+        assertFalse(ADMIN_ASSISTANT.isSamePosition(editedAdminAssistance));
+
+        // name differs in case, all other attributes same -> returns false
+        Position editedBookkeeper = new PositionBuilder(BOOKKEEPER).withTitle(VALID_TITLE_BOOKKEEPER.toLowerCase())
+                .build();
+        assertFalse(BOOKKEEPER.isSamePosition(editedBookkeeper));
+
+        // name has trailing spaces, all other attributes same -> returns false
+        String nameWithTrailingSpaces = VALID_TITLE_BOOKKEEPER + " ";
+        editedBookkeeper = new PositionBuilder(BOOKKEEPER).withTitle(nameWithTrailingSpaces).build();
+        assertFalse(BOOKKEEPER.isSamePosition(editedBookkeeper));
     }
 
     @Test
-    public void isValidPositionName() {
-        // null position name
-        assertThrows(NullPointerException.class, () -> Position.isValidPositionName(null));
-    }
+    public void equals() {
+        // same values -> returns true
+        Position adminAssistantCopy = new PositionBuilder(ADMIN_ASSISTANT).build();
+        assertTrue(ADMIN_ASSISTANT.equals(adminAssistantCopy));
 
-    @Test
-    public void variousPositionNames() {
-        //invalid position names
-        assertFalse(Position.isValidPositionName(("Administrative & Finance Assistant")));
-        assertFalse(Position.isValidPositionName(("Administrative Assistant #2")));
-        assertFalse(Position.isValidPositionName(("Administrative Assistant *")));
-        assertFalse(Position.isValidPositionName(("Administrative Assistant ^^")));
-        assertFalse(Position.isValidPositionName(("Acc-Manager")));
-        assertFalse(Position.isValidPositionName(("")));
-        assertFalse(Position.isValidPositionName((" ")));
-        assertFalse(Position.isValidPositionName(("Administrative Manager (temp)")));
-        assertFalse(Position.isValidPositionName(("'Fun!' project manager")));
-        assertFalse(Position.isValidPositionName(("data + admin clerk")));
+        // same object -> returns true
+        assertTrue(ADMIN_ASSISTANT.equals(adminAssistantCopy));
 
-        //valid position names
-        assertTrue(Position.isValidPositionName(("Administrative Assistant")));
-        assertTrue(Position.isValidPositionName(("Receptionist")));
-        assertTrue(Position.isValidPositionName(("Office Manager")));
-        assertTrue(Position.isValidPositionName(("Auditing Clerk")));
-        assertTrue(Position.isValidPositionName(("Bookkeeper")));
-        assertTrue(Position.isValidPositionName(("Account Executive Officer Assistant")));
-        assertTrue(Position.isValidPositionName(("Branch Manager")));
-        assertTrue(Position.isValidPositionName(("Business Manager")));
-        assertTrue(Position.isValidPositionName(("Quality Control Coordinator")));
-        assertTrue(Position.isValidPositionName(("Administrative Manager")));
-        assertTrue(Position.isValidPositionName(("Chief Executive Officer")));
-        assertTrue(Position.isValidPositionName(("Business Analyst")));
-        assertTrue(Position.isValidPositionName(("Risk Manager")));
-        assertTrue(Position.isValidPositionName(("Human Resources")));
-        assertTrue(Position.isValidPositionName(("Office Assistant")));
-        assertTrue(Position.isValidPositionName(("Secretary")));
-        assertTrue(Position.isValidPositionName(("Office Clerk")));
-        assertTrue(Position.isValidPositionName(("File Clerk")));
-        assertTrue(Position.isValidPositionName(("Account Collector")));
-        assertTrue(Position.isValidPositionName(("Administrative Specialist")));
-        assertTrue(Position.isValidPositionName(("Executive Assistant")));
-        assertTrue(Position.isValidPositionName(("Program Administrator")));
-        assertTrue(Position.isValidPositionName(("Program Manager")));
-        assertTrue(Position.isValidPositionName(("Administrative Analyst")));
-        assertTrue(Position.isValidPositionName(("Data Entry")));
+        // null -> returns false
+        assertFalse(adminAssistantCopy.equals(null));
+
+        // different type -> returns false
+        assertFalse(adminAssistantCopy.equals(5));
+
+        // different position -> returns false
+        assertFalse(ADMIN_ASSISTANT.equals(BOOKKEEPER));
+
+        // different title -> returns false
+        Position editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).withTitle(VALID_TITLE_BOOKKEEPER).build();
+        assertFalse(ADMIN_ASSISTANT.equals(editedAdminAssistant));
+
+        // different candidates -> returns false
+        editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).withCandidates(BOB).build();
+        assertFalse(ADMIN_ASSISTANT.equals(editedAdminAssistant));
     }
 }
