@@ -59,24 +59,24 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void setPosition_nullTargetPerson_throwsNullPointerException() {
+    public void setPosition_nullTargetPosition_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePositionList.setPosition(null, ADMIN_ASSISTANT));
     }
 
     @Test
-    public void setPosition_nullEditedPerson_throwsNullPointerException() {
+    public void setPosition_nullEditedPosition_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
                 uniquePositionList.setPosition(ADMIN_ASSISTANT, null));
     }
 
     @Test
-    public void setPosition_targetPersonNotInList_throwsPositionNotFoundException() {
+    public void setPosition_targetPositionNotInList_throwsPositionNotFoundException() {
         assertThrows(PositionNotFoundException.class, () ->
                 uniquePositionList.setPosition(ADMIN_ASSISTANT, ADMIN_ASSISTANT));
     }
 
     @Test
-    public void setPosition_editedPersonIsSamePerson_success() {
+    public void setPosition_editedPositionIsSamePosition_success() {
         uniquePositionList.add(ADMIN_ASSISTANT);
         uniquePositionList.setPosition(ADMIN_ASSISTANT, ADMIN_ASSISTANT);
         UniquePositionList expectedUniquePositionList = new UniquePositionList();
@@ -85,7 +85,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void setPosition_editedPersonHasSameIdentity_success() {
+    public void setPosition_editedPositionHasSameIdentity_success() {
         uniquePositionList.add(ADMIN_ASSISTANT);
         Position editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).build();
         uniquePositionList.setPosition(ADMIN_ASSISTANT, editedAdminAssistant);
@@ -95,7 +95,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void setPosition_editedPersonHasDifferentIdentity_success() {
+    public void setPosition_editedPositionHasDifferentIdentity_success() {
         uniquePositionList.add(ADMIN_ASSISTANT);
         uniquePositionList.setPosition(ADMIN_ASSISTANT, BOOKKEEPER);
         UniquePositionList expectedUniquePositionList = new UniquePositionList();
@@ -104,7 +104,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void setPosition_editedPersonHasNonUniqueIdentity_throwsDuplicatePositionException() {
+    public void setPosition_editedPositionHasNonUniqueIdentity_throwsDuplicatePositionException() {
         uniquePositionList.add(ADMIN_ASSISTANT);
         uniquePositionList.add(BOOKKEEPER);
         assertThrows(DuplicatePositionException.class, () ->
@@ -112,7 +112,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
+    public void remove_nullPosition_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniquePositionList.remove(null));
     }
 
@@ -122,7 +122,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
+    public void remove_existingPosition_removesPosition() {
         uniquePositionList.add(ADMIN_ASSISTANT);
         uniquePositionList.remove(ADMIN_ASSISTANT);
         UniquePositionList expectedUniquePositionList = new UniquePositionList();
@@ -159,7 +159,7 @@ public class UniquePositionListTest {
     }
 
     @Test
-    public void setPositions_listWithDuplicatePersons_throwsDuplicatePositionException() {
+    public void setPositions_listWithDuplicatePositions_throwsDuplicatePositionException() {
         List<Position> listWithDuplicatePositions = Arrays.asList(ADMIN_ASSISTANT, ADMIN_ASSISTANT);
         assertThrows(DuplicatePositionException.class, () ->
                 uniquePositionList.setPositions(listWithDuplicatePositions));

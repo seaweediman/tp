@@ -62,7 +62,7 @@ public class PositionTest {
         // different type -> returns false
         assertFalse(adminAssistantCopy.equals(5));
 
-        // different person -> returns false
+        // different position -> returns false
         assertFalse(ADMIN_ASSISTANT.equals(BOOKKEEPER));
 
         // different title -> returns false
