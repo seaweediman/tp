@@ -15,6 +15,7 @@ import seedu.address.model.person.Person;
 public class Position {
 
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
+    public static final String NOT_FOUND = "Position: %s not found";
 
     public final Title title;
 
@@ -29,6 +30,16 @@ public class Position {
         requireNonNull(title);
         this.title = title;
         this.candidates.addAll(candidates);
+    }
+
+    /**
+     * Constructs a {@code Position}.
+     *
+     * @param title A valid position title.
+     */
+    public Position(String title) {
+        requireNonNull(title);
+        this.title = new Title(title);
     }
 
     /**

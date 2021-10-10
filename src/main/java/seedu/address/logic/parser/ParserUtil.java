@@ -9,10 +9,12 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.HrManager;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,5 +122,36 @@ public class ParserUtil {
             tagSet.add(parseTag(tagName));
         }
         return tagSet;
+    }
+
+    /**
+     * Parses a {@code String position} into a {@code Position}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code position} is invalid.
+     */
+    public static Position parsePosition(String position) throws ParseException {
+        requireNonNull(position);
+        String trimmedPosition = position.trim();
+        Position toAdd = new Position(trimmedPosition);
+        HrManager hrManager = new HrManager();
+
+        if (!hrManager.hasPosition(toAdd)) {
+            throw new ParseException(String.format(Position.NOT_FOUND, position));
+        }
+
+        return hrManager.getPosition(position);
+    }
+
+    /**
+     * Parses {@code Collection<String> position} into a {@code Set<Position>}.
+     */
+    public static Set<Position> parsePositions(Collection<String> positions) throws ParseException {
+        requireNonNull(positions);
+        final Set<Position> positionSet = new HashSet<>();
+        for (String positionName : positions) {
+            positionSet.add(parsePosition(positionName));
+        }
+        return positionSet;
     }
 }
