@@ -12,7 +12,7 @@ import seedu.address.model.util.SampleDataUtil;
  * A utility class to help with building Person objects.
  */
 public class PositionBuilder {
-    public static final String DEFAULT_TITLE = "Bookkeeper";
+    public static final String DEFAULT_TITLE = "HR Manager";
 
     private Title title;
     private Set<Person> candidates;
