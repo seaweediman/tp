@@ -49,7 +49,7 @@ public class AddCandidateCommandParser implements Parser<AddCandidateCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Position> positionList = ParserUtil.parsePositions(argMultimap.getAllValues(PREFIX_POSITION));
 
-        Person person = new Person(name, phone, email, address, remark, tagList);
+        Person person = new Person(name, phone, email, address, remark, tagList, positionList);
 
         return new AddCandidateCommand(person);
     }
