@@ -140,16 +140,12 @@ public class ParserUtil {
         return new Title(title);
     }
 
-    public static Position parsePosition(String position) throws ParseException {
+    public static Position parsePosition(String position) {
         requireNonNull(position);
         String trimmedPosition = position.trim();
         Title title = new Title(trimmedPosition);
         Position toAdd = new Position(title);
         HrManager hrManager = new HrManager();
-
-        if (!(hrManager.hasPosition(toAdd))) { //If Position does not exist
-            throw new ParseException(position + " does not exist in Hr Manager!");
-        }
 
         return hrManager.getPosition(toAdd); //Returns the reference to the position
     }

@@ -32,18 +32,13 @@ public class JsonAdaptedPosition {
     }
 
     /**
-     * Converts this Jackson-friendly adapted tag object into the model's {@code Tag} object.
+     * Converts this Jackson-friendly adapted position object into the model's {@code Position} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
-    public Position toModelType() throws IllegalValueException {
+    public Position toModelType() {
         HrManager hrManager = new HrManager();
         Title title = new Title(positionName);
         Position toAdd = new Position(title);
-
-        if (!(hrManager.hasPosition(toAdd))) { //If Position does not exist
-            throw new IllegalValueException(Position.MESSAGE_CONSTRAINTS);
-        }
 
         return hrManager.getPosition(toAdd); //Returns the reference to the position
     }

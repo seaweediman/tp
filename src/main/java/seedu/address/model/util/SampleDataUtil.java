@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.HrManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.person.Address;
@@ -78,6 +79,9 @@ public class SampleDataUtil {
 
     public static Position getPositionSetHelper(Position position) {
         HrManager hrManager = new HrManager();
+        if (!(hrManager.hasPosition(position))) { //If Position does not exist
+            return null;
+        }
         return hrManager.getPosition(position);
     }
 

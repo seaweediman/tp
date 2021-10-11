@@ -144,7 +144,7 @@ public class UniquePositionList implements Iterable<Position> {
                 return p;
             }
         }
-        return null;
+        throw new PositionNotFoundException();
     }
 }
 
