@@ -29,7 +29,8 @@ public interface HrManagerStorage {
     /**
      * @see #getHrManagerCandidatesFilePath()
      */
-    Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath, Path positionsFilePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath,
+                                              Path positionsFilePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyHrManager} to the storage.

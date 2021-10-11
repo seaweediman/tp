@@ -18,7 +18,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
 /**
- * A class to access HRManager data stored as a json file on the hard disk.
+ * A class to access HrManager data stored as a json file on the hard disk.
  */
 public class JsonHrManagerStorage implements HrManagerStorage {
 
@@ -28,6 +28,9 @@ public class JsonHrManagerStorage implements HrManagerStorage {
     private Path candidatesFilePath;
     private Path positionsFilePath;
 
+    /**
+     * Constructs a {@code JsonHrManagerStorage} with the given paths.
+     */
     public JsonHrManagerStorage(Path candidatesFilePath, Path positionsFilePath) {
         this.candidatesFilePath = candidatesFilePath;
         this.positionsFilePath = positionsFilePath;
@@ -64,28 +67,28 @@ public class JsonHrManagerStorage implements HrManagerStorage {
         Optional<JsonSerializableHrManagerPositions> positions = JsonUtil.readJsonFile(
                 positionsFilePath, JsonSerializableHrManagerPositions.class);
 
-        //merge data from both jsons
-        Optional<ReadOnlyHrManager> mergedData = null;
+        //merge data from both files
         try {
             HrManager merge = new HrManager();
-            for (Person person : candidates.get().toModelType().getPersonList()) {
-                merge.addPerson(person);
+            if (candidates.isPresent()) {
+                for (Person person : candidates.get().toModelType().getPersonList()) {
+                    merge.addPerson(person);
+                }
             }
-            for (Position position : positions.get().toModelType().getPositionList()) {
-                merge.addPosition(position);
+            if (positions.isPresent()) {
+                for (Position position : positions.get().toModelType().getPositionList()) {
+                    merge.addPosition(position);
+                }
             }
-            mergedData = Optional.of(merge);
-
+            if (candidates.isEmpty() && positions.isEmpty()) {
+                return Optional.empty();
+            }
+            return Optional.of(merge);
         } catch (IllegalValueException ive) {
-            logger.info("Illegal values found when merging data from " + candidatesFilePath +" and "
+            logger.info("Illegal values found when merging data from " + candidatesFilePath + " and "
                     + positionsFilePath + ":" + ive.getMessage());
+            throw new DataConversionException(ive);
         }
-
-        if (mergedData == null || !mergedData.isPresent()) {
-            return Optional.empty();
-        }
-
-        return mergedData;
     }
 
     @Override
@@ -96,30 +99,22 @@ public class JsonHrManagerStorage implements HrManagerStorage {
     /**
      * Similar to {@link #saveHrManager(ReadOnlyHrManager)}.
      *
+     * @param hrManager cannot be null.
      * @param candidatesFilePath location of the data. Cannot be null.
      * @param positionsFilePath location of the data. Cannot be null.
      */
     public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath,
                               Path positionsFilePath) throws IOException {
-        saveHrManagerPersons(hrManager, candidatesFilePath);
-        saveHrManagerPositions(hrManager, positionsFilePath);
-    }
-
-
-    public void saveHrManagerPersons(ReadOnlyHrManager hrManager, Path candidatesFilePath) throws IOException {
         requireNonNull(hrManager);
         requireNonNull(candidatesFilePath);
-
-        FileUtil.createIfMissing(candidatesFilePath);
-        JsonUtil.saveJsonFile(new JsonSerializableHrManagerCandidates(hrManager), candidatesFilePath);
-    }
-
-    public void saveHrManagerPositions(ReadOnlyHrManager hrManager, Path positionsFilePath) throws IOException {
-        requireNonNull(hrManager);
         requireNonNull(positionsFilePath);
 
+        //save candidates
+        FileUtil.createIfMissing(candidatesFilePath);
+        JsonUtil.saveJsonFile(new JsonSerializableHrManagerCandidates(hrManager), candidatesFilePath);
+
+        //save positions
         FileUtil.createIfMissing(positionsFilePath);
         JsonUtil.saveJsonFile(new JsonSerializableHrManagerPositions(hrManager), positionsFilePath);
     }
-
 }

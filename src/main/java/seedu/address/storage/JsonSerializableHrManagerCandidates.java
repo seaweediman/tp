@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.HrManager;
 import seedu.address.model.ReadOnlyHrManager;
@@ -15,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * An Immutable HrManager that is serializable to JSON format.
  */
-@JsonRootName(value = "HRManagerCandidates")
+@JsonRootName(value = "HrManagerCandidates")
 public class JsonSerializableHrManagerCandidates {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
@@ -40,7 +41,7 @@ public class JsonSerializableHrManagerCandidates {
     }
 
     /**
-     * Converts this serializable HRManagerCandidates into the model's {@code HRManager} object.
+     * Converts this serializable HrManagerCandidates into the model's {@code HrManager} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

@@ -12,7 +12,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of HrManager data in local storage.
  */
 public class StorageManager implements Storage {
 
@@ -21,7 +21,7 @@ public class StorageManager implements Storage {
     private UserPrefsStorage userPrefsStorage;
 
     /**
-     * Creates a {@code StorageManager} with the given {@code AddressBookStorage} and {@code UserPrefStorage}.
+     * Creates a {@code StorageManager} with the given {@code HrManagerStorage} and {@code UserPrefStorage}.
      */
     public StorageManager(HrManagerStorage hrManagerStorage, UserPrefsStorage userPrefsStorage) {
         super();
@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ HrManager methods ==============================
 
     @Override
     public Path getHrManagerCandidatesFilePath() {
@@ -66,8 +66,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath,
-                                                     Path positionsFilepath) throws DataConversionException, IOException {
+    public Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath, Path positionsFilepath)
+            throws DataConversionException, IOException {
         logger.fine("Attempting to read candidates data from file: " + candidatesFilePath);
         logger.fine("Attempting to read positions data from file: " + positionsFilepath);
         return hrManagerStorage.readHrManager(candidatesFilePath, positionsFilepath);
@@ -80,7 +80,8 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath) throws IOException {
+    public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath)
+            throws IOException {
         logger.fine("Attempting to write to candidate data file: " + candidatesFilePath);
         logger.fine("Attempting to write to position data file: " + positionsFilePath);
         hrManagerStorage.saveHrManager(hrManager, candidatesFilePath, positionsFilePath);

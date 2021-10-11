@@ -43,7 +43,8 @@ public class LogicManagerTest {
     @BeforeEach
     public void setUp() {
         JsonHrManagerStorage hrManagerStorage =
-                new JsonHrManagerStorage(temporaryFolder.resolve("addressBook.json"));
+                new JsonHrManagerStorage(temporaryFolder.resolve("HrManagerCandidates.json"),
+                        temporaryFolder.resolve("HrManagerPositions.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(hrManagerStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
@@ -71,7 +72,8 @@ public class LogicManagerTest {
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonHrManagerStorage addressBookStorage =
-                new JsonHrManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+                new JsonHrManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHrManagerCandidates.json"),
+                        temporaryFolder.resolve("ioExceptionHrManagerPositions.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -149,12 +151,13 @@ public class LogicManagerTest {
      * A stub class to throw an {@code IOException} when the save method is called.
      */
     private static class JsonHrManagerIoExceptionThrowingStub extends JsonHrManagerStorage {
-        private JsonHrManagerIoExceptionThrowingStub(Path filePath) {
-            super(filePath);
+        private JsonHrManagerIoExceptionThrowingStub(Path candidatesFilePath, Path positionsFilePath) {
+            super(candidatesFilePath, positionsFilePath);
         }
 
         @Override
-        public void saveHrManager(ReadOnlyHrManager hrManager, Path filePath) throws IOException {
+        public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath,
+                                  Path positionsFilePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }
