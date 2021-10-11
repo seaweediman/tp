@@ -58,17 +58,32 @@ public class JsonHrManagerStorageTest {
     }
 
     @Test
-    public void readHrManager_invalidPersonHrManager_throwDataConversionException() {
+    public void readHrManager_invalidPersonAndPositionHrManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readHrManager("invalidPersonHrManager.json",
                 "invalidPositionHrManager.json"));
     }
 
     @Test
-    public void readHrManager_invalidAndValidPersonHrManager_throwDataConversionException() {
+    public void readHrManager_invalidAndValidPersonAndPositionHrManager_throwDataConversionException() {
         assertThrows(DataConversionException.class, () -> readHrManager(
                 "invalidAndValidPersonHrManager.json",
                 "invalidAndValidPositionHrManager.json"));
     }
+
+    @Test
+    public void readHrManager_invalidPersonAndValidPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "validAndValidPersonHrManager.json",
+                "invalidAndValidPositionHrManager.json"));
+    }
+
+    @Test
+    public void readHrManager_validPersonAndInvalidPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "invalidAndValidPersonHrManager.json",
+                "validAndValidPositionHrManager.json"));
+    }
+
 
     @Test
     public void readAndSaveHrManager_allInOrder_success() throws Exception {

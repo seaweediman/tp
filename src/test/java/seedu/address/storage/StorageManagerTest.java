@@ -66,4 +66,14 @@ public class StorageManagerTest {
         assertNotNull(storageManager.getHrManagerCandidatesFilePath());
     }
 
+    @Test
+    public void getHrManagerPositionsFilePath() {
+        assertNotNull(storageManager.getHrManagerPositionsFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
+    }
+
 }
