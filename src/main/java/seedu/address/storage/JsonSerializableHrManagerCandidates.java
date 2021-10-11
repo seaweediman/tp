@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.HrManager;
 import seedu.address.model.ReadOnlyHrManager;
@@ -16,32 +15,32 @@ import seedu.address.model.person.Person;
 /**
  * An Immutable HrManager that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableHrManager {
-
+@JsonRootName(value = "HRManagerCandidates")
+public class JsonSerializableHrManagerCandidates {
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableHrManagerCandidates} with the given persons.
      */
     @JsonCreator
-    public JsonSerializableHrManager(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
+    public JsonSerializableHrManagerCandidates(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
         this.persons.addAll(persons);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyHrManager} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableHrManagerCandidates}.
      */
-    public JsonSerializableHrManager(ReadOnlyHrManager source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+    public JsonSerializableHrManagerCandidates(ReadOnlyHrManager source) {
+        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this serializable HRManagerCandidates into the model's {@code HRManager} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -56,5 +55,4 @@ class JsonSerializableHrManager {
         }
         return hrManager;
     }
-
 }

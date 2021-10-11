@@ -15,6 +15,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
     private Path hrManagerCandidatesFilePath = Paths.get("data" , "candidates.json"); //TODO
+    private Path hrManagerPositionsFilePath = Paths.get("data" , "positions.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -36,6 +37,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(newUserPrefs);
         setGuiSettings(newUserPrefs.getGuiSettings());
         setHrManagerCandidatesFilePath(newUserPrefs.getHrManagerCandidatesFilePath());
+        setHrManagerPositionsFilePath(newUserPrefs.getHrManagerPositionsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -51,9 +53,18 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return hrManagerCandidatesFilePath;
     }
 
+    public Path getHrManagerPositionsFilePath() {
+        return hrManagerPositionsFilePath;
+    }
+
     public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
         requireNonNull(hrManagerCandidatesFilePath);
         this.hrManagerCandidatesFilePath = hrManagerCandidatesFilePath;
+    }
+
+    public void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath) {
+        requireNonNull(hrManagerPositionsFilePath);
+        this.hrManagerPositionsFilePath = hrManagerPositionsFilePath;
     }
 
     @Override
@@ -68,19 +79,21 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         UserPrefs o = (UserPrefs) other;
 
         return guiSettings.equals(o.guiSettings)
-                && hrManagerCandidatesFilePath.equals(o.hrManagerCandidatesFilePath);
+                && hrManagerCandidatesFilePath.equals(o.hrManagerCandidatesFilePath)
+                && hrManagerPositionsFilePath.equals(o.hrManagerPositionsFilePath);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(guiSettings, hrManagerCandidatesFilePath);
+        return Objects.hash(guiSettings, hrManagerCandidatesFilePath, hrManagerPositionsFilePath);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Gui Settings : " + guiSettings);
-        sb.append("\nLocal data file location : " + hrManagerCandidatesFilePath);
+        sb.append("\nLocal candidates data file location : " + hrManagerCandidatesFilePath);
+        sb.append("\nLocal positions data file location : " + hrManagerPositionsFilePath);
         return sb.toString();
     }
 

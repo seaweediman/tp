@@ -13,6 +13,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,6 +45,11 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
                 getTagSet("colleagues"))
         };
+    }
+
+    public static Position[] getSamplePositions() {
+        return new Position[]{new Position(new Title("Admin Assistant"), new HashSet<Person>()), new Position(
+                new Title("Human Resource Manager"), new HashSet<Person>())};
     }
 
     public static ReadOnlyHrManager getSampleHrManager() {
