@@ -1,18 +1,19 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.commons.util.JsonUtil;
-import seedu.address.model.HrManager;
-import seedu.address.model.position.Position;
-import seedu.address.model.position.Title;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashSet;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.address.testutil.Assert.assertThrows;
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.commons.util.JsonUtil;
+import seedu.address.model.HrManager;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 
 public class JsonSerializableHrManagerPositionsTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",

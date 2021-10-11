@@ -1,12 +1,13 @@
 package seedu.address.storage;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.position.Title;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.position.Title;
 
 class JsonAdaptedTitleTest {
     private static final String INVALID_TITLE = "Acc-Manager";
