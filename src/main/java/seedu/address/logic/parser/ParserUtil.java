@@ -9,10 +9,13 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.HrManager;
+import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 import seedu.address.model.tag.Tag;
 
@@ -136,5 +139,32 @@ public class ParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(title);
+    }
+
+    public static Position parsePosition(String position) throws ParseException {
+        requireNonNull(position);
+        String trimmedPosition = position.trim();
+        Title title = new Title(trimmedPosition);
+        Position toAdd = new Position(title);
+        HrManager hrManager = new HrManager();
+
+        if (!(hrManager.hasPosition(toAdd))) { //If Position does not exist
+            throw new ParseException(position + " does not exist in Hr Manager!");
+        }
+
+        return hrManager.getPosition(toAdd); //Returns the reference to the position
+    }
+
+
+    /**
+     * Parses {@code Collection<String> position} into a {@code Set<Position>}.
+     */
+    public static Set<Position> parsePositions(Collection<String> positions) throws ParseException {
+        requireNonNull(positions);
+        final Set<Position> positionSet = new HashSet<>();
+        for (String positionName : positions) {
+            positionSet.add(parsePosition(positionName));
+        }
+        return positionSet;
     }
 }

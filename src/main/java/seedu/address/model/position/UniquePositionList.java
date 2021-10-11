@@ -134,5 +134,18 @@ public class UniquePositionList implements Iterable<Position> {
         }
         return true;
     }
+
+    /**
+     * Returns the reference to the position in internalList
+     */
+    public Position get(Position position) {
+        Title title = position.getTitle();
+        for (Position p : internalList) {
+            if (p.getTitle().equals(title)) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
 

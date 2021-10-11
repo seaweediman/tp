@@ -147,6 +147,10 @@ public class HrManager implements ReadOnlyHrManager {
         positions.remove(key);
     }
 
+    public Position getPosition(Position position) {
+        return positions.get(position);
+    }
+
     //// util methods
 
     @Override

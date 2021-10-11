@@ -32,6 +32,16 @@ public class Position {
     }
 
     /**
+     * Constructs a {@code Position}.
+     *
+     * @param title A valid position title.
+     */
+    public Position(Title title) {
+        requireNonNull(title);
+        this.title = title;
+    }
+
+    /**
      * Returns true if both positions have the same name.
      * This defines a weaker notion of equality between two positions.
      */
