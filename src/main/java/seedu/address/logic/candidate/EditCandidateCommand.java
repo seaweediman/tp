@@ -27,6 +27,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -102,8 +103,10 @@ public class EditCandidateCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Set<Position> updatedPositions = editPersonDescriptor.getPositions().orElse(personToEdit.getPositions());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
+                updatedPositions);
     }
 
     @Override
@@ -134,6 +137,7 @@ public class EditCandidateCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
+        private Set<Position> positions;
 
         public EditPersonDescriptor() {}
 
@@ -147,6 +151,7 @@ public class EditCandidateCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPositions(toCopy.positions);
         }
 
         /**
@@ -205,6 +210,23 @@ public class EditCandidateCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code positions} to this object's {@code positions}.
+         * A defensive copy of {@code positions} is used internally.
+         */
+        public void setPositions(Set<Position> positions) {
+            this.positions = (positions != null) ? new HashSet<>(positions) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code positions} is null.
+         */
+        public Optional<Set<Position>> getPositions() {
+            return (positions != null) ? Optional.of(Collections.unmodifiableSet(positions)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -224,7 +246,9 @@ public class EditCandidateCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getTags().equals(e.getTags())
+                    && getPositions().equals(e.getPositions());
         }
     }
 }

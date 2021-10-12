@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.model.Model;
+import seedu.address.model.ModelManager;
 import seedu.address.model.person.Person;
 
 /**
@@ -29,6 +31,16 @@ public class Position {
         requireNonNull(title);
         this.title = title;
         this.candidates.addAll(candidates);
+    }
+
+    /**
+     * Constructs a {@code Position}.
+     *
+     * @param title A valid position title.
+     */
+    public Position(Title title) {
+        requireNonNull(title);
+        this.title = title;
     }
 
     /**

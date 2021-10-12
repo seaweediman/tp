@@ -71,17 +71,24 @@ public class UniquePositionList implements Iterable<Position> {
         internalList.set(index, editedPosition);
     }
 
+    /**
+     * Gets the actual position references from the UniquePositionList.
+     * Also adds the candidate to the respective Position in the UniquePositionList.
+     * @return The set of position references
+     */
     public Set<Position> getPositionReferences(Person person) {
         Set<Position> toAdd = person.getPositions();
         Set<Position> positionReferences = new HashSet<>();
         for (Position personPosition: toAdd) {
+            if (!contains(personPosition)) {
+                throw new PositionNotFoundException();
+            }
+
             for (Position positionInList: internalList) {
                 if (positionInList.isSamePosition(personPosition)) {
                     positionInList.addCandidate(person);
                     positionReferences.add(positionInList);
-                    continue;
                 }
-                throw new PositionNotFoundException();
             }
         }
         return positionReferences;
