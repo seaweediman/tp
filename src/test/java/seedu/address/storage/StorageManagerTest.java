@@ -24,7 +24,8 @@ public class StorageManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonHrManagerStorage hrManagerStorage = new JsonHrManagerStorage(getTempFilePath("ab"));
+        JsonHrManagerStorage hrManagerStorage = new JsonHrManagerStorage(getTempFilePath("abc"),
+                getTempFilePath("abp"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("prefs"));
         storageManager = new StorageManager(hrManagerStorage, userPrefsStorage);
     }
@@ -63,6 +64,16 @@ public class StorageManagerTest {
     @Test
     public void getHrManagerCandidatesFilePath() {
         assertNotNull(storageManager.getHrManagerCandidatesFilePath());
+    }
+
+    @Test
+    public void getHrManagerPositionsFilePath() {
+        assertNotNull(storageManager.getHrManagerPositionsFilePath());
+    }
+
+    @Test
+    public void getUserPrefsFilePath() {
+        assertNotNull(storageManager.getUserPrefsFilePath());
     }
 
 }

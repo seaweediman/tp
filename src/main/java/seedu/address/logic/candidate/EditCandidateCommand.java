@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
@@ -29,6 +30,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Status;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -48,6 +50,7 @@ public class EditCandidateCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_POSITION + "POSITION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -87,6 +90,13 @@ public class EditCandidateCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Set<Position> newPositions = editedPerson.getPositions();
+        for (Position p : newPositions) {
+            if (!model.hasPosition(p)) {
+                throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+            }
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -106,9 +116,10 @@ public class EditCandidateCommand extends Command {
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
+        Set<Position> updatedPositions = editPersonDescriptor.getPositions().orElse(personToEdit.getPositions());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                updatedStatus);
+                updatedStatus, updatedPositions);
     }
 
     @Override
@@ -140,6 +151,7 @@ public class EditCandidateCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Status status;
+        private Set<Position> positions;
 
         public EditPersonDescriptor() {
         }
@@ -155,13 +167,14 @@ public class EditCandidateCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setStatus(toCopy.status);
+            setPositions(toCopy.positions);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions);
         }
 
         public void setName(Name name) {
@@ -221,6 +234,23 @@ public class EditCandidateCommand extends Command {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code positions} to this object's {@code positions}.
+         * A defensive copy of {@code positions} is used internally.
+         */
+        public void setPositions(Set<Position> positions) {
+            this.positions = (positions != null) ? new HashSet<>(positions) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code positions} is null.
+         */
+        public Optional<Set<Position>> getPositions() {
+            return (positions != null) ? Optional.of(Collections.unmodifiableSet(positions)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -241,7 +271,8 @@ public class EditCandidateCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
-                    && getStatus().equals(e.getStatus());
+                    && getStatus().equals(e.getStatus())
+                    && getPositions().equals(e.getPositions());
         }
     }
 }

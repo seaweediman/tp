@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,12 +26,14 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
     private final Status status;
+    private Set<Position> positions = new HashSet<>();
 
     /**
      * Every field must be present and not null, except status. If status is null, defaults to applied
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Status status) {
-        requireAllNonNull(name, phone, email, address, tags, status);
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Status status,
+                  Set<Position> positions) {
+        requireAllNonNull(name, phone, email, address, tags, status, positions);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -38,6 +41,7 @@ public class Person {
         this.tags.addAll(tags);
         this.remark = remark;
         this.status = status;
+        this.positions.addAll(positions);
     }
 
     public Name getName() {
@@ -70,6 +74,22 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns an immutable position set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Position> getPositions() {
+        return Collections.unmodifiableSet(positions);
+    }
+
+    public boolean appliedForPosition(Position p) {
+        return positions.stream().anyMatch(p::isSamePosition);
+    }
+
+    public void deletePosition(Position p) {
+        positions.remove(p);
     }
 
     /**
@@ -106,13 +126,14 @@ public class Person {
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
-                && otherPerson.getStatus().equals(getStatus());
+                && otherPerson.getStatus().equals(getStatus())
+                && otherPerson.getPositions().equals(getPositions());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, status);
+        return Objects.hash(name, phone, email, address, tags, remark, status, positions);
     }
 
     @Override
@@ -135,6 +156,13 @@ public class Person {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        Set<Position> positions = getPositions();
+        if (!positions.isEmpty()) {
+            builder.append("; Positions: ");
+            positions.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 

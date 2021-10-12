@@ -28,11 +28,14 @@ public class JsonHrManagerStorageTest {
 
     @Test
     public void readHrManager_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> readHrManager(null));
+        assertThrows(NullPointerException.class, () -> readHrManager(null, null));
     }
 
-    private java.util.Optional<ReadOnlyHrManager> readHrManager(String filePath) throws Exception {
-        return new JsonHrManagerStorage(Paths.get(filePath)).readHrManager(addToTestDataPathIfNotNull(filePath));
+    private java.util.Optional<ReadOnlyHrManager> readHrManager(String candidatesFilePath,
+                                                                String positionsFilePath) throws Exception {
+        return new JsonHrManagerStorage(Paths.get(candidatesFilePath), Paths.get(positionsFilePath))
+                .readHrManager(addToTestDataPathIfNotNull(candidatesFilePath),
+                        addToTestDataPathIfNotNull(positionsFilePath));
     }
 
     private Path addToTestDataPathIfNotNull(String prefsFileInTestDataFolder) {
@@ -43,40 +46,62 @@ public class JsonHrManagerStorageTest {
 
     @Test
     public void read_missingFile_emptyResult() throws Exception {
-        assertFalse(readHrManager("NonExistentFile.json").isPresent());
+        assertFalse(readHrManager("NonExistentCandidateFile.json",
+                "NonExistentPositionFile.json").isPresent());
     }
 
     @Test
     public void read_notJsonFormat_exceptionThrown() {
-        assertThrows(DataConversionException.class, () -> readHrManager("notJsonFormatHrManager.json"));
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "notJsonFormatHrManagerCandidates.json",
+                "notJsonFormatHrManagerPositions.json"));
     }
 
     @Test
-    public void readHrManager_invalidPersonHrManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readHrManager("invalidPersonHrManager.json"));
+    public void readHrManager_invalidPersonAndPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager("invalidPersonHrManager.json",
+                "invalidPositionHrManager.json"));
     }
 
     @Test
-    public void readHrManager_invalidAndValidPersonHrManager_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readHrManager("invalidAndValidPersonHrManager.json"));
+    public void readHrManager_invalidAndValidPersonAndPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "invalidAndValidPersonHrManager.json",
+                "invalidAndValidPositionHrManager.json"));
     }
+
+    @Test
+    public void readHrManager_invalidPersonAndValidPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "validAndValidPersonHrManager.json",
+                "invalidAndValidPositionHrManager.json"));
+    }
+
+    @Test
+    public void readHrManager_validPersonAndInvalidPositionHrManager_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readHrManager(
+                "invalidAndValidPersonHrManager.json",
+                "validAndValidPositionHrManager.json"));
+    }
+
 
     @Test
     public void readAndSaveHrManager_allInOrder_success() throws Exception {
-        Path filePath = testFolder.resolve("TempAddressBook.json");
+        Path candidatesFilePath = testFolder.resolve("HrManagerCandidates.json");
+        Path positionsFilePath = testFolder.resolve("HrManagerPositions.json");
         HrManager original = getTypicalHrManager();
-        JsonHrManagerStorage jsonHrManagerStorage = new JsonHrManagerStorage(filePath);
+        JsonHrManagerStorage jsonHrManagerStorage = new JsonHrManagerStorage(candidatesFilePath, positionsFilePath);
 
         // Save in new file and read back
-        jsonHrManagerStorage.saveHrManager(original, filePath);
-        ReadOnlyHrManager readBack = jsonHrManagerStorage.readHrManager(filePath).get();
+        jsonHrManagerStorage.saveHrManager(original, candidatesFilePath, positionsFilePath);
+        ReadOnlyHrManager readBack = jsonHrManagerStorage.readHrManager(candidatesFilePath, positionsFilePath).get();
         assertEquals(original, new HrManager(readBack));
 
         // Modify data, overwrite exiting file, and read back
         original.addPerson(HOON);
         original.removePerson(ALICE);
-        jsonHrManagerStorage.saveHrManager(original, filePath);
-        readBack = jsonHrManagerStorage.readHrManager(filePath).get();
+        jsonHrManagerStorage.saveHrManager(original, candidatesFilePath, positionsFilePath);
+        readBack = jsonHrManagerStorage.readHrManager(candidatesFilePath, positionsFilePath).get();
         assertEquals(original, new HrManager(readBack));
 
         // Save and read without specifying file path
@@ -89,16 +114,18 @@ public class JsonHrManagerStorageTest {
 
     @Test
     public void saveHrManager_nullHrManager_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveHrManager(null, "SomeFile.json"));
+        assertThrows(NullPointerException.class, () -> saveHrManager(null,
+                "SomeCandidatesFile.json", "SomePositionsFile.json"));
     }
 
     /**
      * Saves {@code hrManager} at the specified {@code filePath}.
      */
-    private void saveHrManager(ReadOnlyHrManager hrManager, String filePath) {
+    private void saveHrManager(ReadOnlyHrManager hrManager, String candidatesFilePath, String positionsFilePath) {
         try {
-            new JsonHrManagerStorage(Paths.get(filePath))
-                    .saveHrManager(hrManager, addToTestDataPathIfNotNull(filePath));
+            new JsonHrManagerStorage(Paths.get(candidatesFilePath), Paths.get(positionsFilePath))
+                    .saveHrManager(hrManager, addToTestDataPathIfNotNull(candidatesFilePath),
+                            addToTestDataPathIfNotNull(positionsFilePath));
         } catch (IOException ioe) {
             throw new AssertionError("There should not be an error writing to the file.", ioe);
         }
@@ -106,6 +133,7 @@ public class JsonHrManagerStorageTest {
 
     @Test
     public void saveHrManager_nullFilePath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> saveHrManager(new HrManager(), null));
+        assertThrows(NullPointerException.class, () -> saveHrManager(new HrManager(),
+                null, null));
     }
 }

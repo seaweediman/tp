@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCandidateCommandTest {
@@ -132,6 +133,36 @@ public class AddCandidateCommandTest {
         }
 
         @Override
+        public boolean hasPosition(Position position) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deletePosition(Position target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addPosition(Position position) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPosition(Position target, Position editedPosition) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Position> getFilteredPositionList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredPositionList(Predicate<Position> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -148,6 +179,10 @@ public class AddCandidateCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void deletePositionFromPerson(Position p) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -191,6 +226,11 @@ public class AddCandidateCommandTest {
         @Override
         public ReadOnlyHrManager getHrManager() {
             return new HrManager();
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return true;
         }
     }
 

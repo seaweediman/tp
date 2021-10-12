@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -20,6 +21,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Status;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -36,9 +38,9 @@ public class AddCandidateCommandParser implements Parser<AddCandidateCommand> {
     public AddCandidateCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_STATUS);
+                        PREFIX_STATUS, PREFIX_POSITION);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_POSITION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCandidateCommand.MESSAGE_USAGE));
         }
@@ -49,10 +51,11 @@ public class AddCandidateCommandParser implements Parser<AddCandidateCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Position> positionList = ParserUtil.parsePositions(argMultimap.getAllValues(PREFIX_POSITION));
 
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).orElse(""));
 
-        Person person = new Person(name, phone, email, address, remark, tagList, status);
+        Person person = new Person(name, phone, email, address, remark, tagList, status, positionList);
 
         return new AddCandidateCommand(person);
     }

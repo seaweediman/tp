@@ -15,38 +15,38 @@ transferable to other devices too!
 Manage a list of people who are candidates for your company, with the simple instructions below!
 
 
-<u>**Add a candidate: `add c`**</u>
+<u>**Add a candidate: `add_c`**</u>
 
 Adds a candidate to the list of candidates.
 
 <u>Format:</u>
 
-    add c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
+    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
 
 <u>Example:</u>
- `add c name=Bryan Seah email=bsah@gmail.com phone=12345678`
+ `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678`
 * Adds a candidate named Bryan Seah
 whose email is bsah@gmail.com and has a phone number of 12345678.
 
-<u>**Delete a candidate: `delete c`**</u>
+<u>**Delete a candidate: `delete_c`**</u>
 
 Deletes a candidate along with his/her details from the list of candidates. 
 
 <u>Format:</u>
 
-    delete c <INDEX>
+    delete_c <INDEX>
 
 <u>Example:</u>
- `delete c 3`
+ `delete_c 3`
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
 
-<u>**List all candidates: `list c`**</u>
+<u>**List all candidates: `list_c`**</u>
 
 Displays a list of all the candidates stored in the application.
 
 <u>Format:</u>
 
-    list c
+    list_c
 
 <u>**Remark a candidate: `remark_c`**</u>
 
@@ -59,6 +59,18 @@ Adds a remark to a candidate.
 <u>Example:</u>
 `remark_c 1 remark=20 years of experience`
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
+
+<u>**Edit a candidate: `edit_c`**</u>
+
+Edits a candidate's details.
+
+<u>Format:</u>
+
+    edit_c <INDEX> name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
+
+<u>Example:</u>
+`edit_c 3 name=Ryan Koh`
+* Edit the name of the 3rd candidate in the list to Ryan Koh.
 
 ### Feature: Storage
 Save all candidates’ records into a data file locally, on your device itself.
@@ -99,6 +111,8 @@ The transferred save file can then be loaded readily when using this application
 ## Command summary
 Action | Format, Examples | Expected result
 --------|------------------|------------------|
-**Add a candidate** | `add c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g., `add c name=Bryan Seah email=bsah@gmail.com phone=12345678` | Candidate Added: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
-**Delete a candidate** | ` delete c <INDEX>`<br> e.g., `delete c 3` | Candidate Deleted: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
-**List all candidates** | `list` | 1. James Doe <br> 2. John Doe
+**Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678` | Candidate Added: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
+**Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Candidate Deleted: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
+**List all candidates** | `list_c` | 1. James Doe <br> 2. John Doe
+**Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18 Remark: 20 years of experience; Tags: [colleagues][friends]
+**Edit a candidate** | `edit_c <INDEX> name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g. `edit_c 3 name=Ryan Koh` | Edited Candidate: Ryan Koh; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04

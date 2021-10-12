@@ -12,4 +12,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("tag=");
     public static final Prefix PREFIX_REMARK = new Prefix("remark=");
     public static final Prefix PREFIX_STATUS = new Prefix("status=");
+    public static final Prefix PREFIX_TITLE = new Prefix("title=");
+    public static final Prefix PREFIX_POSITION = new Prefix("position=");
 }

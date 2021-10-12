@@ -8,6 +8,7 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -20,7 +21,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PositionBuilder;
 
 public class HrManagerTest {
 
@@ -29,6 +33,7 @@ public class HrManagerTest {
     @Test
     public void constructor() {
         assertEquals(Collections.emptyList(), hrManager.getPersonList());
+        assertEquals(Collections.emptyList(), hrManager.getPositionList());
     }
 
     @Test
@@ -53,6 +58,8 @@ public class HrManagerTest {
 
         assertThrows(DuplicatePersonException.class, () -> hrManager.resetData(newData));
     }
+
+    //// person list
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
@@ -83,19 +90,81 @@ public class HrManagerTest {
         assertThrows(UnsupportedOperationException.class, () -> hrManager.getPersonList().remove(0));
     }
 
+    //// position list
+
+    @Test
+    public void hasPosition_nullPosition_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> hrManager.hasPosition(null));
+    }
+
+    @Test
+    public void hasPosition_positionNotInHrManager_returnsFalse() {
+        assertFalse(hrManager.hasPosition(ADMIN_ASSISTANT));
+    }
+
+    @Test
+    public void hasPosition_positionInHrManager_returnsTrue() {
+        hrManager.addPosition(ADMIN_ASSISTANT);
+        assertTrue(hrManager.hasPosition(ADMIN_ASSISTANT));
+    }
+
+    @Test
+    public void hasPosition_positionWithSameIdentityFieldsInHrManager_returnsTrue() {
+        hrManager.addPosition(ADMIN_ASSISTANT);
+        Position editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).build();
+        assertTrue(hrManager.hasPosition(editedAdminAssistant));
+    }
+
+    @Test
+    public void getPositionList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> hrManager.getPositionList().remove(0));
+    }
+
+    @Test
+    public void deletePositionFromPerson() {
+        HrManager testManager = new HrManager();
+        Position hrManager = new Position(new Title("HR Manager"));
+        List<Person> persons = testManager.getPersonList();
+        testManager.addPerson(new PersonBuilder().withName("A").build());
+        testManager.addPerson(new PersonBuilder().withName("B").build());
+        testManager.addPerson(new PersonBuilder().withName("C").build());
+
+        // All persons applied for HrManager
+        for (Person p : persons) {
+            assertTrue(p.appliedForPosition(hrManager));
+        }
+
+        testManager.deletePositionFromPerson(hrManager);
+
+        // All persons did not apply for HrManager
+        for (Person p : persons) {
+            assertFalse(p.appliedForPosition(hrManager));
+        }
+    }
+
     /**
      * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
      */
     private static class HrManagerStub implements ReadOnlyHrManager {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<Position> positions = FXCollections.observableArrayList();
 
         HrManagerStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 
+        public void setPositionsStub(Collection<Position> positions) {
+            this.positions.setAll(positions);
+        }
+
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Position> getPositionList() {
+            return positions;
         }
     }
 

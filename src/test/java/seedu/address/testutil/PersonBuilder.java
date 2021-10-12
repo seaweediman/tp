@@ -10,6 +10,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.Status;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -24,6 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "She likes aardvarks.";
     public static final String DEFAULT_STATUS = "Applied";
+    public static final Set<Position> DEFAULT_POSITION = SampleDataUtil.getPositionSet("HR Manager");
 
     private Name name;
     private Phone phone;
@@ -32,6 +34,7 @@ public class PersonBuilder {
     private Remark remark;
     private Set<Tag> tags;
     private Status status;
+    private Set<Position> positions;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -44,6 +47,7 @@ public class PersonBuilder {
         remark = new Remark("");
         tags = new HashSet<>();
         status = Status.APPLIED;
+        positions = DEFAULT_POSITION;
     }
 
     /**
@@ -57,6 +61,7 @@ public class PersonBuilder {
         remark = personToCopy.getRemark();
         tags = new HashSet<>(personToCopy.getTags());
         status = personToCopy.getStatus();
+        positions = new HashSet<>(personToCopy.getPositions());
     }
 
     /**
@@ -112,12 +117,19 @@ public class PersonBuilder {
      */
     public PersonBuilder withStatus(String status) {
         this.status = Status.parseStatus(status);
+        return this;
+    }
 
+    /**
+     * Parses the {@code positions} into a {@code Set<Position>} and set it to the {@code Person} that we are building.
+     */
+    public PersonBuilder withPositions(String ... positions) {
+        this.positions = SampleDataUtil.getPositionSet(positions);
         return this;
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, remark, tags, status);
+        return new Person(name, phone, email, address, remark, tags, status, positions);
     }
 
 }
