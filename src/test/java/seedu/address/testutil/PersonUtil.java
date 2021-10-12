@@ -65,9 +65,17 @@ public class PersonUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(PREFIX_TAG);
+                sb.append(PREFIX_TAG + " ");
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        if (descriptor.getPositions().isPresent()) {
+            Set<Position> positions = descriptor.getPositions().get();
+            if (positions.isEmpty()) {
+                sb.append(PREFIX_POSITION + " ");
+            } else {
+                positions.forEach(s -> sb.append(PREFIX_POSITION).append(s.getTitle().fullTitle).append(" "));
             }
         }
         return sb.toString();
