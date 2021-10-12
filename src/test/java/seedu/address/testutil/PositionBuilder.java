@@ -5,6 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.Title;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -16,6 +17,7 @@ public class PositionBuilder {
 
     private Title title;
     private Set<Person> candidates;
+    private PositionStatus status;
 
     /**
      * Creates a {@code PositionBuilder} with the default details.
@@ -23,6 +25,7 @@ public class PositionBuilder {
     public PositionBuilder() {
         title = new Title(DEFAULT_TITLE);
         candidates = new HashSet<>();
+        status = PositionStatus.OPEN;
     }
 
     /**
@@ -31,6 +34,7 @@ public class PositionBuilder {
     public PositionBuilder(Position positionToCopy) {
         title = positionToCopy.getTitle();
         candidates = new HashSet<>(positionToCopy.getCandidatesApplied());
+        status = positionToCopy.getStatus();
     }
 
     /**
