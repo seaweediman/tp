@@ -81,7 +81,6 @@ public class HrManagerParserTest {
     public void parseCommand_editCandidate() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        System.out.println(PersonUtil.getEditPersonDescriptorDetails(descriptor));
         EditCandidateCommand command = (EditCandidateCommand)
                 parser.parseCommand(EditCandidateCommand.COMMAND_WORD
                 + " " + INDEX_FIRST_PERSON.getOneBased()
