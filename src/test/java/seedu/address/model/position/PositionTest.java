@@ -17,7 +17,7 @@ public class PositionTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Position position = new PositionBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> position.getCandidates().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> position.getCandidatesApplied().remove(0));
     }
 
     @Test

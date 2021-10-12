@@ -54,7 +54,7 @@ public class PersonUtil {
     public static String getPositionDetails(Position position) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_TITLE + position.getTitle().fullTitle + " ");
-        position.getCandidates().stream().forEach(s -> sb.append(getPersonDetails(s) + " "));
+        position.getCandidatesApplied().stream().forEach(s -> sb.append(getPersonDetails(s) + " "));
         return sb.toString();
     }
 

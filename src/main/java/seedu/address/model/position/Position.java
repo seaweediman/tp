@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.address.model.person.Person;
 
 /**
- * Represents a Position in the HR Manager.
+ * Represents a Position in the HR Manager, with default status 'open'.
  * Guarantees: immutable; title is valid and not null.
  */
 public class Position {
@@ -18,17 +18,25 @@ public class Position {
 
     public final Title title;
 
-    private final Set<Person> candidates = new HashSet<>();
+    private final Set<Person> candidatesApplied = new HashSet<>();
+
+    private PositionStatus status;
+
+    public enum PositionStatus {
+        OPEN,
+        CLOSED
+    }
 
     /**
      * Constructs a {@code Position}.
      *
      * @param title A valid position title.
      */
-    public Position(Title title, Set<Person> candidates) {
+    public Position(Title title, Set<Person> candidatesApplied) {
         requireNonNull(title);
         this.title = title;
-        this.candidates.addAll(candidates);
+        this.candidatesApplied.addAll(candidatesApplied);
+        this.status = PositionStatus.OPEN;
     }
 
     /**
@@ -48,8 +56,12 @@ public class Position {
         return this.title;
     }
 
-    public Set<Person> getCandidates() {
-        return Collections.unmodifiableSet(candidates);
+    public Set<Person> getCandidatesApplied() {
+        return Collections.unmodifiableSet(candidatesApplied);
+    }
+
+    public PositionStatus getStatus() {
+        return this.status;
     }
 
     @Override
@@ -57,7 +69,7 @@ public class Position {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
                 && title.equals(((Position) other).title))
-                && candidates.equals(((Position) other).candidates); // state check
+                && candidatesApplied.equals(((Position) other).candidatesApplied); // state check
     }
 
     @Override

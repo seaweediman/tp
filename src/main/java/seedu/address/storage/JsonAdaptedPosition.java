@@ -9,9 +9,11 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javafx.geometry.Pos;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.Title;
 
 public class JsonAdaptedPosition {
@@ -20,17 +22,20 @@ public class JsonAdaptedPosition {
 
     private final String title;
     private final List<JsonAdaptedPerson> candidates = new ArrayList<>();
+    private final PositionStatus positionStatus;
 
     /**
      * Constructs a {@code JsonAdaptedPosition} with the given {@code positionName}.
      */
     @JsonCreator
     public JsonAdaptedPosition(@JsonProperty("title") String title,
-                               @JsonProperty("candidates") List<JsonAdaptedPerson> candidates) {
+                               @JsonProperty("candidates") List<JsonAdaptedPerson> candidates,
+                               @JsonProperty("positionStatus") PositionStatus positionStatus) {
         this.title = title;
         if (candidates != null) {
             this.candidates.addAll(candidates);
         }
+        this.positionStatus = positionStatus;
     }
 
     /**
@@ -38,9 +43,10 @@ public class JsonAdaptedPosition {
      */
     public JsonAdaptedPosition(Position source) {
         title = source.getTitle().fullTitle;
-        candidates.addAll(source.getCandidates().stream()
+        candidates.addAll(source.getCandidatesApplied().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
+        positionStatus = source.getStatus();
     }
 
     public String getTitle() {

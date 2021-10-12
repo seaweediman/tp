@@ -30,7 +30,7 @@ public class PositionBuilder {
      */
     public PositionBuilder(Position positionToCopy) {
         title = positionToCopy.getTitle();
-        candidates = new HashSet<>(positionToCopy.getCandidates());
+        candidates = new HashSet<>(positionToCopy.getCandidatesApplied());
     }
 
     /**
