@@ -28,8 +28,8 @@ public class JsonSerializableHrManagerPositionsTest {
                 JsonSerializableHrManagerPositions.class).get();
         HrManager addressBookFromFile = dataFromFile.toModelType();
         HrManager typicalPersonsAddressBook = new HrManager();
-        typicalPersonsAddressBook.addPosition(new Position(new Title("Bookkeeper"), new HashSet<>()));
-        typicalPersonsAddressBook.addPosition(new Position(new Title("Administrative Assistant"), new HashSet<>()));
+        typicalPersonsAddressBook.addPosition(new Position(new Title("Bookkeeper")));
+        typicalPersonsAddressBook.addPosition(new Position(new Title("Administrative Assistant")));
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

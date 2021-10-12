@@ -15,12 +15,6 @@ import seedu.address.testutil.PositionBuilder;
 public class PositionTest {
 
     @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Position position = new PositionBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> position.getCandidates().remove(0));
-    }
-
-    @Test
     public void isSamePosition() {
         // same object -> returns true
         assertTrue(ADMIN_ASSISTANT.isSamePosition(ADMIN_ASSISTANT));
@@ -29,7 +23,7 @@ public class PositionTest {
         assertFalse(ADMIN_ASSISTANT.isSamePosition(null));
 
         // same name, different candidates -> returns true
-        Position editedAdminAssistance = new PositionBuilder(ADMIN_ASSISTANT).withCandidates(BOB).build();
+        Position editedAdminAssistance = new PositionBuilder(ADMIN_ASSISTANT).build();
         assertTrue(ADMIN_ASSISTANT.isSamePosition(editedAdminAssistance));
 
         // different name, all other attributes same -> returns false
@@ -67,10 +61,6 @@ public class PositionTest {
 
         // different title -> returns false
         Position editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).withTitle(VALID_TITLE_BOOKKEEPER).build();
-        assertFalse(ADMIN_ASSISTANT.equals(editedAdminAssistant));
-
-        // different candidates -> returns false
-        editedAdminAssistant = new PositionBuilder(ADMIN_ASSISTANT).withCandidates(BOB).build();
         assertFalse(ADMIN_ASSISTANT.equals(editedAdminAssistant));
     }
 }

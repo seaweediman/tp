@@ -47,11 +47,6 @@ public class SampleDataUtil {
         };
     }
 
-    public static Position[] getSamplePositions() {
-        return new Position[]{new Position(new Title("Admin Assistant"), new HashSet<Person>()), new Position(
-                new Title("Human Resource Manager"), new HashSet<Person>())};
-    }
-
     public static ReadOnlyHrManager getSampleHrManager() {
         HrManager sampleHm = new HrManager();
         for (Person samplePerson : getSamplePersons()) {
