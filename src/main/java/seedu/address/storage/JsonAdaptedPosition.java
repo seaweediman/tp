@@ -1,8 +1,5 @@
 package seedu.address.storage;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -15,7 +12,6 @@ public class JsonAdaptedPosition {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Position's %s field is missing!";
 
     private final String title;
-    private final List<JsonAdaptedPerson> candidates = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPosition} with the given {@code positionName}.
@@ -23,9 +19,6 @@ public class JsonAdaptedPosition {
     @JsonCreator
     public JsonAdaptedPosition(@JsonProperty("title") String title) {
         this.title = title;
-        if (candidates != null) {
-            this.candidates.addAll(candidates);
-        }
     }
 
     /**

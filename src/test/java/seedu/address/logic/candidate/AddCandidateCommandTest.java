@@ -134,7 +134,7 @@ public class AddCandidateCommandTest {
 
         @Override
         public boolean hasPosition(Position position) {
-            throw new AssertionError("This method should not be called.");
+            return true;
         }
 
         @Override

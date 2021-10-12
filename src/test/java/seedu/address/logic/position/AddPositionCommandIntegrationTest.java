@@ -25,6 +25,8 @@ public class AddPositionCommandIntegrationTest {
     public void execute_newPosition_success() {
         Position validPosition = new PositionBuilder().build();
         Model expectedModel = new ModelManager(model.getHrManager(), new UserPrefs());
+        System.out.println(model.getFilteredPositionList());
+        System.out.println(validPosition);
         expectedModel.addPosition(validPosition);
         assertCommandSuccess(new AddPositionCommand(validPosition), model,
                 String.format(AddPositionCommand.MESSAGE_SUCCESS, validPosition), expectedModel);

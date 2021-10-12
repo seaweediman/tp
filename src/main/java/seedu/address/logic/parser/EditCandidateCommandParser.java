@@ -2,11 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,6 +13,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.EditCandidateCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -32,7 +29,8 @@ public class EditCandidateCommandParser implements Parser<EditCandidateCommand> 
     public EditCandidateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
+                        PREFIX_POSITION);
 
         Index index;
 
@@ -58,6 +56,8 @@ public class EditCandidateCommandParser implements Parser<EditCandidateCommand> 
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
+        parsePositionsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setPositions);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCandidateCommand.MESSAGE_NOT_EDITED);
         }
@@ -78,6 +78,23 @@ public class EditCandidateCommandParser implements Parser<EditCandidateCommand> 
         }
         Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
         return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
+    /**
+     * Parses {@code Collection<String> positions} into a {@code Set<Position>} if {@code positions} is non-empty.
+     * If {@code positions} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Position>} containing zero tags.
+     */
+    private Optional<Set<Position>> parsePositionsForEdit(Collection<String> positions) throws ParseException {
+        assert positions != null;
+
+        if (positions.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> positionSet = positions.size() == 1 && positions.contains("")
+                ? Collections.emptySet()
+                : positions;
+        return Optional.of(ParserUtil.parsePositions(positionSet));
     }
 
 }

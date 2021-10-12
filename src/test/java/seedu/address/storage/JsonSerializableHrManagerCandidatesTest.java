@@ -27,6 +27,7 @@ public class JsonSerializableHrManagerCandidatesTest {
                 JsonSerializableHrManagerCandidates.class).get();
         HrManager addressBookFromFile = dataFromFile.toModelType();
         HrManager typicalPersonsAddressBook = TypicalPersons.getTypicalHrManager();
+
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

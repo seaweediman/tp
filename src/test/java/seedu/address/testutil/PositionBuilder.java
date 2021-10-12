@@ -7,7 +7,7 @@ import seedu.address.model.position.Title;
  * A utility class to help with building Person objects.
  */
 public class PositionBuilder {
-    public static final String DEFAULT_TITLE = "HR Manager";
+    public static final String DEFAULT_TITLE = "Sales Representative";
 
     private Title title;
 

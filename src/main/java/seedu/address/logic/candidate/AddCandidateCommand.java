@@ -12,6 +12,9 @@ import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
+
+import java.util.Set;
 
 /**
  * Adds a candidate to the HR Manager.
@@ -54,6 +57,13 @@ public class AddCandidateCommand extends Command {
 
         if (model.hasPerson(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
+
+        Set<Position> positions = toAdd.getPositions();
+        for (Position p : positions) {
+            if (!model.hasPosition(p)) {
+                throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+            }
         }
 
         model.addPerson(toAdd);

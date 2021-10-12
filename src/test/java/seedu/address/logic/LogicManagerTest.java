@@ -3,10 +3,7 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.candidate.CommandTestUtil.ADDRESS_DESC_AMY;
-import static seedu.address.logic.candidate.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.address.logic.candidate.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.address.logic.candidate.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 
@@ -26,6 +23,8 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 import seedu.address.storage.JsonHrManagerStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.StorageManager;
@@ -47,6 +46,7 @@ public class LogicManagerTest {
                         temporaryFolder.resolve("HrManagerPositions.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(hrManagerStorage, userPrefsStorage);
+        model.addPosition(new Position(new Title("HR Manager")));
         logic = new LogicManager(model, storage);
     }
 
@@ -81,9 +81,10 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCandidateCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
-                + ADDRESS_DESC_AMY;
+                + ADDRESS_DESC_AMY + POSITION_HR_MANAGER;
         Person expectedPerson = new PersonBuilder(AMY).withTags().withRemark("").build();
         ModelManager expectedModel = new ModelManager();
+        expectedModel.addPosition(new Position(new Title("HR Manager")));
         expectedModel.addPerson(expectedPerson);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
