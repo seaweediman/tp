@@ -68,9 +68,9 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-//        positions.addAll(source.getPositions().stream()
-//                .map(JsonAdaptedPosition::new)
-//                .collect(Collectors.toList()));
+        positions.addAll(source.getPositions().stream()
+                .map(JsonAdaptedPosition::new)
+                .collect(Collectors.toList()));
 
     }
 

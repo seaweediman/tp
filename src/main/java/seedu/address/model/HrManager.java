@@ -140,10 +140,6 @@ public class HrManager implements ReadOnlyHrManager {
         positions.setPosition(target, editedPosition);
     }
 
-    public Set<Position> getPositionReferences(Person toAdd) {
-        return positions.getPositionReferences(toAdd);
-    }
-
     /**
      * Removes {@code key} from this {@code HrManager}.
      * {@code key} must exist in the HR Manager.

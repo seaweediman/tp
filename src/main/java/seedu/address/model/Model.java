@@ -124,8 +124,6 @@ public interface Model {
      */
     void setPosition(Position target, Position editedPosition);
 
-    Set<Position> getPositionReferences(Person person);
-
     /**
      * Returns an unmodifiable view of the filtered position list
      */

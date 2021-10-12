@@ -27,7 +27,7 @@ public class SampleDataUtil {
 
 
     public static Person[] getSamplePersons() {
-        SAMPLE_POSITIONS.add(new Position(new Title("Admin Assistant"), new HashSet<Person>()));
+        SAMPLE_POSITIONS.add(new Position(new Title("Admin Assistant")));
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK,
@@ -48,11 +48,6 @@ public class SampleDataUtil {
                 new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK,
                 getTagSet("colleagues"), SAMPLE_POSITIONS)
         };
-    }
-
-    public static Position[] getSamplePositions() {
-        return new Position[]{new Position(new Title("Admin Assistant"), new HashSet<Person>()), new Position(
-                new Title("Human Resource Manager"), new HashSet<Person>())};
     }
 
     public static ReadOnlyHrManager getSampleHrManager() {

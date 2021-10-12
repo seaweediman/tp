@@ -28,6 +28,7 @@ public class AddCandidateCommandIntegrationTest {
     @Test
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
+        System.out.println(validPerson);
 
         Model expectedModel = new ModelManager(model.getHrManager(), new UserPrefs());
         expectedModel.addPerson(validPerson);

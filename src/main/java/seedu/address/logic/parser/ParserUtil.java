@@ -149,7 +149,7 @@ public class ParserUtil {
         String trimmedPosition = position.trim();
         Title title = new Title(trimmedPosition);
 
-        return new Position(title, new HashSet<>());
+        return new Position(title);
     }
 
 

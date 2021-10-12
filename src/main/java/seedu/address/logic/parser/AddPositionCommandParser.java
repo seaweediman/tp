@@ -26,7 +26,7 @@ public class AddPositionCommandParser implements Parser<AddPositionCommand> {
         }
 
         Title title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get());
-        Position position = new Position(title, new HashSet<>());
+        Position position = new Position(title);
         return new AddPositionCommand(position);
     }
 

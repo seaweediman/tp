@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -136,10 +135,6 @@ public class ModelManager implements Model {
     public void setPosition(Position target, Position editedPosition) {
         requireAllNonNull(target, editedPosition);
         hrManager.setPosition(target, editedPosition);
-    }
-
-    public Set<Position> getPositionReferences(Person person) {
-        return hrManager.getPositionReferences(person);
     }
 
     //=========== Filtered Person List Accessors =============================================================
