@@ -52,6 +52,10 @@ public class Position {
         return Collections.unmodifiableSet(candidates);
     }
 
+    public void addCandidate(Person candidate) {
+        candidates.add(candidate);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -122,6 +123,8 @@ public interface Model {
      * Manager.
      */
     void setPosition(Position target, Position editedPosition);
+
+    Set<Position> getPositionReferences(Person person);
 
     /**
      * Returns an unmodifiable view of the filtered position list

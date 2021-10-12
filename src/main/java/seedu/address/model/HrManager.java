@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
@@ -137,6 +138,10 @@ public class HrManager implements ReadOnlyHrManager {
         requireNonNull(editedPosition);
 
         positions.setPosition(target, editedPosition);
+    }
+
+    public Set<Position> getPositionReferences(Person toAdd) {
+        return positions.getPositionReferences(toAdd);
     }
 
     /**
