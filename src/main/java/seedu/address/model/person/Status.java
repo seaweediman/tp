@@ -1,39 +1,69 @@
 package seedu.address.model.person;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public enum Status {
-    NONE (0, false),
-    APPLIED (1, false),
-    SCHEDULED (2, false),
-    INTERVIEWED(3, false),
-    ACCEPTED (4, false),
-    REJECTED (5, true),
-    WITHDRAWN (6, true);
+    NONE(false),
+    APPLIED(false),
+    SCHEDULED(false),
+    INTERVIEWED(false),
+    ACCEPTED(false),
+    REJECTED(true),
+    WITHDRAWN(true);
 
     public static final String MESSAGE_CONSTRAINTS = "Status can take the values:\n0.NONE\n1."
             + "APPLIED\n2.SCHEDULED"
             + "\n3.INTERVIEWED\n4.ACCEPTED\n5.REJECTED\n6.WITHDRAWN";
 
-    private int index;
+    private static final List<String> valid = new ArrayList<String>(Arrays.asList("NONE", "APPLIED", "SCHEDULED",
+            "INTERVIEWED",
+            "ACCEPTED",
+            "REJECTED",
+            "WITHDRAWN", ""));
+
     private boolean isCompleted;
 
-
-
-
-    private Status(int index, boolean isCompleted) {
-        this.index = index;
+    private Status(boolean isCompleted) {
         this.isCompleted = isCompleted;
     }
 
+
     /**
-     * Returns the index of the Status.
-     * @return index of status.
+     * Returns the corresponding Status Enum give a valid input.
+     *
+     * @param statusInput String input.
+     * @return Status.
      */
-    public int getIndex() {
-        return this.index;
+    public static Status parseStatus(String statusInput) {
+        switch (statusInput.toUpperCase()) {
+        case "":
+        case "APPLIED":
+            return Status.APPLIED;
+        case "SCHEDULED":
+            return Status.SCHEDULED;
+        case "INTERVIEWED":
+            return Status.INTERVIEWED;
+        case "ACCEPTED":
+            return Status.ACCEPTED;
+        case "REJECTED":
+            return Status.REJECTED;
+        case "WITHDRAWN":
+            return Status.WITHDRAWN;
+        default:
+            return Status.NONE;
+        }
     }
+
+    public static Boolean isValidStatus(String statusInput) {
+        return valid.contains(statusInput);
+    }
+
 
     /**
      * Returns if the status represent a completed state.
+     *
      * @return isCompleted.
      */
     public boolean isCompleted() {
@@ -42,6 +72,6 @@ public enum Status {
 
     @Override
     public String toString() {
-        return this.index + "." + this.name();
+        return this.name();
     }
 }

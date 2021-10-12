@@ -49,7 +49,7 @@ public interface Model {
      */
     void setHrManager(ReadOnlyHrManager addressBook);
 
-    /** Returns the AddressBook */
+    /** Returns the HrManager */
     ReadOnlyHrManager getHrManager();
 
     /**

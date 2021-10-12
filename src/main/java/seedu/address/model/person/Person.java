@@ -10,7 +10,7 @@ import java.util.Set;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the HR Manager.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
@@ -24,18 +24,20 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
+    private final Status status;
 
     /**
-     * Every field must be present and not null.
+     * Every field must be present and not null, except status. If status is null, defaults to applied
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Status status) {
+        requireAllNonNull(name, phone, email, address, tags, status);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
         this.remark = remark;
+        this.status = status;
     }
 
     public Name getName() {
@@ -56,6 +58,10 @@ public class Person {
 
     public Remark getRemark() {
         return remark;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     /**
@@ -99,13 +105,14 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRemark().equals(getRemark());
+                && otherPerson.getRemark().equals(getRemark())
+                && otherPerson.getStatus().equals(getStatus());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark);
+        return Objects.hash(name, phone, email, address, tags, remark, status);
     }
 
     @Override
@@ -119,7 +126,9 @@ public class Person {
                 .append("; Address: ")
                 .append(getAddress())
                 .append(" Remark: ")
-                .append(getRemark());
+                .append(getRemark())
+                .append(" Status: ")
+                .append(getStatus());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

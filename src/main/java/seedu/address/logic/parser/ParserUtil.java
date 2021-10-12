@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -110,6 +111,20 @@ public class ParserUtil {
         return new Tag(trimmedTag);
     }
 
+    /**
+     * Parses a {@code String status} into a {@code Status}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code status} is invalid
+     */
+    public static Status parseStatus(String status) throws ParseException {
+        String trimmedStatus = status.trim().toUpperCase();
+        if (!Status.isValidStatus(trimmedStatus)) {
+            throw new ParseException(Status.MESSAGE_CONSTRAINTS);
+        }
+
+        return Status.parseStatus(trimmedStatus);
+    }
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */

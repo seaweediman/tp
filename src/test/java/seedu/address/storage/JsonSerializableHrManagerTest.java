@@ -24,9 +24,9 @@ public class JsonSerializableHrManagerTest {
     public void toModelType_typicalPersonsFile_success() throws Exception {
         JsonSerializableHrManager dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableHrManager.class).get();
-        HrManager addressBookFromFile = dataFromFile.toModelType();
+        HrManager hrManagerFromFile = dataFromFile.toModelType();
         HrManager typicalPersonsAddressBook = TypicalPersons.getTypicalHrManager();
-        assertEquals(addressBookFromFile, typicalPersonsAddressBook);
+        assertEquals(hrManagerFromFile, typicalPersonsAddressBook);
     }
 
     @Test
