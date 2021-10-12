@@ -134,4 +134,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPositionList(Predicate<Position> predicate);
+
+    void deletePositionFromPerson(Position p);
 }

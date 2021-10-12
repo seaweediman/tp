@@ -56,7 +56,7 @@ public class EditCandidateCommandParser implements Parser<EditCandidateCommand> 
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
-        parsePositionsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setPositions);
+        parsePositionsForEdit(argMultimap.getAllValues(PREFIX_POSITION)).ifPresent(editPersonDescriptor::setPositions);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCandidateCommand.MESSAGE_NOT_EDITED);

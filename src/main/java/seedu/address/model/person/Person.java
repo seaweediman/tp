@@ -78,6 +78,14 @@ public class Person {
         return Collections.unmodifiableSet(positions);
     }
 
+    public boolean appliedForPosition(Position p) {
+        return positions.stream().anyMatch(p::isSamePosition);
+    }
+
+    public void deletePosition(Position p) {
+        positions.remove(p);
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.

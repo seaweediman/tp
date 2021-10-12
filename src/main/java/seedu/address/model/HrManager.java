@@ -147,6 +147,14 @@ public class HrManager implements ReadOnlyHrManager {
         positions.remove(key);
     }
 
+    public void deletePositionFromPerson(Position p) {
+        for (Person person : persons) {
+            if (person.appliedForPosition(p)) {
+                person.deletePosition(p);
+            }
+        }
+    }
+
     //// util methods
 
     @Override

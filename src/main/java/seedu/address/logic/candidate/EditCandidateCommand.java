@@ -85,6 +85,13 @@ public class EditCandidateCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        Set<Position> newPositions = editedPerson.getPositions();
+        for (Position p : newPositions) {
+            if (!model.hasPosition(p)) {
+                throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+            }
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
@@ -151,13 +158,14 @@ public class EditCandidateCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setPositions(toCopy.positions);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, positions);
         }
 
         public void setName(Name name) {

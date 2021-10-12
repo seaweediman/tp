@@ -137,6 +137,10 @@ public class ModelManager implements Model {
         hrManager.setPosition(target, editedPosition);
     }
 
+    public void deletePositionFromPerson(Position p) {
+        hrManager.deletePositionFromPerson(p);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
