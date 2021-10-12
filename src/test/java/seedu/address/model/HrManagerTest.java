@@ -10,7 +10,10 @@ import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +25,6 @@ import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PositionBuilder;
-import seedu.address.testutil.TypicalPersons;
 
 public class HrManagerTest {
 
@@ -121,7 +123,7 @@ public class HrManagerTest {
     @Test
     public void deletePositionFromPerson() {
         HrManager testManager = new HrManager();
-        Position HrManager = new Position(new Title("HR Manager"));
+        Position hrManager = new Position(new Title("HR Manager"));
         List<Person> persons = testManager.getPersonList();
         testManager.addPerson(new PersonBuilder().withName("A").build());
         testManager.addPerson(new PersonBuilder().withName("B").build());
@@ -129,14 +131,14 @@ public class HrManagerTest {
 
         // All persons applied for HrManager
         for (Person p : persons) {
-            assertTrue(p.appliedForPosition(HrManager));
+            assertTrue(p.appliedForPosition(hrManager));
         }
 
-        testManager.deletePositionFromPerson(HrManager);
+        testManager.deletePositionFromPerson(hrManager);
 
         // All persons did not apply for HrManager
         for (Person p : persons) {
-            assertFalse(p.appliedForPosition(HrManager));
+            assertFalse(p.appliedForPosition(hrManager));
         }
     }
 

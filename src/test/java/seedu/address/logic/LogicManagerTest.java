@@ -3,7 +3,11 @@ package seedu.address.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.address.logic.candidate.CommandTestUtil.*;
+import static seedu.address.logic.candidate.CommandTestUtil.ADDRESS_DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.EMAIL_DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.address.logic.candidate.CommandTestUtil.POSITION_HR_MANAGER;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.AMY;
 

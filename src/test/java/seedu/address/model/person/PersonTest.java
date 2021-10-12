@@ -1,6 +1,8 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_BOB;
@@ -10,14 +12,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 import seedu.address.testutil.PersonBuilder;
 
-import java.util.HashSet;
-import java.util.Set;
 
 public class PersonTest {
 
@@ -121,15 +124,15 @@ public class PersonTest {
     public void deletePosition() {
         Person editedAlice = new PersonBuilder(ALICE).withPositions("Bookkeeper", "Admin Assistant").build();
 
-        Position AA = new Position(new Title("Admin Assistant"));
-        Position BK = new Position(new Title("Bookkeeper"));
+        Position aa = new Position(new Title("Admin Assistant"));
+        Position bk = new Position(new Title("Bookkeeper"));
 
-        editedAlice.deletePosition(AA);
+        editedAlice.deletePosition(aa);
         //editedAlice now no longer has AA in its positions
-        assertFalse(editedAlice.appliedForPosition(AA));
+        assertFalse(editedAlice.appliedForPosition(aa));
 
         Set<Position> positions = new HashSet<>();
-        positions.add(BK);
+        positions.add(bk);
         //editedAlice now only has BK in its positions
         assertEquals(positions, editedAlice.getPositions());
     }
