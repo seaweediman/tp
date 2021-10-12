@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.position.Title;
 import seedu.address.model.position.Position.PositionStatus;
+import seedu.address.model.position.Title;
 
 class JsonAdaptedPositionTest {
     private static final String INVALID_TITLE = "Acc-Manager";
