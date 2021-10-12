@@ -71,6 +71,8 @@ public class JsonAdaptedPosition {
         }
         final Title modelTitle = new Title(title);
         final Set<Person> modelCandidates = new HashSet<>(candidates);
-        return new Position(modelTitle, modelCandidates);
+        Position position = new Position(modelTitle, modelCandidates);
+        position.setStatus(positionStatus);
+        return position;
     }
 }

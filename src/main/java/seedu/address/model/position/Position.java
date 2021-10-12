@@ -64,6 +64,10 @@ public class Position {
         return this.status;
     }
 
+    public void setStatus(PositionStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
