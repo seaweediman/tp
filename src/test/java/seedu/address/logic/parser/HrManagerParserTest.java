@@ -4,8 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 
 import java.util.Arrays;
 import java.util.List;
@@ -19,25 +22,39 @@ import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.EditCandidateCommand.EditPersonDescriptor;
 import seedu.address.logic.candidate.FindCandidateCommand;
 import seedu.address.logic.candidate.ListCandidateCommand;
+import seedu.address.logic.candidate.RemarkCandidateCommand;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.logic.general.ExitCommand;
 import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.position.AddPositionCommand;
+import seedu.address.logic.position.DeletePositionCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PositionBuilder;
 
 public class HrManagerParserTest {
 
     private final HrManagerParser parser = new HrManagerParser();
 
     @Test
-    public void parseCommand_add() throws Exception {
+    public void parseCommand_addCandidate() throws Exception {
         Person person = new PersonBuilder().withRemark("").build();
-        AddCandidateCommand command = (AddCandidateCommand) parser.parseCommand(PersonUtil.getAddCommand(person));
+        AddCandidateCommand command =
+                (AddCandidateCommand) parser.parseCommand(PersonUtil.getAddCandidateCommand(person));
         assertEquals(new AddCandidateCommand(person), command);
+    }
+
+    @Test
+    public void parseCommand_addPosition() throws Exception {
+        Position position = new PositionBuilder().build();
+        AddPositionCommand command =
+                (AddPositionCommand) parser.parseCommand(PersonUtil.getAddPositionCommand(position));
+        assertEquals(new AddPositionCommand(position), command);
     }
 
     @Test
@@ -47,19 +64,27 @@ public class HrManagerParserTest {
     }
 
     @Test
-    public void parseCommand_delete() throws Exception {
+    public void parseCommand_deleteCandidate() throws Exception {
         DeleteCandidateCommand command = (DeleteCandidateCommand) parser.parseCommand(
                 DeleteCandidateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
         assertEquals(new DeleteCandidateCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
-    public void parseCommand_edit() throws Exception {
+    public void parseCommand_deletePosition() throws Exception {
+        DeletePositionCommand command = (DeletePositionCommand) parser.parseCommand(
+                DeletePositionCommand.COMMAND_WORD + " " + INDEX_FIRST_POSITION.getOneBased());
+        assertEquals(new DeletePositionCommand(INDEX_FIRST_POSITION), command);
+    }
+
+    @Test
+    public void parseCommand_editCandidate() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
-        EditCandidateCommand command = (EditCandidateCommand) parser.parseCommand(EditCandidateCommand.COMMAND_WORD
-                + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+        EditCandidateCommand command = (EditCandidateCommand)
+                parser.parseCommand(EditCandidateCommand.COMMAND_WORD
+                + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCandidateCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 
@@ -70,10 +95,19 @@ public class HrManagerParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
+    public void parseCommand_remarkCandidate() throws Exception {
+        String exampleInput = RemarkCandidateCommand.COMMAND_WORD + " 3";
+        String anotherInput = RemarkCandidateCommand.COMMAND_WORD + " 3 " + PREFIX_REMARK + VALID_REMARK_AMY;
+        assertTrue(parser.parseCommand(exampleInput) instanceof RemarkCandidateCommand);
+        assertTrue(parser.parseCommand(anotherInput) instanceof RemarkCandidateCommand);
+    }
+
+    @Test
+    public void parseCommand_findCandidate() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCandidateCommand command = (FindCandidateCommand) parser.parseCommand(
-                FindCandidateCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCandidateCommand.COMMAND_WORD + " "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCandidateCommand(new NameContainsKeywordsPredicate(keywords)), command);
     }
 
@@ -84,19 +118,21 @@ public class HrManagerParserTest {
     }
 
     @Test
-    public void parseCommand_list() throws Exception {
+    public void parseCommand_candidateList() throws Exception {
         assertTrue(parser.parseCommand(ListCandidateCommand.COMMAND_WORD) instanceof ListCandidateCommand);
-        assertTrue(parser.parseCommand(ListCandidateCommand.COMMAND_WORD + " 3") instanceof ListCandidateCommand);
+        assertTrue(parser.parseCommand(ListCandidateCommand.COMMAND_WORD
+                + " 3") instanceof ListCandidateCommand);
     }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
-        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+        assertThrows(ParseException.class, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                HelpCommand.MESSAGE_USAGE), () -> parser.parseCommand(""));
     }
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class,
+                MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
     }
 }

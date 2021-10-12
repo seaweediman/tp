@@ -21,6 +21,8 @@ import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
@@ -117,6 +119,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getHrManager());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -129,6 +132,20 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the position at the given {@code targetIndex} in the
+     * {@code model}'s HrManager.
+     */
+    public static void showPositionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredPositionList().size());
+
+        Position position = model.getFilteredPositionList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = position.getTitle().fullTitle.split("\\s+");
+        model.updateFilteredPositionList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredPositionList().size());
     }
 
 }
