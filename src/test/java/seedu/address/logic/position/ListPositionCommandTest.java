@@ -1,14 +1,13 @@
 package seedu.address.logic.position;
 
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.logic.candidate.CommandTestUtil.showPositionAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.position.ListPositionCommand;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +33,7 @@ public class ListPositionCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_POSITION);
+        showPositionAtIndex(model, INDEX_FIRST_POSITION);
         assertCommandSuccess(new ListPositionCommand(), model, ListPositionCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }
