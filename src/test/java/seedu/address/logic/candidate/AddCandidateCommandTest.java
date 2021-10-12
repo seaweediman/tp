@@ -134,7 +134,7 @@ public class AddCandidateCommandTest {
 
         @Override
         public boolean hasPosition(Position position) {
-            return true;
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -226,6 +226,11 @@ public class AddCandidateCommandTest {
         @Override
         public ReadOnlyHrManager getHrManager() {
             return new HrManager();
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return true;
         }
     }
 

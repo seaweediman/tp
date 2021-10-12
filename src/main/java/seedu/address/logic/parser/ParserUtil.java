@@ -147,8 +147,11 @@ public class ParserUtil {
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
         String trimmedPosition = position.trim();
-        Title title = new Title(trimmedPosition);
+        if (!Title.isValidTitle(trimmedPosition)) {
+            throw new ParseException(Position.MESSAGE_CONSTRAINTS);
+        }
 
+        Title title = new Title(trimmedPosition);
         return new Position(title);
     }
 
