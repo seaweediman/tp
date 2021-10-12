@@ -181,6 +181,10 @@ public class AddCandidateCommandTest {
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        public void deletePositionFromPerson(Position p) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -222,6 +226,11 @@ public class AddCandidateCommandTest {
         @Override
         public ReadOnlyHrManager getHrManager() {
             return new HrManager();
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return true;
         }
     }
 
