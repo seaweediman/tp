@@ -92,6 +92,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+* 1b. The position title the user provided does not exist in the position list.
+
+    * 1b1. HR Manager shows an error message.
+
+      Use case ends.
+
+
 <u>**Use case: UC02 - List all candidates**</u>
 
 **MSS**
@@ -141,6 +148,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. HR Manager shows an error message.
 
+      Use case ends.
+
+* 1b. The position title the user provided already exists in the position list.
+
+  * 1b1. HR Manager shows an error message.
+    
       Use case ends.
 
 <u>**Use case: UC05 - List all positions**</u>
