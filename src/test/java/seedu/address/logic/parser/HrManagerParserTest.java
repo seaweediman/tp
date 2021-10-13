@@ -29,6 +29,7 @@ import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
+import seedu.address.logic.position.ListPositionCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
@@ -122,6 +123,13 @@ public class HrManagerParserTest {
         assertTrue(parser.parseCommand(ListCandidateCommand.COMMAND_WORD) instanceof ListCandidateCommand);
         assertTrue(parser.parseCommand(ListCandidateCommand.COMMAND_WORD
                 + " 3") instanceof ListCandidateCommand);
+    }
+
+    @Test
+    public void parseCommand_positionList() throws Exception {
+        assertTrue(parser.parseCommand(ListPositionCommand.COMMAND_WORD) instanceof ListPositionCommand);
+        assertTrue(parser.parseCommand(ListPositionCommand.COMMAND_WORD
+                + " 3") instanceof ListPositionCommand);
     }
 
     @Test

@@ -13,6 +13,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
 import seedu.address.storage.Storage;
 
 /**
@@ -63,8 +64,18 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Position> getFilteredPositionList() {
+        return model.getFilteredPositionList();
+    }
+
+    @Override
     public Path getHrManagerCandidatesFilePath() {
         return model.getHrManagerCandidatesFilePath();
+    }
+
+    @Override
+    public Path getHrManagerPositionsFilePath() {
+        return model.getHrManagerPositionsFilePath();
     }
 
     @Override
