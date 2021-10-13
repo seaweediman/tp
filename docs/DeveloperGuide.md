@@ -120,10 +120,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 2a. The list of candidates is empty.
-
-  Use case ends.
-
 * 3a. The given index is invalid.
 
     * 3a1. HR Manager shows an error message.
@@ -174,10 +170,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
    Use case ends
 
 **Extensions**
-
-* 2a. The list of positions is empty.
-
-  Use case ends.
 
 * 3a. The given index is invalid.
 
