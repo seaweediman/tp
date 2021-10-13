@@ -74,9 +74,20 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Path getHrManagerPositionsFilePath() {
+        return userPrefs.getHrManagerPositionsFilePath();
+    }
+
+    @Override
     public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
         requireNonNull(hrManagerCandidatesFilePath);
         userPrefs.setHrManagerCandidatesFilePath(hrManagerCandidatesFilePath);
+    }
+
+    @Override
+    public void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath) {
+        requireNonNull(hrManagerPositionsFilePath);
+        userPrefs.setHrManagerPositionsFilePath(hrManagerPositionsFilePath);
     }
 
     //=========== HrManager ================================================================================
@@ -135,6 +146,10 @@ public class ModelManager implements Model {
     public void setPosition(Position target, Position editedPosition) {
         requireAllNonNull(target, editedPosition);
         hrManager.setPosition(target, editedPosition);
+    }
+
+    public void deletePositionFromPerson(Position p) {
+        hrManager.deletePositionFromPerson(p);
     }
 
     //=========== Filtered Person List Accessors =============================================================

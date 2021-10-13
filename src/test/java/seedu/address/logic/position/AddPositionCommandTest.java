@@ -84,7 +84,17 @@ public class AddPositionCommandTest {
         }
 
         @Override
+        public Path getHrManagerPositionsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -155,6 +165,10 @@ public class AddPositionCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void deletePositionFromPerson(Position p) {
             throw new AssertionError("This method should not be called.");
         }
     }

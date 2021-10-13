@@ -13,6 +13,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 import seedu.address.model.tag.Tag;
 
@@ -136,5 +137,34 @@ public class ParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(title);
+    }
+
+    /**
+     * Parses a {@code String Position} into a {@code Position}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Position parsePosition(String position) throws ParseException {
+        requireNonNull(position);
+        String trimmedPosition = position.trim();
+        if (!Title.isValidTitle(trimmedPosition)) {
+            throw new ParseException(Position.MESSAGE_CONSTRAINTS);
+        }
+
+        Title title = new Title(trimmedPosition);
+        return new Position(title);
+    }
+
+
+    /**
+     * Parses {@code Collection<String> position} into a {@code Set<Position>}.
+     */
+    public static Set<Position> parsePositions(Collection<String> positions) throws ParseException {
+        requireNonNull(positions);
+        final Set<Position> positionSet = new HashSet<>();
+        for (String positionName : positions) {
+            positionSet.add(parsePosition(positionName));
+        }
+        return positionSet;
     }
 }

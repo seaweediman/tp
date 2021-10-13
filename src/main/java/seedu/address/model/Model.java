@@ -48,9 +48,19 @@ public interface Model {
     Path getHrManagerCandidatesFilePath();
 
     /**
-     * Sets the user prefs' HR Manager file path.
+     * Returns the user prefs' HR Manager Position file path.
+     */
+    Path getHrManagerPositionsFilePath();
+
+    /**
+     * Sets the user prefs' HR Manager candidate file path.
      */
     void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath);
+
+    /**
+     * Sets the user prefs' HR Manager position file path.
+     */
+    void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath);
 
     /**
      * Replaces HR Manager data with the data in {@code addressBook}.
@@ -134,4 +144,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPositionList(Predicate<Position> predicate);
+
+    void deletePositionFromPerson(Position p);
 }

@@ -2,12 +2,6 @@ package seedu.address.model.position;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-
-import seedu.address.model.person.Person;
-
 /**
  * Represents a Position in the HR Manager, with default status 'open'.
  * Guarantees: immutable; title is valid and not null.
@@ -17,8 +11,6 @@ public class Position {
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
 
     public final Title title;
-
-    private final Set<Person> candidatesApplied = new HashSet<>();
 
     private PositionStatus status;
 
@@ -32,10 +24,9 @@ public class Position {
      *
      * @param title A valid position title.
      */
-    public Position(Title title, Set<Person> candidatesApplied) {
+    public Position(Title title) {
         requireNonNull(title);
         this.title = title;
-        this.candidatesApplied.addAll(candidatesApplied);
         this.status = PositionStatus.OPEN;
     }
 
@@ -56,10 +47,6 @@ public class Position {
         return this.title;
     }
 
-    public Set<Person> getCandidatesApplied() {
-        return Collections.unmodifiableSet(candidatesApplied);
-    }
-
     public PositionStatus getStatus() {
         return this.status;
     }
@@ -73,7 +60,8 @@ public class Position {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
                 && title.equals(((Position) other).title))
-                && candidatesApplied.equals(((Position) other).candidatesApplied); // state check
+                && status.equals(((Position) other).getStatus()); // state check
+
     }
 
     @Override

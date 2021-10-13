@@ -42,6 +42,8 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private Label remark;
+    @FXML
+    private FlowPane positions;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -58,6 +60,9 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        person.getPositions().stream()
+                .sorted(Comparator.comparing(position -> position.getTitle().fullTitle))
+                .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
     }
 
     @Override
