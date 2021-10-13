@@ -14,32 +14,32 @@ public class CommandResult {
     /**
      * Help information should be shown to the user.
      */
-    private final boolean showHelp;
+    private final boolean isShowHelp;
 
     /**
      * The application should exit.
      */
-    private final boolean exit;
+    private final boolean isExit;
 
     /**
      * The application should display candidate list.
      */
-    private final boolean listC;
+    private final boolean isListC;
 
     /**
      * The application should display position list.
      */
-    private final boolean listP;
+    private final boolean isListP;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean listC, boolean listP) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isListC, boolean isListP) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-        this.listC = listC;
-        this.listP = listP;
+        this.isShowHelp = isShowHelp;
+        this.isExit = isExit;
+        this.isListC = isListC;
+        this.isListP = isListP;
     }
 
     /**
@@ -55,19 +55,19 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
     }
 
     public boolean isListC() {
-        return listC;
+        return isListC;
     }
 
     public boolean isListP() {
-        return listP;
+        return isListP;
     }
 
     @Override
@@ -83,13 +83,15 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && isShowHelp == otherCommandResult.isShowHelp
+                && isExit == otherCommandResult.isExit
+                && isListC == otherCommandResult.isListC
+                && isListP == otherCommandResult.isListP;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, isShowHelp, isExit, isListC, isListP);
     }
 
 }
