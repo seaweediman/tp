@@ -38,7 +38,7 @@ public class AddCandidateCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "pending "
-            + PREFIX_TAG + "reviewRequired"
+            + PREFIX_TAG + "reviewRequired "
             + PREFIX_POSITION + "Accountant";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";

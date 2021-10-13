@@ -17,6 +17,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.position.Position.PositionStatus;
 
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
@@ -31,6 +32,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_REMARK = BENSON.getRemark().toString();
+    private static final PositionStatus VALID_POOSITION_STATUS = PositionStatus.OPEN;
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -139,7 +141,7 @@ public class JsonAdaptedPersonTest {
     @Test
     public void toModelType_invalidPositions_throwsIllegalValueException() {
         List<JsonAdaptedPosition> invalidPositions = new ArrayList<>(VALID_POSITIONS);
-        invalidPositions.add(new JsonAdaptedPosition(INVALID_POSITION));
+        invalidPositions.add(new JsonAdaptedPosition(INVALID_POSITION, VALID_POOSITION_STATUS));
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS,
                         invalidPositions);

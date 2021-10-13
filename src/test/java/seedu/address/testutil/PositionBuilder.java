@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.Title;
 
 /**
@@ -11,11 +12,14 @@ public class PositionBuilder {
 
     private Title title;
 
+    private PositionStatus status;
+
     /**
      * Creates a {@code PositionBuilder} with the default details.
      */
     public PositionBuilder() {
         title = new Title(DEFAULT_TITLE);
+        status = PositionStatus.OPEN;
     }
 
     /**
@@ -23,6 +27,7 @@ public class PositionBuilder {
      */
     public PositionBuilder(Position positionToCopy) {
         title = positionToCopy.getTitle();
+        status = positionToCopy.getStatus();
     }
 
     /**

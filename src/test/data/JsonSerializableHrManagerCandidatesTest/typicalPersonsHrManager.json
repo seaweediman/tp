@@ -8,7 +8,8 @@
     "remark" : "She likes aardvarks.",
     "tagged" : [ "friends" ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "Benson Meier",
@@ -18,7 +19,8 @@
     "remark" : "He can't handle beer!",
     "tagged" : [ "owesMoney", "friends" ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "Carl Kurz",
@@ -28,7 +30,8 @@
     "remark" : "",
     "tagged" : [ ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "Daniel Meier",
@@ -38,7 +41,8 @@
     "remark" : "",
     "tagged" : [ "friends" ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "Elle Meyer",
@@ -48,7 +52,8 @@
     "remark" : "",
     "tagged" : [ ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "Fiona Kunz",
@@ -58,7 +63,8 @@
     "remark" : "",
     "tagged" : [ ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   }, {
     "name" : "George Best",
@@ -68,7 +74,8 @@
     "remark" : "",
     "tagged" : [ ],
     "positions" : [ {
-      "title" : "HR Manager"
+      "title" : "HR Manager",
+      "positionStatus" : "OPEN"
     } ]
   } ]
 }
