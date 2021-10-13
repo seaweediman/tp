@@ -29,7 +29,7 @@ public class Person {
     private Set<Position> positions = new HashSet<>();
 
     /**
-     * Every field must be present and not null, except status. If status is null, defaults to applied
+     * Every field must be present and not null. If status is null, defaults to applied
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark, Set<Tag> tags, Status status,
                   Set<Position> positions) {

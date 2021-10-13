@@ -3,7 +3,7 @@ package seedu.address.model.position;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Position in the HR Manager.
+ * Represents a Position in the HR Manager, with default status 'open'.
  * Guarantees: immutable; title is valid and not null.
  */
 public class Position {
@@ -11,6 +11,13 @@ public class Position {
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
 
     public final Title title;
+
+    private PositionStatus status;
+
+    public enum PositionStatus {
+        OPEN,
+        CLOSED
+    }
 
     /**
      * Constructs a {@code Position}.
@@ -20,6 +27,7 @@ public class Position {
     public Position(Title title) {
         requireNonNull(title);
         this.title = title;
+        this.status = PositionStatus.OPEN;
     }
 
     /**
@@ -39,11 +47,20 @@ public class Position {
         return this.title;
     }
 
+    public PositionStatus getStatus() {
+        return this.status;
+    }
+
+    public void setStatus(PositionStatus status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
-                && title.equals(((Position) other).title));
+                && title.equals(((Position) other).title))
+                && status.equals(((Position) other).getStatus()); // status check
     }
 
     @Override

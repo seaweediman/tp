@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.Title;
 
 public class JsonAdaptedPosition {
@@ -13,12 +14,16 @@ public class JsonAdaptedPosition {
 
     private final String title;
 
+    private final PositionStatus positionStatus;
+
     /**
      * Constructs a {@code JsonAdaptedPosition} with the given {@code positionName}.
      */
     @JsonCreator
-    public JsonAdaptedPosition(@JsonProperty("title") String title) {
+    public JsonAdaptedPosition(@JsonProperty("title") String title,
+                               @JsonProperty("positionStatus") PositionStatus positionStatus) {
         this.title = title;
+        this.positionStatus = positionStatus;
     }
 
     /**
@@ -26,6 +31,7 @@ public class JsonAdaptedPosition {
      */
     public JsonAdaptedPosition(Position source) {
         title = source.getTitle().fullTitle;
+        positionStatus = source.getStatus();
     }
 
     public String getTitle() {
@@ -46,6 +52,9 @@ public class JsonAdaptedPosition {
         }
 
         final Title modelTitle = new Title(title);
-        return new Position(modelTitle);
+
+        Position position = new Position(modelTitle);
+        position.setStatus(positionStatus);
+        return position;
     }
 }
