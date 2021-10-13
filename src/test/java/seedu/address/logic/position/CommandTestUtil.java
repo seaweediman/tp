@@ -18,7 +18,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 public class CommandTestUtil {
@@ -29,11 +30,13 @@ public class CommandTestUtil {
     public static final PositionStatus VALID_STATUS_OPEN = PositionStatus.OPEN;
     public static final PositionStatus VALID_STATUS_CLOSED = PositionStatus.CLOSED;
 
-    public static final String POSITION_HR_MANAGER = " " + PREFIX_POSITION + VALID_TITLE_HR_MANAGER;
-    public static final String POSITION_ADMIN_ASSISTANT = " " + PREFIX_POSITION + VALID_TITLE_ADMIN_ASSISTANT;
+    public static final String POSITION_HR_MANAGER = " " + PREFIX_TITLE+ VALID_TITLE_HR_MANAGER;
+    public static final String POSITION_ADMIN_ASSISTANT = " " + PREFIX_TITLE + VALID_TITLE_ADMIN_ASSISTANT;
+    public static final String POSITION_BOOKKEEPER = " " + PREFIX_TITLE + VALID_TITLE_BOOKKEEPER;
+    public static final String STATUS_OPEN = " " + PREFIX_POSITION_STATUS + "open";
 
-    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "!accountant";
-    public static final String INVALID_POSITION_STATUS = "status";
+    public static final String INVALID_POSITION_TITLE = " " + PREFIX_TITLE + "!accountant";
+    public static final String INVALID_POSITION_STATUS = " " + PREFIX_POSITION_STATUS + "status";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
