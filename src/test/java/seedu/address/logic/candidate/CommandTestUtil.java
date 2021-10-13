@@ -142,19 +142,5 @@ public class CommandTestUtil {
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show only the position at the given {@code targetIndex} in the
-     * {@code model}'s HrManager.
-     */
-    public static void showPositionAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredPositionList().size());
-
-        Position position = model.getFilteredPositionList().get(targetIndex.getZeroBased());
-        final String[] splitTitle = position.getTitle().fullTitle.split("\\s+");
-        model.updateFilteredPositionList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
-
-        assertEquals(1, model.getFilteredPositionList().size());
-    }
-
+    
 }

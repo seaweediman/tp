@@ -39,7 +39,7 @@ public class EditPositionCommandParser implements Parser<EditPositionCommand> {
         }
 
         if (!editPositionDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCandidateCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(EditPositionCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditPositionCommand(index, editPositionDescriptor);

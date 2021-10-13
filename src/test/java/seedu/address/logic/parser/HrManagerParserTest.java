@@ -29,14 +29,13 @@ import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
+import seedu.address.logic.position.EditPositionCommand;
+import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.logic.position.ListPositionCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
-import seedu.address.testutil.PositionBuilder;
+import seedu.address.testutil.*;
 
 public class HrManagerParserTest {
 
@@ -54,7 +53,7 @@ public class HrManagerParserTest {
     public void parseCommand_addPosition() throws Exception {
         Position position = new PositionBuilder().build();
         AddPositionCommand command =
-                (AddPositionCommand) parser.parseCommand(PersonUtil.getAddPositionCommand(position));
+                (AddPositionCommand) parser.parseCommand(PositionUtil.getAddPositionCommand(position));
         assertEquals(new AddPositionCommand(position), command);
     }
 
@@ -142,5 +141,16 @@ public class HrManagerParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class,
                 MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_editPosition() throws Exception {
+        Position position = new PositionBuilder().build();
+        EditPositionDescriptor descriptor = new EditPositionDescriptorBuilder(position).build();
+        EditPositionCommand command = (EditPositionCommand)
+                parser.parseCommand(EditPositionCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_PERSON.getOneBased()
+                        + " " + PositionUtil.getEditPositionDescriptorDetails(descriptor));
+        assertEquals(new EditPositionCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 }
