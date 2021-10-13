@@ -5,7 +5,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -15,13 +14,10 @@ import seedu.address.model.position.Title;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.candidate.EditCandidateCommand.createEditedPerson;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POSITIONS;
 
 public class EditPositionCommand extends Command {
@@ -77,6 +73,7 @@ public class EditPositionCommand extends Command {
         model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
         // Save updated position in the candidates.json file. //TODO
+        /*
         for (Person person : lastShownPersonList) {
             Set<Position> positions = person.getPositions();
             if (positions.contains(positionToEdit)) {
@@ -92,7 +89,7 @@ public class EditPositionCommand extends Command {
                 model.setPerson(person, editedPerson);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             }
-        }
+        }*/
 
         return new CommandResult(String.format(MESSAGE_EDIT_POSITION_SUCCESS, editedPosition));
     }
