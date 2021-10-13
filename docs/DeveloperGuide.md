@@ -27,14 +27,14 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps 
+* is reasonably comfortable using CLI apps
 
 **Value proposition**: help them quickly enter the data into the system, reminders of interview timings and ranking of candidates for roles
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
-                               
+
 | Priority | As a …​ | I want to …​                | So that I can…​                                                        |
 | -------- | ---------- | ------------------------------ | ---------------------------------------------------------------------- |
 | `* * *`  | user       | be able to add a candidate with all relevant information such as full name, age, contact information, scheduled interview time and date.|                  |
@@ -67,79 +67,123 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | be able to search for a particular candidate to see his/her upcoming sessions | |
 | `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
 | `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
+| `* * *`  | user       | be able to add a job position with its job title |                  |
+| `* * *`  | user       | be able to delete a job position | remove the job posting if it was no longer open |
+| `* * *`  | user       | be able to see all posted job positions | |
 
 ### Use cases
 
 (For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a candidate**
+<u>**Use case: UC01 - Add a candidate**</u>
 
 **MSS**
 
-1. User inputs the command to add a new candidate, with the initial details of the new candidate
-2. User can see the added candidate
+1. User requests to add a new candidate, with the initial details of the new candidate.
+2. User can see the added candidate.
 
    Use case ends.
 
 **Extensions**
 
-**Use case: List all candidate**
+* 1a. The format when adding a candidate is incorrect.
+
+    * 1a1. HR Manager shows an error message.
+
+      Use case ends.
+
+<u>**Use case: UC02 - List all candidates**</u>
 
 **MSS**
 
 1. User requests to list all candidates
-2. HR manager shows a list of all candidates
+2. HR Manager shows a list of all candidates
 
-   User case ends.
-
-**Extensions**
-
-**Use case: View a candidate**
-
-**MSS**
-
-1. User inputs view and an index for candidate
-2. HR Manager displays the relevant information for that specific candidate
-
-   User case ends.
+   Use case ends.
 
 **Extensions**
 
-**Use case: Delete a candidate**
+* 2a. The list of candidates is empty.
+    * 2a1. HR Manager shows that list is empty.
+
+      Use case ends.
+
+<u>**Use case: UC03 - Delete a candidate**</u>
 
 **MSS**
 
-1. User inputs delete and an index for candidate
-2. HR Manager deletes the corresponding candidate and displays result
+1. User requests to <u>list all candidates (UC02)</u>.
+2. User requests to delete a specific candidate.
+3. HR Manager deletes the corresponding candidate and displays result.
 
    Use case ends
 
 **Extensions**
 
-[Sample use case] **Use case: Delete a person**
-
-**MSS**
-
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
+* 2a. The list of candidates is empty.
 
   Use case ends.
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. HR Manager shows an error message.
 
       Use case resumes at step 2.
 
+<u>**Use case: UC04 - Add a position**</u>
 
+**MSS**
+
+1. User requests to add a new position, with the title of the new job position.
+2. User can see the added job position.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The format when adding a position is incorrect.
+
+    * 1a1. HR Manager shows an error message.
+
+      Use case ends.
+
+<u>**Use case: UC05 - List all positions**</u>
+
+**MSS**
+
+1. User requests to list all positions
+2. HR Manager shows a list of all positions
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list of positions is empty.
+    * 2a1. HR Manager shows that list is empty.
+
+      Use case ends.
+
+<u>**Use case: UC06 - Delete a position**</u>
+
+**MSS**
+
+1. User requests to <u>list all positions (UC05)</u>.
+2. User requests to delete a specific position.
+3. HR Manager deletes the corresponding position and displays result.
+
+   Use case ends
+
+**Extensions**
+
+* 2a. The list of positions is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. HR Manager shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
