@@ -99,6 +99,10 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
             Model expectedModel) {
+        System.out.println(command);
+        System.out.println(actualModel);
+        System.out.println(expectedMessage);
+        System.out.println(expectedModel);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

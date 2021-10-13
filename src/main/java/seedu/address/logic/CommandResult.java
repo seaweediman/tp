@@ -47,7 +47,9 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false,
+                feedbackToUser.equals("Listed all candidates"),
+                feedbackToUser.equals("Listed all positions"));
     }
 
     public String getFeedbackToUser() {
