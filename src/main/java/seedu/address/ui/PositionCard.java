@@ -2,6 +2,7 @@ package seedu.address.ui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.position.Position;
@@ -30,7 +31,7 @@ public class PositionCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label status;
+    private FlowPane status;
 
     /**
      * Creates a {@code PositionCode} with the given {@code Position} and index to display.
@@ -40,7 +41,7 @@ public class PositionCard extends UiPart<Region> {
         this.position = position;
         id.setText(displayedIndex + ". ");
         title.setText(position.getTitle().fullTitle);
-        status.setText(position.getStatusInString());
+        status.getChildren().add(new Label(position.getStatusInString() + " "));
     }
 
     @Override
@@ -58,7 +59,6 @@ public class PositionCard extends UiPart<Region> {
         // state check
         PositionCard card = (PositionCard) other;
         return id.getText().equals(card.id.getText())
-                && status.getText().equals(card.status.getText())
                 && position.equals(card.position);
     }
 }
