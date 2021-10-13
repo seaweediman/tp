@@ -84,7 +84,17 @@ public class AddPositionCommandTest {
         }
 
         @Override
+        public Path getHrManagerPositionsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
