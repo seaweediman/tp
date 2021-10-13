@@ -16,7 +16,26 @@ public class Position {
 
     public enum PositionStatus {
         OPEN,
-        CLOSED
+        CLOSED;
+
+        public static final String MESSAGE_CONSTRAINTS = "Position Status can only take the values:\n"
+                + "open\n"
+                + "closed\n";
+
+        /*
+         * The first character of the status must not be a whitespace,
+         * otherwise " " (a blank string) becomes a valid input.
+         */
+        public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+
+        /**
+         * Returns true if a given string is a valid status.
+         * Only "open" and "closed" are valid strings for status.
+         */
+        public static boolean isValidPositionStatus(String test) {
+            return (((test).equals("open") || (test).equals("closed"))
+                    && test.matches(VALIDATION_REGEX));
+        }
     }
 
     /**
@@ -28,6 +47,18 @@ public class Position {
         requireNonNull(title);
         this.title = title;
         this.status = PositionStatus.OPEN;
+    }
+
+    /**
+     * Constructs a {@code Position}
+     *
+     * @param title A valid position title.
+     * @param status A valid position status.
+     */
+    public Position(Title title, PositionStatus status) {
+        requireNonNull(title);
+        this.title = title;
+        this.status = status;
     }
 
     /**
@@ -49,6 +80,10 @@ public class Position {
 
     public PositionStatus getStatus() {
         return this.status;
+    }
+
+    public String getStatusInString() {
+        return this.status.toString();
     }
 
     public void setStatus(PositionStatus status) {

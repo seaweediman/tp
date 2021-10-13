@@ -19,6 +19,7 @@ import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
+import seedu.address.logic.position.EditPositionCommand;
 import seedu.address.logic.position.ListPositionCommand;
 
 /**
@@ -80,6 +81,9 @@ public class HrManagerParser {
 
         case DeletePositionCommand.COMMAND_WORD:
             return new DeletePositionCommandParser().parse(arguments);
+
+        case EditPositionCommand.COMMAND_WORD:
+            return new EditPositionCommandParser().parse(arguments);
 
         case ListPositionCommand.COMMAND_WORD:
             return new ListPositionCommand();

@@ -14,6 +14,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.Title;
 import seedu.address.model.tag.Tag;
 
@@ -166,5 +167,23 @@ public class ParserUtil {
             positionSet.add(parsePosition(positionName));
         }
         return positionSet;
+    }
+
+    /**
+     * Parses {@code String positionStatus} into a {@code PositionStatus}.
+     */
+    public static PositionStatus parsePositionStatus(String positionStatus) throws ParseException {
+        requireNonNull(positionStatus);
+        String trimmedStatus = positionStatus.trim();
+        if (!PositionStatus.isValidPositionStatus(trimmedStatus)) {
+            throw new ParseException(PositionStatus.MESSAGE_CONSTRAINTS);
+        }
+
+        // Assumes trimmedStatus is valid. trimmedStatus can only be "open" or "closed".
+        if (trimmedStatus.equals("open")) {
+            return PositionStatus.OPEN;
+        } else {
+            return PositionStatus.CLOSED;
+        }
     }
 }

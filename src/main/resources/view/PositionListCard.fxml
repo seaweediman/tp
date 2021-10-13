@@ -25,6 +25,7 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="title" styleClass="cell_big_label" text="\$title" />
+                <Label fx:id="status" styleClass="cell_big_label" text="\$status" />
             </HBox>
         </VBox>
     </GridPane>

@@ -29,15 +29,18 @@ public class PositionCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label id;
+    @FXML
+    private Label status;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code PositionCode} with the given {@code Position} and index to display.
      */
     public PositionCard(Position position, int displayedIndex) {
         super(FXML);
         this.position = position;
         id.setText(displayedIndex + ". ");
         title.setText(position.getTitle().fullTitle);
+        status.setText(position.getStatusInString());
     }
 
     @Override
@@ -55,6 +58,7 @@ public class PositionCard extends UiPart<Region> {
         // state check
         PositionCard card = (PositionCard) other;
         return id.getText().equals(card.id.getText())
+                && status.getText().equals(card.status.getText())
                 && position.equals(card.position);
     }
 }
