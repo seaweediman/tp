@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -11,9 +12,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 import seedu.address.testutil.PersonBuilder;
+
 
 public class PersonTest {
 
@@ -87,5 +94,46 @@ public class PersonTest {
         // different tags -> returns false
         editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
+
+        // different remarks -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark("Hello").build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different positions -> returns false
+        editedAlice = new PersonBuilder(ALICE).withRemark("Admin Assistant").build();
+        assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void appliedForPosition() {
+        //ALICE initially has position HR Manager
+        assertTrue(ALICE.appliedForPosition(new Position(new Title("HR Manager"))));
+
+        assertFalse(ALICE.appliedForPosition(new Position(new Title("Bookkeeper"))));
+
+        //ALICE now has positions, Bookkeeper and Admin Assistant
+        Person editedAlice = new PersonBuilder(ALICE).withPositions("Bookkeeper", "Admin Assistant").build();
+
+        assertFalse(editedAlice.appliedForPosition(new Position(new Title("HR Manager"))));
+        assertTrue(editedAlice.appliedForPosition(new Position(new Title("Bookkeeper"))));
+        assertTrue(editedAlice.appliedForPosition(new Position(new Title("Admin Assistant"))));
+
+    }
+
+    @Test
+    public void deletePosition() {
+        Person editedAlice = new PersonBuilder(ALICE).withPositions("Bookkeeper", "Admin Assistant").build();
+
+        Position aa = new Position(new Title("Admin Assistant"));
+        Position bk = new Position(new Title("Bookkeeper"));
+
+        editedAlice.deletePosition(aa);
+        //editedAlice now no longer has AA in its positions
+        assertFalse(editedAlice.appliedForPosition(aa));
+
+        Set<Position> positions = new HashSet<>();
+        positions.add(bk);
+        //editedAlice now only has BK in its positions
+        assertEquals(positions, editedAlice.getPositions());
     }
 }

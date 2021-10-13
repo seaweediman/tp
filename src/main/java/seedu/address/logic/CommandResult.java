@@ -11,19 +11,35 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
+    /**
+     * Help information should be shown to the user.
+     */
+    private final boolean isShowHelp;
 
-    /** The application should exit. */
-    private final boolean exit;
+    /**
+     * The application should exit.
+     */
+    private final boolean isExit;
+
+    /**
+     * The application should display candidate list.
+     */
+    private final boolean isListC;
+
+    /**
+     * The application should display position list.
+     */
+    private final boolean isListP;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isListC, boolean isListP) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.isShowHelp = isShowHelp;
+        this.isExit = isExit;
+        this.isListC = isListC;
+        this.isListP = isListP;
     }
 
     /**
@@ -31,7 +47,9 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false,
+                feedbackToUser.equals("Listed all candidates"),
+                feedbackToUser.equals("Listed all positions"));
     }
 
     public String getFeedbackToUser() {
@@ -39,11 +57,19 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return isShowHelp;
     }
 
     public boolean isExit() {
-        return exit;
+        return isExit;
+    }
+
+    public boolean isListC() {
+        return isListC;
+    }
+
+    public boolean isListP() {
+        return isListP;
     }
 
     @Override
@@ -59,13 +85,15 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && isShowHelp == otherCommandResult.isShowHelp
+                && isExit == otherCommandResult.isExit
+                && isListC == otherCommandResult.isListC
+                && isListP == otherCommandResult.isListP;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, isShowHelp, isExit, isListC, isListP);
     }
 
 }
