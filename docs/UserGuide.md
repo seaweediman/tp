@@ -62,11 +62,11 @@ Adds a remark to a candidate.
 
 <u>**Edit a candidate: `edit_c`**</u>
 
-Edits a candidate's details.
+Edits a candidate's details. At least 1 edit field is needed.
 
 <u>Format:</u>
 
-    edit_c <INDEX> name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
+    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>] [position=<POSITION>]
 
 <u>Example:</u>
 `edit_c 3 name=Ryan Koh`
@@ -127,7 +127,11 @@ For a candidate,
   "email" : "charlotte@example.com",
   "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
   "remark" : "",
-  "tagged" : [ "rejected" ]
+  "tagged" : [ "rejected" ],
+  "positions" : [{
+    "title" : "Assistant",
+    "positionStatus" : "OPEN"
+  }]
  }]
 ```
 
@@ -135,7 +139,8 @@ For a position,
 
 ```json
 [{
- "title" : "HR Manager"
+ "title" : "HR Manager",
+   "positionStatus" : "OPEN"
 }]
 ```
 
