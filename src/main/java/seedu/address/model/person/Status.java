@@ -37,6 +37,7 @@ public enum Status {
      * @return Status.
      */
     public static Status parseStatus(String statusInput) {
+        statusInput = statusInput == null ? "" : statusInput;
         switch (statusInput.toUpperCase()) {
         case "":
         case "APPLIED":
