@@ -1,12 +1,5 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.position.EditPositionCommand;
-import seedu.address.model.position.Position.PositionStatus;
-import seedu.address.model.position.Title;
-import seedu.address.testutil.EditPositionDescriptorBuilder;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -24,6 +17,14 @@ import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_HR_MANAGE
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_POSITION;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.position.EditPositionCommand;
+import seedu.address.model.position.Position.PositionStatus;
+import seedu.address.model.position.Title;
+import seedu.address.testutil.EditPositionDescriptorBuilder;
 
 public class EditPositionCommandParserTest {
 

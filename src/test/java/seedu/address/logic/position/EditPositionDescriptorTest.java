@@ -1,14 +1,15 @@
 package seedu.address.logic.position;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.testutil.EditPositionDescriptorBuilder;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.position.CommandTestUtil.DESC_ADMIN_ASSISTANT;
 import static seedu.address.logic.position.CommandTestUtil.DESC_BOOKKEEPER;
 import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.testutil.EditPositionDescriptorBuilder;
 
 public class EditPositionDescriptorTest {
 

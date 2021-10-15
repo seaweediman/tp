@@ -1,10 +1,11 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.model.position.Position;
-
-import static seedu.address.logic.parser.CliSyntax.*;
 
 public class PositionUtil {
 

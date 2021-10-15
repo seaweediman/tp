@@ -35,7 +35,12 @@ import seedu.address.logic.position.ListPositionCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-import seedu.address.testutil.*;
+import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPositionDescriptorBuilder;
+import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.PositionBuilder;
+import seedu.address.testutil.PositionUtil;
 
 public class HrManagerParserTest {
 

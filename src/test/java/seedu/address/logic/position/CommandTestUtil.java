@@ -1,5 +1,15 @@
 package seedu.address.logic.position;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.testutil.Assert.assertThrows;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
@@ -12,16 +22,6 @@ import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.testutil.Assert.assertThrows;
-
 public class CommandTestUtil {
 
     public static final String VALID_TITLE_BOOKKEEPER = "Bookkeeper";
@@ -30,7 +30,7 @@ public class CommandTestUtil {
     public static final PositionStatus VALID_STATUS_OPEN = PositionStatus.OPEN;
     public static final PositionStatus VALID_STATUS_CLOSED = PositionStatus.CLOSED;
 
-    public static final String POSITION_HR_MANAGER = " " + PREFIX_TITLE+ VALID_TITLE_HR_MANAGER;
+    public static final String POSITION_HR_MANAGER = " " + PREFIX_TITLE + VALID_TITLE_HR_MANAGER;
     public static final String POSITION_ADMIN_ASSISTANT = " " + PREFIX_TITLE + VALID_TITLE_ADMIN_ASSISTANT;
     public static final String POSITION_BOOKKEEPER = " " + PREFIX_TITLE + VALID_TITLE_BOOKKEEPER;
     public static final String STATUS_OPEN = " " + PREFIX_POSITION_STATUS + "open";

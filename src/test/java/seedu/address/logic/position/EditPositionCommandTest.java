@@ -1,6 +1,23 @@
 package seedu.address.logic.position;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.position.CommandTestUtil.DESC_ADMIN_ASSISTANT;
+import static seedu.address.logic.position.CommandTestUtil.DESC_BOOKKEEPER;
+import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
+import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
+import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
+import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_HR_MANAGER;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
+import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.general.ClearCommand;
@@ -11,12 +28,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
 import seedu.address.testutil.PositionBuilder;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.position.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
-import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPositionCommand.

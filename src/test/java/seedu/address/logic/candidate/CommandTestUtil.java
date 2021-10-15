@@ -22,8 +22,6 @@ import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
-import seedu.address.model.position.Position;
-import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
