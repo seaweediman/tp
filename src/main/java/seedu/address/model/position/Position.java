@@ -79,6 +79,9 @@ public class Position {
     }
 
     public PositionStatus getStatus() {
+        if (this.status == null) {
+            setStatus(PositionStatus.OPEN);
+        }
         return this.status;
     }
 

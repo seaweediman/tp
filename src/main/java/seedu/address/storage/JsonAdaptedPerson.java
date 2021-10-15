@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
@@ -33,6 +34,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final String status;
     private final List<JsonAdaptedPosition> positions = new ArrayList<>();
 
     /**
@@ -40,8 +42,9 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-                           @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("status") String status,
                              @JsonProperty("positions") List<JsonAdaptedPosition> positions) {
         this.name = name;
         this.phone = phone;
@@ -51,6 +54,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        this.status = status;
         if (positions != null) {
             this.positions.addAll(positions);
         }
@@ -68,6 +72,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        status = source.getStatus().toString();
         positions.addAll(source.getPositions().stream()
                 .map(JsonAdaptedPosition::new)
                 .collect(Collectors.toList()));
@@ -127,7 +132,13 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Position> modelPositions = new HashSet<>(personPositions);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark, modelTags, modelPositions);
+        if (remark == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
+        }
+        final Status modelStatus = Status.parseStatus(status);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+                modelTags, modelStatus, modelPositions);
     }
 
 }

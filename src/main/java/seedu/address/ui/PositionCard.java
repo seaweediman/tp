@@ -30,8 +30,10 @@ public class PositionCard extends UiPart<Region> {
     private Label title;
     @FXML
     private Label id;
+
+    /** status uses the FXML tags format */
     @FXML
-    private FlowPane status;
+    private FlowPane tags;
 
     /**
      * Creates a {@code PositionCode} with the given {@code Position} and index to display.
@@ -41,7 +43,9 @@ public class PositionCard extends UiPart<Region> {
         this.position = position;
         id.setText(displayedIndex + ". ");
         title.setText(position.getTitle().fullTitle);
-        status.getChildren().add(new Label(position.getStatusInString() + " "));
+
+        Position.PositionStatus status = position.getStatus();
+        this.tags.getChildren().add(new Label(status.name()));
     }
 
     @Override
