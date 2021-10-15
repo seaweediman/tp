@@ -7,7 +7,6 @@ import static seedu.address.logic.position.CommandTestUtil.DESC_BOOKKEEPER;
 import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
-import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_HR_MANAGER;
 import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
@@ -48,29 +47,6 @@ public class EditPositionCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
-
-        assertCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPosition = Index.fromOneBased(model.getFilteredPositionList().size());
-        Position lastPosition = model.getFilteredPositionList().get(indexLastPosition.getZeroBased());
-
-        PositionBuilder positionInList = new PositionBuilder(lastPosition);
-        Position editedPosition =
-                positionInList.withTitle(VALID_TITLE_HR_MANAGER).withStatus(VALID_STATUS_OPEN).build();
-
-        EditPositionCommand.EditPositionDescriptor descriptor =
-                new EditPositionDescriptorBuilder().withTitle(VALID_TITLE_HR_MANAGER)
-                        .withPositionStatus(VALID_STATUS_OPEN).build();
-
-        EditPositionCommand editPositionCommand = new EditPositionCommand(indexLastPosition, descriptor);
-
-        String expectedMessage = String.format(EditPositionCommand.MESSAGE_EDIT_POSITION_SUCCESS, editedPosition);
-
-        Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
-        expectedModel.setPosition(lastPosition, editedPosition);
 
         assertCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }
