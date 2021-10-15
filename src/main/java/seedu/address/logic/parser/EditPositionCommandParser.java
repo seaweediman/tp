@@ -1,13 +1,13 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.logic.position.EditPositionCommand;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.position.EditPositionCommand;
 
 public class EditPositionCommandParser implements Parser<EditPositionCommand> {
 
@@ -33,8 +33,8 @@ public class EditPositionCommandParser implements Parser<EditPositionCommand> {
             editPositionDescriptor.setTitle(ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TITLE).get()));
         }
         if (argMultimap.getValue(PREFIX_POSITION_STATUS).isPresent()) {
-            editPositionDescriptor.setPositionStatus
-                            (ParserUtil.parsePositionStatus(argMultimap.getValue(PREFIX_POSITION_STATUS).get()));
+            editPositionDescriptor.setPositionStatus(ParserUtil
+                    .parsePositionStatus(argMultimap.getValue(PREFIX_POSITION_STATUS).get()));
         }
 
         if (!editPositionDescriptor.isAnyFieldEdited()) {
