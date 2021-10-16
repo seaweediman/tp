@@ -1,7 +1,7 @@
 package seedu.address.logic.position;
 
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.candidate.CommandTestUtil.showPositionAtIndex;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 

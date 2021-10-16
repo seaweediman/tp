@@ -38,6 +38,14 @@ public class PositionBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Name} of the {@code Position} that we are building.
+     */
+    public PositionBuilder withStatus(PositionStatus status) {
+        this.status = status;
+        return this;
+    }
+
     public Position build() {
         return new Position(title);
     }

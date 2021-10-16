@@ -30,7 +30,7 @@ whose email is bsah@gmail.com and has a phone number of 12345678.
 
 <u>**Delete a candidate: `delete_c`**</u>
 
-Deletes a candidate along with his/her details from the list of candidates. 
+Deletes a candidate along with his/her details from the list of candidates.
 
 <u>Format:</u>
 

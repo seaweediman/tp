@@ -7,7 +7,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_REMARK_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 
 import java.util.Arrays;
@@ -29,14 +28,18 @@ import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
+import seedu.address.logic.position.EditPositionCommand;
+import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.logic.position.ListPositionCommand;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditPositionDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PositionBuilder;
+import seedu.address.testutil.PositionUtil;
 
 public class HrManagerParserTest {
 
@@ -54,7 +57,7 @@ public class HrManagerParserTest {
     public void parseCommand_addPosition() throws Exception {
         Position position = new PositionBuilder().build();
         AddPositionCommand command =
-                (AddPositionCommand) parser.parseCommand(PersonUtil.getAddPositionCommand(position));
+                (AddPositionCommand) parser.parseCommand(PositionUtil.getAddPositionCommand(position));
         assertEquals(new AddPositionCommand(position), command);
     }
 
@@ -67,8 +70,8 @@ public class HrManagerParserTest {
     @Test
     public void parseCommand_deleteCandidate() throws Exception {
         DeleteCandidateCommand command = (DeleteCandidateCommand) parser.parseCommand(
-                DeleteCandidateCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCandidateCommand(INDEX_FIRST_PERSON), command);
+                DeleteCandidateCommand.COMMAND_WORD + " " + INDEX_FIRST_POSITION.getOneBased());
+        assertEquals(new DeleteCandidateCommand(INDEX_FIRST_POSITION), command);
     }
 
     @Test
@@ -84,9 +87,9 @@ public class HrManagerParserTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
         EditCandidateCommand command = (EditCandidateCommand)
                 parser.parseCommand(EditCandidateCommand.COMMAND_WORD
-                + " " + INDEX_FIRST_PERSON.getOneBased()
+                + " " + INDEX_FIRST_POSITION.getOneBased()
                         + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
-        assertEquals(new EditCandidateCommand(INDEX_FIRST_PERSON, descriptor), command);
+        assertEquals(new EditCandidateCommand(INDEX_FIRST_POSITION, descriptor), command);
     }
 
     @Test
@@ -142,5 +145,16 @@ public class HrManagerParserTest {
     public void parseCommand_unknownCommand_throwsParseException() {
         assertThrows(ParseException.class,
                 MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+    }
+
+    @Test
+    public void parseCommand_editPosition() throws Exception {
+        Position position = new PositionBuilder().build();
+        EditPositionDescriptor descriptor = new EditPositionDescriptorBuilder(position).build();
+        EditPositionCommand command = (EditPositionCommand)
+                parser.parseCommand(EditPositionCommand.COMMAND_WORD
+                        + " " + INDEX_FIRST_POSITION.getOneBased()
+                        + " " + PositionUtil.getEditPositionDescriptorDetails(descriptor));
+        assertEquals(new EditPositionCommand(INDEX_FIRST_POSITION, descriptor), command);
     }
 }

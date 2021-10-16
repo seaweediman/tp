@@ -14,4 +14,5 @@ public class CliSyntax {
     public static final Prefix PREFIX_STATUS = new Prefix("status=");
     public static final Prefix PREFIX_TITLE = new Prefix("title=");
     public static final Prefix PREFIX_POSITION = new Prefix("position=");
+    public static final Prefix PREFIX_POSITION_STATUS = new Prefix("status=");
 }

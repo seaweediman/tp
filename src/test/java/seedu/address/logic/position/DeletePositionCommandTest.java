@@ -2,9 +2,9 @@ package seedu.address.logic.position;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.candidate.CommandTestUtil.showPositionAtIndex;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;

@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
     private static final String INVALID_TITLE = "Acc-Manager";
+    private static final String INVALID_POSITION_STATUS = "status";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -34,6 +36,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_OPEN_POSITION_STATUS = "open";
+    private static final String VALID_CLOSED_POSITION_STATUS = "closed";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -198,5 +202,34 @@ public class ParserUtilTest {
     @Test
     public void parseTitle_invalidTitle_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseTitle(INVALID_TITLE));
+    }
+
+    @Test
+    public void parseTitle_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTitle((String) null));
+    }
+
+    @Test
+    public void parsePositionStatus_invalidStatus_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parsePositionStatus(INVALID_POSITION_STATUS));
+    }
+
+    @Test
+    public void parsePositionStatus_validStatusWithWhitespace_returnsTrimmedStatus() throws ParseException {
+        String statusWithWhitespace = WHITESPACE + VALID_OPEN_POSITION_STATUS + WHITESPACE;
+        PositionStatus expectedStatus = PositionStatus.OPEN;
+
+        assertEquals(expectedStatus, ParserUtil.parsePositionStatus(statusWithWhitespace));
+    }
+
+    @Test
+    public void parsePositionStatus_validStatusWithoutWhitespace_returnsTrimmedStatus() throws ParseException {
+        PositionStatus expectedStatus = PositionStatus.CLOSED;
+        assertEquals(expectedStatus, ParserUtil.parsePositionStatus(VALID_CLOSED_POSITION_STATUS));
+    }
+
+    @Test
+    public void parsePositionStatus_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parsePositionStatus((String) null));
     }
 }
