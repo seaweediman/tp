@@ -81,6 +81,12 @@ public class EditPositionCommand extends Command {
             if (positions.contains(positionToEdit)) {
                 person.deletePosition(positionToEdit);
 
+                // if closing position, deletes position from candidate and
+                // does not add edited position back to candidate's positions
+                if (!editPositionDescriptor.getTitle().equals(Optional.empty())) {
+                    person.addPosition(editedPosition);
+                }
+
                 EditCandidateCommand.EditPersonDescriptor editPersonDescriptor =
                         new EditCandidateCommand.EditPersonDescriptor();
 
