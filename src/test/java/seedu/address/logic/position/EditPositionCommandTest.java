@@ -10,7 +10,6 @@ import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPE
 import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -133,7 +132,7 @@ public class EditPositionCommandTest {
 
     @Test
     public void equals() {
-        final EditPositionCommand standardCommand = new EditPositionCommand(INDEX_FIRST_PERSON, DESC_ADMIN_ASSISTANT);
+        final EditPositionCommand standardCommand = new EditPositionCommand(INDEX_FIRST_POSITION, DESC_ADMIN_ASSISTANT);
 
         // same values -> returns true
         EditPositionCommand.EditPositionDescriptor copyDescriptor =
@@ -154,7 +153,7 @@ public class EditPositionCommandTest {
         assertFalse(standardCommand.equals(new EditPositionCommand(INDEX_SECOND_POSITION, DESC_ADMIN_ASSISTANT)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditPositionCommand(INDEX_FIRST_PERSON, DESC_BOOKKEEPER)));
+        assertFalse(standardCommand.equals(new EditPositionCommand(INDEX_FIRST_POSITION, DESC_BOOKKEEPER)));
     }
 
 }

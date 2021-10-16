@@ -16,7 +16,6 @@ import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
-import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Position.PositionStatus;
 import seedu.address.model.position.TitleContainsKeywordsPredicate;
@@ -76,10 +75,6 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        System.out.println(command);
-        System.out.println(actualModel);
-        System.out.println(expectedMessage);
-        System.out.println(expectedModel);
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -93,12 +88,12 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        HrManager expectedAddressBook = new HrManager(actualModel.getHrManager());
-        List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
+        HrManager expectedHrManager = new HrManager(actualModel.getHrManager());
+        List<Position> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPositionList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedAddressBook, actualModel.getHrManager());
-        assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedHrManager, actualModel.getHrManager());
+        assertEquals(expectedFilteredList, actualModel.getFilteredPositionList());
     }
 
     /**

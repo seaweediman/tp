@@ -28,8 +28,6 @@ import seedu.address.testutil.EditPositionDescriptorBuilder;
 
 public class EditPositionCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPositionCommand.MESSAGE_USAGE);
 
@@ -41,10 +39,10 @@ public class EditPositionCommandParserTest {
         assertParseFailure(parser, VALID_TITLE_ADMIN_ASSISTANT, MESSAGE_INVALID_FORMAT);
 
         // no field specified
-        assertParseFailure((Parser) parser, "1", EditPositionCommand.MESSAGE_NOT_EDITED);
+        assertParseFailure(parser, "1", EditPositionCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure((Parser) parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
