@@ -123,18 +123,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> names} into a {@code Set<Name>}.
-     */
-    public static Set<Name> parseNames(Collection<String> names) throws ParseException {
-        requireNonNull(names);
-        final Set<Name> nameSet = new HashSet<>();
-        for (String name : names) {
-            nameSet.add(parseName(name));
-        }
-        return nameSet;
-    }
-
-    /**
      * Parses a {@code String status} into a {@code Status}
      * Leading and trailing whitespaces will be trimmed.
      *

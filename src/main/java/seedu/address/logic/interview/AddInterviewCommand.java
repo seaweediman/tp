@@ -77,7 +77,7 @@ public class AddInterviewCommand extends Command {
         if (!model.hasPosition(position)) {
             throw new CommandException(MESSAGE_NO_POSITION_FOUND);
         }
-
+        toAdd.setCandidates(candidates);
         model.addInterview(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
