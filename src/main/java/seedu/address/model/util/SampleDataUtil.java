@@ -48,6 +48,16 @@ public class SampleDataUtil {
         };
     }
 
+    public static Name[] getSampleNames() {
+        Set<Name> set = new HashSet<>();
+        for (Person person: getSamplePersons()) {
+            set.add(person.getName());
+        }
+        Name[] names = new Name[set.size()];
+        Name[] result = set.toArray(names);
+        return result;
+    }
+
     public static ReadOnlyHrManager getSampleHrManager() {
         HrManager sampleHm = new HrManager();
         for (Person samplePerson : getSamplePersons()) {

@@ -23,12 +23,11 @@ public class JsonSerializableHrManagerCandidatesTest {
 
     @Test
     public void toModelType_typicalPersonsFile_success() throws Exception {
-
+        //this test case reads only persons
         JsonSerializableHrManagerCandidates dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableHrManagerCandidates.class).get();
         HrManager addressBookFromFile = dataFromFile.toModelType();
-        HrManager typicalPersonsAddressBook = TypicalPersons.getTypicalHrManager();
-
+        HrManager typicalPersonsAddressBook = TypicalPersons.getTypicalHrManagerWithOnlyTypicalPersons();
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 

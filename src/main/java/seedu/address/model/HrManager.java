@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.position.Position;
@@ -80,6 +81,14 @@ public class HrManager implements ReadOnlyHrManager {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
+    }
+
+    /**
+     * Returns true if {@code persons} contains person with input name.
+     */
+    public boolean hasPersonWithName(Name name) {
+        requireNonNull(name);
+        return persons.hasPersonWithName(name);
     }
 
     /**
@@ -163,12 +172,8 @@ public class HrManager implements ReadOnlyHrManager {
 
     @Override
     public String toString() {
-        return persons.asUnmodifiableObservableList().size() + " persons";
-        // The following changes can only be made after storage is also integrated with positions,
-        // due to existing test cases.
-        // return persons.asUnmodifiableObservableList().size() + " persons\n"
-        //      + positions.asUnmodifiableObservableList().size() + " positions";
-        // TODO: refine later
+        return persons.asUnmodifiableObservableList().size() + " persons\n"
+                + positions.asUnmodifiableObservableList().size() + " positions";
     }
 
     @Override
@@ -185,17 +190,12 @@ public class HrManager implements ReadOnlyHrManager {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HrManager // instanceof handles nulls
-                && persons.equals(((HrManager) other).persons));
-        // The following changes can only be made after storage is also integrated with positions,
-        // due to existing test cases.
-                // && positions.equals(((HrManager) other).positions)
+                && persons.equals(((HrManager) other).persons))
+                && positions.equals(((HrManager) other).positions);
     }
 
     @Override
     public int hashCode() {
-        // The following changes can only be made after storage is also integrated with positions,
-        // due to existing test cases.
-        // return persons.hashCode() ^ positions.hashCode();
-        return persons.hashCode();
+        return persons.hashCode() ^ positions.hashCode();
     }
 }

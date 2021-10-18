@@ -232,4 +232,9 @@ public class ParserUtilTest {
     public void parsePositionStatus_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parsePositionStatus((String) null));
     }
+
+    @Test
+    public void parseDuration_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration("string"));
+    }
 }

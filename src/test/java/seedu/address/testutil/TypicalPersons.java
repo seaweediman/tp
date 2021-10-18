@@ -82,6 +82,14 @@ public class TypicalPersons {
         return ab;
     }
 
+    public static HrManager getTypicalHrManagerWithOnlyTypicalPersons() {
+        HrManager hr = new HrManager();
+        for (Person person : getTypicalPersons()) {
+            hr.addPerson(person);
+        }
+        return hr;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }

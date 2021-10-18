@@ -25,17 +25,21 @@ import seedu.address.logic.candidate.RemarkCandidateCommand;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.logic.general.ExitCommand;
 import seedu.address.logic.general.HelpCommand;
+import seedu.address.logic.interview.AddInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
 import seedu.address.logic.position.EditPositionCommand;
 import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.logic.position.ListPositionCommand;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
+import seedu.address.testutil.InterviewBuilder;
+import seedu.address.testutil.InterviewUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PositionBuilder;
@@ -59,6 +63,14 @@ public class HrManagerParserTest {
         AddPositionCommand command =
                 (AddPositionCommand) parser.parseCommand(PositionUtil.getAddPositionCommand(position));
         assertEquals(new AddPositionCommand(position), command);
+    }
+
+    @Test
+    public void parseCommand_addInterview() throws Exception {
+        Interview interview = new InterviewBuilder().build();
+        AddInterviewCommand command =
+                (AddInterviewCommand) parser.parseCommand(InterviewUtil.getAddInterviewCommand(interview));
+        assertEquals(new AddInterviewCommand(interview), command);
     }
 
     @Test

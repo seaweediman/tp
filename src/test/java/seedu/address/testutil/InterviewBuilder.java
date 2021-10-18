@@ -1,13 +1,14 @@
 package seedu.address.testutil;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Person;
+import seedu.address.model.person.Name;
 import seedu.address.model.position.Position;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -18,8 +19,10 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class InterviewBuilder {
 
+
     private Position position = TypicalPositions.ADMIN_ASSISTANT;
-    private Set<Person> candidates = new HashSet<>(List.of(SampleDataUtil.getSamplePersons()));
+    private Set<Name> candidates = new HashSet<>(List.of(SampleDataUtil.getSampleNames()));
+    private LocalDate localDate = LocalDate.of(2021, 10, 30);
     private LocalTime startTime = LocalTime.of(10, 0);
     private Duration duration = Duration.ofHours(1);
     private Interview.InterviewStatus status = Interview.InterviewStatus.PENDING;
@@ -52,8 +55,16 @@ public class InterviewBuilder {
     /**
      * Sets the {@code Candidates} of the {@code Interview} that we are building.
      */
-    public InterviewBuilder withCandidates(Set<Person> candidates) {
+    public InterviewBuilder withCandidates(Set<Name> candidates) {
         this.candidates = candidates;
+        return this;
+    }
+
+    /**
+     * Sets the {@code localDate} of the {@code Interview} that we are building.
+     */
+    public InterviewBuilder withDate(LocalDate date) {
+        this.localDate = date;
         return this;
     }
 
@@ -82,7 +93,7 @@ public class InterviewBuilder {
     }
 
     public Interview build() {
-        return new Interview(position, candidates, startTime, duration, status);
+        return new Interview(position, candidates, localDate, startTime, duration, status);
     }
 
 }

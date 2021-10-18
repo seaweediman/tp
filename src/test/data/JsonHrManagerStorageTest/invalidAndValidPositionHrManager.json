@@ -1,9 +1,9 @@
 {
   "positions" : [ {
     "title" : "invalid position acc-manager",
-    "candidates" : [ ]
+    "positionStatus" : "OPEN"
   }, {
     "title" : "valid position account manager",
-    "candidates" : [ ]
+    "positionStatus" : "OPEN"
   } ]
 }

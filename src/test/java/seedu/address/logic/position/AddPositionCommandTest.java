@@ -19,6 +19,8 @@ import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.PositionBuilder;
@@ -32,7 +34,7 @@ public class AddPositionCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_positionAcceptedByModel_addSuccessful() throws Exception {
         AddPositionCommandTest.ModelStubAcceptingPositionAdded modelStub = new AddPositionCommandTest
                 .ModelStubAcceptingPositionAdded();
         Position validPosition = new PositionBuilder().build();
@@ -169,6 +171,21 @@ public class AddPositionCommandTest {
         }
 
         public void deletePositionFromPerson(Position p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInterview(Interview toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInterview(Interview toAdd) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasPersonWithName(Name personName) {
             throw new AssertionError("This method should not be called.");
         }
     }
