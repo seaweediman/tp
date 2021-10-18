@@ -79,7 +79,7 @@ public class UniquePositionList implements Iterable<Position> {
         }
     }
 
-    public void setPositions(seedu.address.model.position.UniquePositionList replacement) {
+    public void setPositions(UniquePositionList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -112,8 +112,8 @@ public class UniquePositionList implements Iterable<Position> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof seedu.address.model.position.UniquePositionList // instanceof handles nulls
-                && internalList.equals(((seedu.address.model.position.UniquePositionList) other).internalList));
+                || (other instanceof UniquePositionList // instanceof handles nulls
+                && internalList.equals(((UniquePositionList) other).internalList));
     }
 
     @Override
