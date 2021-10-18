@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
@@ -44,7 +45,6 @@ public class AddInterviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New interview added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
-    public static final String MESSAGE_NO_PERSON_FOUND = "Person not found in HR Manager";
     public static final String MESSAGE_NO_POSITION_FOUND = "Position not found in HR Manager";
 
     private final Interview toAdd;
@@ -69,8 +69,12 @@ public class AddInterviewCommand extends Command {
 
         Set<Person> candidates = new HashSet<>();
         for (Index index : indexes) {
-            Person person = model.getPerson(index);
-            candidates.add(person);
+            if (index.getZeroBased() < model.getFilteredPersonList().size()) {
+                Person person = model.getPerson(index);
+                candidates.add(person);
+            } else {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
         }
 
         Position position = toAdd.getPosition();

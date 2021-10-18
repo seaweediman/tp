@@ -50,7 +50,7 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     public Person getPerson(Index index) {
-        return internalList.get(1);
+        return internalList.get(index.getZeroBased());
     }
 
     /**
