@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
@@ -110,12 +110,10 @@ public class ModelManager implements Model {
         return hrManager.hasPerson(person);
     }
 
-    /**
-     * Returns true if {@code hrManager} contains person with input name.
-     */
-    public boolean hasPersonWithName(Name name) {
-        requireNonNull(name);
-        return hrManager.hasPersonWithName(name);
+
+    @Override
+    public Person getPerson(Index index) {
+        return hrManager.getPerson(index);
     }
 
     @Override

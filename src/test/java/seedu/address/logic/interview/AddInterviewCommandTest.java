@@ -8,12 +8,14 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
@@ -21,7 +23,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.InterviewBuilder;
@@ -29,7 +30,7 @@ import seedu.address.testutil.InterviewBuilder;
 class AddInterviewCommandTest {
     @Test
     public void constructor_nullInterview_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null, null));
     }
 
     @Test
@@ -37,7 +38,7 @@ class AddInterviewCommandTest {
         ModelStubAcceptingInterviewAdded modelStub = new ModelStubAcceptingInterviewAdded();
         Interview validInterview = new InterviewBuilder().build();
 
-        CommandResult commandResult = new AddInterviewCommand(validInterview).execute(modelStub);
+        CommandResult commandResult = new AddInterviewCommand(validInterview, new HashSet<>()).execute(modelStub);
 
         assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview),
                 commandResult.getFeedbackToUser());
@@ -47,27 +48,18 @@ class AddInterviewCommandTest {
     @Test
     public void execute_duplicateInterview_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
-        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview);
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         ModelStub modelStub = new ModelStubWithInterview(validInterview);
 
         assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW, () ->
                 addInterviewCommand.execute(modelStub));
     }
 
-    @Test
-    public void execute_noPersonFound_throwsCommandException() {
-        Interview validInterview = new InterviewBuilder().build();
-        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview);
-        ModelStubWithNoPerson modelStub = new ModelStubWithNoPerson();
-
-        assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_NO_PERSON_FOUND, () ->
-                addInterviewCommand.execute(modelStub));
-    }
 
     @Test
     public void execute_noPositionFound_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
-        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview);
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         ModelStubWithNoPositionButHasPerson modelStub = new ModelStubWithNoPositionButHasPerson();
 
         assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_NO_POSITION_FOUND, () ->
@@ -77,12 +69,12 @@ class AddInterviewCommandTest {
     @Test
     public void equals() {
         Interview validInterview = new InterviewBuilder().build();
-        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview);
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         Interview otherValidInterview = new Interview(CommandTestUtil.VALID_POSITION_ADMIN,
                 CommandTestUtil.VALID_CANDIDATES_SET, CommandTestUtil.VALID_LOCAL_DATE,
                 CommandTestUtil.VALID_START_TIME, CommandTestUtil.VALID_DURATION,
                 CommandTestUtil.VALID_STATUS_PENDING);
-        AddInterviewCommand otherAddInterviewCommand = new AddInterviewCommand(otherValidInterview);
+        AddInterviewCommand otherAddInterviewCommand = new AddInterviewCommand(otherValidInterview, new HashSet<>());
         assertFalse(otherAddInterviewCommand.equals(addInterviewCommand));
     }
 
@@ -215,7 +207,7 @@ class AddInterviewCommandTest {
         }
 
         @Override
-        public boolean hasPersonWithName(Name personName) {
+        public Person getPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -238,24 +230,6 @@ class AddInterviewCommandTest {
         }
     }
 
-    /**
-     * A Model stub that contains no Person.
-     */
-    private class ModelStubWithNoPerson extends ModelStub {
-
-        ModelStubWithNoPerson() {
-        }
-
-        @Override
-        public boolean hasPersonWithName(Name personName) {
-            return false;
-        }
-
-        @Override
-        public boolean hasInterview(Interview toAdd) {
-            return false;
-        }
-    }
 
     /**
      * A Model stub that contains no Position.
@@ -268,11 +242,6 @@ class AddInterviewCommandTest {
         @Override
         public boolean hasPosition(Position position) {
             return false;
-        }
-
-        @Override
-        public boolean hasPersonWithName(Name personName) {
-            return true;
         }
 
         @Override
@@ -310,9 +279,5 @@ class AddInterviewCommandTest {
             return new HrManager();
         }
 
-        @Override
-        public boolean hasPersonWithName(Name personName) {
-            return true;
-        }
     }
 }

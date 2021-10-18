@@ -1,6 +1,6 @@
 package seedu.address.logic.interview;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
@@ -16,7 +16,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.interview.Interview.InterviewStatus;
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 
@@ -24,7 +24,7 @@ public class CommandTestUtil {
 
     public static final Position VALID_POSITION_ADMIN = new Position(new Title("Admin"));
     public static final Position VALID_POSITION_MANAGER = new Position(new Title("Manager"));
-    public static final HashSet<Name> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE.getName(), BOB.getName()));
+    public static final HashSet<Person> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE, BOB));
     public static final LocalDate VALID_LOCAL_DATE = LocalDate.of(2021, 10, 18);
     public static final LocalTime VALID_START_TIME = LocalTime.NOON; //12:00
     public static final Duration VALID_DURATION = Duration.ofMinutes(180);
@@ -44,8 +44,8 @@ public class CommandTestUtil {
 
     public static final String VALID_POSITION_ADMIN_DESC = " " + PREFIX_POSITION + VALID_POSITION_ADMIN.getTitle();
     public static final String VALID_POSITION_MANAGER_DESC = " " + PREFIX_POSITION + VALID_POSITION_MANAGER.getTitle();
-    public static final String VALID_CANDIDATE_DESC_ALICE = " " + PREFIX_CANDIDATE_NAME + VALID_NAME_ALICE;
-    public static final String VALID_CANDIDATE_DESC_BOB = " " + PREFIX_CANDIDATE_NAME + VALID_NAME_BOB;
+    public static final String VALID_CANDIDATE_DESC_ALICE = " " + PREFIX_CANDIDATE_INDEX + "1";
+    public static final String VALID_CANDIDATE_DESC_BOB = " " + PREFIX_CANDIDATE_INDEX + "2";
     public static final String VALID_DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
     public static final String VALID_DATE_OTHER_DATE_DESC = " " + PREFIX_DATE + VALID_DATE_OTHER_DATE;
     public static final String VALID_TIME_DESC = " " + PREFIX_TIME + VALID_TIME;

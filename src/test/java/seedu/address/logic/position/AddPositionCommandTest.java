@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
@@ -20,7 +21,6 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.interview.Interview;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.PositionBuilder;
@@ -185,9 +185,10 @@ public class AddPositionCommandTest {
         }
 
         @Override
-        public boolean hasPersonWithName(Name personName) {
+        public Person getPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+
     }
 
     /**

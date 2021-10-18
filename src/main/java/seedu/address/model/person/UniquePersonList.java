@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -46,6 +47,10 @@ public class UniquePersonList implements Iterable<Person> {
             throw new DuplicatePersonException();
         }
         internalList.add(toAdd);
+    }
+
+    public Person getPerson(Index index) {
+        return internalList.get(1);
     }
 
     /**
@@ -133,17 +138,5 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
-    }
-
-    /**
-     * Returns true if {@code persons} contains person with input name.
-     */
-    public boolean hasPersonWithName(Name name) {
-        for (Person p : internalList) {
-            if (p.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
     }
 }

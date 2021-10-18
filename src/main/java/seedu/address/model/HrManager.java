@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Name;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.position.Position;
@@ -81,14 +81,6 @@ public class HrManager implements ReadOnlyHrManager {
     public boolean hasPerson(Person person) {
         requireNonNull(person);
         return persons.contains(person);
-    }
-
-    /**
-     * Returns true if {@code persons} contains person with input name.
-     */
-    public boolean hasPersonWithName(Name name) {
-        requireNonNull(name);
-        return persons.hasPersonWithName(name);
     }
 
     /**
@@ -197,5 +189,9 @@ public class HrManager implements ReadOnlyHrManager {
     @Override
     public int hashCode() {
         return persons.hashCode() ^ positions.hashCode();
+    }
+
+    public Person getPerson(Index index) {
+        return persons.getPerson(index);
     }
 }

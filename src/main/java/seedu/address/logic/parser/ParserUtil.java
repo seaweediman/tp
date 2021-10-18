@@ -148,6 +148,7 @@ public class ParserUtil {
 
         return Status.parseStatus(trimmedStatus);
     }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -289,5 +290,17 @@ public class ParserUtil {
             throw new ParseException(InterviewStatus.MESSAGE_CONSTRAINTS);
         }
         return InterviewStatus.parseStatus(status);
+    }
+
+    /**
+     * Parses {@code Collection<String> indexes} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndexes(Collection<String> indexes) throws ParseException {
+        requireNonNull(indexes);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : indexes) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
     }
 }

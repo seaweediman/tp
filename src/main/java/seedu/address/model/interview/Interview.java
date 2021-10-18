@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.person.Name;
+import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
 
@@ -33,7 +33,7 @@ public class Interview {
 
     private InterviewStatus status;
 
-    private final Set<Name> candidates;
+    private final Set<Person> candidates;
 
     private final LocalTime startTime;
 
@@ -60,7 +60,7 @@ public class Interview {
          * @return True if test string is a valid interview status, false otherwise.
          */
         public static boolean isValidInterviewStatus(String test) {
-            return validStatus.contains(test.toUpperCase());
+            return validStatus.contains(test);
         }
 
         /**
@@ -88,7 +88,8 @@ public class Interview {
      * @param startTime  The start time of the interview.
      * @param duration   The duration of the interview.
      */
-    public Interview(Position position, Set<Name> candidates, LocalDate date, LocalTime startTime, Duration duration) {
+    public Interview(Position position, Set<Person> candidates, LocalDate date,
+                     LocalTime startTime, Duration duration) {
         requireAllNonNull(position, candidates, startTime, duration);
         this.position = position;
         this.candidates = candidates;
@@ -107,8 +108,8 @@ public class Interview {
      * @param duration   The duration of the interview.
      * @param status     The interview status.
      */
-    public Interview(Position position, Set<Name> candidates, LocalDate date, LocalTime startTime, Duration duration,
-                     InterviewStatus status) {
+    public Interview(Position position, Set<Person> candidates, LocalDate date,
+                     LocalTime startTime, Duration duration, InterviewStatus status) {
         this(position, candidates, date, startTime, duration);
         if (status != null) {
             this.status = status;
@@ -137,9 +138,14 @@ public class Interview {
         return position;
     }
 
-    public Set<Name> getCandidates() {
+    public Set<Person> getCandidates() {
         assert this.candidates != null : "Interview candidate names set is non-null.";
         return this.candidates;
+    }
+
+    public void setCandidates(Set<Person> personSet) {
+        assert this.candidates != null : "Interview candidate names set is non-null.";
+        this.candidates.addAll(personSet);
     }
 
     public LocalDate getDate() {
