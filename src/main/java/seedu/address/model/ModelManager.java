@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
@@ -24,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Position> filteredPositions;
+    private final FilteredList<Interview> filteredInterviews;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.hrManager.getPersonList());
         filteredPositions = new FilteredList<>(this.hrManager.getPositionList());
+        filteredInterviews = new FilteredList<>(this.hrManager.getInterviewList());
     }
 
     public ModelManager() {
@@ -78,6 +81,9 @@ public class ModelManager implements Model {
         return userPrefs.getHrManagerPositionsFilePath();
     }
 
+    // todo
+    //  add getHrManagerInterviewFilPath method after interview storage is implemented
+
     @Override
     public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
         requireNonNull(hrManagerCandidatesFilePath);
@@ -89,6 +95,9 @@ public class ModelManager implements Model {
         requireNonNull(hrManagerPositionsFilePath);
         userPrefs.setHrManagerPositionsFilePath(hrManagerPositionsFilePath);
     }
+
+    // todo
+    //  add setHrManagerInterviewFilPath method after interview storage is implemented
 
     //=========== HrManager ================================================================================
 
@@ -152,6 +161,31 @@ public class ModelManager implements Model {
         hrManager.deletePositionFromPerson(p);
     }
 
+    @Override
+    public boolean hasInterview(Interview interview) {
+        requireNonNull(interview);
+        return hrManager.hasInterview(interview);
+    }
+
+    @Override
+    public void deleteInterview(Interview target) {
+        hrManager.removeInterview(target);
+    }
+
+    @Override
+    public void addInterview(Interview interview) {
+        hrManager.addInterview(interview);
+        updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
+    }
+
+    @Override
+    public void setInterview(Interview target, Interview editedInterview) {
+        requireAllNonNull(target, editedInterview);
+        hrManager.setInterview(target, editedInterview);
+    }
+
+
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -172,6 +206,15 @@ public class ModelManager implements Model {
         return filteredPositions;
     }
 
+    /**
+     * Returns an unmodifiable view of the list of {@code Interview} backed by the internal list of
+     * {@code versionedHrManager}
+     */
+    @Override
+    public ObservableList<Interview> getFilteredInterviewList() {
+        return filteredInterviews;
+    }
+
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
@@ -182,6 +225,12 @@ public class ModelManager implements Model {
     public void updateFilteredPositionList(Predicate<Position> predicate) {
         requireNonNull(predicate);
         filteredPositions.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredInterviewList(Predicate<Interview> predicate) {
+        requireNonNull(predicate);
+        filteredInterviews.setPredicate(predicate);
     }
 
     @Override
@@ -201,7 +250,8 @@ public class ModelManager implements Model {
         return hrManager.equals(other.hrManager)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredPositions.equals(other.filteredPositions);
+                && filteredPositions.equals(other.filteredPositions)
+                && filteredInterviews.equals(other.filteredInterviews);
     }
 
 }
