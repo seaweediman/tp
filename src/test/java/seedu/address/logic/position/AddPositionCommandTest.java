@@ -173,6 +173,10 @@ public class AddPositionCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        public boolean isPositionClosed(Position p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         @Override
         public boolean hasInterview(Interview interview) {
             throw new AssertionError("This method should not be called.");
