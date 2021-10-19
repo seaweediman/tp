@@ -217,12 +217,11 @@ The transferred save file can then be loaded readily when using this application
 ## Command summary
 Action | Format, Examples | Expected result
 --------|------------------|------------------|
-**Add a candidate** | `add_c name=NAME phone=PHONE email=EMAIL address=ADDRESS [status=STATUS] [tag=TAG] [position=POSITION]` <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678` | Candidate Added: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
-**Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Candidate Deleted: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
+**Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...`  <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager]
+**Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager]
 **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe
-**Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18 Remark: 20 years of experience; Tags: [colleagues][friends]
-**Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g. `edit_c 3 name=Ryan Koh` | Edited Candidate: Ryan Koh; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04
-
+**Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager]
+**Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g. `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager]
 **Add position** | `add_p title=<TITLE>` <br> e.g. `add_p title=Software engineer` | New position added: [Software engineer]
 **Delete position** | `delete_p <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
