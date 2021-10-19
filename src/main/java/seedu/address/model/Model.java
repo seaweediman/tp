@@ -162,6 +162,8 @@ public interface Model {
 
     Person getPerson(Index index);
 
+    boolean isPositionClosed(Position toCheck);
+
     /**
      * Returns true if an interview with the same identity as {@code interview} exists in the HR Manager.
      */
