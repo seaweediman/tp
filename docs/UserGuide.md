@@ -50,8 +50,17 @@ Adds a candidate to the list of candidates.
 <u>Example:</u>
  `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled`
 * status will default to APPLIED if field is left empty
+  * Status field can take the following values
+  * "None"
+  * "Applied"
+  * "Scheduled"
+  * "Interviewed"
+  * "Accepted"
+  * "Rejected"
+  * "Withdrawn"
 * POSITION must be added to HR Manager before it can be used as a parameter
   * e.g if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
+
 
 <u>**Delete a candidate: `delete_c`**</u>
 
@@ -90,7 +99,6 @@ Adds a remark to a candidate.
 Edits a candidate's details. At least 1 edit field is needed.
 
 <u>Format:</u>
-
     edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
 
 <u>Example:</u>
@@ -98,7 +106,14 @@ Edits a candidate's details. At least 1 edit field is needed.
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
 * POSITION must be added to HR Manager before it can be used as a parameter
 * e.g if the position, `Project Manager` has not been added to HR Manager, `edit_c 3 position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
-
+* Status field can take the following values
+  * "None"
+  * "Applied"
+  * "Scheduled"
+  * "Interviewed"
+  * "Accepted"
+  * "Rejected"
+  * "Withdrawn"
 
 ###Feature: Job Position Management
 
@@ -146,7 +161,7 @@ Edits a specific position's details. Only one edit field is needed. Users cannot
     edit_p <INDEX> [title=<TITLE>] [status=<STATUS>]
 
 <u>Example:</u>
-`edit_P 3 status=closed`
+`edit_p 3 status=closed`
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position
 
@@ -202,7 +217,7 @@ The transferred save file can then be loaded readily when using this application
 ## Command summary
 Action | Format, Examples | Expected result
 --------|------------------|------------------|
-**Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g.,`add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled ` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager]
+**Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...`  <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager]
 **Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager]
 **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe
 **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager]
