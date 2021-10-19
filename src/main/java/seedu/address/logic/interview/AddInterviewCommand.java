@@ -63,10 +63,7 @@ public class AddInterviewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasInterview(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
-        }
-
+        //loads candidates from set of index
         Set<Person> candidates = new HashSet<>();
         for (Index index : indexes) {
             if (index.getZeroBased() < model.getFilteredPersonList().size()) {
@@ -76,12 +73,17 @@ public class AddInterviewCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
         }
+        toAdd.setCandidates(candidates);
 
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
             throw new CommandException(MESSAGE_NO_POSITION_FOUND);
         }
-        toAdd.setCandidates(candidates);
+
+        if (model.hasInterview(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
+        }
+
         model.addInterview(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

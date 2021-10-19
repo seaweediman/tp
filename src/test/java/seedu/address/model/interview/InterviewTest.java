@@ -32,10 +32,10 @@ public class InterviewTest {
         editedAssistanceInterview = new InterviewBuilder(ASSISTANT_INTERVIEW).withPosition(BOOKKEEPER).build();
         assertFalse(ASSISTANT_INTERVIEW.isSameInterview(editedAssistanceInterview));
 
-        // different candidate, all other attributes same -> returns false
+        // different candidate, all other attributes same -> returns true
         editedAssistanceInterview = new InterviewBuilder(ASSISTANT_INTERVIEW)
                 .withCandidates(VALID_CANDIDATES_SET).build();
-        assertFalse(ASSISTANT_INTERVIEW.isSameInterview(editedAssistanceInterview));
+        assertTrue(ASSISTANT_INTERVIEW.isSameInterview(editedAssistanceInterview));
 
         // different start time, all other attributes same -> returns false
         editedAssistanceInterview = new InterviewBuilder(ASSISTANT_INTERVIEW).withStartTime(VALID_START_TIME).build();

@@ -49,7 +49,7 @@ class AddInterviewCommandTest {
     public void execute_duplicateInterview_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
-        ModelStub modelStub = new ModelStubWithInterview(validInterview);
+        ModelStubWithInterviewAndPosition modelStub = new ModelStubWithInterviewAndPosition(validInterview);
 
         assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW, () ->
                 addInterviewCommand.execute(modelStub));
@@ -60,7 +60,7 @@ class AddInterviewCommandTest {
     public void execute_noPositionFound_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
-        ModelStubWithNoPositionButHasPerson modelStub = new ModelStubWithNoPositionButHasPerson();
+        ModelStubWithNoPosition modelStub = new ModelStubWithNoPosition();
 
         assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_NO_POSITION_FOUND, () ->
                 addInterviewCommand.execute(modelStub));
@@ -236,12 +236,17 @@ class AddInterviewCommandTest {
     /**
      * A Model stub that contains a single interview.
      */
-    private class ModelStubWithInterview extends ModelStub {
+    private class ModelStubWithInterviewAndPosition extends ModelStub {
         private final Interview interview;
 
-        ModelStubWithInterview(Interview interview) {
+        ModelStubWithInterviewAndPosition(Interview interview) {
             requireNonNull(interview);
             this.interview = interview;
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return true;
         }
 
         @Override
@@ -255,9 +260,9 @@ class AddInterviewCommandTest {
     /**
      * A Model stub that contains no Position.
      */
-    private class ModelStubWithNoPositionButHasPerson extends ModelStub {
+    private class ModelStubWithNoPosition extends ModelStub {
 
-        ModelStubWithNoPositionButHasPerson() {
+        ModelStubWithNoPosition() {
         }
 
         @Override

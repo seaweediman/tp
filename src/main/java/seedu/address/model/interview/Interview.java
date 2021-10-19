@@ -127,7 +127,6 @@ public class Interview {
 
         return otherInterview != null
                 && otherInterview.getPositionTitle().equals(getPositionTitle())
-                && otherInterview.getCandidates().equals(getCandidates())
                 && otherInterview.getDate().equals(getDate())
                 && otherInterview.getStartTime().equals(getStartTime())
                 && otherInterview.getDuration().equals(getDuration());
