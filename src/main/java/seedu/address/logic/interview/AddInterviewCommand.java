@@ -46,6 +46,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New interview added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
     public static final String MESSAGE_NO_POSITION_FOUND = "Position not found in HR Manager";
+    public static final String MESSAGE_POSITION_CLOSED = "Position %1$s is closed";
 
     private final Interview toAdd;
     private final Set<Index> indexes;
@@ -78,6 +79,10 @@ public class AddInterviewCommand extends Command {
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
             throw new CommandException(MESSAGE_NO_POSITION_FOUND);
+        }
+
+        if (model.isPositionClosed(position)) {
+            throw new CommandException(String.format(MESSAGE_POSITION_CLOSED, position.getTitle()));
         }
 
         if (model.hasInterview(toAdd)) {

@@ -55,7 +55,6 @@ class AddInterviewCommandTest {
                 addInterviewCommand.execute(modelStub));
     }
 
-
     @Test
     public void execute_noPositionFound_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
@@ -231,6 +230,11 @@ class AddInterviewCommandTest {
         public Person getPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public boolean isPositionClosed(Position toCheck) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
@@ -254,6 +258,11 @@ class AddInterviewCommandTest {
             requireNonNull(interview);
             return this.interview.isSameInterview(interview);
         }
+
+        @Override
+        public boolean isPositionClosed(Position toCheck) {
+            return false;
+        }
     }
 
 
@@ -275,7 +284,6 @@ class AddInterviewCommandTest {
             return false;
         }
     }
-
 
     /**
      * A Model stub that always accept the interview being added.
@@ -301,9 +309,13 @@ class AddInterviewCommandTest {
         }
 
         @Override
+        public boolean isPositionClosed(Position toCheck) {
+            return false;
+        }
+
+        @Override
         public ReadOnlyHrManager getHrManager() {
             return new HrManager();
         }
-
     }
 }
