@@ -161,6 +161,10 @@ public class ModelManager implements Model {
         hrManager.deletePositionFromPerson(p);
     }
 
+    public boolean isPositionClosed(Position toCheck) {
+        return hrManager.isPositionClosed(toCheck);
+    }
+
     @Override
     public boolean hasInterview(Interview interview) {
         requireNonNull(interview);

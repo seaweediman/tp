@@ -174,6 +174,10 @@ public class HrManager implements ReadOnlyHrManager {
         }
     }
 
+    public boolean isPositionClosed(Position toCheck) {
+        return positions.positionIsClosed(toCheck);
+    }
+
     //// interview-level operations
 
     /**

@@ -85,12 +85,12 @@ public class Position {
         return this.status;
     }
 
-    public String getStatusInString() {
-        return this.status.toString();
-    }
-
     public void setStatus(PositionStatus status) {
         this.status = status;
+    }
+
+    public boolean isClosed() {
+        return this.status.equals(PositionStatus.CLOSED);
     }
 
     @Override
