@@ -21,12 +21,21 @@ Adds a candidate to the list of candidates.
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>
+    add_c name=NAME phone=PHONE email=EMAIL address=ADDRESS [status=STATUS] [tag=TAG] [position=POSITION]
 
 <u>Example:</u>
  `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678`
 * Adds a candidate named Bryan Seah
-whose email is bsah@gmail.com and has a phone number of 12345678.
+whose email is bsah@gmail.com, phone number of 12345678 and status of Applied.
+* Status field can take the following values
+  * "None"
+  * "Applied"
+  * "Scheduled"
+  * "Interviewed"
+  * "Accepted"
+  * "Rejected"
+  * "Withdrawn"
+* If no status is specified, will default to "Applied"
 
 <u>**Delete a candidate: `delete_c`**</u>
 
@@ -66,11 +75,19 @@ Edits a candidate's details. At least 1 edit field is needed.
 
 <u>Format:</u>
 
-    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>] [position=<POSITION>]
+    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>] [status=<STATUS>] [position=<POSITION>]
 
 <u>Example:</u>
 `edit_c 3 name=Ryan Koh`
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
+* Status field can take the following values
+ * "None"
+ * "Applied"
+ * "Scheduled"
+ * "Interviewed"
+ * "Accepted"
+ * "Rejected"
+ * "Withdrawn"
 
 ###Feature: Job Position Management
 
@@ -172,11 +189,11 @@ The transferred save file can then be loaded readily when using this application
 ## Command summary
 Action | Format, Examples | Expected result
 --------|------------------|------------------|
-**Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678` | Candidate Added: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
+**Add a candidate** | `add_c name=NAME phone=PHONE email=EMAIL address=ADDRESS [status=STATUS] [tag=TAG] [position=POSITION]` <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678` | Candidate Added: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
 **Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Candidate Deleted: Name: Bryan Seah, E-mail: bsah@gmail.com, Phone: 1234 5678
 **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe
 **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bernice Yu; Phone: 99272758; Email: berniceyu@example.com; Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18 Remark: 20 years of experience; Tags: [colleagues][friends]
-**Edit a candidate** | `edit_c <INDEX> name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER>` <br> e.g. `edit_c 3 name=Ryan Koh` | Edited Candidate: Ryan Koh; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04
+**Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>] [status=<STATUS>] [position=<POSITION>]` <br> e.g. `edit_c 3 name=Ryan Koh` | Edited Candidate: Ryan Koh; Phone: 93210283; Email: charlotte@example.com; Address: Blk 11 Ang Mo Kio Street 74, #11-04
 **Add position** | `add_p title=<TITLE>` <br> e.g. `add_p title=Software engineer` | New position added: [Software engineer]
 **Delete position** | `delete_c <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_c` | Listed all positions <br> 1. Assistant <br> 2. Manager
