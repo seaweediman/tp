@@ -37,6 +37,11 @@ public class PositionTest {
         String nameWithTrailingSpaces = VALID_TITLE_BOOKKEEPER + " ";
         editedBookkeeper = new PositionBuilder(BOOKKEEPER).withTitle(nameWithTrailingSpaces).build();
         assertFalse(BOOKKEEPER.isSamePosition(editedBookkeeper));
+
+        // Status is closed -> returns true
+        editedBookkeeper = new PositionBuilder(BOOKKEEPER).withStatus(Position.PositionStatus.CLOSED).build();
+        assertTrue(editedBookkeeper.isClosed());
+
     }
 
     @Test
