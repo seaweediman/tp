@@ -108,6 +108,18 @@ Displays a list of all the positions stored in the application.
 
     list_p
 
+<u>**Edit a position: `edit_p`**</u>
+
+Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.
+
+<u>Format:</u>
+
+    edit_p <INDEX> [title=<TITLE>] [status=<STATUS>]
+
+<u>Example:</u>
+`edit_P 3 status=closed`
+* Edits the status of the 3rd position in the list to closed.
+
 ### Feature: Storage
 Save all candidate and position records into a data file locally, on your device itself.
 
@@ -168,3 +180,4 @@ Action | Format, Examples | Expected result
 **Add position** | `add_p title=<TITLE>` <br> e.g. `add_p title=Software engineer` | New position added: [Software engineer]
 **Delete position** | `delete_c <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_c` | Listed all positions <br> 1. Assistant <br> 2. Manager
+**Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
