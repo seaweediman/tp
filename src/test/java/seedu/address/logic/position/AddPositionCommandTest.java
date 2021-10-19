@@ -188,7 +188,7 @@ public class AddPositionCommandTest {
         public Person getPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
-      
+
         public void addInterview(Interview interview) {
             throw new AssertionError("This method should not be called.");
         }
