@@ -95,6 +95,9 @@ public class EditCandidateCommand extends Command {
             if (!model.hasPosition(p)) {
                 throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
             }
+            if (model.isPositionClosed(p)) {
+                throw new CommandException("Position " + p.getTitle().fullTitle + " is closed");
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);

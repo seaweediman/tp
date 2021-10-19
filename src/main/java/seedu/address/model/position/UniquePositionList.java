@@ -134,5 +134,14 @@ public class UniquePositionList implements Iterable<Position> {
         }
         return true;
     }
+
+    public boolean positionIsClosed(Position toCheck) {
+        for (Position p : internalList) {
+            if (p.isSamePosition(toCheck)) {
+                return p.isClosed();
+            }
+        }
+        return true;
+    }
 }
 

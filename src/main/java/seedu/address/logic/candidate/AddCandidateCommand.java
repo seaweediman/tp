@@ -39,7 +39,7 @@ public class AddCandidateCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_STATUS + "Scheduled"
+            + PREFIX_STATUS + "Scheduled "
             + PREFIX_TAG + "pending "
             + PREFIX_TAG + "reviewRequired "
             + PREFIX_POSITION + "Accountant";
@@ -69,6 +69,9 @@ public class AddCandidateCommand extends Command {
         for (Position p : positions) {
             if (!model.hasPosition(p)) {
                 throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+            }
+            if (model.isPositionClosed(p)) {
+                throw new CommandException("Position " + p.getTitle().fullTitle + " is closed");
             }
         }
 
