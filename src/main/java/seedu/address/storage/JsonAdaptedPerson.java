@@ -132,7 +132,7 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Position> modelPositions = new HashSet<>(personPositions);
 
-        if (remark == null) {
+        if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         final Status modelStatus = Status.parseStatus(status);

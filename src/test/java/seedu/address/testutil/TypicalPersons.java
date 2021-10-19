@@ -12,13 +12,19 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_STATUS_APPLIED
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import seedu.address.model.HrManager;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
@@ -90,6 +96,14 @@ public class TypicalPersons {
         return hr;
     }
 
+    public static HrManager getTypicalHrManagerWithOnlyTypicalInterviews() {
+        HrManager hr = new HrManager();
+        for (Interview interview : getTypicalInterviews()) {
+            hr.addInterview(interview);
+        }
+        return hr;
+    }
+
     public static List<Person> getTypicalPersons() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
@@ -97,5 +111,18 @@ public class TypicalPersons {
     public static List<Position> getTypicalPositions() {
         return new ArrayList<>(Arrays.asList(TypicalPositions.ADMIN_ASSISTANT, TypicalPositions.BOOKKEEPER,
                 TypicalPositions.HR_MANAGER));
+    }
+
+    //this follows typicalInterviewHrManager.json data
+    public static List<Interview> getTypicalInterviews() {
+        Interview firstEntry = new InterviewBuilder().withPosition(new Position(new Title("Accountant")))
+                .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 10, 15))
+                .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
+                .withStatus(Interview.InterviewStatus.PENDING).build();
+        Interview secondEntry = new InterviewBuilder().withPosition(new Position(new Title("Accountant")))
+                .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 12, 15))
+                .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
+                .withStatus(Interview.InterviewStatus.PENDING).build();
+        return new ArrayList<>(Arrays.asList(firstEntry, secondEntry));
     }
 }

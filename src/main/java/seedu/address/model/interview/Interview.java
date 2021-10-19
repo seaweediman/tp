@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -40,6 +41,8 @@ public class Interview {
     private final LocalDate date;
 
     private final Duration duration;
+
+    private final Set<Integer> candidateIDs = new HashSet<>();
 
     public enum InterviewStatus {
         PENDING,
@@ -152,14 +155,39 @@ public class Interview {
         return this.date;
     }
 
-    public Duration getDuration() {
-        assert this.duration != null : "Interview duration is non-null.";
-        return this.duration;
+    public String getDateInFormattedString() {
+        assert this.date != null : "Interview date is non-null.";
+        String[] temp = this.date.toString().split("-");
+        return temp[2] + "/" + temp[1] + "/" + temp[0];
     }
 
     public LocalTime getStartTime() {
         assert this.startTime != null : "Interview start time is non-null.";
         return this.startTime;
+    }
+
+    public String getTimeInFormattedString() {
+        assert this.startTime != null : "Interview start time is non-null.";
+        return this.startTime.toString().replace(":", "");
+    }
+
+    public Duration getDuration() {
+        assert this.duration != null : "Interview duration is non-null.";
+        return this.duration;
+    }
+
+    public String getDurationInFormattedString() {
+        assert this.duration != null : "Interview duration is non-null.";
+        String temp = this.duration.toString().replace("PT", "");
+        if (temp.contains("H") && temp.contains("M")) {
+            int endHourIndex = temp.indexOf("H");
+            return String.valueOf(Integer.parseInt(temp.substring(0, endHourIndex)) * 60
+                    + Integer.parseInt(temp.substring(endHourIndex + 1, temp.length() - 1)));
+        } else if (temp.contains("H")) {
+            return String.valueOf(Integer.parseInt(temp.substring(0, temp.length() - 1)) * 60);
+        } else {
+            return temp.substring(0, temp.length() - 1);
+        }
     }
 
     public Title getPositionTitle() {
@@ -193,9 +221,17 @@ public class Interview {
                 && status.equals(((Interview) other).getStatus())); // status check
     }
 
+    public void setCandidateIDs(Set<Integer> candidateIDs) {
+        this.candidateIDs.addAll(candidateIDs);
+    }
+
+    public Set<Integer> getCandidateIDs() {
+        return candidateIDs;
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(position, candidates, date, startTime, duration, status);
+        return Objects.hash(position, date, startTime, duration, status);
     }
 
     /**
@@ -211,3 +247,4 @@ public class Interview {
                 + getStatusInString() + "]";
     }
 }
+

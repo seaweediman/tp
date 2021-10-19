@@ -55,11 +55,9 @@ class DeletePositionCommandTest {
         DeletePositionCommand deletePositionCommand = new DeletePositionCommand(INDEX_FIRST_POSITION);
 
         String expectedMessage = String.format(DeletePositionCommand.MESSAGE_DELETE_POSITION_SUCCESS, positionToDelete);
-
-        Model expectedModel = new ModelManager(model.getHrManager(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalHrManager(), new UserPrefs());
         expectedModel.deletePosition(positionToDelete);
         showNoPosition(expectedModel);
-
         assertCommandSuccess(deletePositionCommand, model, expectedMessage, expectedModel);
     }
 

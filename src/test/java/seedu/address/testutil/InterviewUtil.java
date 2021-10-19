@@ -34,7 +34,6 @@ public class InterviewUtil {
         //hard coded this for easy testing currently, will change in the next update
         sb.append(PREFIX_DURATION + "60" + " ");
         sb.append(PREFIX_INTERVIEW_STATUS + interview.getStatus().toString() + " ");
-        System.out.println(sb.toString());
         return sb.toString();
     }
 }
