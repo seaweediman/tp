@@ -3,9 +3,12 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POSITIONS;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalInterviews.ASSISTANT_INTERVIEW;
+import static seedu.address.testutil.TypicalInterviews.BOOKKEEPER_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
@@ -18,6 +21,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.model.interview.PositionTitleContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.HrManagerBuilder;
@@ -132,10 +136,32 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasInterview_nullInterview_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasInterview(null));
+    }
+
+    @Test
+    public void hasInterview_interviewNotInHrManager_returnsFalse() {
+        assertFalse(modelManager.hasInterview(ASSISTANT_INTERVIEW));
+    }
+
+    @Test
+    public void hasInterview_interviewInHrManager_returnsTrue() {
+        modelManager.addInterview(ASSISTANT_INTERVIEW);
+        assertTrue(modelManager.hasInterview(ASSISTANT_INTERVIEW));
+    }
+
+    @Test
+    public void getFilteredInterviewList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredInterviewList().remove(0));
+    }
+
+    @Test
     public void equals() {
         HrManager hrManager = new HrManagerBuilder()
                 .withPerson(ALICE).withPerson(BENSON)
                 .withPosition(ADMIN_ASSISTANT).withPosition(BOOKKEEPER)
+                .withInterview(ASSISTANT_INTERVIEW).withInterview(BOOKKEEPER_INTERVIEW)
                 .build();
         HrManager differentHrManager = new HrManager();
         UserPrefs userPrefs = new UserPrefs();
@@ -166,9 +192,14 @@ public class ModelManagerTest {
         modelManager.updateFilteredPositionList(new TitleContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hrManager, userPrefs)));
 
+        String[] keywordsInterviewPositionTitle = ADMIN_ASSISTANT.getTitle().fullTitle.split("\\s+");
+        modelManager.updateFilteredInterviewList(new PositionTitleContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertFalse(modelManager.equals(new ModelManager(hrManager, userPrefs)));
+
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         modelManager.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
+        modelManager.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

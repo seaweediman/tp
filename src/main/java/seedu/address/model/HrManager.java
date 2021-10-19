@@ -6,6 +6,8 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.interview.UniqueInterviewList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.position.Position;
@@ -21,6 +23,8 @@ public class HrManager implements ReadOnlyHrManager {
 
     private final UniquePositionList positions;
 
+    private final UniqueInterviewList interviews;
+
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
      * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
@@ -32,6 +36,7 @@ public class HrManager implements ReadOnlyHrManager {
     {
         persons = new UniquePersonList();
         positions = new UniquePositionList();
+        interviews = new UniqueInterviewList();
     }
 
     public HrManager() {
@@ -64,6 +69,14 @@ public class HrManager implements ReadOnlyHrManager {
     }
 
     /**
+     * Replaces the contents of the interview list with {@code interviews}.
+     * {@code interviews} must not contain duplicate interviews.
+     */
+    public void setInterviews(List<Interview> interviews) {
+        this.interviews.setInterviews(interviews);
+    }
+
+    /**
      * Resets the existing data of this {@code HrManager} with {@code newData}.
      */
     public void resetData(ReadOnlyHrManager newData) {
@@ -71,6 +84,7 @@ public class HrManager implements ReadOnlyHrManager {
 
         setPersons(newData.getPersonList());
         setPositions(newData.getPositionList());
+        setInterviews(newData.getInterviewList());
     }
 
     //// person-level operations
@@ -150,6 +164,7 @@ public class HrManager implements ReadOnlyHrManager {
 
     /**
      * Deletes a position from every candidate
+     *
      * @param p The position to be deleted
      */
     public void deletePositionFromPerson(Position p) {
@@ -159,6 +174,47 @@ public class HrManager implements ReadOnlyHrManager {
             }
         }
     }
+
+    //// interview-level operations
+
+    /**
+     * Returns true if an interview with the same identity as {@code interview} exists in the HR Manager.
+     */
+    public boolean hasInterview(Interview interview) {
+        requireNonNull(interview);
+        return interviews.contains(interview);
+    }
+
+    /**
+     * Adds an interview to the HR Manager.
+     * The interview must not already exist in the HR Manager.
+     */
+    public void addInterview(Interview interview) {
+        interviews.add(interview);
+    }
+
+    /**
+     * Replaces the given interview {@code target} in the list with {@code editedInterview}.
+     * {@code target} must exist in the HR Manager.
+     * The interview identity of {@code editedInterview} must not be the same as another existing interview in the
+     * HR Manager.
+     */
+    public void setInterview(Interview target, Interview editedInterview) {
+        requireNonNull(editedInterview);
+
+        interviews.setInterview(target, editedInterview);
+    }
+
+    /**
+     * Removes {@code key} from this {@code HrManager}.
+     * {@code key} must exist in the HR Manager.
+     */
+    public void removeInterview(Interview key) {
+        interviews.remove(key);
+    }
+
+    // todo:
+    //  add deleteInterviewFromPerson after Interview is integrated into Candidate
 
     //// util methods
 
@@ -176,6 +232,11 @@ public class HrManager implements ReadOnlyHrManager {
     @Override
     public ObservableList<Position> getPositionList() {
         return positions.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Interview> getInterviewList() {
+        return interviews.asUnmodifiableObservableList();
     }
 
     @Override

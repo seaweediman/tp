@@ -175,12 +175,12 @@ public class AddPositionCommandTest {
         }
 
         @Override
-        public boolean hasInterview(Interview toAdd) {
+        public boolean hasInterview(Interview interview) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void addInterview(Interview toAdd) {
+        public void deleteInterview(Interview target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -188,7 +188,25 @@ public class AddPositionCommandTest {
         public Person getPerson(Index index) {
             throw new AssertionError("This method should not be called.");
         }
+      
+        public void addInterview(Interview interview) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void setInterview(Interview target, Interview editedInterview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Interview> getFilteredInterviewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredInterviewList(Predicate<Interview> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

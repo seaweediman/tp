@@ -25,9 +25,9 @@ public class TitleContainsKeywordsPredicate implements Predicate<Position> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 // instanceof handles nulls
-                || (other instanceof seedu.address.model.position.TitleContainsKeywordsPredicate
+                || (other instanceof TitleContainsKeywordsPredicate
                 // state check
-                && keywords.equals(((seedu.address.model.position.TitleContainsKeywordsPredicate) other).keywords));
+                && keywords.equals(((TitleContainsKeywordsPredicate) other).keywords));
     }
 
 }

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import seedu.address.model.HrManager;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
@@ -34,6 +35,14 @@ public class HrManagerBuilder {
      */
     public HrManagerBuilder withPosition(Position position) {
         hrManager.addPosition(position);
+        return this;
+    }
+
+    /**
+     * Adds a new {@code Interview} to the {@code HrManager} that we are building.
+     */
+    public HrManagerBuilder withInterview(Interview interview) {
+        hrManager.addInterview(interview);
         return this;
     }
 

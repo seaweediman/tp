@@ -6,6 +6,6 @@ package seedu.address.model.position.exceptions;
  */
 public class DuplicatePositionException extends RuntimeException {
     public DuplicatePositionException() {
-        super("Operation would result in duplicate persons");
+        super("Operation would result in duplicate positions");
     }
 }

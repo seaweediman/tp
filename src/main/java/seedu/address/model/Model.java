@@ -25,6 +25,11 @@ public interface Model {
     Predicate<Position> PREDICATE_SHOW_ALL_POSITIONS = unused -> true;
 
     /**
+     * {@code Interview} that always evaluate to true
+     */
+    Predicate<Interview> PREDICATE_SHOW_ALL_INTERVIEWS = unused -> true;
+
+    /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
@@ -54,6 +59,9 @@ public interface Model {
      */
     Path getHrManagerPositionsFilePath();
 
+    // TODO:
+    //  add getHrManagerInterviewsFilePath() method after interview storage implementation.
+
     /**
      * Sets the user prefs' HR Manager candidate file path.
      */
@@ -64,12 +72,17 @@ public interface Model {
      */
     void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath);
 
+    // TODO:
+    //  add setHrManagerInterviewsFilePath() method after interview storage implementation.
+
     /**
      * Replaces HR Manager data with the data in {@code addressBook}.
      */
     void setHrManager(ReadOnlyHrManager addressBook);
 
-    /** Returns the HrManager */
+    /**
+     * Returns the HrManager
+     */
     ReadOnlyHrManager getHrManager();
 
     /**
@@ -147,9 +160,43 @@ public interface Model {
 
     void deletePositionFromPerson(Position p);
 
-    boolean hasInterview(Interview toAdd);
-
-    void addInterview(Interview toAdd);
 
     Person getPerson(Index index);
+  
+    /**
+     * Returns true if an interview with the same identity as {@code interview} exists in the HR Manager.
+     */
+    boolean hasInterview(Interview interview);
+
+    /**
+     * Deletes the given interview.
+     * The interview must exist in the HR Manager.
+     */
+    void deleteInterview(Interview target);
+
+    /**
+     * Adds the given interview.
+     * {@code interview} must not already exist in the HR Manager.
+     */
+    void addInterview(Interview interview);
+
+    /**
+     * Replaces the given interview {@code target} with {@code editedInterview}.
+     * {@code target} must exist in the HR Manager.
+     * The interview identity of {@code editedInterview} must not be the same as another existing interview in the
+     * HR Manager.
+     */
+    void setInterview(Interview target, Interview editedInterview);
+
+    /**
+     * Returns an unmodifiable view of the filtered interview list
+     */
+    ObservableList<Interview> getFilteredInterviewList();
+
+    /**
+     * Updates the filter of the filtered interview list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredInterviewList(Predicate<Interview> predicate);
 }
