@@ -21,7 +21,7 @@ Adds a candidate to the list of candidates.
 
 <u>Format:</u>
 
-    add_c name=NAME phone=PHONE email=EMAIL address=ADDRESS [status=STATUS] [tag=TAG] [position=POSITION]
+    add_c name=NAME phone=PHONE email=EMAIL address=ADDRESS [status=STATUS] [tag=TAG]... [position=POSITION]...
 
 <u>Example:</u>
  `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678`
@@ -75,7 +75,7 @@ Edits a candidate's details. At least 1 edit field is needed.
 
 <u>Format:</u>
 
-    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>] [status=<STATUS>] [position=<POSITION>]
+    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [tag=<TAG>]... [status=<STATUS>] [position=<POSITION>]...
 
 <u>Example:</u>
 `edit_c 3 name=Ryan Koh`
