@@ -48,6 +48,7 @@ public class SampleDataUtil {
         };
     }
 
+
     public static ReadOnlyHrManager getSampleHrManager() {
         HrManager sampleHm = new HrManager();
         for (Person samplePerson : getSamplePersons()) {

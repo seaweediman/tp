@@ -2,13 +2,21 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.DateTimeException;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.interview.Interview.InterviewStatus;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -52,6 +60,21 @@ public class ParserUtil {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
         return new Name(trimmedName);
+    }
+
+    /**
+     * Parses a {@code String tag} into a {@code Tag}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Tag parseTag(String tag) throws ParseException {
+        requireNonNull(tag);
+        String trimmedTag = tag.trim();
+        if (!Tag.isValidTagName(trimmedTag)) {
+            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
+        }
+        return new Tag(trimmedTag);
     }
 
     /**
@@ -100,21 +123,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
      * Parses a {@code String status} into a {@code Status}
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -128,6 +136,7 @@ public class ParserUtil {
 
         return Status.parseStatus(trimmedStatus);
     }
+
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
@@ -200,5 +209,86 @@ public class ParserUtil {
         } else {
             return PositionStatus.CLOSED;
         }
+    }
+
+    /**
+     * Parses {@code String date} into a {@code LocalDate}.
+     */
+    public static LocalDate parseDate(String date) throws ParseException {
+        String dateFormat = "^[0-9]{1,2}[\\\\/][0-9]{1,2}[\\\\/][0-9]{4}$";
+        Pattern p = Pattern.compile(dateFormat);
+        Matcher m = p.matcher(date);
+        if (m.find()) {
+            String[] foundDate = m.group().split("/");
+            int year = Integer.parseInt(foundDate[2]);
+            int month = Integer.parseInt(foundDate[1]);
+            int day = Integer.parseInt(foundDate[0]);
+            try {
+                return LocalDate.of(year, month, day);
+            } catch (DateTimeException e) {
+                throw new ParseException(Interview.MESSAGE_DATE_CONSTRAINTS);
+            }
+        }
+        throw new ParseException(Interview.MESSAGE_DATE_CONSTRAINTS);
+    }
+
+    /**
+     * Parses {@code String time} into a {@code LocalTime}.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        String timeFormat = "^[0-9]{4}$";
+        Pattern p = Pattern.compile(timeFormat);
+        Matcher m = p.matcher(time);
+        if (m.find()) {
+            int hour = Integer.parseInt(time.substring(0, 2));
+            int min = Integer.parseInt(time.substring(2));
+            try {
+                return LocalTime.of(hour, min);
+            } catch (DateTimeException e) {
+                throw new ParseException(Interview.MESSAGE_TIME_CONSTRAINTS);
+            }
+        }
+        throw new ParseException(Interview.MESSAGE_TIME_CONSTRAINTS);
+    }
+
+    /**
+     * Parses {@code String duration} into a {@code Duration}.
+     */
+    public static Duration parseDuration(String duration) throws ParseException {
+        try {
+            Long actualDuration = Long.parseLong(duration);
+            if (actualDuration < 0) {
+                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            }
+            return Duration.ofMinutes(actualDuration);
+        } catch (NumberFormatException e) {
+            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Parses a {@code String status} into a {@code InterviewStatus}
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException If the given {@code status} is invalid
+     */
+    public static InterviewStatus parseInterviewStatus(String status) throws ParseException {
+        String trimmedStatus = status.trim().toUpperCase();
+        if (!InterviewStatus.isValidInterviewStatus(trimmedStatus)) {
+            throw new ParseException(InterviewStatus.MESSAGE_CONSTRAINTS);
+        }
+        return InterviewStatus.parseStatus(status);
+    }
+
+    /**
+     * Parses {@code Collection<String> indexes} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndexes(Collection<String> indexes) throws ParseException {
+        requireNonNull(indexes);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String index : indexes) {
+            indexSet.add(parseIndex(index));
+        }
+        return indexSet;
     }
 }

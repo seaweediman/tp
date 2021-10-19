@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
@@ -158,6 +159,8 @@ public interface Model {
     void updateFilteredPositionList(Predicate<Position> predicate);
 
     void deletePositionFromPerson(Position p);
+
+    Person getPerson(Index index);
 
     boolean isPositionClosed(Position toCheck);
 

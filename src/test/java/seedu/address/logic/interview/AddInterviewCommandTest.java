@@ -1,14 +1,14 @@
-package seedu.address.logic.candidate;
+package seedu.address.logic.interview;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -25,59 +25,56 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.InterviewBuilder;
 
-public class AddCandidateCommandTest {
-
+class AddInterviewCommandTest {
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCandidateCommand(null));
+    public void constructor_nullInterview_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null, null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_interviewAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingInterviewAdded modelStub = new ModelStubAcceptingInterviewAdded();
+        Interview validInterview = new InterviewBuilder().build();
 
-        CommandResult commandResult = new AddCandidateCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddInterviewCommand(validInterview, new HashSet<>()).execute(modelStub);
 
-        assertEquals(String.format(AddCandidateCommand.MESSAGE_SUCCESS, validPerson),
+        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validInterview), modelStub.interviewsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateInterview_throwsCommandException() {
+        Interview validInterview = new InterviewBuilder().build();
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
+        ModelStubWithInterviewAndPosition modelStub = new ModelStubWithInterviewAndPosition(validInterview);
 
-        assertThrows(CommandException.class, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, () ->
-                addCandidateCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW, () ->
+                addInterviewCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_noPositionFound_throwsCommandException() {
+        Interview validInterview = new InterviewBuilder().build();
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
+        ModelStubWithNoPosition modelStub = new ModelStubWithNoPosition();
+
+        assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_NO_POSITION_FOUND, () ->
+                addInterviewCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
-        AddCandidateCommand addAliceCommand = new AddCandidateCommand(alice);
-        AddCandidateCommand addBobCommand = new AddCandidateCommand(bob);
-
-        // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
-
-        // same values -> returns true
-        AddCandidateCommand addAliceCommandCopy = new AddCandidateCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
-
-        // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
-
-        // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
-
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        Interview validInterview = new InterviewBuilder().build();
+        AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
+        Interview otherValidInterview = new Interview(CommandTestUtil.VALID_POSITION_ADMIN,
+                CommandTestUtil.VALID_CANDIDATES_SET, CommandTestUtil.VALID_LOCAL_DATE,
+                CommandTestUtil.VALID_START_TIME, CommandTestUtil.VALID_DURATION,
+                CommandTestUtil.VALID_STATUS_PENDING);
+        AddInterviewCommand otherAddInterviewCommand = new AddInterviewCommand(otherValidInterview, new HashSet<>());
+        assertFalse(otherAddInterviewCommand.equals(addInterviewCommand));
     }
 
     /**
@@ -198,12 +195,8 @@ public class AddCandidateCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        public boolean isPositionClosed(Position p) {
-            throw new AssertionError("This method should not be called.");
-        }
-
         @Override
-        public boolean hasInterview(Interview interview) {
+        public boolean hasInterview(Interview toAdd) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -213,12 +206,10 @@ public class AddCandidateCommandTest {
         }
 
         @Override
-        public Person getPerson(Index index) {
+        public void addInterview(Interview toAdd) {
             throw new AssertionError("This method should not be called.");
         }
-        public void addInterview(Interview interview) {
-            throw new AssertionError("This method should not be called.");
-        }
+
 
         @Override
         public void setInterview(Interview target, Interview editedInterview) {
@@ -234,47 +225,27 @@ public class AddCandidateCommandTest {
         public void updateFilteredInterviewList(Predicate<Interview> predicate) {
             throw new AssertionError("This method should not be called.");
         }
-    }
 
-    /**
-     * A Model stub that contains a single person.
-     */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
-
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        @Override
+        public Person getPerson(Index index) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean isPositionClosed(Position toCheck) {
+            throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that contains a single interview.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubWithInterviewAndPosition extends ModelStub {
+        private final Interview interview;
 
-        @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
-        }
-
-        @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
-        }
-
-        @Override
-        public ReadOnlyHrManager getHrManager() {
-            return new HrManager();
+        ModelStubWithInterviewAndPosition(Interview interview) {
+            requireNonNull(interview);
+            this.interview = interview;
         }
 
         @Override
@@ -283,8 +254,68 @@ public class AddCandidateCommandTest {
         }
 
         @Override
-        public boolean isPositionClosed(Position p) {
+        public boolean hasInterview(Interview interview) {
+            requireNonNull(interview);
+            return this.interview.isSameInterview(interview);
+        }
+
+        @Override
+        public boolean isPositionClosed(Position toCheck) {
             return false;
+        }
+    }
+
+
+    /**
+     * A Model stub that contains no Position.
+     */
+    private class ModelStubWithNoPosition extends ModelStub {
+
+        ModelStubWithNoPosition() {
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return false;
+        }
+
+        @Override
+        public boolean hasInterview(Interview toAdd) {
+            return false;
+        }
+    }
+
+    /**
+     * A Model stub that always accept the interview being added.
+     */
+    private class ModelStubAcceptingInterviewAdded extends ModelStub {
+        final ArrayList<Interview> interviewsAdded = new ArrayList<>();
+
+        @Override
+        public boolean hasPosition(Position position) {
+            return true;
+        }
+
+        @Override
+        public boolean hasInterview(Interview interview) {
+            requireNonNull(interview);
+            return interviewsAdded.stream().anyMatch(interview::isSameInterview);
+        }
+
+        @Override
+        public void addInterview(Interview interview) {
+            requireNonNull(interview);
+            interviewsAdded.add(interview);
+        }
+
+        @Override
+        public boolean isPositionClosed(Position toCheck) {
+            return false;
+        }
+
+        @Override
+        public ReadOnlyHrManager getHrManager() {
+            return new HrManager();
         }
     }
 }

@@ -1,6 +1,7 @@
 package seedu.address.testutil;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
 import java.util.List;
@@ -18,8 +19,10 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class InterviewBuilder {
 
+
     private Position position = TypicalPositions.ADMIN_ASSISTANT;
     private Set<Person> candidates = new HashSet<>(List.of(SampleDataUtil.getSamplePersons()));
+    private LocalDate localDate = LocalDate.of(2021, 10, 30);
     private LocalTime startTime = LocalTime.of(10, 0);
     private Duration duration = Duration.ofHours(1);
     private Interview.InterviewStatus status = Interview.InterviewStatus.PENDING;
@@ -58,6 +61,14 @@ public class InterviewBuilder {
     }
 
     /**
+     * Sets the {@code localDate} of the {@code Interview} that we are building.
+     */
+    public InterviewBuilder withDate(LocalDate date) {
+        this.localDate = date;
+        return this;
+    }
+
+    /**
      * Sets the {@code StartTime} of the {@code Interview} that we are building.
      */
     public InterviewBuilder withStartTime(LocalTime startTime) {
@@ -82,7 +93,7 @@ public class InterviewBuilder {
     }
 
     public Interview build() {
-        return new Interview(position, candidates, startTime, duration, status);
+        return new Interview(position, candidates, localDate, startTime, duration, status);
     }
 
 }

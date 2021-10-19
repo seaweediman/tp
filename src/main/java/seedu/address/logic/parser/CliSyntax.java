@@ -15,4 +15,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_TITLE = new Prefix("title=");
     public static final Prefix PREFIX_POSITION = new Prefix("position=");
     public static final Prefix PREFIX_POSITION_STATUS = new Prefix("status=");
+    public static final Prefix PREFIX_CANDIDATE_INDEX = new Prefix("index=");
+    public static final Prefix PREFIX_DATE = new Prefix("date=");
+    public static final Prefix PREFIX_TIME = new Prefix("time=");
+    public static final Prefix PREFIX_DURATION = new Prefix("duration=");
+    public static final Prefix PREFIX_INTERVIEW_STATUS = new Prefix("interviewed=");
 }

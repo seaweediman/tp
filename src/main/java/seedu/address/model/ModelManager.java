@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
@@ -117,6 +118,12 @@ public class ModelManager implements Model {
         return hrManager.hasPerson(person);
     }
 
+
+    @Override
+    public Person getPerson(Index index) {
+        return hrManager.getPerson(index);
+    }
+
     @Override
     public void deletePerson(Person target) {
         hrManager.removePerson(target);
@@ -187,7 +194,6 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedInterview);
         hrManager.setInterview(target, editedInterview);
     }
-
 
 
     //=========== Filtered Person List Accessors =============================================================

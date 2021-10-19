@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
@@ -33,7 +34,7 @@ public class AddPositionCommandTest {
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
+    public void execute_positionAcceptedByModel_addSuccessful() throws Exception {
         AddPositionCommandTest.ModelStubAcceptingPositionAdded modelStub = new AddPositionCommandTest
                 .ModelStubAcceptingPositionAdded();
         Position validPosition = new PositionBuilder().build();
@@ -188,6 +189,10 @@ public class AddPositionCommandTest {
         }
 
         @Override
+        public Person getPerson(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void addInterview(Interview interview) {
             throw new AssertionError("This method should not be called.");
         }

@@ -4,7 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -20,6 +24,11 @@ public class Interview {
 
     // public static final String MESSAGE_CONSTRAINTS = "";
 
+
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in correct DD/MM/YYYY format.";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be in correct HHMM format.";
+    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be in minutes.";
+
     private final Position position;
 
     private InterviewStatus status;
@@ -27,6 +36,8 @@ public class Interview {
     private final Set<Person> candidates;
 
     private final LocalTime startTime;
+
+    private final LocalDate date;
 
     private final Duration duration;
 
@@ -38,11 +49,8 @@ public class Interview {
                 + "pending\n"
                 + "completed\n";
 
-        /*
-         * The first character of the status must not be a whitespace,
-         * otherwise " " (a blank string) becomes a valid input.
-         */
-        public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+        private static final List<String> validStatus = new ArrayList<>(Arrays.asList("PENDING",
+                "COMPLETED", ""));
 
         /**
          * Return true if a give string is a valid interview status.
@@ -52,8 +60,22 @@ public class Interview {
          * @return True if test string is a valid interview status, false otherwise.
          */
         public static boolean isValidInterviewStatus(String test) {
-            return (test != null && (test.equals("pending") || test.equals("completed")))
-                    && test.matches(VALIDATION_REGEX);
+            return validStatus.contains(test);
+        }
+
+        /**
+         * Returns the corresponding InterviewStatus Enum given a valid input.
+         *
+         * @param statusInput String input
+         * @return Status
+         */
+        public static InterviewStatus parseStatus(String statusInput) {
+            statusInput = (statusInput == null ? "" : statusInput);
+            if (statusInput.equals("COMPLETED")) {
+                return InterviewStatus.COMPLETED;
+            } else {
+                return InterviewStatus.PENDING;
+            }
         }
     }
 
@@ -61,14 +83,17 @@ public class Interview {
      * Constructs a {@code Interview}.
      *
      * @param position   A position for the interview.
-     * @param candidates A list of candidates attending the interview.
+     * @param candidates A list of names of the candidates attending the interview.
+     * @param date       The date of the interview.
      * @param startTime  The start time of the interview.
      * @param duration   The duration of the interview.
      */
-    public Interview(Position position, Set<Person> candidates, LocalTime startTime, Duration duration) {
+    public Interview(Position position, Set<Person> candidates, LocalDate date,
+                     LocalTime startTime, Duration duration) {
         requireAllNonNull(position, candidates, startTime, duration);
         this.position = position;
         this.candidates = candidates;
+        this.date = date;
         this.startTime = startTime;
         this.duration = duration;
     }
@@ -77,16 +102,18 @@ public class Interview {
      * Constructs a {@code Interview}.
      *
      * @param position   A position for the interview.
-     * @param candidates A list of candidates attending the interview.
+     * @param candidates A list of names of the candidates attending the interview.
      * @param startTime  The start time of the interview.
+     * @param date       The date of the interview.
      * @param duration   The duration of the interview.
      * @param status     The interview status.
      */
-    public Interview(Position position, Set<Person> candidates, LocalTime startTime, Duration duration,
-                     InterviewStatus status) {
-        this(position, candidates, startTime, duration);
-        requireNonNull(status);
-        this.status = status;
+    public Interview(Position position, Set<Person> candidates, LocalDate date,
+                     LocalTime startTime, Duration duration, InterviewStatus status) {
+        this(position, candidates, date, startTime, duration);
+        if (status != null) {
+            this.status = status;
+        }
     }
 
     /**
@@ -100,14 +127,29 @@ public class Interview {
 
         return otherInterview != null
                 && otherInterview.getPositionTitle().equals(getPositionTitle())
-                && otherInterview.getCandidates().equals(getCandidates())
+                && otherInterview.getDate().equals(getDate())
                 && otherInterview.getStartTime().equals(getStartTime())
                 && otherInterview.getDuration().equals(getDuration());
     }
 
+    public Position getPosition() {
+        assert this.position != null : "Interview position is non-null";
+        return position;
+    }
+
     public Set<Person> getCandidates() {
-        assert this.candidates != null : "Interview candidate set is non-null.";
+        assert this.candidates != null : "Interview candidate names set is non-null.";
         return this.candidates;
+    }
+
+    public void setCandidates(Set<Person> personSet) {
+        assert this.candidates != null : "Interview candidate names set is non-null.";
+        this.candidates.addAll(personSet);
+    }
+
+    public LocalDate getDate() {
+        assert this.date != null : "Interview date is non-null.";
+        return this.date;
     }
 
     public Duration getDuration() {
@@ -153,7 +195,7 @@ public class Interview {
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, candidates, startTime, duration, status);
+        return Objects.hash(position, candidates, date, startTime, duration, status);
     }
 
     /**
@@ -161,12 +203,11 @@ public class Interview {
      */
     @Override
     public String toString() {
-        return "[" + getPositionTitle().toString() + "\n\t"
-                + getCandidates().toString() + "\n\t"
+        return "[" + getPositionTitle().toString() + " "
+                + getCandidates().toString() + " "
+                + getDate() + " "
                 + getStartTime().toString() + " - "
-                + getDuration().toString() + "\n"
+                + getDuration().toString() + " "
                 + getStatusInString() + "]";
     }
-
-
 }
