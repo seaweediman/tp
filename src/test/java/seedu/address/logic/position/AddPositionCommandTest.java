@@ -19,6 +19,7 @@ import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.PositionBuilder;
@@ -169,6 +170,36 @@ public class AddPositionCommandTest {
         }
 
         public void deletePositionFromPerson(Position p) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasInterview(Interview interview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteInterview(Interview target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addInterview(Interview interview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setInterview(Interview target, Interview editedInterview) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Interview> getFilteredInterviewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredInterviewList(Predicate<Interview> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

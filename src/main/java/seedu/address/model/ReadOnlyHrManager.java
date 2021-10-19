@@ -1,11 +1,12 @@
 package seedu.address.model;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of a HR Manager
  */
 public interface ReadOnlyHrManager {
 
@@ -20,5 +21,11 @@ public interface ReadOnlyHrManager {
      * This list will not contain any duplicate positions.
      */
     ObservableList<Position> getPositionList();
+
+    /**
+     * Returns an unmodifiable view of the interview list.
+     * This list will not contain any duplicate interviews.
+     */
+    ObservableList<Interview> getInterviewList();
 
 }
