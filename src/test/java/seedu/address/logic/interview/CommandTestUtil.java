@@ -39,8 +39,11 @@ public class CommandTestUtil {
     public static final Position VALID_POSITION_MANAGER = new Position(new Title("Manager"));
     public static final HashSet<Person> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE, BOB));
     public static final LocalDate VALID_LOCAL_DATE = LocalDate.of(2021, 10, 18);
+    public static final LocalDate VALID_LOCAL_DATE_OTHER_DATE = LocalDate.of(2021, 10, 01);
     public static final LocalTime VALID_START_TIME = LocalTime.NOON; //12:00
+    public static final LocalTime VALID_START_TIME_OTHER_START_TIME = LocalTime.MIDNIGHT; //00:00
     public static final Duration VALID_DURATION = Duration.ofMinutes(180);
+    public static final Duration VALID_DURATION_OTHER_DURATION = Duration.ofMinutes(120);
     public static final InterviewStatus VALID_STATUS_PENDING = InterviewStatus.PENDING;
     public static final InterviewStatus VALID_STATUS_COMPLETED = InterviewStatus.COMPLETED;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -106,7 +109,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the HR Manager, filtered interview list and selected interview in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -127,8 +130,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInterviewList().size());
 
         Interview interview = model.getFilteredInterviewList().get(targetIndex.getZeroBased());
-        final String[] splitName = interview.getPositionTitle().toString().split("\\s+");
-        model.updateFilteredInterviewList(new PositionTitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTitle = interview.getPositionTitle().fullTitle.split("\\s+");
+        model.updateFilteredInterviewList(new PositionTitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredInterviewList().size());
     }
