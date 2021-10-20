@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalInterviews.getTypicalInterviews;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
@@ -40,6 +41,10 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
     private static final List<JsonAdaptedPosition> VALID_POSITIONS = BENSON.getPositions().stream()
             .map(JsonAdaptedPosition::new)
+            .collect(Collectors.toList());
+
+    private static final List<JsonAdaptedInterview> VALID_INTERVIEWS = getTypicalInterviews().stream()
+            .map(JsonAdaptedInterview::new)
             .collect(Collectors.toList());
 
     @Test

@@ -104,12 +104,18 @@ public class JsonHrManagerStorage implements HrManagerStorage {
                         for (Integer integer : uniqueIds) {
                             if (integer.equals(person.hashCode())) {
                                 candidateSet.add(person);
-                                //todo bi-direction reference
                             }
                         }
                     }
                     interview.setCandidates(candidateSet);
                     merge.addInterview(interview);
+
+                    //add interviews to candidates after interview has the correct set of candidates
+                    for (Person person : merge.getPersonList()) {
+                        if (interview.hasCandidate(person)) {
+                            person.addInterview(interview);
+                        }
+                    }
                 }
             }
 
