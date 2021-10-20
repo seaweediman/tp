@@ -30,10 +30,10 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
-            + "[" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)]... "
-            + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
-            + PREFIX_DURATION + "DURATION (must be a positive integer) \n"
+            + "" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
+            + PREFIX_DATE + "DD/MM/YYYY "
+            + PREFIX_TIME + "HHMM "
+            + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"
             + "[" + PREFIX_INTERVIEW_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Accountant "
@@ -87,6 +87,12 @@ public class AddInterviewCommand extends Command {
 
         if (model.hasInterview(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
+        }
+
+        for (Person p : model.getFilteredPersonList()) {
+            if (toAdd.hasCandidate(p)) {
+                p.addInterview(toAdd);
+            }
         }
 
         model.addInterview(toAdd);

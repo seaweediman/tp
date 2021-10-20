@@ -1,13 +1,11 @@
 package seedu.address.logic.interview;
 
 import static java.util.Objects.requireNonNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.function.Predicate;
 
@@ -16,7 +14,6 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
@@ -31,18 +28,6 @@ class AddInterviewCommandTest {
     @Test
     public void constructor_nullInterview_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null, null));
-    }
-
-    @Test
-    public void execute_interviewAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingInterviewAdded modelStub = new ModelStubAcceptingInterviewAdded();
-        Interview validInterview = new InterviewBuilder().build();
-
-        CommandResult commandResult = new AddInterviewCommand(validInterview, new HashSet<>()).execute(modelStub);
-
-        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview.getDisplayString()),
-                commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validInterview), modelStub.interviewsAdded);
     }
 
     @Test
