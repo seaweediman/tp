@@ -2,13 +2,13 @@ package seedu.address.model.interview;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATES_SET;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_DURATION;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_START_TIME;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_STATUS_COMPLETED;
+import static seedu.address.logic.interview.CommandTestUtil.*;
 import static seedu.address.testutil.TypicalInterviews.ASSISTANT_INTERVIEW;
 import static seedu.address.testutil.TypicalInterviews.BOOKKEEPER_INTERVIEW;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
+
+import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +72,30 @@ public class InterviewTest {
 
         // different position -> returns false
         Interview editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW).withPosition(BOOKKEEPER).build();
+        assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        // different candidate -> returns false
+        editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW)
+                .withCandidates(new HashSet<>(getTypicalPersons())).build();
+        assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        // different start time -> return false
+        editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW)
+                .withStartTime(VALID_START_TIME_OTHER_START_TIME).build();
+        assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        // different date -> return false
+        editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW)
+                .withDate(VALID_LOCAL_DATE_OTHER_DATE).build();
+        assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        // different duration -> return false
+        editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW)
+                .withDuration(VALID_DURATION_OTHER_DURATION).build();
+        assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        // different status -> return false
+        editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW).withStatus(VALID_STATUS_COMPLETED).build();
         assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
     }
 

@@ -218,9 +218,10 @@ public class Interview {
                 || (other instanceof Interview // instanceof handles nulls
                 && position.equals(((Interview) other).position) // position check
                 && candidates.equals(((Interview) other).candidates) // candidates check
+                && date.equals(((Interview) other).date)
                 && startTime.equals(((Interview) other).startTime) // startTime check
                 && duration.equals(((Interview) other).duration)
-                && status.equals(((Interview) other).getStatus())); // status check
+                && status.equals(((Interview) other).status)); // status check
     }
 
     public void setCandidateIDs(Set<Integer> candidateIDs) {

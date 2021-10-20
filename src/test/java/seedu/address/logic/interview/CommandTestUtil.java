@@ -39,8 +39,11 @@ public class CommandTestUtil {
     public static final Position VALID_POSITION_MANAGER = new Position(new Title("Manager"));
     public static final HashSet<Person> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE, BOB));
     public static final LocalDate VALID_LOCAL_DATE = LocalDate.of(2021, 10, 18);
+    public static final LocalDate VALID_LOCAL_DATE_OTHER_DATE = LocalDate.of(2021, 10, 01);
     public static final LocalTime VALID_START_TIME = LocalTime.NOON; //12:00
+    public static final LocalTime VALID_START_TIME_OTHER_START_TIME = LocalTime.MIDNIGHT; //00:00
     public static final Duration VALID_DURATION = Duration.ofMinutes(180);
+    public static final Duration VALID_DURATION_OTHER_DURATION = Duration.ofMinutes(120);
     public static final InterviewStatus VALID_STATUS_PENDING = InterviewStatus.PENDING;
     public static final InterviewStatus VALID_STATUS_COMPLETED = InterviewStatus.COMPLETED;
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
