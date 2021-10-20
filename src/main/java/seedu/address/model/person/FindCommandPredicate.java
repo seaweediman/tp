@@ -18,6 +18,7 @@ public class FindCommandPredicate implements Predicate<Person> {
     private List<String> addressKeywords = new ArrayList<String>();
     private List<String> tagKeywords = new ArrayList<String>();
     private List<String> statusKeywords = new ArrayList<String>();
+    private List<String> positionKeywords = new ArrayList<String>();
 
     public FindCommandPredicate() {
     }
@@ -30,15 +31,18 @@ public class FindCommandPredicate implements Predicate<Person> {
      * @param addressKeywords
      * @param tagKeywords
      * @param statusKeywords
+     * @param positionKeywords
      */
     public FindCommandPredicate(List<String> nameKeywords, List<String> phoneKeywords, List<String> emailKeywords,
-                                List<String> addressKeywords, List<String> tagKeywords, List<String> statusKeywords) {
+                                List<String> addressKeywords, List<String> tagKeywords, List<String> statusKeywords,
+                                List<String> positionKeywords) {
         this.nameKeywords = nameKeywords;
         this.phoneKeywords = phoneKeywords;
         this.emailKeywords = emailKeywords;
         this.addressKeywords = addressKeywords;
         this.tagKeywords = tagKeywords;
         this.statusKeywords = statusKeywords;
+        this.positionKeywords = positionKeywords;
     }
 
     /**
@@ -64,12 +68,15 @@ public class FindCommandPredicate implements Predicate<Person> {
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getAddress().value, keyword));
 
         boolean tagCheck = tagKeywords.isEmpty() || tagKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getTags().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getTagsString(), keyword));
 
         boolean statusCheck = statusKeywords.isEmpty() || statusKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getStatus().toString(), keyword));
 
-        return nameCheck && phoneCheck && emailCheck && addressCheck && tagCheck && statusCheck;
+        boolean positionCheck = positionKeywords.isEmpty() || positionKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getPositionsString(), keyword));
+
+        return nameCheck && phoneCheck && emailCheck && addressCheck && tagCheck && statusCheck && positionCheck;
     }
 
     @Override
@@ -80,7 +87,8 @@ public class FindCommandPredicate implements Predicate<Person> {
                 && phoneKeywords.equals(((FindCommandPredicate) other).phoneKeywords)
                 && addressKeywords.equals(((FindCommandPredicate) other).addressKeywords)
                 && tagKeywords.equals(((FindCommandPredicate) other).tagKeywords)
-                && statusKeywords.equals(((FindCommandPredicate) other).statusKeywords));
+                && statusKeywords.equals(((FindCommandPredicate) other).statusKeywords)
+                && positionKeywords.equals(((FindCommandPredicate) other).positionKeywords));
     }
 
     public void setNameKeywords(List<String> name) {
@@ -107,13 +115,17 @@ public class FindCommandPredicate implements Predicate<Person> {
         this.tagKeywords = tags;
     }
 
+    public void setPositionKeywords(List<String> positionKeywords) {
+        this.positionKeywords = positionKeywords;
+    }
+
     /**
      * If any field is provided.
      * @return if any field is provided.
      */
     public boolean isAnyField() {
         return !Stream.of(nameKeywords, phoneKeywords, emailKeywords, addressKeywords, statusKeywords,
-                tagKeywords)
+                tagKeywords, positionKeywords)
                 .allMatch(List::isEmpty);
     }
 

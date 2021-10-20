@@ -54,6 +54,11 @@ public class FindCandidateCommandParser implements Parser<FindCandidateCommand> 
             findCommandPredicate.setTagKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_TAG).get()));
         }
 
+        if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
+            findCommandPredicate.setPositionKeywords(ParserUtil.parseKeywords(
+                    argMultimap.getValue(PREFIX_POSITION).get()));
+        }
+
         if (!findCommandPredicate.isAnyField()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCandidateCommand.MESSAGE_USAGE));
         }

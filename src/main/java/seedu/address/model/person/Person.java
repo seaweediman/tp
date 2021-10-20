@@ -79,11 +79,27 @@ public class Person {
     }
 
     /**
+     * Return a String representation of Tags without '[', ']' and ','
+     */
+    public String getTagsString() {
+        return tags.toString().replace("[", "")
+                .replace("]", "").replace(",", "");
+    }
+
+    /**
      * Returns an immutable position set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Position> getPositions() {
         return Collections.unmodifiableSet(positions);
+    }
+
+    /**
+     * Return a String representation of Positions without '[', ']' and ','
+     */
+    public String getPositionsString() {
+        return positions.toString().replace("[", "")
+                .replace("]", "").replace(",", "");
     }
 
     public Set<Interview> getInterviews() {
