@@ -112,9 +112,6 @@ public class EditInterviewCommand extends Command {
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
 
         // update candidate list
-        EditCandidateCommand.EditPersonDescriptor editPersonDescriptor =
-                new EditCandidateCommand.EditPersonDescriptor();
-
         if (isCandidateSetEdited) {
             // if candidate set is edited, delete old interview from all initial candidates,
             // then add edited interview to all candidates in updated candidate set
