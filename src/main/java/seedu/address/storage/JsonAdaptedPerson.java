@@ -137,8 +137,10 @@ class JsonAdaptedPerson {
         }
         final Status modelStatus = Status.parseStatus(status);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelStatus, modelPositions);
+
+        return p;
     }
 
 }
