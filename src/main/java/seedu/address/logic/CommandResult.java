@@ -4,6 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.logic.candidate.ListCandidateCommand;
+import seedu.address.logic.interview.ListInterviewCommand;
+import seedu.address.logic.position.ListPositionCommand;
+
 /**
  * Represents the result of a command execution.
  */
@@ -32,14 +36,21 @@ public class CommandResult {
     private final boolean isListP;
 
     /**
+     * The application should display interview list.
+     */
+    private final boolean isListI;
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean isShowHelp, boolean isExit, boolean isListC, boolean isListP) {
+    public CommandResult(String feedbackToUser,
+                         boolean isShowHelp, boolean isExit, boolean isListC, boolean isListP, boolean isListI) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
         this.isListC = isListC;
         this.isListP = isListP;
+        this.isListI = isListI;
     }
 
     /**
@@ -48,8 +59,9 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false,
-                feedbackToUser.equals("Listed all candidates"),
-                feedbackToUser.equals("Listed all positions"));
+                feedbackToUser.equals(ListCandidateCommand.MESSAGE_SUCCESS),
+                feedbackToUser.equals(ListPositionCommand.MESSAGE_SUCCESS),
+                feedbackToUser.equals(ListInterviewCommand.MESSAGE_SUCCESS));
     }
 
     public String getFeedbackToUser() {
@@ -72,6 +84,10 @@ public class CommandResult {
         return isListP;
     }
 
+    public boolean isListI() {
+        return isListI;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -85,15 +101,16 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && isShowHelp == otherCommandResult.isShowHelp
-                && isExit == otherCommandResult.isExit
-                && isListC == otherCommandResult.isListC
-                && isListP == otherCommandResult.isListP;
+                && isShowHelp == otherCommandResult.isShowHelp()
+                && isExit == otherCommandResult.isExit()
+                && isListC == otherCommandResult.isListC()
+                && isListP == otherCommandResult.isListP()
+                && isListI == otherCommandResult.isListI();
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, isShowHelp, isExit, isListC, isListP);
+        return Objects.hash(feedbackToUser, isShowHelp, isExit, isListC, isListP, isListI);
     }
 
 }
