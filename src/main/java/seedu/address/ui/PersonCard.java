@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
 /**
@@ -46,6 +47,8 @@ public class PersonCard extends UiPart<Region> {
     private Label status;
     @FXML
     private FlowPane positions;
+    @FXML
+    private FlowPane interviews;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -67,6 +70,9 @@ public class PersonCard extends UiPart<Region> {
         person.getPositions().stream()
                 .sorted(Comparator.comparing(position -> position.getTitle().fullTitle))
                 .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
+        person.getInterviews().stream()
+                .sorted(Comparator.comparing(Interview::getDate))
+                .forEach(interview -> interviews.getChildren().add(new Label(interview.getDisplayString())));
     }
 
     @Override

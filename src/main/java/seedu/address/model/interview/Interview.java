@@ -237,6 +237,10 @@ public class Interview {
         return candidates.contains(person);
     }
 
+    public void removeCandidate(Person person) {
+        candidates.remove(person);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(position, date, startTime, duration, status);

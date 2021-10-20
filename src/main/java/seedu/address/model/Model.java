@@ -204,4 +204,14 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInterviewList(Predicate<Interview> predicate);
+
+    /**
+     * Deletes Interview from a Person's interviewList.
+     */
+    void deleteInterviewFromPerson(Interview interview);
+
+    /**
+     * Deletes Person from an Interview's personList.
+     */
+    void deletePersonFromInterview(Person person);
 }

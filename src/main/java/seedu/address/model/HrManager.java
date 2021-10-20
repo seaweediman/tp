@@ -217,8 +217,27 @@ public class HrManager implements ReadOnlyHrManager {
         interviews.remove(key);
     }
 
-    // todo:
-    //  add deleteInterviewFromPerson after Interview is integrated into Candidate
+    /**
+     * Deletes Interview from a Person's interviewList.
+     */
+    public void deleteInterviewFromPerson(Interview interview) {
+        for (Person person : persons) {
+            if (person.hasInterview(interview)) {
+                person.deleteInterview(interview);
+            }
+        }
+    }
+
+    /**
+     * Deletes Person from an Interview's personList.
+     */
+    public void deletePersonFromInterview(Person person) {
+        for (Interview interview : interviews) {
+            if (interview.hasCandidate(person)) {
+                interview.removeCandidate(person);
+            }
+        }
+    }
 
     //// util methods
 
