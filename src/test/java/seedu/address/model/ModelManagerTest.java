@@ -92,6 +92,17 @@ public class ModelManagerTest {
         assertEquals(path, modelManager.getHrManagerPositionsFilePath());
     }
 
+    @Test
+    public void setHrManagerInterviewsFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setHrManagerInterviewsFilePath(null));
+    }
+
+    @Test
+    public void setHrManagerInterviewsFilePath_validPath_setsHrManagerInterviewsFilePath() {
+        Path path = Paths.get("address/book/file/path");
+        modelManager.setHrManagerInterviewsFilePath(path);
+        assertEquals(path, modelManager.getHrManagerInterviewsFilePath());
+    }
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {

@@ -26,6 +26,7 @@ import seedu.address.logic.candidate.RemarkCandidateCommand;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.logic.general.ExitCommand;
 import seedu.address.logic.general.HelpCommand;
+import seedu.address.logic.interview.ListInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
@@ -157,5 +158,12 @@ public class HrManagerParserTest {
                         + " " + INDEX_FIRST_POSITION.getOneBased()
                         + " " + PositionUtil.getEditPositionDescriptorDetails(descriptor));
         assertEquals(new EditPositionCommand(INDEX_FIRST_POSITION, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_interviewList() throws Exception {
+        assertTrue(parser.parseCommand(ListInterviewCommand.COMMAND_WORD) instanceof ListInterviewCommand);
+        assertTrue(parser.parseCommand(ListInterviewCommand.COMMAND_WORD
+                + " 3") instanceof ListInterviewCommand);
     }
 }

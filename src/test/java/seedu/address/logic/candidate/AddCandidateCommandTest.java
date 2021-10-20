@@ -115,12 +115,22 @@ public class AddCandidateCommandTest {
         }
 
         @Override
+        public Path getHrManagerInterviewsFilePath() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setHrManagerInterviewsFilePath(Path hrManagerInterviewsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
