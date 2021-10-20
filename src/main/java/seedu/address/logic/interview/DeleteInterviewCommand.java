@@ -39,7 +39,7 @@ public class DeleteInterviewCommand extends Command {
 
         Interview interviewToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteInterview(interviewToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_INTERVIEW_SUCCESS, interviewToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_INTERVIEW_SUCCESS, interviewToDelete.getDisplayString()));
     }
 
     @Override
