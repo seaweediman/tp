@@ -190,6 +190,15 @@ public class MainWindow extends UiPart<Stage> {
         listLabel.setText("Positions");
     }
 
+    private void handleListI(CommandResult commandResult) {
+        displayListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewFilPath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        listLabel.setText("Interviews");
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -209,6 +218,8 @@ public class MainWindow extends UiPart<Stage> {
                 handleListC(commandResult);
             } else if (commandResult.isListP()) {
                 handleListP(commandResult);
+            } else if (commandResult.isListI()) {
+                handleListI(commandResult);
             }
 
             return commandResult;
