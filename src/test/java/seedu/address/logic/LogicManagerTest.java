@@ -47,7 +47,8 @@ public class LogicManagerTest {
     public void setUp() {
         JsonHrManagerStorage hrManagerStorage =
                 new JsonHrManagerStorage(temporaryFolder.resolve("HrManagerCandidates.json"),
-                        temporaryFolder.resolve("HrManagerPositions.json"));
+                        temporaryFolder.resolve("HrManagerPositions.json"),
+                        temporaryFolder.resolve("HrManagerInterViews.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         StorageManager storage = new StorageManager(hrManagerStorage, userPrefsStorage);
         model.addPosition(new Position(new Title("HR Manager")));
@@ -77,7 +78,8 @@ public class LogicManagerTest {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
         JsonHrManagerStorage addressBookStorage =
                 new JsonHrManagerIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionHrManagerCandidates.json"),
-                        temporaryFolder.resolve("ioExceptionHrManagerPositions.json"));
+                        temporaryFolder.resolve("ioExceptionHrManagerPositions.json"),
+                        temporaryFolder.resolve("ioExceptionHrManagerInterviews.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
@@ -161,13 +163,14 @@ public class LogicManagerTest {
      * A stub class to throw an {@code IOException} when the save method is called.
      */
     private static class JsonHrManagerIoExceptionThrowingStub extends JsonHrManagerStorage {
-        private JsonHrManagerIoExceptionThrowingStub(Path candidatesFilePath, Path positionsFilePath) {
-            super(candidatesFilePath, positionsFilePath);
+        private JsonHrManagerIoExceptionThrowingStub(Path candidatesFilePath, Path positionsFilePath,
+                                                     Path interviewFilePath) {
+            super(candidatesFilePath, positionsFilePath, interviewFilePath);
         }
 
         @Override
         public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath,
-                                  Path positionsFilePath) throws IOException {
+                                  Path positionsFilePath, Path interviewFilePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

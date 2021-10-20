@@ -60,30 +60,39 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public Optional<ReadOnlyHrManager> readHrManager() throws DataConversionException, IOException {
-        return readHrManager(hrManagerStorage.getHrManagerCandidatesFilePath(),
-                hrManagerStorage.getHrManagerPositionsFilePath());
+    public Path getHrManagerInterviewsFilePath() {
+        return hrManagerStorage.getHrManagerInterviewsFilePath();
     }
 
     @Override
-    public Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath, Path positionsFilepath)
+    public Optional<ReadOnlyHrManager> readHrManager() throws DataConversionException, IOException {
+        return readHrManager(hrManagerStorage.getHrManagerCandidatesFilePath(),
+                hrManagerStorage.getHrManagerPositionsFilePath(), hrManagerStorage.getHrManagerInterviewsFilePath());
+    }
+
+    @Override
+    public Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath, Path positionsFilepath,
+                                                     Path interviewsFilePath)
             throws DataConversionException, IOException {
         logger.fine("Attempting to read candidates data from file: " + candidatesFilePath);
         logger.fine("Attempting to read positions data from file: " + positionsFilepath);
-        return hrManagerStorage.readHrManager(candidatesFilePath, positionsFilepath);
+        logger.fine("Attempting to read interviews data from file: " + interviewsFilePath);
+        return hrManagerStorage.readHrManager(candidatesFilePath, positionsFilepath, interviewsFilePath);
     }
 
     @Override
     public void saveHrManager(ReadOnlyHrManager hrManager) throws IOException {
         saveHrManager(hrManager, hrManagerStorage.getHrManagerCandidatesFilePath(),
-                hrManagerStorage.getHrManagerPositionsFilePath());
+                hrManagerStorage.getHrManagerPositionsFilePath(), hrManagerStorage.getHrManagerInterviewsFilePath());
     }
 
     @Override
-    public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath)
+    public void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath,
+                              Path interviewsFilePath)
             throws IOException {
         logger.fine("Attempting to write to candidate data file: " + candidatesFilePath);
         logger.fine("Attempting to write to position data file: " + positionsFilePath);
-        hrManagerStorage.saveHrManager(hrManager, candidatesFilePath, positionsFilePath);
+        logger.fine("Attempting to write to interviews data file: " + interviewsFilePath);
+        hrManagerStorage.saveHrManager(hrManager, candidatesFilePath, positionsFilePath, interviewsFilePath);
     }
 }

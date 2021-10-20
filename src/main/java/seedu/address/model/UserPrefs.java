@@ -16,6 +16,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     private GuiSettings guiSettings = new GuiSettings();
     private Path hrManagerCandidatesFilePath = Paths.get("data" , "candidates.json");
     private Path hrManagerPositionsFilePath = Paths.get("data" , "positions.json");
+    private Path hrManagerInterviewsFilePath = Paths.get("data" , "interviews.json");
 
     /**
      * Creates a {@code UserPrefs} with default values.
@@ -38,6 +39,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         setGuiSettings(newUserPrefs.getGuiSettings());
         setHrManagerCandidatesFilePath(newUserPrefs.getHrManagerCandidatesFilePath());
         setHrManagerPositionsFilePath(newUserPrefs.getHrManagerPositionsFilePath());
+        setHrManagerInterviewsFilePath(newUserPrefs.getHrManagerInterviewsFilePath());
     }
 
     public GuiSettings getGuiSettings() {
@@ -57,6 +59,10 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         return hrManagerPositionsFilePath;
     }
 
+    public Path getHrManagerInterviewsFilePath() {
+        return hrManagerInterviewsFilePath;
+    }
+
     public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
         requireNonNull(hrManagerCandidatesFilePath);
         this.hrManagerCandidatesFilePath = hrManagerCandidatesFilePath;
@@ -66,6 +72,12 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         requireNonNull(hrManagerPositionsFilePath);
         this.hrManagerPositionsFilePath = hrManagerPositionsFilePath;
     }
+
+    public void setHrManagerInterviewsFilePath(Path hrManagerInterviewsFilePath) {
+        requireNonNull(hrManagerInterviewsFilePath);
+        this.hrManagerInterviewsFilePath = hrManagerInterviewsFilePath;
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -94,7 +106,7 @@ public class UserPrefs implements ReadOnlyUserPrefs {
         sb.append("Gui Settings : " + guiSettings);
         sb.append("\nLocal candidates data file location : " + hrManagerCandidatesFilePath);
         sb.append("\nLocal positions data file location : " + hrManagerPositionsFilePath);
+        sb.append("\nLocal interviews data file location : " + hrManagerInterviewsFilePath);
         return sb.toString();
     }
-
 }

@@ -40,7 +40,7 @@ class AddInterviewCommandTest {
 
         CommandResult commandResult = new AddInterviewCommand(validInterview, new HashSet<>()).execute(modelStub);
 
-        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview),
+        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview.getDisplayString()),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validInterview), modelStub.interviewsAdded);
     }
@@ -61,8 +61,8 @@ class AddInterviewCommandTest {
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         ModelStubWithNoPosition modelStub = new ModelStubWithNoPosition();
 
-        assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_NO_POSITION_FOUND, () ->
-                addInterviewCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(AddInterviewCommand.MESSAGE_NO_POSITION_FOUND,
+                validInterview.getPosition().getTitle()), () -> addInterviewCommand.execute(modelStub));
     }
 
     @Test
