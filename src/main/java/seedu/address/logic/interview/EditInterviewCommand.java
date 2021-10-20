@@ -23,6 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
@@ -87,7 +88,9 @@ public class EditInterviewCommand extends Command {
 
         Set<Index> newCandidateIndexes = parsedDetails.getSecond();
 
-        if (newCandidateIndexes.size() != 0) { // if candidates field is edited, list of updated candidate indexed will not be empty
+        boolean isCandidateSetEdited = newCandidateIndexes.size() != 0;
+
+        if (isCandidateSetEdited) { // if candidates field is edited, list of updated candidate indexed will not be empty
             Set<Person> newCandidates = new HashSet<>();
             for (Index i : newCandidateIndexes) {
                 if (i.getZeroBased() < model.getFilteredPersonList().size()) {
@@ -107,6 +110,28 @@ public class EditInterviewCommand extends Command {
 
         model.setInterview(interviewToEdit, editedInterview);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
+
+        // update candidate list
+        EditCandidateCommand.EditPersonDescriptor editPersonDescriptor =
+                new EditCandidateCommand.EditPersonDescriptor();
+
+        if (isCandidateSetEdited) {
+            // if candidate set is edited, delete old interview from all initial candidates,
+            // then add edited interview to all candidates in updated candidate set
+            for (Person candidate : interviewToEdit.getCandidates()) {
+                candidate.deleteInterview(interviewToEdit);
+            }
+            for (Person candidate : editedInterview.getCandidates()) {
+                candidate.addInterview(editedInterview);
+            }
+        } else {
+            // if candidate set not edited, update interviews of candidates from initial candidate set.
+            for (Person candidate : interviewToEdit.getCandidates()) {
+                candidate.deleteInterview(interviewToEdit);
+                candidate.addInterview(editedInterview);
+            }
+        }
+
         return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview));
     }
 
