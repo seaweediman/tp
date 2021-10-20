@@ -59,8 +59,10 @@ public interface Model {
      */
     Path getHrManagerPositionsFilePath();
 
-    // TODO:
-    //  add getHrManagerInterviewsFilePath() method after interview storage implementation.
+    /**
+     * Returns the user prefs' HR Manager Interview file path.
+     */
+    Path getHrManagerInterviewsFilePath();
 
     /**
      * Sets the user prefs' HR Manager candidate file path.
@@ -72,8 +74,10 @@ public interface Model {
      */
     void setHrManagerPositionsFilePath(Path hrManagerPositionsFilePath);
 
-    // TODO:
-    //  add setHrManagerInterviewsFilePath() method after interview storage implementation.
+    /**
+     * Sets the user prefs' HR Manager interview file path.
+     */
+    void setHrManagerInterviewsFilePath(Path hrManagerInterviewsFilePath);
 
     /**
      * Replaces HR Manager data with the data in {@code addressBook}.
