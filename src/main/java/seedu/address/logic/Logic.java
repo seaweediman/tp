@@ -66,7 +66,7 @@ public interface Logic {
      *
      * @return Interview file path.
      */
-    Path getHrManagerInterviewFilPath();
+    Path getHrManagerInterviewsFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

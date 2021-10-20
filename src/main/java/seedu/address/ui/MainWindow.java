@@ -194,7 +194,7 @@ public class MainWindow extends UiPart<Stage> {
         displayListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
         displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewFilPath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
         listLabel.setText("Interviews");
     }

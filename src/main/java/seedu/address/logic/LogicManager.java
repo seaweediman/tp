@@ -85,7 +85,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getHrManagerInterviewFilPath() {
+    public Path getHrManagerInterviewsFilePath() {
         return model.getHrManagerInterviewsFilePath();
     }
 
