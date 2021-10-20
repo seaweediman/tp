@@ -82,8 +82,10 @@ public class ModelManager implements Model {
         return userPrefs.getHrManagerPositionsFilePath();
     }
 
-    // todo
-    //  add getHrManagerInterviewFilPath method after interview storage is implemented
+    @Override
+    public Path getHrManagerInterviewsFilePath() {
+        return userPrefs.getHrManagerInterviewsFilePath();
+    }
 
     @Override
     public void setHrManagerCandidatesFilePath(Path hrManagerCandidatesFilePath) {
@@ -97,8 +99,11 @@ public class ModelManager implements Model {
         userPrefs.setHrManagerPositionsFilePath(hrManagerPositionsFilePath);
     }
 
-    // todo
-    //  add setHrManagerInterviewFilPath method after interview storage is implemented
+    @Override
+    public void setHrManagerInterviewsFilePath(Path hrManagerInterviewsFilePath) {
+        requireNonNull(hrManagerInterviewsFilePath);
+        userPrefs.setHrManagerInterviewsFilePath(hrManagerInterviewsFilePath);
+    }
 
     //=========== HrManager ================================================================================
 
@@ -117,7 +122,6 @@ public class ModelManager implements Model {
         requireNonNull(person);
         return hrManager.hasPerson(person);
     }
-
 
     @Override
     public Person getPerson(Index index) {

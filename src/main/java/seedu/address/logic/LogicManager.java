@@ -12,6 +12,7 @@ import seedu.address.logic.parser.HrManagerParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyHrManager;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.storage.Storage;
@@ -69,6 +70,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public ObservableList<Interview> getFilteredInterviewList() {
+        return model.getFilteredInterviewList();
+    }
+
+    @Override
     public Path getHrManagerCandidatesFilePath() {
         return model.getHrManagerCandidatesFilePath();
     }
@@ -76,6 +82,11 @@ public class LogicManager implements Logic {
     @Override
     public Path getHrManagerPositionsFilePath() {
         return model.getHrManagerPositionsFilePath();
+    }
+
+    @Override
+    public Path getHrManagerInterviewFilPath() {
+        return model.getHrManagerInterviewsFilePath();
     }
 
     @Override
