@@ -255,7 +255,7 @@ public class Interview {
 
     public String getDisplayDate() {
         String month = Month.of(date.getMonthValue()).toString();
-        month = month.charAt(0) + month.substring(1,3).toLowerCase();
+        month = month.charAt(0) + month.substring(1, 3).toLowerCase();
         return date.getDayOfMonth() + " " + month + " " + date.getYear();
     }
 
