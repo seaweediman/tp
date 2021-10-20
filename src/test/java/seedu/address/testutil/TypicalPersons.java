@@ -123,7 +123,7 @@ public class TypicalPersons {
                 .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 10, 15))
                 .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
                 .withStatus(Interview.InterviewStatus.PENDING).build();
-        Interview secondEntry = new InterviewBuilder().withPosition(new Position(new Title("Manager")))
+        Interview secondEntry = new InterviewBuilder().withPosition(new Position(new Title("Bookkeeper")))
                 .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 12, 15))
                 .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
                 .withStatus(Interview.InterviewStatus.PENDING).build();

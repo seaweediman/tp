@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.interview.Interview;
 import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 
@@ -27,6 +28,7 @@ public class Person {
     private final Remark remark;
     private final Status status;
     private Set<Position> positions = new HashSet<>();
+    private Set<Interview> interviews = new HashSet<>();
 
     /**
      * Every field must be present and not null. If status is null, defaults to applied
@@ -84,8 +86,16 @@ public class Person {
         return Collections.unmodifiableSet(positions);
     }
 
+    public Set<Interview> getInterviews() {
+        return Collections.unmodifiableSet(interviews);
+    }
+
     public boolean appliedForPosition(Position p) {
         return positions.stream().anyMatch(p::isSamePosition);
+    }
+
+    public void addInterview(Interview i) {
+        interviews.add(i);
     }
 
     public void deletePosition(Position p) {
@@ -171,7 +181,16 @@ public class Person {
             positions.forEach(builder::append);
         }
 
+        Set<Interview> interviews = getInterviews();
+        if (!interviews.isEmpty()) {
+            builder.append("; Interviews: ");
+            interviews.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
+    public void setInterviews(Set<Interview> personInterviews) {
+        interviews.addAll(personInterviews);
+    }
 }

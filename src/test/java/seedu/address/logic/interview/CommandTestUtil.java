@@ -124,7 +124,7 @@ public class CommandTestUtil {
 
     /**
      * Updates {@code model}'s filtered list to show only the interview at the given {@code targetIndex} in the
-     * {@code model}'s HrManager.
+     * {@code model}'s HR Manager.
      */
     public static void showInterviewAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredInterviewList().size());

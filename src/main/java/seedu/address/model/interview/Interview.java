@@ -232,6 +232,11 @@ public class Interview {
         return candidateIDs;
     }
 
+    //for checking and adding interview to person
+    public boolean hasCandidate(Person person) {
+        return candidates.contains(person);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(position, date, startTime, duration, status);
