@@ -30,7 +30,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 * Parameters can be in any order.<br>
   e.g. if the command specifies `name=NAME phone=PHONE_NUMBER`, `phone=PHONE_NUMBER name=NAME` is also acceptable.
 
-* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `phone=12341234 phone=56785678`, only `phone=56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
@@ -165,16 +165,47 @@ Edits a specific position's details. Only one edit field is needed. Users cannot
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position
 
+###Feature: Interview Management
+
+Manage a list of interviews to for your company to select the desired candidates, with the simple instructions below!
+
+<u>**Add an interview: `add_i`**</u>
+
+Adds an interview to the list of interviews. 
+
+<u>Format:</u>
+
+    add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+
+<u>Example:</u>
+`add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending`
+* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list. 
+* POSITION must be added to HR Manager before it can be used as a parameter.
+    * e.g if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
+* DATE must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
+    * e.g if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+    * e.g if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+* TIME must be in HHMM form, following 24-hour form, e.g `1800` and `0600` for 6 P.M. and 6 A.M. respectively
+    * e.g if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
+* DURATION must be in numbers and is set to be in minutes
+    * e.g if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
+* STATUS must be either `pending` or `completed`
+  * e.g if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
+  
 ### Feature: Storage
-Save all candidate and position records into a data file locally, on your device itself.
+Save all candidate, position and interview records into a data file locally, on your device itself.
 
-When a candidate or position is added, edited or deleted, the change will be done accordingly in the local save file in real time.
+When a candidate, position or interview is added, edited or deleted, the change will be done accordingly in the local save file in real time.
 
-The data will be saved as `/data/candidates.json`, `/data/positions.json`, and `/data/interviews.json` (coming soon).
+The data will be saved in separate files: `/data/candidates.json`, `/data/positions.json`, and `/data/interviews.json`.
 
 By replacing it with another save file with the same name, the data will be loaded accordingly into the application, if the data format is valid.
 
-The candidate and position information will be saved using the JSON format below.
+If any data is invalid, HR Manager will launch without any data entries.
+
+The candidate, position and interview information will be saved using the JSON format below.
+
+Note that interview does not save a candidate but its unique ID generated within the application.
 
 For a candidate,
 ```json
@@ -201,6 +232,19 @@ For a position,
 }]
 ```
 
+For an interview,
+
+```json
+[{
+  "position" : "HR Manager",
+  "candidateIDs" : [ "-550871537", "-2024498055" ],
+  "date" : "18/10/2021",
+  "startTime" : "1400",
+  "duration" : "120",
+  "status" : "PENDING"
+}]
+```
+
 ## FAQs
 
 **Q**: What is this application? <br>
@@ -211,8 +255,10 @@ You will interact with the application through typed commands.
 **A**: Your data will be automatically saved after any command.
 
 **Q**: How can I export my data? <br>
-**A**: You can copy the save file, `/data/save.json` and transfer it to another system's 'data' folder.
-The transferred save file can then be loaded readily when using this application.
+**A**: You can copy the save files, `/data/candidates.json`, `/data/positions.json`, and `/data/interviews.json`
+and transfer it to another system's 'data' folder. <br>
+Or better yet, copy the entire `/data` folder and overwrite the data folder of the system you wish to transfer to.
+The transferred save files can then be loaded readily when using this application.
 
 ## Command summary
 Action | Format, Examples | Expected result
@@ -226,3 +272,4 @@ Action | Format, Examples | Expected result
 **Delete position** | `delete_p <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
 **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
+**Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
