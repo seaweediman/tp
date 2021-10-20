@@ -190,6 +190,57 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+
+<u>**Use case: UC07 - Add an interview**</u>
+
+**MSS**
+
+1. User requests to <u>list all positions (UC05)</u>.
+2. User requests to <u>list all candidates (UC03)</u>.
+3. User requests to add an interview with details for the interview.
+3. HR Manager adds interview.   
+4. User can see the added job position.
+
+   Use case ends
+
+**Extensions**
+
+* 3a. The given position is invalid.
+
+    * 3a1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+    
+* 3b. The given index is invalid.
+
+    * 3b1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+
+* 3c. The given date is invalid.
+
+    * 3c1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+
+* 3d. The given time is invalid.
+
+    * 3d1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+
+* 3e. The given duration is invalid.
+
+    * 3d1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+
+* 3f. The given status is invalid.
+
+    * 3d1. HR Manager shows an error message.
+
+      Use case resumes at step 3.
+
 ### Non-Functional Requirements
 
 1. Program needs to run on all operating systems with Java 11 installed.
