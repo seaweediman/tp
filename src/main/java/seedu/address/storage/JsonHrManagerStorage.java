@@ -105,19 +105,11 @@ public class JsonHrManagerStorage implements HrManagerStorage {
                             if (integer.equals(person.hashCode())) {
                                 candidateSet.add(person);
                                 person.addInterview(interview);
-                                System.out.println("person");
                             }
                         }
                     }
                     interview.setCandidates(candidateSet);
                     merge.addInterview(interview);
-
-//                    //add interviews to candidates after interview has the correct set of candidates
-//                    for (Person person : merge.getPersonList()) {
-//                        if (interview.hasCandidate(person)) {
-//                            person.addInterview(interview);
-//                        }
-//                    }
                 }
             }
 

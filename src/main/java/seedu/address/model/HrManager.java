@@ -217,6 +217,9 @@ public class HrManager implements ReadOnlyHrManager {
         interviews.remove(key);
     }
 
+    /**
+     * Deletes Interview from a Person's interviewList.
+     */
     public void deleteInterviewFromPerson(Interview interview) {
         for (Person person : persons) {
             if (person.hasInterview(interview)) {
@@ -225,6 +228,9 @@ public class HrManager implements ReadOnlyHrManager {
         }
     }
 
+    /**
+     * Deletes Person from an Interview's personList.
+     */
     public void deletePersonFromInterview(Person person) {
         for (Interview interview : interviews) {
             if (interview.hasCandidate(person)) {
