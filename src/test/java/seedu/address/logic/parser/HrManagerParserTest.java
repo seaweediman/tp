@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
@@ -31,7 +32,7 @@ import seedu.address.logic.position.DeletePositionCommand;
 import seedu.address.logic.position.EditPositionCommand;
 import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.logic.position.ListPositionCommand;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.FindCommandPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -111,8 +112,8 @@ public class HrManagerParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCandidateCommand command = (FindCandidateCommand) parser.parseCommand(
                 FindCandidateCommand.COMMAND_WORD + " "
-                        + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCandidateCommand(new NameContainsKeywordsPredicate(keywords)), command);
+                        + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindCandidateCommand(new FindCommandPredicate(keywords)), command);
     }
 
     @Test
