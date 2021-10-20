@@ -132,13 +132,15 @@ class JsonAdaptedPerson {
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Position> modelPositions = new HashSet<>(personPositions);
 
-        if (remark == null) {
+        if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         final Status modelStatus = Status.parseStatus(status);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelStatus, modelPositions);
+
+        return p;
     }
 
 }

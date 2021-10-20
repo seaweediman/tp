@@ -30,11 +30,11 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
-            + PREFIX_CANDIDATE_INDEX + "CANDIDATE "
-            + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
-            + PREFIX_DURATION + "DURATION...\n"
-            + "[" + PREFIX_INTERVIEW_STATUS + "STATUS]...\n"
+            + "" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
+            + PREFIX_DATE + "DD/MM/YYYY "
+            + PREFIX_TIME + "HHMM "
+            + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"
+            + "[" + PREFIX_INTERVIEW_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_POSITION + "Accountant "
             + PREFIX_CANDIDATE_INDEX + "1 "
@@ -45,7 +45,7 @@ public class AddInterviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New interview added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
-    public static final String MESSAGE_NO_POSITION_FOUND = "Position not found in HR Manager";
+    public static final String MESSAGE_NO_POSITION_FOUND = "Position %1$s not found in HR Manager";
     public static final String MESSAGE_POSITION_CLOSED = "Position %1$s is closed";
 
     private final Interview toAdd;
@@ -78,7 +78,7 @@ public class AddInterviewCommand extends Command {
 
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
-            throw new CommandException(MESSAGE_NO_POSITION_FOUND);
+            throw new CommandException(String.format(MESSAGE_NO_POSITION_FOUND, position.getTitle()));
         }
 
         if (model.isPositionClosed(position)) {
@@ -89,8 +89,14 @@ public class AddInterviewCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
+        for (Person p : model.getFilteredPersonList()) {
+            if (toAdd.hasCandidate(p)) {
+                p.addInterview(toAdd);
+            }
+        }
+
         model.addInterview(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()));
     }
 
     @Override

@@ -14,4 +14,6 @@ public interface ReadOnlyUserPrefs {
     Path getHrManagerCandidatesFilePath();
 
     Path getHrManagerPositionsFilePath();
+
+    Path getHrManagerInterviewsFilePath();
 }

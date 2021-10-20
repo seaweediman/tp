@@ -6,11 +6,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
@@ -25,9 +28,9 @@ public class Interview {
     // public static final String MESSAGE_CONSTRAINTS = "";
 
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in correct DD/MM/YYYY format.";
-    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be in correct HHMM format.";
-    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be in minutes.";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be valid and in DD/MM/YYYY format.";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
+    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
 
     private final Position position;
 
@@ -40,6 +43,8 @@ public class Interview {
     private final LocalDate date;
 
     private final Duration duration;
+
+    private final Set<Integer> candidateIDs = new HashSet<>();
 
     public enum InterviewStatus {
         PENDING,
@@ -152,14 +157,39 @@ public class Interview {
         return this.date;
     }
 
-    public Duration getDuration() {
-        assert this.duration != null : "Interview duration is non-null.";
-        return this.duration;
+    public String getDateInFormattedString() {
+        assert this.date != null : "Interview date is non-null.";
+        String[] temp = this.date.toString().split("-");
+        return temp[2] + "/" + temp[1] + "/" + temp[0];
     }
 
     public LocalTime getStartTime() {
         assert this.startTime != null : "Interview start time is non-null.";
         return this.startTime;
+    }
+
+    public String getTimeInFormattedString() {
+        assert this.startTime != null : "Interview start time is non-null.";
+        return this.startTime.toString().replace(":", "");
+    }
+
+    public Duration getDuration() {
+        assert this.duration != null : "Interview duration is non-null.";
+        return this.duration;
+    }
+
+    public String getDurationInFormattedString() {
+        assert this.duration != null : "Interview duration is non-null.";
+        String temp = this.duration.toString().replace("PT", "");
+        if (temp.contains("H") && temp.contains("M")) {
+            int endHourIndex = temp.indexOf("H");
+            return String.valueOf(Integer.parseInt(temp.substring(0, endHourIndex)) * 60
+                    + Integer.parseInt(temp.substring(endHourIndex + 1, temp.length() - 1)));
+        } else if (temp.contains("H")) {
+            return String.valueOf(Integer.parseInt(temp.substring(0, temp.length() - 1)) * 60);
+        } else {
+            return temp.substring(0, temp.length() - 1);
+        }
     }
 
     public Title getPositionTitle() {
@@ -193,9 +223,22 @@ public class Interview {
                 && status.equals(((Interview) other).getStatus())); // status check
     }
 
+    public void setCandidateIDs(Set<Integer> candidateIDs) {
+        this.candidateIDs.addAll(candidateIDs);
+    }
+
+    public Set<Integer> getCandidateIDs() {
+        return candidateIDs;
+    }
+
+    //for checking and adding interview to person
+    public boolean hasCandidate(Person person) {
+        return candidates.contains(person);
+    }
+
     @Override
     public int hashCode() {
-        return Objects.hash(position, candidates, date, startTime, duration, status);
+        return Objects.hash(position, date, startTime, duration, status);
     }
 
     /**
@@ -210,4 +253,29 @@ public class Interview {
                 + getDuration().toString() + " "
                 + getStatusInString() + "]";
     }
+
+    public String getEndTime() {
+        return startTime.plusMinutes(duration.toMinutes()).toString();
+    }
+
+    public String getDisplayDate() {
+        String month = Month.of(date.getMonthValue()).toString();
+        month = month.charAt(0) + month.substring(1, 3).toLowerCase();
+        return date.getDayOfMonth() + " " + month + " " + date.getYear();
+    }
+
+    public String getCandidatesNames() {
+        Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
+        return names.toString();
+    }
+
+    public String getDisplayString() {
+        return "[" + getPositionTitle().toString() + " "
+                + getCandidatesNames() + " "
+                + getDisplayDate() + " "
+                + getStartTime() + " - "
+                + getEndTime() + " "
+                + getStatusInString() + "]";
+    }
 }
+

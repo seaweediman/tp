@@ -30,7 +30,8 @@ public interface HrManagerStorage {
      * @see #getHrManagerCandidatesFilePath()
      */
     Optional<ReadOnlyHrManager> readHrManager(Path candidatesFilePath,
-                                              Path positionsFilePath) throws DataConversionException, IOException;
+                                              Path positionsFilePath,
+                                              Path interviewsFilePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyHrManager} to the storage.
@@ -42,10 +43,17 @@ public interface HrManagerStorage {
     /**
      * @see #saveHrManager(ReadOnlyHrManager)
      */
-    void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath) throws IOException;
+    void saveHrManager(ReadOnlyHrManager hrManager, Path candidatesFilePath, Path positionsFilePath,
+                       Path interviewsFilePath) throws IOException;
 
     /**
      * Returns the file path of the data file for Positions.
      */
     Path getHrManagerPositionsFilePath();
+
+    /**
+     * Returns the file path of the data file for Interviews.
+     */
+    Path getHrManagerInterviewsFilePath();
+
 }

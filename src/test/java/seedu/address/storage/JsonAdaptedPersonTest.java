@@ -3,6 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedPerson.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalInterviews.getTypicalInterviews;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
+import seedu.address.model.person.Status;
 import seedu.address.model.position.Position.PositionStatus;
 
 public class JsonAdaptedPersonTest {
@@ -39,6 +41,10 @@ public class JsonAdaptedPersonTest {
             .collect(Collectors.toList());
     private static final List<JsonAdaptedPosition> VALID_POSITIONS = BENSON.getPositions().stream()
             .map(JsonAdaptedPosition::new)
+            .collect(Collectors.toList());
+
+    private static final List<JsonAdaptedInterview> VALID_INTERVIEWS = getTypicalInterviews().stream()
+            .map(JsonAdaptedInterview::new)
             .collect(Collectors.toList());
 
     @Test
@@ -147,5 +153,14 @@ public class JsonAdaptedPersonTest {
                 new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS,
                         VALID_STATUS, invalidPositions);
         assertThrows(IllegalValueException.class, person::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullStatus_throwsIllegalValueException() {
+        JsonAdaptedPerson person =
+                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_REMARK, VALID_TAGS,
+                        null, VALID_POSITIONS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 }

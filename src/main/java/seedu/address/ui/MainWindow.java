@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -33,7 +34,6 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private DisplayListPanel displayListPanel;
-    private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,10 +44,7 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane positionListPanelPlaceholder;
+    private Label listLabel;
 
     @FXML
     private StackPane displayListPanelPlaceholder;
@@ -130,6 +127,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        listLabel.setText("Candidates");
     }
 
     /**
@@ -178,6 +177,8 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerCandidatesFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        listLabel.setText("Candidates");
     }
 
     private void handleListP(CommandResult commandResult) {
@@ -186,10 +187,7 @@ public class MainWindow extends UiPart<Stage> {
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerPositionsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
+        listLabel.setText("Positions");
     }
 
     /**
