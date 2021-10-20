@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -36,6 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String status;
     private final List<JsonAdaptedPosition> positions = new ArrayList<>();
+    private final List<JsonAdaptedInterview> interviews = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -45,7 +47,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("status") String status,
-                             @JsonProperty("positions") List<JsonAdaptedPosition> positions) {
+                             @JsonProperty("positions") List<JsonAdaptedPosition> positions,
+                             @JsonProperty("interviews") List<JsonAdaptedInterview> interviews) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -57,6 +60,9 @@ class JsonAdaptedPerson {
         this.status = status;
         if (positions != null) {
             this.positions.addAll(positions);
+        }
+        if (interviews != null) {
+            this.interviews.addAll(interviews);
         }
     }
 
@@ -76,6 +82,8 @@ class JsonAdaptedPerson {
         positions.addAll(source.getPositions().stream()
                 .map(JsonAdaptedPosition::new)
                 .collect(Collectors.toList()));
+        interviews.addAll(source.getInterviews().stream()
+                .map(JsonAdaptedInterview::new).collect(Collectors.toList()));
     }
 
     /**
@@ -92,6 +100,11 @@ class JsonAdaptedPerson {
         final List<Position> personPositions = new ArrayList<>();
         for (JsonAdaptedPosition position : positions) {
             personPositions.add(position.toModelType());
+        }
+
+        final List<Interview> personInterviews = new ArrayList<>();
+        for (JsonAdaptedInterview interview : interviews) {
+            personInterviews.add(interview.toModelType());
         }
 
         if (name == null) {
@@ -131,14 +144,18 @@ class JsonAdaptedPerson {
         final Remark modelRemark = new Remark(remark);
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Position> modelPositions = new HashSet<>(personPositions);
+        final Set<Interview> modelInterviews = new HashSet<>(personInterviews);
 
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Status.class.getSimpleName()));
         }
         final Status modelStatus = Status.parseStatus(status);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
+        Person p = new Person(modelName, modelPhone, modelEmail, modelAddress, modelRemark,
                 modelTags, modelStatus, modelPositions);
+        p.setInterviews(modelInterviews);
+
+        return p;
     }
 
 }

@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import seedu.address.model.interview.Interview;
 
 /**
@@ -16,4 +20,8 @@ public class TypicalInterviews {
     public static final Interview HR_MANAGER_INTERVIEW = new InterviewBuilder()
             .withPosition(TypicalPositions.HR_MANAGER)
             .build();
+
+    public static List<Interview> getTypicalInterviews() {
+        return new ArrayList<>(Arrays.asList(ASSISTANT_INTERVIEW, BOOKKEEPER_INTERVIEW, HR_MANAGER_INTERVIEW));
+    }
 }

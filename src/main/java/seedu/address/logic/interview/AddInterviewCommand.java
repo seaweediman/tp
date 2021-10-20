@@ -89,6 +89,12 @@ public class AddInterviewCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
+        for (Person p : model.getFilteredPersonList()) {
+            if (toAdd.hasCandidate(p)) {
+                p.addInterview(toAdd);
+            }
+        }
+
         model.addInterview(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()));
     }
