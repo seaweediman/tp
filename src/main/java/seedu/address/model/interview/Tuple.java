@@ -27,6 +27,7 @@ public class Tuple<S, T> {
             return false;
         }
 
+        @SuppressWarnings("unchecked")
         Tuple<S, T> otherTuple = (Tuple<S, T>) other;
         return otherTuple.getFirst().equals(getFirst())
                 && otherTuple.getSecond().equals(getSecond());
