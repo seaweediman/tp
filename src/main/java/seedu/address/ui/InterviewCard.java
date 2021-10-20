@@ -38,7 +38,7 @@ public class InterviewCard extends UiPart<Region> {
     @FXML
     private Label position;
     @FXML
-    private Label startTime;
+    private Label time;
     @FXML
     private Label date;
     @FXML
@@ -54,8 +54,8 @@ public class InterviewCard extends UiPart<Region> {
         this.interview = interview;
         id.setText(displayedIndex + ". ");
         position.setText(interview.getPositionTitle().fullTitle);
-        startTime.setText("Starting at: " + interview.getStartTime().toString());
         date.setText("Date: " + interview.getDate().toString());
+        time.setText(interview.getStartTime().toString() + " ~ " + interview.getEndTime());
         duration.setText("Duration: " + interview.getDuration().toMinutes() + " min");
         Interview.InterviewStatus status = interview.getStatus();
         tags.getChildren().add(new Label(status.name()));
@@ -81,7 +81,7 @@ public class InterviewCard extends UiPart<Region> {
         InterviewCard card = (InterviewCard) other;
         return id.getText().equals(card.id.getText())
                 && position.equals(card.position)
-                && startTime.equals(card.startTime)
+                && time.equals(card.time)
                 && date.equals(card.date)
                 && duration.equals(card.duration)
                 && tags.equals(card.tags);
