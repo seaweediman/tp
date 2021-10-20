@@ -85,6 +85,10 @@ public class TypicalPersons {
             ab.addPosition(position);
         }
 
+        for (Interview interview : getTypicalInterviews()) {
+            ab.addInterview(interview);
+        }
+
         return ab;
     }
 
@@ -119,7 +123,7 @@ public class TypicalPersons {
                 .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 10, 15))
                 .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
                 .withStatus(Interview.InterviewStatus.PENDING).build();
-        Interview secondEntry = new InterviewBuilder().withPosition(new Position(new Title("Accountant")))
+        Interview secondEntry = new InterviewBuilder().withPosition(new Position(new Title("Manager")))
                 .withCandidates(new HashSet<>()).withDate(LocalDate.of(2021, 12, 15))
                 .withStartTime(LocalTime.of(14, 0)).withDuration(Duration.ofMinutes(120))
                 .withStatus(Interview.InterviewStatus.PENDING).build();
