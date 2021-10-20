@@ -79,11 +79,27 @@ public class Person {
     }
 
     /**
+     * Return a String representation of Tags without '[', ']' and ','
+     */
+    public String getTagsString() {
+        return tags.toString().replace("[", "")
+                .replace("]", "").replace(",", "");
+    }
+
+    /**
      * Returns an immutable position set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Position> getPositions() {
         return Collections.unmodifiableSet(positions);
+    }
+
+    /**
+     * Return a String representation of Positions without '[', ']' and ','
+     */
+    public String getPositionsString() {
+        return positions.toString().replace("[", "")
+                .replace("]", "").replace(",", "");
     }
 
     public Set<Interview> getInterviews() {
@@ -94,16 +110,24 @@ public class Person {
         return positions.stream().anyMatch(p::isSamePosition);
     }
 
-    public void addInterview(Interview i) {
-        interviews.add(i);
+    public boolean hasInterview(Interview i) {
+        return interviews.stream().anyMatch(i::isSameInterview);
+    }
+
+    public void addPosition(Position p) {
+        positions.add(p);
     }
 
     public void deletePosition(Position p) {
         positions.remove(p);
     }
 
-    public void addPosition(Position p) {
-        positions.add(p);
+    public void addInterview(Interview i) {
+        interviews.add(i);
+    }
+
+    public void deleteInterview(Interview i) {
+        interviews.remove(i);
     }
 
     /**
@@ -184,7 +208,7 @@ public class Person {
         Set<Interview> interviews = getInterviews();
         if (!interviews.isEmpty()) {
             builder.append("; Interviews: ");
-            interviews.forEach(builder::append);
+            interviews.forEach(interview -> builder.append(interview.getDisplayString()));
         }
 
         return builder.toString();

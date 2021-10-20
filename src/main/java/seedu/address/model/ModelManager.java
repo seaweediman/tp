@@ -199,6 +199,14 @@ public class ModelManager implements Model {
         hrManager.setInterview(target, editedInterview);
     }
 
+    public void deleteInterviewFromPerson(Interview interview) {
+        hrManager.deleteInterviewFromPerson(interview);
+    }
+
+    public void deletePersonFromInterview(Person person) {
+        hrManager.deletePersonFromInterview(person);
+    }
+
 
     //=========== Filtered Person List Accessors =============================================================
 

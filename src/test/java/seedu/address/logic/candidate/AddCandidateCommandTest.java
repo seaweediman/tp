@@ -244,6 +244,14 @@ public class AddCandidateCommandTest {
         public void updateFilteredInterviewList(Predicate<Interview> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        public void deleteInterviewFromPerson(Interview i) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void deletePersonFromInterview(Person p) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

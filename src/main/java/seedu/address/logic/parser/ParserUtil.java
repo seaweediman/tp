@@ -6,8 +6,10 @@ import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -45,6 +47,17 @@ public class ParserUtil {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a string of keywords as List delimited by space.
+     * @param keywords Input String.
+     * @return List of keywords
+     */
+    public static List<String> parseKeywords(String keywords) {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+        return Arrays.asList(trimmedKeywords.split("\\s+"));
     }
 
     /**
