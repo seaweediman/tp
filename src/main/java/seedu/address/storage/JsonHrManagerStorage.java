@@ -109,6 +109,13 @@ public class JsonHrManagerStorage implements HrManagerStorage {
                     }
                     interview.setCandidates(candidateSet);
                     merge.addInterview(interview);
+
+                    //add interviews to candidates after interview has the correct set of candidates
+                    for (Person person : merge.getPersonList()) {
+                        if (interview.hasCandidate(person)) {
+                            person.addInterview(interview);
+                        }
+                    }
                 }
             }
 
