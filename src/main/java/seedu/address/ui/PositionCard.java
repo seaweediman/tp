@@ -8,7 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.model.position.Position;
 
 /**
- * An UI component that displays information of a {@code Position}.
+ * A UI component that displays information of a {@code Position}.
  */
 public class PositionCard extends UiPart<Region> {
 
