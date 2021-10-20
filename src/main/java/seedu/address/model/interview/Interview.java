@@ -6,12 +6,14 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
@@ -26,9 +28,9 @@ public class Interview {
     // public static final String MESSAGE_CONSTRAINTS = "";
 
 
-    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be in correct DD/MM/YYYY format.";
-    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be in correct HHMM format.";
-    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be in minutes.";
+    public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be valid and in DD/MM/YYYY format.";
+    public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
+    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
 
     private final Position position;
 
@@ -244,6 +246,30 @@ public class Interview {
                 + getDate() + " "
                 + getStartTime().toString() + " - "
                 + getDuration().toString() + " "
+                + getStatusInString() + "]";
+    }
+
+    public String getEndTime() {
+        return startTime.plusMinutes(duration.toMinutes()).toString();
+    }
+
+    public String getDisplayDate() {
+        String month = Month.of(date.getMonthValue()).toString();
+        month = month.charAt(0) + month.substring(1,3).toLowerCase();
+        return date.getDayOfMonth() + " " + month + " " + date.getYear();
+    }
+
+    public String getCandidatesNames() {
+        Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
+        return names.toString();
+    }
+
+    public String getDisplayString() {
+        return "[" + getPositionTitle().toString() + " "
+                + getCandidatesNames() + " "
+                + getDisplayDate() + " "
+                + getStartTime() + " - "
+                + getEndTime() + " "
                 + getStatusInString() + "]";
     }
 }
