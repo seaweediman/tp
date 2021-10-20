@@ -257,4 +257,4 @@ Action | Format, Examples | Expected result
 **Delete position** | `delete_p <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
 **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
-**Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 120 PENDING]
+**Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
