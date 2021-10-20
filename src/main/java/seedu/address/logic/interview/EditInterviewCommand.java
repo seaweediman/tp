@@ -27,6 +27,7 @@ import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.interview.Interview.InterviewStatus;
+import seedu.address.model.interview.Tuple;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
@@ -77,17 +78,26 @@ public class EditInterviewCommand extends Command {
         }
 
         Interview interviewToEdit = lastShownList.get(index.getZeroBased());
-        Interview editedInterview = createEditedInterview(interviewToEdit, editInterviewDescriptor);
+        Tuple<Interview, Set<Index>> parsedDetails = createEditedInterview(interviewToEdit, editInterviewDescriptor);
+        Interview editedInterview = parsedDetails.getFirst();
 
         if (!interviewToEdit.isSameInterview(editedInterview) && model.hasInterview(editedInterview)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
-        Set<Person> newCandidates = editedInterview.getCandidates();
-        for (Person p : newCandidates) {
-            if (!model.hasPerson(p)) {
-                throw new CommandException("Candidate " + p.getName() + " not found in HR Manager");
+        Set<Index> newCandidateIndexes = parsedDetails.getSecond();
+
+        if (newCandidateIndexes.size() != 0) { // if candidates field is edited, list of updated candidate indexed will not be empty
+            Set<Person> newCandidates = new HashSet<>();
+            for (Index i : newCandidateIndexes) {
+                if (i.getZeroBased() < model.getFilteredPersonList().size()) {
+                    Person person = model.getPerson(i);
+                    newCandidates.add(person);
+                } else {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
             }
+            editedInterview.setCandidates(newCandidates); // update edited interview with updated list of candidates
         }
 
         Position newPosition = editedInterview.getPosition();
@@ -104,19 +114,23 @@ public class EditInterviewCommand extends Command {
      * Creates and returns a {@code Interview} with the details of {@code interviewToEdit}
      * edited with {@code editInterviewDescriptor}.
      */
-    public static Interview createEditedInterview(
+    public static Tuple<Interview, Set<Index>> createEditedInterview(
             Interview interviewToEdit, EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor) {
         assert interviewToEdit != null;
 
         Position updatedPosition = editInterviewDescriptor.getPosition().orElse(interviewToEdit.getPosition());
-        Set<Person> updatedCandidates = editInterviewDescriptor.getCandidates().orElse(interviewToEdit.getCandidates());
+        Set<Index> updatedCandidateIndex =
+                editInterviewDescriptor.getCandidateIndexes().orElse(new HashSet<>()); // if candidates not updated, list of updated candidate index not present
+        Set<Person> initialCandidates = interviewToEdit.getCandidates(); // initial list of candidates
         LocalDate updatedDate = editInterviewDescriptor.getDate().orElse(interviewToEdit.getDate());
         LocalTime updatedTime = editInterviewDescriptor.getStartTime().orElse(interviewToEdit.getStartTime());
         Duration updatedDuration = editInterviewDescriptor.getDuration().orElse(interviewToEdit.getDuration());
         InterviewStatus updatedStatus = editInterviewDescriptor.getStatus().orElse(interviewToEdit.getStatus());
 
-        return new Interview(updatedPosition, updatedCandidates, updatedDate,
-                updatedTime, updatedDuration, updatedStatus);
+        Interview newInterview = new Interview(updatedPosition, initialCandidates, updatedDate,
+                updatedTime, updatedDuration, updatedStatus); //new interview with all fields except candidates updated
+
+        return new Tuple<>(newInterview, updatedCandidateIndex);
     }
 
     @Override
@@ -143,7 +157,7 @@ public class EditInterviewCommand extends Command {
      */
     public static class EditInterviewDescriptor {
         private Position position;
-        private Set<Person> candidates;
+        private Set<Index> candidateIndexes;
         private LocalDate date;
         private LocalTime startTime;
         private Duration duration;
@@ -158,7 +172,7 @@ public class EditInterviewCommand extends Command {
          */
         public EditInterviewDescriptor(EditInterviewCommand.EditInterviewDescriptor toCopy) {
             setPosition(toCopy.position);
-            setCandidates(toCopy.candidates);
+            setCandidateIndexes(toCopy.candidateIndexes);
             setDate(toCopy.date);
             setStartTime(toCopy.startTime);
             setDuration(toCopy.duration);
@@ -169,7 +183,7 @@ public class EditInterviewCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(position, candidates, date, startTime, duration, status);
+            return CollectionUtil.isAnyNonNull(position, candidateIndexes, date, startTime, duration, status);
         }
 
         public void setPosition(Position position) {
@@ -181,20 +195,22 @@ public class EditInterviewCommand extends Command {
         }
 
         /**
-         * Sets {@code candidates} to this object's {@code candidates}.
-         * A defensive copy of {@code candidates} is used internally.
+         * Sets {@code candidateIndexes} to this object's {@code candidateIndexes}.
+         * A defensive copy of {@code candidateIndexes} is used internally.
          */
-        public void setCandidates(Set<Person> candidates) {
-            this.candidates = (candidates != null) ? new HashSet<>(candidates) : null;
+        public void setCandidateIndexes(Set<Index> candidatesIndex) {
+            this.candidateIndexes = candidatesIndex;
         }
 
         /**
-         * Returns an unmodifiable candidate set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable candidateIndex set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code candidates} is null.
          */
-        public Optional<Set<Person>> getCandidates() {
-            return (candidates != null) ? Optional.of(Collections.unmodifiableSet(candidates)) : Optional.empty();
+        public Optional<Set<Index>> getCandidateIndexes() {
+            return (candidateIndexes != null)
+                    ? Optional.of(Collections.unmodifiableSet(candidateIndexes))
+                    : Optional.empty();
         }
 
         public void setDate(LocalDate date) {
@@ -245,7 +261,7 @@ public class EditInterviewCommand extends Command {
             EditInterviewCommand.EditInterviewDescriptor e = (EditInterviewCommand.EditInterviewDescriptor) other;
 
             return getPosition().equals(e.getPosition())
-                    && getCandidates().equals(e.getCandidates())
+                    && getCandidateIndexes().equals(e.getCandidateIndexes())
                     && getDate().equals(e.getDate())
                     && getStartTime().equals(e.getStartTime())
                     && getDuration().equals(e.getDuration())
