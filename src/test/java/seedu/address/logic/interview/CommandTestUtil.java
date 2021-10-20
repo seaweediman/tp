@@ -1,21 +1,34 @@
 package seedu.address.logic.interview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.exceptions.CommandException;
+import seedu.address.model.HrManager;
+import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.interview.Interview.InterviewStatus;
+import seedu.address.model.interview.PositionTitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
@@ -62,4 +75,61 @@ public class CommandTestUtil {
     public static final String INVALID_DURATION_TIME = " " + PREFIX_DURATION + "-180";
 
     public static final String INVALID_STATUS_DESC = " " + PREFIX_INTERVIEW_STATUS + "blah";
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+                                            Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
+        // we are unable to defensively copy the model for comparison later, so we can
+        // only do so by copying its components.
+        HrManager expectedHrManager = new HrManager(actualModel.getHrManager());
+        List<Interview> expectedFilteredList = new ArrayList<>(actualModel.getFilteredInterviewList());
+
+        assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+        assertEquals(expectedHrManager, actualModel.getHrManager());
+        assertEquals(expectedFilteredList, actualModel.getFilteredInterviewList());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the interview at the given {@code targetIndex} in the
+     * {@code model}'s HR Manager.
+     */
+    public static void showInterviewAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredInterviewList().size());
+
+        Interview interview = model.getFilteredInterviewList().get(targetIndex.getZeroBased());
+        final String[] splitName = interview.getPositionTitle().toString().split("\\s+");
+        model.updateFilteredInterviewList(new PositionTitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredInterviewList().size());
+    }
 }
