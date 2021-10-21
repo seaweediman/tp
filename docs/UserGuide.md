@@ -2,9 +2,11 @@
 layout: page
 title: User Guide
 ---
-* Table of Contents
-
+<aside markdown="1">
+<h4>Table of Contents</h4>
+* ToC
 {:toc}
+</aside>
 
 ## Introduction
 HR Manager will help you manage the candidates to be interviewed, 
