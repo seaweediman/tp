@@ -46,7 +46,7 @@ The add position functionality is facilitated by  `ModelManager`. It uses the fo
 
 `AddPositionCommandParser` and `AddPositionCommand` are created to achieve this functionality.
 
-![AddPositionClassDiagram](images/AddPositionClassDiagram.png)
+![AddPositionClassDiagram](/images/AddPositionClassDiagram.png)
 
 Given below is an example usage scenario and the workflow of the`add_p` command.
 
