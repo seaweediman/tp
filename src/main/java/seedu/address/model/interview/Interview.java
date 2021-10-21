@@ -27,7 +27,7 @@ public class Interview {
 
     // public static final String MESSAGE_CONSTRAINTS = "";
 
-
+    public static final String MESSAGE_POSITION_CONSTRAINTS = "Position is closed or does not exist.";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be valid and in DD/MM/YYYY format.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
     public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
@@ -68,20 +68,6 @@ public class Interview {
             return validStatus.contains(test);
         }
 
-        /**
-         * Returns the corresponding InterviewStatus Enum given a valid input.
-         *
-         * @param statusInput String input
-         * @return Status
-         */
-        public static InterviewStatus parseStatus(String statusInput) {
-            statusInput = (statusInput == null ? "" : statusInput);
-            if (statusInput.equals("COMPLETED")) {
-                return InterviewStatus.COMPLETED;
-            } else {
-                return InterviewStatus.PENDING;
-            }
-        }
     }
 
     /**

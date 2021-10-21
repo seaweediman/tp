@@ -105,7 +105,7 @@ public class EditInterviewCommand extends Command {
 
         Position newPosition = editedInterview.getPosition();
         if (model.isPositionClosed(newPosition)) {
-            throw new CommandException("Position " + newPosition.getTitle().fullTitle + " is closed");
+            throw new CommandException(Interview.MESSAGE_POSITION_CONSTRAINTS);
         }
 
         model.setInterview(interviewToEdit, editedInterview);

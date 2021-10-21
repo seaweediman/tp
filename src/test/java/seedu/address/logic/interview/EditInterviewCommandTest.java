@@ -7,7 +7,7 @@ import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_ADMIN_ASSISTANT;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_MANAGER;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_EMPTY_CANDIDATE_INDEX_SET;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_SET;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
@@ -42,7 +42,7 @@ public class EditInterviewCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() { //todo
         Interview editedInterview = new InterviewBuilder().build();
         EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET).build();
+                new EditInterviewDescriptorBuilder(editedInterview, VALID_CANDIDATE_INDEX_SET).build();
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
         String expectedMessage = String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview);
@@ -92,7 +92,7 @@ public class EditInterviewCommandTest {
     public void execute_duplicateInterviewUnfilteredList_failure() {
         Interview firstInterview = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
         EditInterviewCommand.EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(firstInterview, VALID_EMPTY_CANDIDATE_INDEX_SET).build();
+                new EditInterviewDescriptorBuilder(firstInterview, VALID_CANDIDATE_INDEX_SET).build();
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_SECOND_INTERVIEW, descriptor);
 
         assertCommandFailure(editInterviewCommand, model, EditInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW);
@@ -105,7 +105,7 @@ public class EditInterviewCommandTest {
         // edit interview in filtered list into a duplicate in HR Manager
         Interview interviewInList = model.getHrManager().getInterviewList().get(INDEX_SECOND_INTERVIEW.getZeroBased());
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW,
-                new EditInterviewDescriptorBuilder(interviewInList, VALID_EMPTY_CANDIDATE_INDEX_SET).build());
+                new EditInterviewDescriptorBuilder(interviewInList, VALID_CANDIDATE_INDEX_SET).build());
 
         assertCommandFailure(editInterviewCommand, model, EditInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW);
     }
