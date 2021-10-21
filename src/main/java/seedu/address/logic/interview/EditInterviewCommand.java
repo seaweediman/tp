@@ -129,7 +129,7 @@ public class EditInterviewCommand extends Command {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview));
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()));
     }
 
     /**
