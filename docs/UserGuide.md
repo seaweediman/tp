@@ -191,7 +191,21 @@ Adds an interview to the list of interviews.
     * e.g if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * STATUS must be either `pending` or `completed`
   * e.g if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
-  
+
+<u>**Add an interview: `delete_i`**</u>
+
+Deletes an interview from the list of interviews.
+
+<u>Format:</u>
+
+`delete_i <INDEX>`
+
+<u>Example:</u>
+`delete_i 3`
+* Deletes the 3rd position from the list of interviews.
+* Also deletes this interview from every candidate who were scheduled this interview
+
+
 ### Feature: Storage
 Save all candidate, position and interview records into a data file locally, on your device itself.
 
@@ -269,7 +283,8 @@ Action | Format, Examples | Expected result
 **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager]
 **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g. `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager]
 **Add position** | `add_p title=<TITLE>` <br> e.g. `add_p title=Software engineer` | New position added: [Software engineer]
-**Delete position** | `delete_p <INDEX>` <br> e.g. `delete_c 3` | Deleted Position: [Bookkeeper]
+**Delete position** | `delete_p <INDEX>` <br> e.g. `delete_p 3` | Deleted Position: [Bookkeeper]
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
 **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
 **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
+**Delete an interview** | `delete_i 3` <br> e.g. `delete_i 3` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
