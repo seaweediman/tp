@@ -286,11 +286,18 @@ public class ParserUtil {
      * @throws ParseException If the given {@code status} is invalid
      */
     public static InterviewStatus parseInterviewStatus(String status) throws ParseException {
+        requireNonNull(status);
         String trimmedStatus = status.trim().toUpperCase();
         if (!InterviewStatus.isValidInterviewStatus(trimmedStatus)) {
             throw new ParseException(InterviewStatus.MESSAGE_CONSTRAINTS);
         }
-        return InterviewStatus.parseStatus(status);
+
+        // Assumes trimmedStatus is valid. trimmedStatus can only be "pending" or "completed".
+        if (trimmedStatus.equals("PENDING")) {
+            return InterviewStatus.PENDING;
+        } else {
+            return InterviewStatus.COMPLETED;
+        }
     }
 
     /**

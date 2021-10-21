@@ -54,6 +54,10 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
         if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
             editInterviewDescriptor.setDuration(ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
         }
+        if (argMultimap.getValue(PREFIX_INTERVIEW_STATUS).isPresent()) {
+            editInterviewDescriptor.setStatus(ParserUtil
+                    .parseInterviewStatus(argMultimap.getValue(PREFIX_INTERVIEW_STATUS).get()));
+        }
         parseCandidatesForEdit(argMultimap.getAllValues(PREFIX_CANDIDATE_INDEX))
                 .ifPresent(editInterviewDescriptor::setCandidateIndexes);
 
