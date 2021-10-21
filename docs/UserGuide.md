@@ -1,4 +1,7 @@
-#User Guide
+---
+layout: page
+title: User Guide
+---
 
 ## Introduction
 HR Manager will help you manage the candidates to be interviewed, 
