@@ -32,6 +32,7 @@ import seedu.address.model.interview.PositionTitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
+import seedu.address.testutil.EditInterviewDescriptorBuilder;
 
 public class CommandTestUtil {
 
@@ -46,6 +47,7 @@ public class CommandTestUtil {
     public static final Duration VALID_DURATION_OTHER_DURATION = Duration.ofMinutes(120);
     public static final InterviewStatus VALID_STATUS_PENDING = InterviewStatus.PENDING;
     public static final InterviewStatus VALID_STATUS_COMPLETED = InterviewStatus.COMPLETED;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -57,6 +59,8 @@ public class CommandTestUtil {
     public static final String VALID_TIME_OTHER_TIME = "1300";
     public static final String VALID_DURATION_TIME = "180";
     public static final String VALID_DURATION_TIME_OTHER_DURATION = "190";
+    public static final String VALID_CANDIDATE_INDEX_1 = "1";
+    public static final String VALID_CANDIDATE_INDEX_2 = "2";
 
     public static final String VALID_POSITION_ADMIN_DESC = " " + PREFIX_POSITION + VALID_POSITION_ADMIN.getTitle();
     public static final String VALID_POSITION_MANAGER_DESC = " " + PREFIX_POSITION + VALID_POSITION_MANAGER.getTitle();
@@ -73,11 +77,26 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_COMPLETED_DESC = " " + PREFIX_INTERVIEW_STATUS
             + VALID_STATUS_COMPLETED;
 
+    public static final String VALID_POSITION_ADMIN_NAME = VALID_POSITION_ADMIN.getTitle().toString();
+    public static final String VALID_POSITION_MANAGER_NAME = VALID_POSITION_MANAGER.getTitle().toString();
+
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "38/10/2021";
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2500";
     public static final String INVALID_DURATION_TIME = " " + PREFIX_DURATION + "-180";
 
     public static final String INVALID_STATUS_DESC = " " + PREFIX_INTERVIEW_STATUS + "blah";
+
+    public static final EditInterviewCommand.EditInterviewDescriptor DESC_INTERVIEW_ADMIN_ASSISTANT;
+    public static final EditInterviewCommand.EditInterviewDescriptor DESC_INTERVIEW_MANAGER;
+
+    static {
+        DESC_INTERVIEW_ADMIN_ASSISTANT = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_ADMIN_NAME)
+                .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDuration(VALID_DURATION_TIME).withStatus(VALID_STATUS_PENDING).build();
+        DESC_INTERVIEW_MANAGER = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_MANAGER_NAME)
+                .withCandidateIndexes(VALID_CANDIDATE_INDEX_2).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDuration(VALID_DURATION_TIME_OTHER_DURATION).withStatus(VALID_STATUS_PENDING).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
