@@ -1,6 +1,6 @@
 @startuml
 'https://plantuml.com/class-diagram
-!include style.puml
+!include ../style.puml
 
 skinparam class {
     FontColor white
