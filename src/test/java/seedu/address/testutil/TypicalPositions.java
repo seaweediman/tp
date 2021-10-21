@@ -11,4 +11,5 @@ public class TypicalPositions {
 
     public static final Position HR_MANAGER = new PositionBuilder().withTitle("HR Manager")
             .build();
+
 }
