@@ -36,7 +36,7 @@ public class Interview {
 
     private InterviewStatus status;
 
-    private final Set<Person> candidates;
+    private Set<Person> candidates;
 
     private final LocalTime startTime;
 
@@ -149,6 +149,7 @@ public class Interview {
 
     public void setCandidates(Set<Person> personSet) {
         assert this.candidates != null : "Interview candidate names set is non-null.";
+        this.candidates = new HashSet<>();
         this.candidates.addAll(personSet);
     }
 
