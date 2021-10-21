@@ -1,7 +1,9 @@
 ---
 layout: page
-title: User Guide
+title: Developer Guide
 ---
+* Table of Contents
+  {:toc}
 
 ## Introduction
 HR Manager will help you manage the candidates to be interviewed, 
