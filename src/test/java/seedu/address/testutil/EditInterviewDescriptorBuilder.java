@@ -31,10 +31,10 @@ public class EditInterviewDescriptorBuilder {
     /**
      * Returns an {@code EditInterviewDescriptor} with fields containing {@code Interview}'s details.
      */
-    public EditInterviewDescriptorBuilder(Interview interview) {
+    public EditInterviewDescriptorBuilder(Interview interview, Set<Index> candidateIndexes) {
         descriptor = new EditInterviewDescriptor();
         descriptor.setPosition(interview.getPosition());
-        //descriptor.setCandidates(interview.getCandidates()); //todo
+        descriptor.setCandidateIndexes(candidateIndexes); //todo
         descriptor.setDate(interview.getDate());
         descriptor.setStartTime(interview.getStartTime());
         descriptor.setDuration(interview.getDuration());

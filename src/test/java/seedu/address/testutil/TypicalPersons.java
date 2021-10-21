@@ -114,7 +114,7 @@ public class TypicalPersons {
 
     public static List<Position> getTypicalPositions() {
         return new ArrayList<>(Arrays.asList(TypicalPositions.ADMIN_ASSISTANT, TypicalPositions.BOOKKEEPER,
-                TypicalPositions.HR_MANAGER));
+                TypicalPositions.HR_MANAGER, TypicalPositions.ACCOUNTANT));
     }
 
     //this follows typicalInterviewHrManager.json data
