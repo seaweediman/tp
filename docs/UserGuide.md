@@ -193,7 +193,7 @@ Adds an interview to the list of interviews.
 * STATUS must be either `pending` or `completed`
   * e.g if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
 
-<u>**Add an interview: `edit_i`**</u>
+<u>**Edit an interview: `edit_i`**</u>
 
 Edits a specific interview in the list of interviews.
 
@@ -288,4 +288,4 @@ Action | Format, Examples | Expected result
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
 **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
 **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
-**Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=18/10/2021 time=1400` | 
+**Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING]
