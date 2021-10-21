@@ -2,13 +2,16 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-  {:toc}
+<aside markdown="1">
+<h4>Table of Contents</h4>
+* ToC
+{:toc}
+</aside>
 
 --------------------------------------------------------------------------------------------------------------------
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -241,7 +244,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-<u>**Use case: UC09 - List all interviews**</u>
+<u>**Use case: UC08 - List all interviews**</u>
 
 **MSS**
 1. User requests to list all positions
@@ -249,9 +252,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-<u>**Use case: UC10 - Delete an interview**</u>
+<u>**Use case: UC09 - Delete an interview**</u>
 
-1. User requests to <u>list all interviews (UC09)</u>.
+1. User requests to <u>list all interviews (UC08)</u>.
 2. User requests to delete a specific interview.
 3. HR Manager deletes the corresponding position and displays result.
 
