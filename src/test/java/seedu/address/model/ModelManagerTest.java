@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.interview.PositionTitleContainsKeywordsPredicate;
-import seedu.address.model.person.FindCommandPredicate;
+import seedu.address.model.person.FindCandidateCommandPredicate;
 import seedu.address.model.position.TitleContainsKeywordsPredicate;
 import seedu.address.testutil.HrManagerBuilder;
 
@@ -196,7 +196,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new FindCommandPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonList(new FindCandidateCommandPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(hrManager, userPrefs)));
 
         String[] keywordsTitle = ADMIN_ASSISTANT.getTitle().fullTitle.split("\\s+");

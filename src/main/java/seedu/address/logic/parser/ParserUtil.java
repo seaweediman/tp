@@ -6,6 +6,7 @@ import java.time.DateTimeException;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -57,7 +58,12 @@ public class ParserUtil {
     public static List<String> parseKeywords(String keywords) {
         requireNonNull(keywords);
         String trimmedKeywords = keywords.trim();
-        return Arrays.asList(trimmedKeywords.split("\\s+"));
+
+        List<String> output = new ArrayList<String>(Arrays.asList(trimmedKeywords.split("\\s+")));
+
+        output.removeAll(Arrays.asList(""));
+
+        return output;
     }
 
     /**

@@ -10,7 +10,7 @@ import seedu.address.commons.util.StringUtil;
 /**
  * Tests that a {@code Person}'s {@code Name} matches any of the keywords given.
  */
-public class FindCommandPredicate implements Predicate<Person> {
+public class FindCandidateCommandPredicate implements Predicate<Person> {
 
     private List<String> nameKeywords = new ArrayList<String>();
     private List<String> phoneKeywords = new ArrayList<String>();
@@ -20,7 +20,7 @@ public class FindCommandPredicate implements Predicate<Person> {
     private List<String> statusKeywords = new ArrayList<String>();
     private List<String> positionKeywords = new ArrayList<String>();
 
-    public FindCommandPredicate() {
+    public FindCandidateCommandPredicate() {
     }
 
     /**
@@ -33,9 +33,10 @@ public class FindCommandPredicate implements Predicate<Person> {
      * @param statusKeywords
      * @param positionKeywords
      */
-    public FindCommandPredicate(List<String> nameKeywords, List<String> phoneKeywords, List<String> emailKeywords,
-                                List<String> addressKeywords, List<String> tagKeywords, List<String> statusKeywords,
-                                List<String> positionKeywords) {
+    public FindCandidateCommandPredicate(List<String> nameKeywords, List<String> phoneKeywords,
+                                         List<String> emailKeywords, List<String> addressKeywords,
+                                         List<String> tagKeywords, List<String> statusKeywords,
+                                         List<String> positionKeywords) {
         this.nameKeywords = nameKeywords;
         this.phoneKeywords = phoneKeywords;
         this.emailKeywords = emailKeywords;
@@ -49,7 +50,7 @@ public class FindCommandPredicate implements Predicate<Person> {
      * Alternative Constructor with only keyword field.
      * @param nameKeywords
      */
-    public FindCommandPredicate(List<String> nameKeywords) {
+    public FindCandidateCommandPredicate(List<String> nameKeywords) {
         this.nameKeywords = nameKeywords;
     }
 
@@ -82,13 +83,13 @@ public class FindCommandPredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindCommandPredicate // instanceof handles nulls
-                && nameKeywords.equals(((FindCommandPredicate) other).nameKeywords) // state check
-                && phoneKeywords.equals(((FindCommandPredicate) other).phoneKeywords)
-                && addressKeywords.equals(((FindCommandPredicate) other).addressKeywords)
-                && tagKeywords.equals(((FindCommandPredicate) other).tagKeywords)
-                && statusKeywords.equals(((FindCommandPredicate) other).statusKeywords)
-                && positionKeywords.equals(((FindCommandPredicate) other).positionKeywords));
+                || (other instanceof FindCandidateCommandPredicate // instanceof handles nulls
+                && nameKeywords.equals(((FindCandidateCommandPredicate) other).nameKeywords) // state check
+                && phoneKeywords.equals(((FindCandidateCommandPredicate) other).phoneKeywords)
+                && addressKeywords.equals(((FindCandidateCommandPredicate) other).addressKeywords)
+                && tagKeywords.equals(((FindCandidateCommandPredicate) other).tagKeywords)
+                && statusKeywords.equals(((FindCandidateCommandPredicate) other).statusKeywords)
+                && positionKeywords.equals(((FindCandidateCommandPredicate) other).positionKeywords));
     }
 
     public void setNameKeywords(List<String> name) {
