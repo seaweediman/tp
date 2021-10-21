@@ -158,12 +158,13 @@ Edits a specific position's details. Only one edit field is needed. Users cannot
 
 <u>Format:</u>
 
-    edit_p <INDEX> [title=<TITLE>] [status=<STATUS>]
+    edit_p <INDEX> [title=<TITLE>]... [status=<STATUS>]...
 
 <u>Example:</u>
 `edit_p 3 status=closed`
 * Edits the status of the 3rd position in the list to closed.
-* Setting position status to close will delete the position from every candidate who applied for the position
+* Setting position status to close will delete the position from every candidate who applied for the position.
+* At least one field must be edited.
 
 ###Feature: Interview Management
 
@@ -179,7 +180,7 @@ Adds an interview to the list of interviews.
 
 <u>Example:</u>
 `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending`
-* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list. 
+* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
 * POSITION must be added to HR Manager before it can be used as a parameter.
     * e.g if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
 * DATE must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
@@ -191,7 +192,21 @@ Adds an interview to the list of interviews.
     * e.g if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * STATUS must be either `pending` or `completed`
   * e.g if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
-  
+
+<u>**Add an interview: `edit_i`**</u>
+
+Edits a specific interview in the list of interviews.
+
+<u>Format:</u>
+
+    edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+
+<u>Example:</u>
+`edit_i 2 index=1 index=2 date=18/10/2021 time=1400`
+* Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
+* Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs. 
+* At least one field must be edited. 
+
 ### Feature: Storage
 Save all candidate, position and interview records into a data file locally, on your device itself.
 
@@ -273,3 +288,4 @@ Action | Format, Examples | Expected result
 **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager
 **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g. `edit_p 3 status=closed` | Edited Position's Status = CLOSED 
 **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING]
+**Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=18/10/2021 time=1400` | 
