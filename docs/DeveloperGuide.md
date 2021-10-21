@@ -184,9 +184,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The given index is invalid.
+* 2a. The given index is invalid.
 
-    * 3a1. HR Manager shows an error message.
+    * 2a1. HR Manager shows an error message.
 
       Use case resumes at step 2.
 
@@ -240,6 +240,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3d1. HR Manager shows an error message.
 
       Use case resumes at step 3.
+
+<u>**Use case: UC09 - List all interviews**</u>
+
+**MSS**
+1. User requests to list all positions
+2. HR Manager shows a list of all positions
+
+   Use case ends.
+
+<u>**Use case: UC10 - Delete an interview**</u>
+
+1. User requests to <u>list all interviews (UC09)</u>.
+2. User requests to delete a specific interview.
+3. HR Manager deletes the corresponding position and displays result.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The given index is invalid.
+
+    * 2a1. HR Manager shows an error message.
+
+      Use case resumes at step 2.
+
 
 ### Non-Functional Requirements
 
