@@ -10,7 +10,7 @@ title: User Guide
 </aside>
 
 ## Introduction
-HR Manager will help you manage the candidates to be interviewed, 
+HR Manager will help you manage the candidates to be interviewed,
 making the scheduling process easier and faster for your company!<br>
 Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
@@ -19,10 +19,6 @@ transferable to other devices too!
 
 
 ## Features & Usage
-### Feature: Candidate Management
-
-Manage a list of people who are candidates for your company, with the simple instructions below!
-
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format:**<br>
@@ -47,8 +43,12 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 </div>
 
+### Feature: Candidate Management
 
-**<u>Add a candidate: `add_c`</u>**
+Manage a list of people who are candidates for your company, with the simple instructions below!
+
+
+####Add a candidate: `add_c`
 
 *Adds a candidate to the list of candidates.*
 
@@ -71,8 +71,8 @@ Manage a list of people who are candidates for your company, with the simple ins
   * `Withdrawn`
 * `POSITION` must be added to HR Manager before it can be used as a parameter
   * e.g. if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
-  
-**<u>Delete a candidate:</u>** `delete_c`
+
+####Delete a candidate: `delete_c`
 
 *Deletes a candidate along with his/her details from the list of candidates.*
 
@@ -81,6 +81,7 @@ Manage a list of people who are candidates for your company, with the simple ins
     delete_c <INDEX>
 
 <u>Example:</u>
+  
     delete_c 3
 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
@@ -93,7 +94,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
     list_c
 
-**<u>Remark a candidate:</u>** `remark_c`
+####Remark a candidate: `remark_c`
 
 *Adds a remark to a candidate.*
 
@@ -107,7 +108,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
 
-**<u>Edit a candidate:</u>** `edit_c`
+####Edit a candidate: `edit_c`
 
 *Edits a candidate's details. At least 1 edit field is needed.*
 
@@ -135,7 +136,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 Manage a list of job positions posted by your company, with the simple instructions below!
 
-**<u>Add a position:</u>** `add_p`
+####Add a position: `add_p`
 
 *Adds a position to the list of positions.*
 
@@ -149,7 +150,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 * Adds a position with the title of Assistant.
 
-**<u>Delete a position:</u>** `delete_p`
+####Delete a position: `delete_p`
 
 *Deletes a position from the list of positions.*
 
@@ -164,7 +165,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
 
-**<u>List all positions:</u>** `list_p`
+####List all positions: `list_p`
 
 *Displays a list of all the positions stored in the application.*
 
@@ -172,7 +173,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
     list_p
 
-**<u>Edit a position:</u>** `edit_p`
+####Edit a position: `edit_p`
 
 *Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
 
@@ -191,9 +192,9 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 Manage a list of interviews to for your company to select the desired candidates, with the simple instructions below!
 
-**<u>Add an interview:</u>** `add_i`
+####Add an interview: `add_i`
 
-*Adds an interview to the list of interviews.* 
+*Adds an interview to the list of interviews.*
 
 <u>Format:</u>
 
@@ -203,20 +204,20 @@ Manage a list of interviews to for your company to select the desired candidates
 
     add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
-* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list. 
+* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
 * `POSITION` must be added to HR Manager before it can be used as a parameter.
-    * e.g. if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
+  * e.g. if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
-    * e.g. if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-    * e.g. if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+  * e.g. if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+  * e.g. if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
 * `TIME` must be in HHMM form, following 24-hour form, e.g. `1800` and `0600` for 6 P.M. and 6 A.M. respectively
-    * e.g. if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
+  * e.g. if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
 * `DURATION` must be in numbers and is set to be in minutes
-    * e.g. if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
+  * e.g. if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * `STATUS` must be either `pending` or `completed`
   * e.g. if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
 
-**<u>Add an interview:</u>** `delete_i`
+####Add an interview: `delete_i`
 
 *Deletes an interview from the list of interviews.*
 
@@ -231,7 +232,7 @@ Manage a list of interviews to for your company to select the desired candidates
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
 
-**<u>List all interviews:</u>** `list_i`
+####List all interviews: `list_i`
 
 *Displays a list of all the interviews stored in the application.*
 
@@ -322,3 +323,5 @@ The transferred save files can then be loaded readily when using this applicatio
 | **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g.. `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
 | **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g.. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
+| **Delete an interview** | `delete_i <INDEX>` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
+| **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] | 
