@@ -46,7 +46,7 @@ The add position functionality is facilitated by  `ModelManager`. It uses the fo
 
 `AddPositionCommandParser` and `AddPositionCommand` are created to achieve this functionality.
 
-<img src="images/AddPositionClassDiagram.png" width="347" />
+<img src="images/AddPosition/AddPositionClassDiagram.png" width="347" />
 
 Given below is an example usage scenario and the workflow of the`add_p` command.
 
@@ -68,7 +68,7 @@ Step 5. `Modelmanager#addShift()` updates the position list with the new added `
 
 The activity diagram of this `addShift` command is shown below:
 
-//TODO Activity diagram
+<img src="images/AddPosition/AddPositionSequence.png" width="1303" />
 
 Notes:
 1. A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to a default value of `OPEN`.
