@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.interview.EditInterviewCommand;
 import seedu.address.model.interview.Interview;
+import seedu.address.model.position.Position;
 import seedu.address.testutil.EditInterviewDescriptorBuilder;
 
 public class EditInterviewCommandParserTest {
@@ -49,8 +50,8 @@ public class EditInterviewCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() { //TODO
-        assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Interview.MESSAGE_POSITION_CONSTRAINTS); //invalid position
+    public void parse_invalidValue_failure() {
+        assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS); //invalid position //TODO only position fails the test
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Interview.MESSAGE_DATE_CONSTRAINTS); //invalid date
         assertParseFailure(parser, "1" + INVALID_TIME_DESC, Interview.MESSAGE_TIME_CONSTRAINTS); //invalid time
         assertParseFailure(parser, "1" + INVALID_DURATION_TIME, Interview.MESSAGE_DURATION_CONSTRAINTS); //invalid duration
@@ -86,7 +87,7 @@ public class EditInterviewCommandParserTest {
                         .withStatus(VALID_STATUS_PENDING).build();
         EditInterviewCommand expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand); //TODO
+        assertParseSuccess(parser, userInput, expectedCommand); //TODO linked to parse_oneFieldSpecified_success(), works if candidates not included
     }
 
     @Test
@@ -113,10 +114,10 @@ public class EditInterviewCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // candidate
-        userInput = targetIndex.getOneBased() + VALID_CANDIDATE_DESC_BOB;
-        descriptor = new EditInterviewDescriptorBuilder().withCandidateIndexes(VALID_CANDIDATE_INDEX_2).build();
+        userInput = targetIndex.getOneBased() + VALID_CANDIDATE_DESC_ALICE;
+        descriptor = new EditInterviewDescriptorBuilder().withCandidateIndexes(VALID_CANDIDATE_INDEX_1).build();
         expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand); //TODO
+        assertParseSuccess(parser, userInput, expectedCommand); //TODO only parsing of candidate indexes has an issue
 
         // date
         userInput = targetIndex.getOneBased() + VALID_DATE_DESC;
@@ -126,13 +127,13 @@ public class EditInterviewCommandParserTest {
 
         // time
         userInput = targetIndex.getOneBased() + VALID_TIME_DESC;
-        descriptor = new EditInterviewDescriptorBuilder().withCandidateIndexes(VALID_TIME).build();
+        descriptor = new EditInterviewDescriptorBuilder().withStartTime(VALID_TIME).build();
         expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // duration
         userInput = targetIndex.getOneBased() + VALID_DURATION_DESC;
-        descriptor = new EditInterviewDescriptorBuilder().withCandidateIndexes(VALID_DURATION_TIME).build();
+        descriptor = new EditInterviewDescriptorBuilder().withDuration(VALID_DURATION_TIME).build();
         expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

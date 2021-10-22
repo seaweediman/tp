@@ -40,7 +40,8 @@ public class CommandTestUtil {
     public static final Position VALID_POSITION_MANAGER = new Position(new Title("Manager"));
     public static final HashSet<Person> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE, BOB));
     public static final HashSet<Index> VALID_EMPTY_CANDIDATE_INDEX_SET = new HashSet<>();
-    public static final HashSet<Index> VALID_CANDIDATE_INDEX_SET = new HashSet<>(List.of(Index.fromZeroBased(1), Index.fromZeroBased(2), Index.fromZeroBased(3)));
+    public static final HashSet<Index> VALID_CANDIDATE_INDEX_SET =
+            new HashSet<>(List.of(Index.fromZeroBased(1), Index.fromZeroBased(2), Index.fromZeroBased(3)));
     public static final LocalDate VALID_LOCAL_DATE = LocalDate.of(2021, 10, 18);
     public static final LocalDate VALID_LOCAL_DATE_OTHER_DATE = LocalDate.of(2021, 10, 01);
     public static final LocalTime VALID_START_TIME = LocalTime.NOON; //12:00
