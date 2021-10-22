@@ -1,7 +1,7 @@
 #User Guide
 
 ## Introduction
-HR Manager will help you manage the candidates to be interviewed, 
+HR Manager will help you manage the candidates to be interviewed,
 making the scheduling process easier and faster for your company!<br>
 Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
@@ -45,7 +45,7 @@ Adds a candidate to the list of candidates.
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]... 
+    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
 
 <u>Example:</u>
  `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled`
@@ -172,7 +172,7 @@ Manage a list of interviews to for your company to select the desired candidates
 
 <u>**Add an interview: `add_i`**</u>
 
-Adds an interview to the list of interviews. 
+Adds an interview to the list of interviews.
 
 <u>Format:</u>
 
@@ -204,8 +204,8 @@ Edits a specific interview in the list of interviews.
 <u>Example:</u>
 `edit_i 2 index=1 index=2 date=18/10/2021 time=1400`
 * Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
-* Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs. 
-* At least one field must be edited. 
+* Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs.
+* At least one field must be edited.
 
 ### Feature: Storage
 Save all candidate, position and interview records into a data file locally, on your device itself.
