@@ -85,7 +85,7 @@ public class CommandTestUtil {
     public static final String VALID_POSITION_ADMIN_NAME = VALID_POSITION_ADMIN.getTitle().toString();
     public static final String VALID_POSITION_MANAGER_NAME = VALID_POSITION_MANAGER.getTitle().toString();
 
-    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "a123";
+    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "@123";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "38/10/2021";
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2500";
     public static final String INVALID_DURATION_TIME = " " + PREFIX_DURATION + "-180";

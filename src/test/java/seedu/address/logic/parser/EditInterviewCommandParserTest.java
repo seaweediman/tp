@@ -4,7 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DURATION_TIME;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_INDEX_DESC;
-//import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
+import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE;
@@ -34,7 +34,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.interview.EditInterviewCommand;
 import seedu.address.model.interview.Interview;
-//import seedu.address.model.position.Position;
+import seedu.address.model.position.Position;
 import seedu.address.testutil.EditInterviewDescriptorBuilder;
 
 public class EditInterviewCommandParserTest {
@@ -74,7 +74,7 @@ public class EditInterviewCommandParserTest {
     @Test
     public void parse_invalidValue_failure() { //TODO only position fails the test
         //invalid position
-        //assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_POSITION_DESC, Position.MESSAGE_CONSTRAINTS);
 
         //invalid date
         assertParseFailure(parser, "1" + INVALID_DATE_DESC, Interview.MESSAGE_DATE_CONSTRAINTS);
