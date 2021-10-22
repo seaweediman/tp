@@ -42,7 +42,6 @@ ModelManager -left-> "1" HrManager
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-HrManager *--> "1" UniquePersonList
 HrManager *--> "1" UniquePositionList
 HrManager *--> "1" UniqueInterviewList
 UniquePersonList --> "~* all" Person

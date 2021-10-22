@@ -2,6 +2,7 @@
 layout: page
 title: User Guide
 ---
+
 <aside markdown="1">
 <h4>Table of Contents</h4>
 * ToC
@@ -57,7 +58,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 <u>Example:</u>
 
-`add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled`
+    add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled
 
 * `STATUS` will default to `Applied` if field is left empty
   * `STATUS` field can take the following values
@@ -71,7 +72,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 * `POSITION` must be added to HR Manager before it can be used as a parameter
   * e.g. if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
   
-**<u>Delete a candidate: `delete_c`</u>**
+**<u>Delete a candidate:</u>** `delete_c`
 
 *Deletes a candidate along with his/her details from the list of candidates.*
 
@@ -80,10 +81,11 @@ Manage a list of people who are candidates for your company, with the simple ins
     delete_c <INDEX>
 
 <u>Example:</u>
- `delete_c 3`
+    delete_c 3
+
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
 
-**<u>List all candidates: `list_c`</u>**
+**<u>List all candidates:</u>** `list_c`
 
 *Displays a list of all the candidates stored in the application.*
 
@@ -91,7 +93,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
     list_c
 
-**<u>Remark a candidate: `remark_c`</u>**
+**<u>Remark a candidate:</u>** `remark_c`
 
 *Adds a remark to a candidate.*
 
@@ -100,11 +102,12 @@ Manage a list of people who are candidates for your company, with the simple ins
     remark_c <INDEX> remark=<REMARK>
 
 <u>Example:</u>
-`remark_c 1 remark=20 years of experience`
+
+    remark_c 1 remark=20 years of experience
 
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
 
-**<u>Edit a candidate: `edit_c`</u>**
+**<u>Edit a candidate:</u>** `edit_c`
 
 *Edits a candidate's details. At least 1 edit field is needed.*
 
@@ -113,7 +116,9 @@ Manage a list of people who are candidates for your company, with the simple ins
     edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
 
 <u>Example:</u>
-`edit_c 3 name=Ryan Koh`
+
+    edit_c 3 name=Ryan Koh
+
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
 * `POSITION` must be added to HR Manager before it can be used as a parameter
 * e.g. if the position, `Project Manager` has not been added to HR Manager, `edit_c 3 position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
@@ -130,7 +135,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 Manage a list of job positions posted by your company, with the simple instructions below!
 
-**<u>Add a position: `add_p`</u>**
+**<u>Add a position:</u>** `add_p`
 
 *Adds a position to the list of positions.*
 
@@ -139,11 +144,12 @@ Manage a list of job positions posted by your company, with the simple instructi
     add_p title=<TITLE>
 
 <u>Example:</u>
-`add_p Assistant`
+
+    add_p Assistant
 
 * Adds a position with the title of Assistant.
 
-**<u>Delete a position: `delete_p`</u>**
+**<u>Delete a position:</u>** `delete_p`
 
 *Deletes a position from the list of positions.*
 
@@ -152,12 +158,13 @@ Manage a list of job positions posted by your company, with the simple instructi
     delete_p <INDEX>
 
 <u>Example:</u>
-`delete_p 3`
+
+    delete_p 3
 
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
 
-**<u>List all positions: `list_p`</u>**
+**<u>List all positions:</u>** `list_p`
 
 *Displays a list of all the positions stored in the application.*
 
@@ -165,7 +172,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
     list_p
 
-**<u>Edit a position: `edit_p`</u>**
+**<u>Edit a position:</u>** `edit_p`
 
 *Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
 
@@ -174,7 +181,8 @@ Manage a list of job positions posted by your company, with the simple instructi
     edit_p <INDEX> [title=<TITLE>] [status=<STATUS>]
 
 <u>Example:</u>
-`edit_p 3 status=closed`
+
+    edit_p 3 status=closed
 
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position
@@ -183,7 +191,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 Manage a list of interviews to for your company to select the desired candidates, with the simple instructions below!
 
-**<u>Add an interview: `add_i`</u>**
+**<u>Add an interview:</u>** `add_i`
 
 *Adds an interview to the list of interviews.* 
 
@@ -192,7 +200,8 @@ Manage a list of interviews to for your company to select the desired candidates
     add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
 
 <u>Example:</u>
-`add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending`
+
+    add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
 * Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list. 
 * `POSITION` must be added to HR Manager before it can be used as a parameter.
@@ -207,7 +216,7 @@ Manage a list of interviews to for your company to select the desired candidates
 * `STATUS` must be either `pending` or `completed`
   * e.g. if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
 
-**<u>Add an interview: `delete_i`</u>**
+**<u>Add an interview:</u>** `delete_i`
 
 *Deletes an interview from the list of interviews.*
 
@@ -216,12 +225,22 @@ Manage a list of interviews to for your company to select the desired candidates
 `delete_i <INDEX>`
 
 <u>Example:</u>
-`delete_i 3`
+
+    delete_i 3
 
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
 
+**<u>List all interviews:</u>** `list_i`
+
+*Displays a list of all the interviews stored in the application.*
+
+<u>Format:</u>
+
+    list_i
+
 ### Feature: Storage
+
 Save all candidate, position and interview records into a data file locally, on your device itself.
 
 When a candidate, position or interview is added, edited or deleted, the change will be done accordingly in the local save file in real time.
