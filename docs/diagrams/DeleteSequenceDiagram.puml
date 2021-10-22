@@ -48,7 +48,7 @@ deactivate HrManagerParser
 LogicManager -> DeleteCandidateCommand : execute()
 activate DeleteCandidateCommand
 
-DeleteCandidateCommand -> Model : deleteCandidate(1)
+DeleteCandidateCommand -> Model : deletePerson(1)
 activate Model
 
 Model --> DeleteCandidateCommand
