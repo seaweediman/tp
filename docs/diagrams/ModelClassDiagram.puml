@@ -17,12 +17,16 @@ Class ReadOnlyUserPrefs
 
 
 Class UniquePersonList
+Class UniquePositionList
+Class UniqueInterviewList
 Class Person
 Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class Position
+Class Interview
 
 }
 
@@ -38,8 +42,14 @@ ModelManager -left-> "1" HrManager
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-HrManager *--> "1" UniquePersonList
+HrManager *--> "1" UniquePositionList
+HrManager *--> "1" UniqueInterviewList
 UniquePersonList --> "~* all" Person
+UniquePositionList --> "~* all" Position
+UniqueInterviewList --> "~* all" Interview
+
+Person *--> "*" Position
+Person *--> "*" Interview
 Person *--> Name
 Person *--> Phone
 Person *--> Email
