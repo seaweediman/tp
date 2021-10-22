@@ -2,14 +2,7 @@ package seedu.address.logic.interview;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
-import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_ADMIN_ASSISTANT;
-import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_MANAGER;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_SET;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
+import static seedu.address.logic.interview.CommandTestUtil.*;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERVIEW;
@@ -42,10 +35,12 @@ public class EditInterviewCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() { //todo
         Interview editedInterview = new InterviewBuilder().build();
         EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_CANDIDATE_INDEX_SET).build();
+                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
+                        .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).build();
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
-        String expectedMessage = String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview);
+        String expectedMessage =
+                String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString());
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
@@ -60,12 +55,12 @@ public class EditInterviewCommandTest {
 
         Interview editedInterview = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
 
-        String expectedMessage = String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview);
+        String expectedMessage =
+                String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString());
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        seedu.address.logic.position
-                .CommandTestUtil.assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -80,7 +75,8 @@ public class EditInterviewCommandTest {
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW,
                 new EditInterviewDescriptorBuilder().withPosition(VALID_TITLE_ADMIN_ASSISTANT).build());
 
-        String expectedMessage = String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview);
+        String expectedMessage =
+                String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString());
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
