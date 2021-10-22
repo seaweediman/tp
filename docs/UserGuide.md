@@ -48,7 +48,7 @@ transferable to other devices too!
 Manage a list of people who are candidates for your company, with the simple instructions below!
 
 
-####Add a candidate: `add_c`
+#### Add a candidate: `add_c`
 
 *Adds a candidate to the list of candidates.*
 
@@ -72,7 +72,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 * `POSITION` must be added to HR Manager before it can be used as a parameter
   * e.g. if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
 
-####Delete a candidate: `delete_c`
+#### Delete a candidate: `delete_c`
 
 *Deletes a candidate along with his/her details from the list of candidates.*
 
@@ -94,7 +94,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
     list_c
 
-####Remark a candidate: `remark_c`
+#### Remark a candidate: `remark_c`
 
 *Adds a remark to a candidate.*
 
@@ -108,7 +108,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
 
-####Edit a candidate: `edit_c`
+#### Edit a candidate: `edit_c`
 
 *Edits a candidate's details. At least 1 edit field is needed.*
 
@@ -132,11 +132,11 @@ Manage a list of people who are candidates for your company, with the simple ins
   * `Rejected`
   * `Withdrawn`
 
-###Feature: Job Position Management
+### Feature: Job Position Management
 
 Manage a list of job positions posted by your company, with the simple instructions below!
 
-####Add a position: `add_p`
+#### Add a position: `add_p`
 
 *Adds a position to the list of positions.*
 
@@ -150,7 +150,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 * Adds a position with the title of Assistant.
 
-####Delete a position: `delete_p`
+#### Delete a position: `delete_p`
 
 *Deletes a position from the list of positions.*
 
@@ -165,7 +165,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
 
-####List all positions: `list_p`
+#### List all positions: `list_p`
 
 *Displays a list of all the positions stored in the application.*
 
@@ -173,7 +173,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
     list_p
 
-####Edit a position: `edit_p`
+#### Edit a position: `edit_p`
 
 *Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
 
@@ -188,11 +188,11 @@ Manage a list of job positions posted by your company, with the simple instructi
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position
 
-###Feature: Interview Management
+### Feature: Interview Management
 
 Manage a list of interviews to for your company to select the desired candidates, with the simple instructions below!
 
-####Add an interview: `add_i`
+#### Add an interview: `add_i`
 
 *Adds an interview to the list of interviews.*
 
@@ -217,7 +217,7 @@ Manage a list of interviews to for your company to select the desired candidates
 * `STATUS` must be either `pending` or `completed`
   * e.g. if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
 
-####Add an interview: `delete_i`
+#### Add an interview: `delete_i`
 
 *Deletes an interview from the list of interviews.*
 
@@ -232,7 +232,7 @@ Manage a list of interviews to for your company to select the desired candidates
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
 
-####List all interviews: `list_i`
+#### List all interviews: `list_i`
 
 *Displays a list of all the interviews stored in the application.*
 
