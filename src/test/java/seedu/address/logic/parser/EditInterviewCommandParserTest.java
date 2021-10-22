@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DURATION_TIME;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_INDEX_DESC;
+//import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_TIME_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE;
