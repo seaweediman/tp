@@ -11,7 +11,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.candidate.FindCandidateCommand;
-import seedu.address.model.person.FindCommandPredicate;
+import seedu.address.model.person.FindCandidateCommandPredicate;
 
 public class FindCandidateCommandParserTest {
 
@@ -27,7 +27,7 @@ public class FindCandidateCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCandidateCommand expectedFindCandidateCommand =
-                new FindCandidateCommand(new FindCommandPredicate(Arrays.asList("Alice", "Bob")));
+                new FindCandidateCommand(new FindCandidateCommandPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, COMMAND_WORD + " " + PREFIX_NAME + "Alice Bob",
                 expectedFindCandidateCommand);
 

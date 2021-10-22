@@ -13,7 +13,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.person.FindCommandPredicate;
+import seedu.address.model.person.FindCandidateCommandPredicate;
 
 
 /**
@@ -34,9 +34,9 @@ public class FindCandidateCommand extends Command {
             + PREFIX_STATUS + "[STATUS]..."
             + PREFIX_TAG + "[TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie";
-    private final FindCommandPredicate predicate;
+    private final FindCandidateCommandPredicate predicate;
 
-    public FindCandidateCommand(FindCommandPredicate predicate) {
+    public FindCandidateCommand(FindCandidateCommandPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -45,7 +45,8 @@ public class FindCandidateCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
+                false, false, true, false, false);
     }
 
     @Override
