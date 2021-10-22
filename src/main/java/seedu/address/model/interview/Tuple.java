@@ -4,6 +4,12 @@ public class Tuple<S, T> {
     private S first;
     private T second;
 
+    /**
+     * Public constructor for Tuple objects, that consists of a first object of type S
+     * and a second object of type T.
+     * @param first The first object of the Tuple.
+     * @param second The second object of the Tuple.
+     */
     public Tuple(S first, T second) {
         this.first = first;
         this.second = second;

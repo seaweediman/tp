@@ -10,9 +10,6 @@ import java.util.Set;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-import seedu.address.model.util.SampleDataUtil;
-
-
 
 /**
  * A utility class to help with building Interview objects.

@@ -2,9 +2,6 @@ package seedu.address.logic.interview;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_ADMIN_ASSISTANT;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_MANAGER;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_1;
@@ -12,6 +9,9 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDE
 import static seedu.address.logic.interview.CommandTestUtil.VALID_EMPTY_CANDIDATE_INDEX_SET;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERVIEW;

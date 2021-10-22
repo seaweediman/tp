@@ -9,11 +9,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 
-import java.util.Collections;
 import java.time.Duration;
-import java.util.HashSet;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -23,7 +23,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
@@ -90,7 +89,8 @@ public class EditInterviewCommand extends Command {
 
         boolean isCandidateSetEdited = newCandidateIndexes.size() != 0;
 
-        if (isCandidateSetEdited) { // if candidates field is edited, list of updated candidate indexed will not be empty
+        // if candidates field is edited, list of updated candidate indexed will not be empty
+        if (isCandidateSetEdited) {
             Set<Person> newCandidates = new HashSet<>();
             for (Index i : newCandidateIndexes) {
                 if (i.getZeroBased() < model.getFilteredPersonList().size()) {
@@ -141,8 +141,9 @@ public class EditInterviewCommand extends Command {
         assert interviewToEdit != null;
 
         Position updatedPosition = editInterviewDescriptor.getPosition().orElse(interviewToEdit.getPosition());
+        // if candidates not updated, list of updated candidate index not present
         Set<Index> updatedCandidateIndex =
-                editInterviewDescriptor.getCandidateIndexes().orElse(new HashSet<>()); // if candidates not updated, list of updated candidate index not present
+                editInterviewDescriptor.getCandidateIndexes().orElse(new HashSet<>());
         Set<Person> initialCandidates = interviewToEdit.getCandidates(); // initial list of candidates
         LocalDate updatedDate = editInterviewDescriptor.getDate().orElse(interviewToEdit.getDate());
         LocalTime updatedTime = editInterviewDescriptor.getStartTime().orElse(interviewToEdit.getStartTime());

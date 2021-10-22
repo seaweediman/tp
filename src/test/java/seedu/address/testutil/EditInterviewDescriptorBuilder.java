@@ -1,17 +1,17 @@
 package seedu.address.testutil;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.interview.EditInterviewCommand.EditInterviewDescriptor;
-import seedu.address.model.interview.Interview;
-import seedu.address.model.position.Position;
-import seedu.address.model.position.Title;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.interview.EditInterviewCommand.EditInterviewDescriptor;
+import seedu.address.model.interview.Interview;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 
 /**
  * A utility class to help with building EditInterviewDescriptor objects.
@@ -76,7 +76,7 @@ public class EditInterviewDescriptorBuilder {
      * Sets the {@code LocalTime} of the {@code EditInterviewDescriptor}.
      */
     public EditInterviewDescriptorBuilder withStartTime(String time) {
-        int hour = Integer.parseInt(time.substring(0,2));
+        int hour = Integer.parseInt(time.substring(0, 2));
         int min = Integer.parseInt(time.substring(2));
         descriptor.setStartTime(LocalTime.of(hour, min));
         return this;
