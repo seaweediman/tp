@@ -81,7 +81,8 @@ Manage a list of people who are candidates for your company, with the simple ins
     delete_c <INDEX>
 
 <u>Example:</u>
-delete_c 3
+  
+    delete_c 3
 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
 
