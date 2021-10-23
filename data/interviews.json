@@ -1,0 +1,17 @@
+{
+  "interviews" : [ {
+    "position" : "Sales Representative",
+    "candidateIDs" : [ "413828711", "-596572705" ],
+    "date" : "15/10/2021",
+    "startTime" : "1000",
+    "duration" : "60",
+    "status" : "PENDING"
+  }, {
+    "position" : "Bookkeeper",
+    "candidateIDs" : [ "-1834523193", "729339136" ],
+    "date" : "26/10/2021",
+    "startTime" : "1230",
+    "duration" : "45",
+    "status" : "PENDING"
+  } ]
+}
