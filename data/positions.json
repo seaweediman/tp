@@ -3,7 +3,7 @@
     "title" : "Bookkeeper",
     "positionStatus" : "OPEN"
   }, {
-    "title" : "Admin Assistant",
+    "title" : "Senior Engineer",
     "positionStatus" : "OPEN"
   }, {
     "title" : "Project Manager",
@@ -12,16 +12,13 @@
     "title" : "Sales Representative",
     "positionStatus" : "OPEN"
   }, {
-    "title" : "Senior Engineer",
+    "title" : "Admin Assistant",
     "positionStatus" : "OPEN"
   }, {
     "title" : "Accountant",
     "positionStatus" : "OPEN"
   }, {
     "title" : "Secretary",
-    "positionStatus" : "CLOSED"
-  }, {
-    "title" : "Security Guard",
-    "positionStatus" : "CLOSED"
+    "positionStatus" : "OPEN"
   } ]
 }

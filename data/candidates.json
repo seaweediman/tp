@@ -1,74 +1,119 @@
 {
   "persons" : [ {
-    "name" : "Alex Yeoh",
-    "phone" : "87438807",
-    "email" : "alexyeoh@example.com",
-    "address" : "Blk 30 Geylang Street 29, #06-40",
+    "name" : "John Doe",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "",
-    "tagged" : [ "friends" ],
+    "tagged" : [ ],
     "status" : "APPLIED",
-    "positions" : [ {
-      "title" : "Bookkeeper",
-      "positionStatus" : "OPEN"
-    } ]
-  }, {
-    "name" : "Bernice Yu",
-    "phone" : "99272758",
-    "email" : "berniceyu@example.com",
-    "address" : "Blk 30 Lorong 3 Serangoon Gardens, #07-18",
-    "remark" : "",
-    "tagged" : [ "colleagues", "friends" ],
-    "status" : "ACCEPTED",
-    "positions" : [ {
-      "title" : "Admin Assistant",
-      "positionStatus" : "OPEN"
-    } ]
-  }, {
-    "name" : "Charlotte Oliveiro",
-    "phone" : "93210283",
-    "email" : "charlotte@example.com",
-    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
-    "remark" : "",
-    "tagged" : [ "neighbours" ],
-    "status" : "INTERVIEWED",
-    "positions" : [ {
-      "title" : "Accountant",
-      "positionStatus" : "OPEN"
-    } ]
-  }, {
-    "name" : "David Li",
-    "phone" : "91031282",
-    "email" : "lidavid@example.com",
-    "address" : "Blk 436 Serangoon Gardens Street 26, #16-43",
-    "remark" : "",
-    "tagged" : [ "family" ],
-    "status" : "NONE",
-    "positions" : [ {
-      "title" : "Senior Engineer",
-      "positionStatus" : "OPEN"
-    } ]
-  }, {
-    "name" : "Irfan Ibrahim",
-    "phone" : "92492021",
-    "email" : "irfan@example.com",
-    "address" : "Blk 47 Tampines Street 20, #17-35",
-    "remark" : "",
-    "tagged" : [ "classmates" ],
-    "status" : "REJECTED",
     "positions" : [ {
       "title" : "Project Manager",
       "positionStatus" : "OPEN"
     } ]
   }, {
-    "name" : "Roy Balakrishnan",
-    "phone" : "92624417",
-    "email" : "royb@example.com",
-    "address" : "Blk 45 Aljunied Street 85, #11-31",
+    "name" : "Bryan Seah",
+    "phone" : "95281492",
+    "email" : "bseah@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "",
-    "tagged" : [ "colleagues" ],
-    "status" : "REJECTED",
+    "tagged" : [ "pending", "reviewRequired" ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Senior Engineer",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Sue Ann",
+    "phone" : "9512594",
+    "email" : "sueann-c@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Senior Engineer",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Bryan Seah",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Sale Representative",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Jacob",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Admin Assistant",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Josh",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Secretary",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Iman",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Project Manager",
+      "positionStatus" : "OPEN"
+    }, {
+      "title" : "Senior Engineer",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Nobel",
+    "phone" : "98765432",
+    "email" : "johnd@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
     "positions" : [ {
       "title" : "Sales Representative",
+      "positionStatus" : "OPEN"
+    } ]
+  }, {
+    "name" : "Wanyu",
+    "phone" : "92542342",
+    "email" : "wanyul@example.com",
+    "address" : "311, Clementi Ave 2, #02-25",
+    "remark" : "",
+    "tagged" : [ ],
+    "status" : "APPLIED",
+    "positions" : [ {
+      "title" : "Admin Assistant",
+      "positionStatus" : "OPEN"
+    }, {
+      "title" : "Senior Engineer",
+      "positionStatus" : "OPEN"
+    }, {
+      "title" : "Accountant",
       "positionStatus" : "OPEN"
     } ]
   } ]

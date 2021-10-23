@@ -1,17 +1,17 @@
 {
   "interviews" : [ {
-    "position" : "Sales Representative",
-    "candidateIDs" : [ "413828711", "-596572705" ],
-    "date" : "15/10/2021",
-    "startTime" : "1000",
+    "position" : "Accountant",
+    "candidateIDs" : [ ],
+    "date" : "23/10/2021",
+    "startTime" : "1200",
     "duration" : "60",
-    "status" : "PENDING"
+    "status" : "COMPLETED"
   }, {
-    "position" : "Bookkeeper",
-    "candidateIDs" : [ "-1834523193", "729339136" ],
-    "date" : "26/10/2021",
-    "startTime" : "1230",
-    "duration" : "45",
+    "position" : "Accountant",
+    "candidateIDs" : [ ],
+    "date" : "15/10/2021",
+    "startTime" : "1400",
+    "duration" : "120",
     "status" : "PENDING"
   } ]
 }
