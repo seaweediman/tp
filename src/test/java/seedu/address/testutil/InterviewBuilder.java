@@ -10,9 +10,6 @@ import java.util.Set;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
-import seedu.address.model.util.SampleDataUtil;
-
-
 
 /**
  * A utility class to help with building Interview objects.
@@ -21,8 +18,8 @@ public class InterviewBuilder {
 
 
     private Position position = TypicalPositions.ADMIN_ASSISTANT;
-    private Set<Person> candidates = new HashSet<>(List.of(SampleDataUtil.getSamplePersons()));
-    private LocalDate localDate = LocalDate.of(2021, 10, 30);
+    private Set<Person> candidates = new HashSet<>(List.of(TypicalPersons.BENSON));
+    private LocalDate localDate = LocalDate.of(2021, 10, 15);
     private LocalTime startTime = LocalTime.of(10, 0);
     private Duration duration = Duration.ofHours(1);
     private Interview.InterviewStatus status = Interview.InterviewStatus.PENDING;
