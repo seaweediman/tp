@@ -335,7 +335,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to <u>list all positions (UC05)</u>.
 2. User requests to <u>list all candidates (UC03)</u>.
 3. User requests to add an interview with details for the interview.
-4. HR Manager adds interview.   
+4. HR Manager adds interview.
 5. User can see the added job position.
 
    Use case ends
