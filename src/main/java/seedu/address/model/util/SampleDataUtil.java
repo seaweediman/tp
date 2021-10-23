@@ -72,13 +72,13 @@ public class SampleDataUtil {
 
     public static Person[] getSamplePersons() {
         return new Person[] {
-                ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY
+            ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY
         };
     }
 
     public static Position[] getSamplePositions() {
         return new Position[] {
-                BOOKKEEPER, ADMIN_ASSISTANT, PROJECT_MANAGER, SALES_REP, SEN_ENGINEER, ACCOUNTANT, SECRETARY, SECURITY_GUARD
+            BOOKKEEPER, ADMIN_ASSISTANT, PROJECT_MANAGER, SALES_REP, SEN_ENGINEER, ACCOUNTANT, SECRETARY, SECURITY_GUARD
         };
     }
 
@@ -93,9 +93,9 @@ public class SampleDataUtil {
 
 
         return new Interview[] {
-                new Interview(SALES_REP, sampleCandidatesA, LocalDate.of(2021, 10, 15),
+            new Interview(SALES_REP, sampleCandidatesA, LocalDate.of(2021, 10, 15),
                         LocalTime.of(10, 0), Duration.ofHours(1), Interview.InterviewStatus.PENDING),
-                new Interview(BOOKKEEPER, sampleCandidatesB, LocalDate.of(2021, 10, 26),
+            new Interview(BOOKKEEPER, sampleCandidatesB, LocalDate.of(2021, 10, 26),
                         LocalTime.of(12, 30), Duration.ofMinutes(45), Interview.InterviewStatus.PENDING)
         };
     }
