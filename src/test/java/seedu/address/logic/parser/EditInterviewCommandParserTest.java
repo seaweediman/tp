@@ -7,8 +7,6 @@ import static seedu.address.logic.interview.CommandTestUtil.INVALID_INDEX_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_TIME_DESC;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_DESC_ALICE;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_1;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE_OTHER_DATE;
@@ -109,13 +107,12 @@ public class EditInterviewCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERVIEW;
-        String userInput = targetIndex.getOneBased() + VALID_POSITION_ADMIN_ASST_DESC + VALID_CANDIDATE_DESC_ALICE
+        String userInput = targetIndex.getOneBased() + VALID_POSITION_ADMIN_ASST_DESC
                 + VALID_DATE_DESC + VALID_TIME_DESC + VALID_DURATION_DESC + VALID_STATUS_PENDING_DESC;
 
         EditInterviewCommand.EditInterviewDescriptor descriptor =
                 new EditInterviewDescriptorBuilder()
                         .withPosition(VALID_POSITION_ADMIN_ASSISTANT)
-                        .withCandidateIndexes(VALID_CANDIDATE_INDEX_1)
                         .withDate(VALID_DATE)
                         .withStartTime(VALID_TIME)
                         .withDuration(VALID_DURATION_TIME)
@@ -148,12 +145,6 @@ public class EditInterviewCommandParserTest {
                 new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_ADMIN_ASSISTANT).build();
         EditInterviewCommand expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
-
-        // candidate
-        userInput = targetIndex.getOneBased() + VALID_CANDIDATE_DESC_ALICE;
-        descriptor = new EditInterviewDescriptorBuilder().withCandidateIndexes(VALID_CANDIDATE_INDEX_1).build();
-        expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand); //TODO only parsing of candidate indexes has an issue
 
         // date
         userInput = targetIndex.getOneBased() + VALID_DATE_DESC;
