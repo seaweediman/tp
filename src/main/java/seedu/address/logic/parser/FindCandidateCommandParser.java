@@ -12,7 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.logic.candidate.FindCandidateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.FindCommandPredicate;
+import seedu.address.model.person.FindCandidateCommandPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -31,39 +31,43 @@ public class FindCandidateCommandParser implements Parser<FindCandidateCommand> 
                         PREFIX_STATUS, PREFIX_POSITION);
 
 
-        FindCommandPredicate findCommandPredicate = new FindCommandPredicate();
+        FindCandidateCommandPredicate findCandidateCommandPredicate = new FindCandidateCommandPredicate();
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
-            findCommandPredicate.setNameKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_NAME).get()));
+            findCandidateCommandPredicate.setNameKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_NAME)
+                    .get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            findCommandPredicate.setPhoneKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PHONE).get()));
+            findCandidateCommandPredicate.setPhoneKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_PHONE)
+                    .get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            findCommandPredicate.setEmailKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_EMAIL).get()));
+            findCandidateCommandPredicate.setEmailKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_EMAIL)
+                    .get()));
         }
         if (argMultimap.getValue(PREFIX_STATUS).isPresent()) {
-            findCommandPredicate.setStatusKeywords(
+            findCandidateCommandPredicate.setStatusKeywords(
                     ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_STATUS).orElse("")));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            findCommandPredicate.setAddressKeywords(ParserUtil.parseKeywords(
+            findCandidateCommandPredicate.setAddressKeywords(ParserUtil.parseKeywords(
                     argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            findCommandPredicate.setTagKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_TAG).get()));
+            findCandidateCommandPredicate.setTagKeywords(ParserUtil.parseKeywords(argMultimap.getValue(PREFIX_TAG)
+                    .get()));
         }
 
         if (argMultimap.getValue(PREFIX_POSITION).isPresent()) {
-            findCommandPredicate.setPositionKeywords(ParserUtil.parseKeywords(
+            findCandidateCommandPredicate.setPositionKeywords(ParserUtil.parseKeywords(
                     argMultimap.getValue(PREFIX_POSITION).get()));
         }
 
-        if (!findCommandPredicate.isAnyField()) {
+        if (!findCandidateCommandPredicate.isAnyField()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCandidateCommand.MESSAGE_USAGE));
         }
 
-        return new FindCandidateCommand(findCommandPredicate);
+        return new FindCandidateCommand(findCandidateCommandPredicate);
     }
 
 }

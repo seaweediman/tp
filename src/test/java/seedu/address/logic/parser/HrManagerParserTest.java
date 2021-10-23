@@ -33,7 +33,7 @@ import seedu.address.logic.position.DeletePositionCommand;
 import seedu.address.logic.position.EditPositionCommand;
 import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
 import seedu.address.logic.position.ListPositionCommand;
-import seedu.address.model.person.FindCommandPredicate;
+import seedu.address.model.person.FindCandidateCommandPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -114,7 +114,7 @@ public class HrManagerParserTest {
         FindCandidateCommand command = (FindCandidateCommand) parser.parseCommand(
                 FindCandidateCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCandidateCommand(new FindCommandPredicate(keywords)), command);
+        assertEquals(new FindCandidateCommand(new FindCandidateCommandPredicate(keywords)), command);
     }
 
     @Test
