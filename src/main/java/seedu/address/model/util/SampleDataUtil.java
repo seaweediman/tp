@@ -72,30 +72,31 @@ public class SampleDataUtil {
 
     public static Person[] getSamplePersons() {
         return new Person[] {
-            ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY
+                ALEX, BERNICE, CHARLOTTE, DAVID, IRFAN, ROY
         };
     }
 
     public static Position[] getSamplePositions() {
         return new Position[] {
-            BOOKKEEPER, ADMIN_ASSISTANT, PROJECT_MANAGER, SALES_REP, SEN_ENGINEER, ACCOUNTANT, SECRETARY, SECURITY_GUARD
+                BOOKKEEPER, ADMIN_ASSISTANT, PROJECT_MANAGER, SALES_REP, SEN_ENGINEER, ACCOUNTANT, SECRETARY,
+                SECURITY_GUARD
         };
     }
 
     public static Interview[] getSampleInterviews() {
-        Set<Person> sampleCandidatesA = new HashSet<>();
-        sampleCandidatesA.add(IRFAN);
-        sampleCandidatesA.add(ROY);
+        Set<Person> sampleCandidates_ONE = new HashSet<>();
+        sampleCandidates_ONE.add(IRFAN);
+        sampleCandidates_ONE.add(ROY);
 
-        Set<Person> sampleCandidatesB = new HashSet<>();
-        sampleCandidatesB.add(ALEX);
-        sampleCandidatesB.add(BERNICE);
+        Set<Person> sampleCandidates_TWO = new HashSet<>();
+        sampleCandidates_TWO.add(ALEX);
+        sampleCandidates_TWO.add(BERNICE);
 
 
         return new Interview[] {
-            new Interview(SALES_REP, sampleCandidatesA, LocalDate.of(2021, 10, 15),
+                new Interview(SALES_REP, sampleCandidates_ONE, LocalDate.of(2021, 10, 15),
                         LocalTime.of(10, 0), Duration.ofHours(1), Interview.InterviewStatus.PENDING),
-            new Interview(BOOKKEEPER, sampleCandidatesB, LocalDate.of(2021, 10, 26),
+                new Interview(BOOKKEEPER, sampleCandidates_TWO, LocalDate.of(2021, 10, 26),
                         LocalTime.of(12, 30), Duration.ofMinutes(45), Interview.InterviewStatus.PENDING)
         };
     }
