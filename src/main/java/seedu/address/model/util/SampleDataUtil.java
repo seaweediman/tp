@@ -19,7 +19,7 @@ import seedu.address.model.position.Title;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code HrManager} with sample data.
  */
 public class SampleDataUtil {
 

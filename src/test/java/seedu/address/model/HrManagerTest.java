@@ -199,7 +199,7 @@ public class HrManagerTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyHrManager whose persons list can violate interface constraints.
      */
     private static class HrManagerStub implements ReadOnlyHrManager {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

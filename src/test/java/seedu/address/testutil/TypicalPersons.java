@@ -73,7 +73,7 @@ public class TypicalPersons {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code HrManager} with all the typical persons.
      */
     public static HrManager getTypicalHrManager() {
         HrManager ab = new HrManager();
