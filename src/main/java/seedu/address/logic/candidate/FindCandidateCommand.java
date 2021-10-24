@@ -34,6 +34,8 @@ public class FindCandidateCommand extends Command {
             + PREFIX_STATUS + "[STATUS]..."
             + PREFIX_TAG + "[TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie";
+    public static final String MESSAGE_SUCCESS = "Listed all found candidates";
+
     private final FindCandidateCommandPredicate predicate;
 
     public FindCandidateCommand(FindCandidateCommandPredicate predicate) {
@@ -46,7 +48,7 @@ public class FindCandidateCommand extends Command {
         model.updateFilteredPersonList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()),
-                false, false, true, false, false);
+                false, false, false, false, false, true, false, false);
     }
 
     @Override

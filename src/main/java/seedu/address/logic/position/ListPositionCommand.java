@@ -21,6 +21,6 @@ public class ListPositionCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, false, true, false, false, false, false);
     }
 }

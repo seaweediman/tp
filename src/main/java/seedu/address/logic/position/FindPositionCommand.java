@@ -20,6 +20,8 @@ public class FindPositionCommand extends Command {
 
     public static final String COMMAND_WORD = "find_p";
 
+    public static final String MESSAGE_SUCCESS = "Listed all found positions";
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all positions that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters:"
@@ -27,6 +29,8 @@ public class FindPositionCommand extends Command {
             + PREFIX_POSITION_STATUS + "[POSITION STATUS]..."
             + "Example: " + COMMAND_WORD + " " + PREFIX_TITLE + "accountant";
     private final FindPositionCommandPredicate predicate;
+
+
 
     public FindPositionCommand(FindPositionCommandPredicate predicate) {
         this.predicate = predicate;
@@ -38,7 +42,7 @@ public class FindPositionCommand extends Command {
         model.updateFilteredPositionList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_POSITIONS_LISTED_OVERVIEW, model.getFilteredPositionList().size()),
-            false, false, false, true, false);
+            false, false, false, false, false, false, true, false);
 
     }
 
