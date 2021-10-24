@@ -52,6 +52,8 @@ public class EditInterviewCommand extends Command {
     public static final String MESSAGE_EDIT_INTERVIEW_SUCCESS = "Edited Interview: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the interview list.";
+    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s did not apply for Position %2$s";
+
 
     private final Index index;
     private final EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor;
@@ -95,6 +97,10 @@ public class EditInterviewCommand extends Command {
             for (Index i : newCandidateIndexes) {
                 if (i.getZeroBased() < model.getFilteredPersonList().size()) {
                     Person person = model.getPerson(i);
+                    if (!person.appliedForPosition(editedInterview.getPosition())) {
+                        throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
+                                person.getName(), editedInterview.getPosition()));
+                    }
                     newCandidates.add(person);
                 } else {
                     throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);

@@ -244,7 +244,8 @@ public class HrManager implements ReadOnlyHrManager {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons\n"
-                + positions.asUnmodifiableObservableList().size() + " positions";
+                + positions.asUnmodifiableObservableList().size() + " positions\n"
+                + interviews.asUnmodifiableObservableList().size() + " interviews";
     }
 
     @Override
@@ -267,12 +268,13 @@ public class HrManager implements ReadOnlyHrManager {
         return other == this // short circuit if same object
                 || (other instanceof HrManager // instanceof handles nulls
                 && persons.equals(((HrManager) other).persons))
-                && positions.equals(((HrManager) other).positions);
+                && positions.equals(((HrManager) other).positions)
+                && interviews.equals(((HrManager) other).interviews);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() ^ positions.hashCode();
+        return persons.hashCode() ^ positions.hashCode() ^ interviews.hashCode();
     }
 
     public Person getPerson(Index index) {

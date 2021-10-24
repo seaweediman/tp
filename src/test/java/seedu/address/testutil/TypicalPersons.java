@@ -35,10 +35,10 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRemark("She likes aardvarks.")
             .withTags("friends").withStatus("Applied").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPositions("HR Manager")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRemark("He can't handle beer!")
-            .withTags("owesMoney", "friends").withStatus("None").build();
+            .withTags("owesMoney", "friends").withStatus("Scheduled").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withStatus("Rejected").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
