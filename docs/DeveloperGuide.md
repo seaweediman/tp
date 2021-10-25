@@ -183,7 +183,6 @@ Aspect: Logical operators and combinations for find fields
 * Alternative 2: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
-    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
