@@ -8,8 +8,10 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.interview.exceptions.DuplicateInterviewException;
 import seedu.address.model.interview.exceptions.InterviewNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of interviews that enforces uniqueness between its elements and does not allow nulls.
@@ -47,6 +49,10 @@ public class UniqueInterviewList implements Iterable<Interview> {
             throw new DuplicateInterviewException();
         }
         internalList.add(toAdd);
+    }
+
+    public Interview getInterview(Index index) {
+        return internalList.get(index.getZeroBased());
     }
 
     /**

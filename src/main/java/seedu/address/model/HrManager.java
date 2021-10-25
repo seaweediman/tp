@@ -280,4 +280,8 @@ public class HrManager implements ReadOnlyHrManager {
     public Person getPerson(Index index) {
         return persons.getPerson(index);
     }
+
+    public Interview getInterview(Index index) {
+        return interviews.getInterview(index);
+    }
 }
