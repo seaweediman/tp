@@ -154,6 +154,38 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Feature Implementation** ##
+
+### **Find Command** ###
+
+The `find_c`, `find_p` and `find_i` command allows users to search for candidates, positions and interviews using their parameters.
+Generally, they are called `find_x` in this section
+
+The class structure of an execution of `find_x` command is as follows. Only importatnt classes are shown
+![Structure of the find_x command](images/FindClassDiagram.png)
+
+The `FindXCommandPredicate` holds the parsed arguments from the command and a `test` method to check if X fufils the condition
+
+The sequence diagram of a `find_x` command execution is as follows
+
+Firstly, the parsing of the command and argument occurs as follows
+![Parse_sequence_of_find_x](images/FindParseSequenceDiagram.png)
+
+Continuing the previous diagram, the FindXCommand is executed, and the UI is updated
+![Execute_sequence_of_find_x](images/FindExecuteSequenceDiagram.png)
+
+#### Design Considerations ####
+Aspect: Logical operators and combinations for find fields
+* Alternative 1: AND between separate fields and OR within multiple entries in same field
+    * eg: `find_c name=alex brad phone=12345678` === `(phone=12345678) AND (name contains alex OR brad)`
+    * Pros: Easy to implement, simple command format for the most common usecase
+    * Cons: Unable to search using more complex combination of logical operators
+* Alternative 2: Allow users to specify which operators are used and how they are combined
+    * Pros: Give granular control to the user for find
+    * Cons: Very complex command format
+    
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 ### Product scope
 
