@@ -161,7 +161,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 The `find_c`, `find_p` and `find_i` command allows users to search for candidates, positions and interviews using their parameters.
 Generally, they are called `find_x` in this section
 
-The class structure of an execution of `find_x` command is as follows. Only importatnt classes are shown
+The class structure of an execution of `find_x` command is as follows. Only important classes are shown
 ![Structure of the find_x command](images/FindClassDiagram.png)
 
 The `FindXCommandPredicate` holds the parsed arguments from the command and a `test` method to check if X fufils the condition
@@ -183,7 +183,29 @@ Aspect: Logical operators and combinations for find fields
 * Alternative 2: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
-    
+
+### **List All Interviews Command** ###
+
+The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
+Generally, they are called `list_x` in this section
+
+The class structure of an execution of `list_x` command is as follows. Only important classes are shown
+
+![Structure of the list_x command](images/ListClassDiagram.png)
+
+The `ListXCommandPredicate` uses the preset predicate such that all X fulfills the condition.
+
+The sequence diagram of a `list_x` command execution is as follows
+
+Firstly, the parsing of the command and argument occurs as follows
+
+![Parse_sequence_of_list_x](images/ListParseSequenceDiagram.png)
+
+Continuing the previous diagram, the ListXCommand is executed, and the corresponding X panel in the UI is updated
+
+![Execute_sequence_of_list_x](images/ListExcecuteSequenceDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
