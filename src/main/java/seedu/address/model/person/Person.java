@@ -225,4 +225,8 @@ public class Person {
     public void setInterviews(Set<Interview> personInterviews) {
         interviews.addAll(personInterviews);
     }
+
+    public void resetStatus() {
+        status = Status.APPLIED;
+    }
 }

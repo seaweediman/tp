@@ -14,9 +14,13 @@ import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.interview.CommandTestUtil.*;
-import static seedu.address.testutil.TypicalIndexes.*;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERVIEW;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 public class UnassignInterviewCommandTest {
@@ -46,6 +50,7 @@ public class UnassignInterviewCommandTest {
                 false);
 
         assertCommandSuccess(unassignInterviewCommand, model, expectedCommandResult, expectedModel);
+        ALICE.resetStatus();
     }
 
     @Test

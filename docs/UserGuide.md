@@ -313,6 +313,24 @@ Edits a specific interview in the list of interviews.
   <br> 
   <br>
 
+#### <u>Unassign candidates from interview:</u> `unassign`
+
+*Unassigns candidates from interview*
+
+<u>Format:</u>
+
+    unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+
+<u>Example:</u>
+`unassign i=1 c=2 4`
+
+* You can only input any number of candidates but only 1 interview.
+* Removes candidates with candidate index 2 and 4 from the first interview.
+* Inputting `c=*` removes all candidates from an interview.
+  <br> 
+  <br>
+
+
 ### Feature: Storage
 
 Save all candidate, position and interview records into a data file locally, on your device itself.
@@ -399,3 +417,4 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
 | **Delete an interview** | `delete_i <INDEX>` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
 | **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] |
+| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` | 

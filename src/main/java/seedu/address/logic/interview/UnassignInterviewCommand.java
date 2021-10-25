@@ -9,6 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -25,10 +26,14 @@ public class UnassignInterviewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Candidates removed from interview %1$s: %2$s";
     public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for " +
             "this Interview: %3$s";
+    public static final String MESSAGE_ALL_CANDIDATES_REMOVED = "All candidates removed from interview: %1$s";
 
     private Index interviewIndex;
 
     private Set<Index> candidateIndexes;
+
+    private boolean isTotalWipe;
+
     /**
      * Creates an AddInterviewCommand to add the specified {@code Interview}
      */
@@ -38,6 +43,19 @@ public class UnassignInterviewCommand extends Command {
 
         interviewIndex = interview;
         candidateIndexes = candidates;
+        isTotalWipe = false;
+    }
+
+    /**
+     * Creates an AddInterviewCommand to add the specified {@code Interview}
+     */
+    public UnassignInterviewCommand(Index interview, boolean isTotalWipe) {
+        requireNonNull(interview);
+        requireNonNull(isTotalWipe);
+
+        interviewIndex = interview;
+        candidateIndexes = new HashSet<>();
+        this.isTotalWipe = isTotalWipe;
     }
 
     @Override
@@ -45,6 +63,7 @@ public class UnassignInterviewCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownCandidateList = model.getFilteredPersonList();
         List<Interview> lastShownInterviewList = model.getFilteredInterviewList();
+        CommandResult result;
 
         if (interviewIndex.getZeroBased() >= model.getFilteredInterviewList().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
@@ -52,30 +71,40 @@ public class UnassignInterviewCommand extends Command {
 
         Interview interview = lastShownInterviewList.get(interviewIndex.getZeroBased());
 
-        int count = 1;
+        StringBuilder removedPersons = new StringBuilder();
+        removedPersons.append("\n");
 
-        StringBuilder sb = new StringBuilder();
-        sb.append("\n");
-        for (Index candidateIndex : candidateIndexes) {
-            if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        if (isTotalWipe) {
+            Set<Person> emptyCandidatesSet = new HashSet<>();
+            interview.setCandidates(emptyCandidatesSet);
+            model.deleteInterviewFromPerson(interview);
+            result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED, interview.getDisplayString()),
+                    false, false, true, false, false, false, false,
+                    false);
+        } else {
+            int count = 1;
+            for (Index candidateIndex : candidateIndexes) {
+                if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
+                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                }
+                Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
+                if (!candidate.hasInterview(interview)) {
+                    throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
+                            candidateIndex.getOneBased(), candidate.getName(), interview.getDisplayString()));
+                }
+                interview.removeCandidate(candidate);
+                candidate.deleteInterview(interview);
+                removedPersons.append(count + ". " + candidate.getName() + "\n");
+                count++;
             }
-            Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
-            if (!candidate.hasInterview(interview)) {
-                throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY, candidateIndex.getOneBased(),
-                        candidate.getName(), interview.getDisplayString()));
-            }
-            interview.removeCandidate(candidate);
-            candidate.deleteInterview(interview);
-            sb.append(count + ". " + candidate.getName() + "\n");
-            count++;
+            result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayString(), removedPersons),
+                    false, false, true, false, false, false, false,
+                    false);
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayString(), sb),
-                false, false, true, false, false, false, false,
-                false);
+        return result;
     }
 
     @Override
