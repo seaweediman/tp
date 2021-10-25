@@ -48,32 +48,22 @@
                         <Insets top="5" right="10" bottom="5" left="10"/>
                     </padding>
                 </StackPane>
-                <!--                <VBox fx:id="displayList" styleClass="pane-with-border" minWidth="340" prefWidth="340"-->
-                <!--                      VBox.vgrow="ALWAYS">-->
-                <!--                    <padding>-->
-                <!--                        <Insets top="10" right="10" bottom="10" left="10"/>-->
-                <!--                    </padding>-->
-                <!--                    <Label fx:id="listLabel" styleClass="list_label"/>-->
-                <!--                    <StackPane fx:id="displayListPanelPlaceholder" VBox.vgrow="ALWAYS"/>-->
-                <!--                </VBox>-->
-                <HBox alignment="CENTER" VBox.vgrow="ALWAYS">
-                    <VBox fx:id="personList" styleClass="pane-with-border"
-                          VBox.vgrow="ALWAYS">
+                <HBox fx:id="displayList" alignment="CENTER" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="personList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <Label fx:id="personListLabel" styleClass="list_label"/>
                         <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <VBox fx:id="positionList" styleClass="pane-with-border"
-                          VBox.vgrow="ALWAYS">
+                    <VBox fx:id="positionList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
                         <Label fx:id="positionListLabel" styleClass="list_label"/>
                         <StackPane fx:id="positionListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                     </VBox>
-                    <VBox fx:id="interviewList" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                    <VBox fx:id="interviewList" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
                         <padding>
                             <Insets top="10" right="10" bottom="10" left="10"/>
                         </padding>
