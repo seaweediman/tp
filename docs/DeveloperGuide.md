@@ -17,7 +17,11 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+*HR Manager* is a desktop application built with JavaFX GUI which aims to help with the HR management in small companies. With the application, the user will be able to easily manage their candidates, job postings, and interview sessions.
+
+To set up the application, please refer to the guide [_Setting up and getting started_](SettingUp.md).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
