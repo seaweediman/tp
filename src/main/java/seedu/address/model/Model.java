@@ -214,6 +214,4 @@ public interface Model {
      * Deletes Person from an Interview's personList.
      */
     void deletePersonFromInterview(Person person);
-
-    Interview getInterview(Index index);
 }

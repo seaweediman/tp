@@ -51,10 +51,6 @@ public class UniqueInterviewList implements Iterable<Interview> {
         internalList.add(toAdd);
     }
 
-    public Interview getInterview(Index index) {
-        return internalList.get(index.getZeroBased());
-    }
-
     /**
      * Replaces the interview {@code target} in the list with {@code editedInterview}.
      * {@code target} must exist in the list.

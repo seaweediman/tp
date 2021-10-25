@@ -13,7 +13,8 @@ import java.util.List;
 import java.util.Set;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 
 
 public class UnassignInterviewCommand extends Command {
@@ -22,7 +23,8 @@ public class UnassignInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Candidates removed from interview %1$s: %2$s";
-    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for this Interview: %3$s";
+    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for " +
+            "this Interview: %3$s";
 
     private Index interviewIndex;
 
@@ -70,7 +72,6 @@ public class UnassignInterviewCommand extends Command {
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayString(), sb),
                 false, false, true, false, false, false, false,

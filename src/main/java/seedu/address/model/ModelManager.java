@@ -207,11 +207,6 @@ public class ModelManager implements Model {
         hrManager.deletePersonFromInterview(person);
     }
 
-    @Override
-    public Interview getInterview(Index index) {
-        return hrManager.getInterview(index);
-    }
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**
