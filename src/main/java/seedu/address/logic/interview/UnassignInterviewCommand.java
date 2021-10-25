@@ -51,11 +51,11 @@ public class UnassignInterviewCommand extends Command {
         }
 
         Interview interview = lastShownInterviewList.get(interviewIndex.getZeroBased());
+
         int count = 1;
 
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
-
         for (Index candidateIndex : candidateIndexes) {
             if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -76,6 +76,15 @@ public class UnassignInterviewCommand extends Command {
         return new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayString(), sb),
                 false, false, true, false, false, false, false,
                 false);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnassignInterviewCommand// instanceof handles nulls
+                && interviewIndex.equals(((UnassignInterviewCommand) other).interviewIndex)) // state check
+                && candidateIndexes.equals(((UnassignInterviewCommand) other).candidateIndexes);
+
     }
 }
 
