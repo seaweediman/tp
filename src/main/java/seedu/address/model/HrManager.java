@@ -43,7 +43,7 @@ public class HrManager implements ReadOnlyHrManager {
     }
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an HrManager using the persons, positions and interviews in the {@code toBeCopied}
      */
     public HrManager(ReadOnlyHrManager toBeCopied) {
         this();
@@ -99,7 +99,7 @@ public class HrManager implements ReadOnlyHrManager {
 
     /**
      * Adds a person to the HR Manager.
-     * The person must not already exist in the address book.
+     * The person must not already exist in the HR Manager.
      */
     public void addPerson(Person p) {
         persons.add(p);
@@ -107,8 +107,8 @@ public class HrManager implements ReadOnlyHrManager {
 
     /**
      * Replaces the given person {@code target} in the list with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the HR Manager.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the HR Manager.
      */
     public void setPerson(Person target, Person editedPerson) {
         requireNonNull(editedPerson);
@@ -117,8 +117,8 @@ public class HrManager implements ReadOnlyHrManager {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code HrManager}.
+     * {@code key} must exist in the HR Manager.
      */
     public void removePerson(Person key) {
         persons.remove(key);
@@ -244,7 +244,8 @@ public class HrManager implements ReadOnlyHrManager {
     @Override
     public String toString() {
         return persons.asUnmodifiableObservableList().size() + " persons\n"
-                + positions.asUnmodifiableObservableList().size() + " positions";
+                + positions.asUnmodifiableObservableList().size() + " positions\n"
+                + interviews.asUnmodifiableObservableList().size() + " interviews";
     }
 
     @Override
@@ -267,12 +268,13 @@ public class HrManager implements ReadOnlyHrManager {
         return other == this // short circuit if same object
                 || (other instanceof HrManager // instanceof handles nulls
                 && persons.equals(((HrManager) other).persons))
-                && positions.equals(((HrManager) other).positions);
+                && positions.equals(((HrManager) other).positions)
+                && interviews.equals(((HrManager) other).interviews);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() ^ positions.hashCode();
+        return persons.hashCode() ^ positions.hashCode() ^ interviews.hashCode();
     }
 
     public Person getPerson(Index index) {

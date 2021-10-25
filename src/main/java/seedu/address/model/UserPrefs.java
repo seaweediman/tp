@@ -92,7 +92,8 @@ public class UserPrefs implements ReadOnlyUserPrefs {
 
         return guiSettings.equals(o.guiSettings)
                 && hrManagerCandidatesFilePath.equals(o.hrManagerCandidatesFilePath)
-                && hrManagerPositionsFilePath.equals(o.hrManagerPositionsFilePath);
+                && hrManagerPositionsFilePath.equals(o.hrManagerPositionsFilePath)
+                && hrManagerInterviewsFilePath.equals(o.hrManagerInterviewsFilePath);
     }
 
     @Override

@@ -8,7 +8,7 @@ import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 
 /**
- * Clears the address book.
+ * Clears the HR Manager.
  */
 public class ClearCommand extends Command {
 

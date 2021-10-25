@@ -247,15 +247,15 @@ Manage a list of interviews for you to select the desired candidates, with the s
 
 <u>Format:</u>
 
-    add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+    add_i position=<POSITION> index=<INDEX>... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
 
 <u>Example:</u>
 
     add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
 * Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
-* `POSITION` must be added to HR Manager before it can be used as a parameter.
-  * e.g. if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
+* `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
+  * e.g. if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
   * e.g. if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
   * e.g. if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`

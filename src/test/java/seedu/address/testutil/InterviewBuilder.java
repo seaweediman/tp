@@ -17,7 +17,7 @@ import seedu.address.model.position.Position;
 public class InterviewBuilder {
 
 
-    private Position position = TypicalPositions.ADMIN_ASSISTANT;
+    private Position position = TypicalPositions.HR_MANAGER;
     private Set<Person> candidates = new HashSet<>(List.of(TypicalPersons.BENSON));
     private LocalDate localDate = LocalDate.of(2021, 10, 15);
     private LocalTime startTime = LocalTime.of(10, 0);

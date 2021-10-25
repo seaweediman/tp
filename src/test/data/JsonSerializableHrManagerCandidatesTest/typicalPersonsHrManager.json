@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
+  "_comment": "HrManager save file which contains the same Person values as in TypicalPersons#getTypicalPersons()",
   "persons" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
@@ -19,7 +19,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "remark" : "He can't handle beer!",
     "tagged" : [ "owesMoney", "friends" ],
-    "status": "None",
+    "status": "Scheduled",
     "positions" : [ {
       "title" : "HR Manager",
       "positionStatus" : "OPEN"
