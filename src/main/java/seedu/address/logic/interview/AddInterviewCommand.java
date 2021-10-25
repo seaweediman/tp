@@ -32,7 +32,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
-            + "" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
+            + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
             + PREFIX_DATE + "DD/MM/YYYY "
             + PREFIX_TIME + "HHMM "
             + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"

@@ -136,6 +136,9 @@ public class Person {
 
     public void deleteInterview(Interview i) {
         interviews.remove(i);
+        if (interviews.isEmpty()) {
+            status = Status.APPLIED;
+        }
     }
 
     /**
@@ -224,9 +227,5 @@ public class Person {
 
     public void setInterviews(Set<Interview> personInterviews) {
         interviews.addAll(personInterviews);
-    }
-
-    public void resetStatus() {
-        status = Status.APPLIED;
     }
 }
