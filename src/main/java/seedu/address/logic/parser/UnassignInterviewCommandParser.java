@@ -1,20 +1,23 @@
 package seedu.address.logic.parser;
 
-import seedu.address.commons.core.index.Index;
-import seedu.address.logic.candidate.AddCandidateCommand;
-import seedu.address.logic.interview.UnassignInterviewCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-
-import java.util.Set;
-import java.util.stream.Stream;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
 
-public class UnassignInterviewCommandParser implements Parser<UnassignInterviewCommand>{
+import java.util.Set;
+import java.util.stream.Stream;
 
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.interview.UnassignInterviewCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
 
+public class UnassignInterviewCommandParser implements Parser<UnassignInterviewCommand> {
+
+    /**
+     * Parses the given {@code String} of arguments in the context of the UnassignInterviewCommand
+     * and returns a UnassignInterviewCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public UnassignInterviewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CANDIDATE_INDEX, PREFIX_INTERVIEW_INDEX);

@@ -1,5 +1,15 @@
 package seedu.address.logic.interview;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
@@ -9,33 +19,22 @@ import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
-
-
 public class UnassignInterviewCommand extends Command {
     public static final String COMMAND_WORD = "unassign";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Unassigns the candidates specified by their candidate index from an interview specified by its " +
-                     "interview index.\n"
+            + ": Unassigns the candidates specified by their candidate index from an interview specified by its "
+            + "interview index.\n"
             + "Parameters: "
             + PREFIX_INTERVIEW_INDEX + "INTERVIEW_INDEX "
             + PREFIX_CANDIDATE_INDEX + "CANDIDATE_INDEX (must be a positive integer)...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_INTERVIEW_INDEX + "1 "
-            + PREFIX_CANDIDATE_INDEX + "1 3 " ;
+            + PREFIX_CANDIDATE_INDEX + "1 3 ";
 
     public static final String MESSAGE_SUCCESS = "Candidates removed from interview %1$s: %2$s";
-    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for " +
-            "this Interview: %3$s";
+    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for "
+                + "this Interview: %3$s";
     public static final String MESSAGE_ALL_CANDIDATES_REMOVED = "All candidates removed from interview: %1$s";
 
     private Index interviewIndex;
