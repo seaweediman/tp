@@ -199,6 +199,34 @@ public class MainWindow extends UiPart<Stage> {
         listLabel.setText("Interviews");
     }
 
+    private void handleFindC(CommandResult commandResult) {
+        displayListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerCandidatesFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        listLabel.setText("Candidates (filtered)");
+    }
+
+    private void handleFindP(CommandResult commandResult) {
+        displayListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerPositionsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        listLabel.setText("Positions (filtered)");
+    }
+
+    private void handleFindI(CommandResult commandResult) {
+        displayListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        listLabel.setText("Interviews (filtered)");
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -220,6 +248,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleListP(commandResult);
             } else if (commandResult.isListI()) {
                 handleListI(commandResult);
+            } else if (commandResult.isFindC()) {
+                handleFindC(commandResult);
+            } else if (commandResult.isFindP()) {
+                handleFindP(commandResult);
+            } else if (commandResult.isFindI()) {
+                handleFindI(commandResult);
             }
 
             return commandResult;

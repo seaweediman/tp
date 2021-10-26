@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -31,7 +32,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
-            + "" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
+            + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
             + PREFIX_DATE + "DD/MM/YYYY "
             + PREFIX_TIME + "HHMM "
             + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"
@@ -48,6 +49,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
     public static final String MESSAGE_NO_POSITION_FOUND = "Position %1$s not found in HR Manager";
     public static final String MESSAGE_POSITION_CLOSED = "Position %1$s is closed";
+    public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s did not apply for Position %2$s";
 
     private final Interview toAdd;
     private final Set<Index> indexes;
@@ -64,18 +66,7 @@ public class AddInterviewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        //loads candidates from set of index
-        Set<Person> candidates = new HashSet<>();
-        for (Index index : indexes) {
-            if (index.getZeroBased() < model.getFilteredPersonList().size()) {
-                Person person = model.getPerson(index);
-                candidates.add(person);
-            } else {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-        }
-        toAdd.setCandidates(candidates);
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
@@ -85,6 +76,22 @@ public class AddInterviewCommand extends Command {
         if (model.isPositionClosed(position)) {
             throw new CommandException(String.format(MESSAGE_POSITION_CLOSED, position.getTitle()));
         }
+        //loads candidates from set of index
+        Set<Person> candidates = new HashSet<>();
+        for (Index index : indexes) {
+            if (index.getZeroBased() < lastShownPersonList.size()) {
+                Person person = lastShownPersonList.get(index.getZeroBased());
+                //checks if person applied for position
+                if (!person.appliedForPosition(position)) {
+                    throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
+                            person.getName(), position));
+                }
+                candidates.add(person);
+            } else {
+                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            }
+        }
+        toAdd.setCandidates(candidates);
 
         if (model.hasInterview(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);

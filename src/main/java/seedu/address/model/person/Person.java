@@ -26,7 +26,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
-    private final Status status;
+    private Status status;
     private Set<Position> positions = new HashSet<>();
     private Set<Interview> interviews = new HashSet<>();
 
@@ -122,12 +122,28 @@ public class Person {
         positions.remove(p);
     }
 
+    /**
+     * Adds an interview into a person's list of interviews, and since the person has the upcoming added interview,
+     * this method always sets the status as scheduled.
+     * @param i interview object to be added to person
+     */
     public void addInterview(Interview i) {
         interviews.add(i);
+        if (status != Status.SCHEDULED) {
+            status = Status.SCHEDULED;
+        }
     }
 
+    /**
+     * Delets an interviwe from a person's list of interviews. If the person does not have any upcoming interview
+     * this method sets the status as applied.
+     * @param i
+     */
     public void deleteInterview(Interview i) {
         interviews.remove(i);
+        if (interviews.isEmpty()) {
+            status = Status.APPLIED;
+        }
     }
 
     /**

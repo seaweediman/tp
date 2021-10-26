@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the HR Manager data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -206,7 +206,6 @@ public class ModelManager implements Model {
     public void deletePersonFromInterview(Person person) {
         hrManager.deletePersonFromInterview(person);
     }
-
 
     //=========== Filtered Person List Accessors =============================================================
 
