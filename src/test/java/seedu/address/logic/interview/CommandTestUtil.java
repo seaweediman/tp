@@ -32,12 +32,16 @@ import seedu.address.model.interview.PositionTitleContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Title;
+import seedu.address.testutil.EditInterviewDescriptorBuilder;
 
 public class CommandTestUtil {
 
     public static final Position VALID_POSITION_ADMIN = new Position(new Title("Admin"));
     public static final Position VALID_POSITION_MANAGER = new Position(new Title("Manager"));
     public static final HashSet<Person> VALID_CANDIDATES_SET = new HashSet<>(List.of(ALICE, BOB));
+    public static final HashSet<Index> VALID_EMPTY_CANDIDATE_INDEX_SET = new HashSet<>();
+    public static final HashSet<Index> VALID_CANDIDATE_INDEX_SET =
+            new HashSet<>(List.of(Index.fromZeroBased(1), Index.fromZeroBased(2), Index.fromZeroBased(3)));
     public static final LocalDate VALID_LOCAL_DATE = LocalDate.of(2021, 10, 18);
     public static final LocalDate VALID_LOCAL_DATE_OTHER_DATE = LocalDate.of(2021, 10, 01);
     public static final LocalTime VALID_START_TIME = LocalTime.NOON; //12:00
@@ -46,6 +50,7 @@ public class CommandTestUtil {
     public static final Duration VALID_DURATION_OTHER_DURATION = Duration.ofMinutes(120);
     public static final InterviewStatus VALID_STATUS_PENDING = InterviewStatus.PENDING;
     public static final InterviewStatus VALID_STATUS_COMPLETED = InterviewStatus.COMPLETED;
+
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
@@ -57,9 +62,13 @@ public class CommandTestUtil {
     public static final String VALID_TIME_OTHER_TIME = "1300";
     public static final String VALID_DURATION_TIME = "180";
     public static final String VALID_DURATION_TIME_OTHER_DURATION = "190";
+    public static final String VALID_CANDIDATE_INDEX_1 = "1";
+    public static final String VALID_CANDIDATE_INDEX_2 = "2";
+    public static final String VALID_POSITION_ADMIN_ASSISTANT = "Administrative Assistant";
 
     public static final String VALID_POSITION_ADMIN_DESC = " " + PREFIX_POSITION + VALID_POSITION_ADMIN.getTitle();
     public static final String VALID_POSITION_MANAGER_DESC = " " + PREFIX_POSITION + VALID_POSITION_MANAGER.getTitle();
+    public static final String VALID_POSITION_ADMIN_ASST_DESC = " " + PREFIX_POSITION + VALID_POSITION_ADMIN_ASSISTANT;
     public static final String VALID_CANDIDATE_DESC_ALICE = " " + PREFIX_CANDIDATE_INDEX + "1";
     public static final String VALID_CANDIDATE_DESC_BOB = " " + PREFIX_CANDIDATE_INDEX + "2";
     public static final String VALID_DATE_DESC = " " + PREFIX_DATE + VALID_DATE;
@@ -73,11 +82,27 @@ public class CommandTestUtil {
     public static final String VALID_STATUS_COMPLETED_DESC = " " + PREFIX_INTERVIEW_STATUS
             + VALID_STATUS_COMPLETED;
 
+    public static final String VALID_POSITION_ADMIN_NAME = VALID_POSITION_ADMIN.getTitle().toString();
+    public static final String VALID_POSITION_MANAGER_NAME = VALID_POSITION_MANAGER.getTitle().toString();
+
+    public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION + "@123";
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "38/10/2021";
     public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "2500";
     public static final String INVALID_DURATION_TIME = " " + PREFIX_DURATION + "-180";
-
+    public static final String INVALID_INDEX_DESC = " " + PREFIX_CANDIDATE_INDEX + "?";
     public static final String INVALID_STATUS_DESC = " " + PREFIX_INTERVIEW_STATUS + "blah";
+
+    public static final EditInterviewCommand.EditInterviewDescriptor DESC_INTERVIEW_ADMIN_ASSISTANT;
+    public static final EditInterviewCommand.EditInterviewDescriptor DESC_INTERVIEW_MANAGER;
+
+    static {
+        DESC_INTERVIEW_ADMIN_ASSISTANT = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_ADMIN_NAME)
+                .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDuration(VALID_DURATION_TIME).withStatus(VALID_STATUS_PENDING).build();
+        DESC_INTERVIEW_MANAGER = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_MANAGER_NAME)
+                .withCandidateIndexes(VALID_CANDIDATE_INDEX_2).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDuration(VALID_DURATION_TIME_OTHER_DURATION).withStatus(VALID_STATUS_PENDING).build();
+    }
 
     /**
      * Executes the given {@code command}, confirms that <br>
@@ -89,6 +114,8 @@ public class CommandTestUtil {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
+            System.out.println(expectedCommandResult.getFeedbackToUser());
+            System.out.println(result.getFeedbackToUser());
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);

@@ -7,6 +7,7 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInterviews.ASSISTANT_INTERVIEW;
+import static seedu.address.testutil.TypicalInterviews.HR_MANAGER_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
@@ -80,7 +81,7 @@ public class HrManagerTest {
     public void resetData_withDuplicateInterviews_throwsDuplicateInterviewException() {
         // Two interviews with the same identity fields
         Interview editedAssistantInterview = new InterviewBuilder().build();
-        List<Interview> newInterviews = Arrays.asList(ASSISTANT_INTERVIEW, editedAssistantInterview);
+        List<Interview> newInterviews = Arrays.asList(HR_MANAGER_INTERVIEW, editedAssistantInterview);
         HrManagerStub newData = new HrManagerStub(() -> newInterviews);
 
         assertThrows(DuplicateInterviewException.class, () -> hrManager.resetData(newData));
@@ -198,7 +199,7 @@ public class HrManagerTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyHrManager whose persons list can violate interface constraints.
      */
     private static class HrManagerStub implements ReadOnlyHrManager {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();

@@ -17,7 +17,11 @@ title: Developer Guide
 
 ## **Setting up, getting started**
 
-Refer to the guide [_Setting up and getting started_](SettingUp.md).
+
+*HR Manager* is a desktop application built with JavaFX GUI which aims to help with the HR management in small companies. With the application, the user will be able to easily manage their candidates, job postings, and interview sessions.
+
+To set up the application, please refer to the guide [_Setting up and getting started_](SettingUp.md).
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,6 +158,60 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
+## **Feature Implementation** ##
+
+### **Find Command** ###
+
+The `find_c`, `find_p` and `find_i` command allows users to search for candidates, positions and interviews using their parameters.
+Generally, they are called `find_x` in this section
+
+The class structure of an execution of `find_x` command is as follows. Only important classes are shown
+![Structure of the find_x command](images/FindClassDiagram.png)
+
+The `FindXCommandPredicate` holds the parsed arguments from the command and a `test` method to check if X fufils the condition
+
+The sequence diagram of a `find_x` command execution is as follows
+
+Firstly, the parsing of the command and argument occurs as follows
+![Parse_sequence_of_find_x](images/FindParseSequenceDiagram.png)
+
+Continuing the previous diagram, the FindXCommand is executed, and the UI is updated
+![Execute_sequence_of_find_x](images/FindExecuteSequenceDiagram.png)
+
+#### Design Considerations ####
+Aspect: Logical operators and combinations for find fields
+* Alternative 1: AND between separate fields and OR within multiple entries in same field
+    * eg: `find_c name=alex brad phone=12345678` === `(phone=12345678) AND (name contains alex OR brad)`
+    * Pros: Easy to implement, simple command format for the most common usecase
+    * Cons: Unable to search using more complex combination of logical operators
+* Alternative 2: Allow users to specify which operators are used and how they are combined
+    * Pros: Give granular control to the user for find
+    * Cons: Very complex command format
+
+### **List All Interviews Command** ###
+
+The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
+Generally, they are called `list_x` in this section
+
+The class structure of an execution of `list_x` command is as follows. Only important classes are shown
+
+![Structure of the list_x command](images/ListClassDiagram.png)
+
+The `ListXCommandPredicate` uses the preset predicate such that all X fulfills the condition.
+
+The sequence diagram of a `list_x` command execution is as follows
+
+Firstly, the parsing of the command and argument occurs as follows
+
+![Parse_sequence_of_list_x](images/ListParseSequenceDiagram.png)
+
+Continuing the previous diagram, the ListXCommand is executed, and the corresponding X panel in the UI is updated
+
+![Execute_sequence_of_list_x](images/ListExcecuteSequenceDiagram.png)
+
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## **Appendix: Requirements**
 
 ### Product scope
@@ -336,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to <u>list all positions (UC05)</u>.
 2. User requests to <u>list all candidates (UC03)</u>.
 3. User requests to add an interview with details for the interview.
-4. HR Manager adds interview.   
+4. HR Manager adds interview.
 5. User can see the added job position.
 
    Use case ends

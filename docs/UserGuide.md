@@ -17,8 +17,37 @@ HR manager's easy to use features will help you to arrange for upcoming intervie
 The data you have provided will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
 
+--------------------------------------------------------------------------------------------------------------------
 
-## Features & Usage
+## Quick start
+
+1. Ensure you have Java `11` or above installed in your Computer.
+
+2. Download the latest `HRManager.jar` from [here](https://github.com/AY2122S1-CS2103T-W13-1/tp/releases).
+
+3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+   ![Ui](images/Ui.png)
+
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+   Some example commands you can try:
+
+* **`list_c`** : Lists all candidates.
+
+* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the Address Book.
+
+* **`delete_c`**`3` : Deletes the 3rd candidate shown in the current candidate list.
+
+* **`clear`** : Deletes all candidates, positions, interviews.
+
+* **`exit`** : Exits the app.
+
+6. Refer to the [Features](#features) below for details of each command.
+
+--------------------------------------------------------------------------------------------------------------------
+
+## Features
 <div markdown="block" class="alert alert-info">
 
 **Notes about the command format:**<br>
@@ -43,18 +72,82 @@ transferable to other devices too!
 
 </div>
 
+### Feature: Job Position Management
+
+Manage a list of job positions posted by your company, with the simple instructions below!
+
+#### <u>Add a position:</u> `add_p`
+
+*Adds a position to the list of positions.*
+
+<u>Format:</u>
+
+    add_p title=<TITLE>
+
+<u>Example:</u>
+
+    add_p Assistant
+
+* Adds a position with the title of Assistant.
+  <br>
+  <br>
+
+#### <u>Delete a position:</u> `delete_p`
+
+*Deletes a position from the list of positions.*
+
+<u>Format:</u>
+
+    delete_p <INDEX>
+
+<u>Example:</u>
+
+    delete_p 3
+
+* Deletes the 3rd position from the list of positions.
+* Also deletes this position from every candidate who applied for the position
+  <br>
+  <br>
+
+#### <u>List all positions:</u> `list_p`
+
+*Displays a list of all the positions stored in the application.*
+
+<u>Format:</u>
+
+    list_p
+
+  <br> 
+  <br>
+#### <u>Edit a position:</u> `edit_p`
+
+*Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
+
+<u>Format:</u>
+
+    edit_p <INDEX> [title=<TITLE>]... [status=<STATUS>]...
+
+<u>Example:</u>
+
+    edit_p 3 status=closed
+
+* Edits the status of the 3rd position in the list to closed.
+* Setting position status to close will delete the position from every candidate who applied for the position.
+* At least one field must be edited.
+  <br>
+  <br>
+
 ### Feature: Candidate Management
 
 Manage a list of people who are candidates for your company, with the simple instructions below!
 
-
-#### Add a candidate: `add_c`
+#### <u>Add a candidate:</u> `add_c`
 
 *Adds a candidate to the list of candidates.*
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]... 
+    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
 
 <u>Example:</u>
 
@@ -71,8 +164,10 @@ Manage a list of people who are candidates for your company, with the simple ins
   * `Withdrawn`
 * `POSITION` must be added to HR Manager before it can be used as a parameter
   * e.g. if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
+    <br>
+    <br>
 
-#### Delete a candidate: `delete_c`
+#### <u>Delete a candidate:</u> `delete_c`
 
 *Deletes a candidate along with his/her details from the list of candidates.*
 
@@ -81,12 +176,14 @@ Manage a list of people who are candidates for your company, with the simple ins
     delete_c <INDEX>
 
 <u>Example:</u>
-  
+
     delete_c 3
 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
+  <br>
+  <br>
 
-**<u>List all candidates:</u>** `list_c`
+#### <u>List all candidates:</u> `list_c`
 
 *Displays a list of all the candidates stored in the application.*
 
@@ -94,7 +191,10 @@ Manage a list of people who are candidates for your company, with the simple ins
 
     list_c
 
-#### Remark a candidate: `remark_c`
+  <br> 
+  <br>
+
+#### <u>Remark a candidate:</u> `remark_c`
 
 *Adds a remark to a candidate.*
 
@@ -107,8 +207,10 @@ Manage a list of people who are candidates for your company, with the simple ins
     remark_c 1 remark=20 years of experience
 
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
+  <br>
+  <br>
 
-#### Edit a candidate: `edit_c`
+#### <u>Edit a candidate:</u> `edit_c`
 
 *Edits a candidate's details. At least 1 edit field is needed.*
 
@@ -131,82 +233,29 @@ Manage a list of people who are candidates for your company, with the simple ins
   * `Accepted`
   * `Rejected`
   * `Withdrawn`
+    <br>
+    <br>
 
-### Feature: Job Position Management
-
-Manage a list of job positions posted by your company, with the simple instructions below!
-
-#### Add a position: `add_p`
-
-*Adds a position to the list of positions.*
-
-<u>Format:</u>
-
-    add_p title=<TITLE>
-
-<u>Example:</u>
-
-    add_p Assistant
-
-* Adds a position with the title of Assistant.
-
-#### Delete a position: `delete_p`
-
-*Deletes a position from the list of positions.*
-
-<u>Format:</u>
-
-    delete_p <INDEX>
-
-<u>Example:</u>
-
-    delete_p 3
-
-* Deletes the 3rd position from the list of positions.
-* Also deletes this position from every candidate who applied for the position
-
-#### List all positions: `list_p`
-
-*Displays a list of all the positions stored in the application.*
-
-<u>Format:</u>
-
-    list_p
-
-#### Edit a position: `edit_p`
-
-*Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
-
-<u>Format:</u>
-
-    edit_p <INDEX> [title=<TITLE>] [status=<STATUS>]
-
-<u>Example:</u>
-
-    edit_p 3 status=closed
-
-* Edits the status of the 3rd position in the list to closed.
-* Setting position status to close will delete the position from every candidate who applied for the position
 
 ### Feature: Interview Management
 
-Manage a list of interviews to for your company to select the desired candidates, with the simple instructions below!
+Manage a list of interviews for you to select the desired candidates, with the simple instructions below!
 
-#### Add an interview: `add_i`
+#### <u>Add an interview:</u> `add_i`
 
 *Adds an interview to the list of interviews.*
 
 <u>Format:</u>
 
-    add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+    add_i position=<POSITION> index=<INDEX>... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
 
 <u>Example:</u>
 
     add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
 * Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
-* `POSITION` must be added to HR Manager before it can be used as a parameter.
-  * e.g. if the position, `Accountant` has not been added to HR Manager, `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` will show an error : `Position Accountant not found in HR Manager`
+* `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
+  * e.g. if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
   * e.g. if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
   * e.g. if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
@@ -216,8 +265,10 @@ Manage a list of interviews to for your company to select the desired candidates
   * e.g. if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * `STATUS` must be either `pending` or `completed`
   * e.g. if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
+    <br>
+    <br>
 
-#### Add an interview: `delete_i`
+#### <u>Delete an interview:</u> `delete_i`
 
 *Deletes an interview from the list of interviews.*
 
@@ -231,14 +282,36 @@ Manage a list of interviews to for your company to select the desired candidates
 
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
+  <br>
+  <br>
 
-#### List all interviews: `list_i`
+
+#### <u>Edit an interview:</u> `edit_i`
+
+Edits a specific interview in the list of interviews.
+
+<u>Format:</u>
+
+    edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+
+<u>Example:</u>
+`edit_i 2 index=1 index=2 date=18/10/2021 time=1400`
+* Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
+* Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs.
+* At least one field must be edited.
+  <br>
+  <br>
+
+#### <u>List all interviews:</u> `list_i`
 
 *Displays a list of all the interviews stored in the application.*
 
 <u>Format:</u>
 
     list_i
+
+  <br> 
+  <br>
 
 ### Feature: Storage
 
@@ -269,15 +342,15 @@ For a candidate,
     "title" : "Assistant",
     "positionStatus" : "OPEN"
   }]
- }]
+}]
 ```
 
 For a position,
 
 ```json
 [{
- "title" : "HR Manager",
-   "positionStatus" : "OPEN"
+  "title" : "HR Manager",
+  "positionStatus" : "OPEN"
 }]
 ```
 
@@ -323,5 +396,6 @@ The transferred save files can then be loaded readily when using this applicatio
 | **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g.. `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
 | **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g.. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
+| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
 | **Delete an interview** | `delete_i <INDEX>` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
-| **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] | 
+| **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] |
