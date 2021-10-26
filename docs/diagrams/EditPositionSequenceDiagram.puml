@@ -14,10 +14,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("edit_p 1 title=Accountant")
+[-> LogicManager : execute("edit_p ...")
 activate LogicManager
 
-LogicManager -> HrManagerParser : parseCommand("edit_p 1 title=Accountant")
+LogicManager -> HrManagerParser : parseCommand("edit_p ...")
 activate HrManagerParser
 
 create EditPositionCommandParser
@@ -27,19 +27,19 @@ activate EditPositionCommandParser
 EditPositionCommandParser --> HrManagerParser
 deactivate EditPositionCommandParser
 
-HrManagerParser -> EditPositionCommandParser : parse("1")
+HrManagerParser -> EditPositionCommandParser : parse(args)
 activate EditPositionCommandParser
+
+create EditPositionDescriptor
+EditPositionCommandParser -> EditPositionDescriptor
+activate EditPositionDescriptor
+
+EditPositionDescriptor --> EditPositionCommandParser : d
+deactivate EditPositionDescriptor
 
 create EditPositionCommand
 EditPositionCommandParser -> EditPositionCommand
 activate EditPositionCommand
-
-create EditPositionDescriptor
-EditPositionCommand -> EditPositionDescriptor
-activate EditPositionDescriptor
-
-EditPositionDescriptor --> EditPositionCommand : d
-deactivate EditPositionDescriptor
 
 EditPositionCommand --> EditPositionCommandParser : e
 deactivate EditPositionCommand
@@ -59,7 +59,7 @@ activate EditPositionCommand
 EditPositionCommand -> Model : setPosition(1, d)
 activate Model
 
-Model --> EditPositionCommand
+EditPositionCommand -> Model : updateFilteredPersonList()
 deactivate Model
 
 create CommandResult
