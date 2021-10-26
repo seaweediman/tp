@@ -31,7 +31,7 @@ public class PositionTest {
         // name differs in case, all other attributes same -> returns false
         Position editedBookkeeper = new PositionBuilder(BOOKKEEPER).withTitle(VALID_TITLE_BOOKKEEPER.toLowerCase())
                 .build();
-        assertFalse(BOOKKEEPER.isSamePosition(editedBookkeeper));
+        assertTrue(BOOKKEEPER.isSamePosition(editedBookkeeper));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_TITLE_BOOKKEEPER + " ";
