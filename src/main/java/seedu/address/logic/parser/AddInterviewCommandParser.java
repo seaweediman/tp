@@ -42,8 +42,7 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
         }
 
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Set<Index> indexes = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_CANDIDATE_INDEX));
-
+        Set<Index> indexes = ParserUtil.parseCandidateIndex(argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get());
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
