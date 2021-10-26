@@ -33,16 +33,20 @@ public class UnassignInterviewCommandTest {
         Interview interviewToUnassign = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
 
 
-        Person person = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person alice = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
 
         StringBuilder sb = new StringBuilder();
         sb.append("\n");
-        sb.append("1. " + person.getName() + "\n");
+        sb.append("1. " + alice.getName() + "\n");
 
         String expectedMessage = String.format(UnassignInterviewCommand.MESSAGE_SUCCESS,
                 interviewToUnassign.getDisplayStringWithoutNames(), sb);
 
-        person.addInterview(interviewToUnassign);
+        alice.addInterview(interviewToUnassign);
+
+        Set<Person> candidates = new HashSet<>();
+        candidates.add(alice);
+        interviewToUnassign.setCandidates(candidates);
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
                 true, false, false, false, false,
@@ -71,12 +75,16 @@ public class UnassignInterviewCommandTest {
 
         Person alice = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person benson = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Set<Person> candidates = new HashSet<>();
+        candidates.add(alice);
+        candidates.add(benson);
 
         String expectedMessage = String.format(MESSAGE_ALL_CANDIDATES_REMOVED,
                 interviewToUnassign.getDisplayStringWithoutNames());
 
         alice.addInterview(interviewToUnassign);
         benson.addInterview(interviewToUnassign);
+        interviewToUnassign.setCandidates(candidates);
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
                 true, false, false, false, false,

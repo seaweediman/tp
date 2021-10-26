@@ -6,9 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -123,8 +121,19 @@ public class UnassignInterviewCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof UnassignInterviewCommand// instanceof handles nulls
                 && interviewIndex.equals(((UnassignInterviewCommand) other).interviewIndex)) // state check
-                && candidateIndexes.equals(((UnassignInterviewCommand) other).candidateIndexes);
+                && isTotalWipe == ((((UnassignInterviewCommand) other).isTotalWipe));
 
+    }
+
+    /**
+     * Returns an unmodifiable candidateIndex set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     * Returns {@code Optional#empty()} if {@code candidates} is null.
+     */
+    public Optional<Set<Index>> getCandidateIndexes() {
+        return (candidateIndexes != null)
+                ? Optional.of(Collections.unmodifiableSet(candidateIndexes))
+                : Optional.empty();
     }
 }
 
