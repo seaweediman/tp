@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.Command;
-import seedu.address.logic.interview.UnassignInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

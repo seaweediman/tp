@@ -1,6 +1,18 @@
 package seedu.address.logic.interview;
 
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_ALL_CANDIDATES_REMOVED;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
+
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
@@ -10,17 +22,6 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_ALL_CANDIDATES_REMOVED;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
-
 public class UnassignInterviewCommandTest {
 
     private Model model = new ModelManager(getTypicalHrManager(), new UserPrefs());
@@ -29,7 +30,8 @@ public class UnassignInterviewCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Set<Index> indexes = new HashSet<>();
         indexes.add(INDEX_FIRST_PERSON);
-        UnassignInterviewCommand unassignInterviewCommand = new UnassignInterviewCommand(INDEX_FIRST_INTERVIEW, indexes);
+        UnassignInterviewCommand unassignInterviewCommand = new UnassignInterviewCommand(INDEX_FIRST_INTERVIEW,
+                                                                                                        indexes);
         Interview interviewToUnassign = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
 
 
