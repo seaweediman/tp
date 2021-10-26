@@ -4,11 +4,18 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_NO_POSITION_FOUND;
+import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_POSITION_CLOSED;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -53,6 +60,29 @@ public class AddCandidateCommandTest {
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
         assertThrows(CommandException.class, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, () ->
+                addCandidateCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_positionDoesNotExist_throwsCommandException() {
+        Person validPerson = new PersonBuilder(ALICE).withPositions("Admin").build();
+        ModelStubWithSomePositionsAndBob modelStub = new ModelStubWithSomePositionsAndBob();
+        AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
+        String expectedMessage = String.format(MESSAGE_NO_POSITION_FOUND, "Admin");
+
+        assertThrows(CommandException.class, expectedMessage, () ->
+                addCandidateCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_positionIsClosed_throwsCommandException() {
+        Person validPerson = new PersonBuilder(ALICE).withPositions(ADMIN_ASSISTANT.getTitle().fullTitle).build();
+        ModelStubWithSomePositionsAndBob modelStub = new ModelStubWithSomePositionsAndBob();
+        AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
+
+        String expectedMessage = String.format(MESSAGE_POSITION_CLOSED, ADMIN_ASSISTANT.getTitle().fullTitle);
+
+        assertThrows(CommandException.class, expectedMessage, () ->
                 addCandidateCommand.execute(modelStub));
     }
 
@@ -269,6 +299,46 @@ public class AddCandidateCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+    }
+
+    /**
+     * A Model stub that has position ADMIN_ASSISTANT and a person BOB.
+     */
+    private class ModelStubWithSomePositionsAndBob extends ModelStub {
+        private final Set<Position> positions = new HashSet<>();
+        private final Set<Person> persons = new HashSet<>();
+
+        ModelStubWithSomePositionsAndBob() {
+            persons.add(BOB);
+            positions.add(ADMIN_ASSISTANT);
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.persons.contains(person);
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            for (Position p : positions) {
+                if (p.isSamePosition(position)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //For some reason p.getStatus() is always open even when building with closed
+        @Override
+        public boolean isPositionClosed(Position p) {
+            return true;
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            persons.add(person);
         }
     }
 

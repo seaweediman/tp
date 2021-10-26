@@ -110,6 +110,7 @@ public class AddInterviewCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddInterviewCommand // instanceof handles nulls
-                && toAdd.equals(((AddInterviewCommand) other).toAdd));
+                && toAdd.equals(((AddInterviewCommand) other).toAdd))
+                && indexes.equals(((AddInterviewCommand) other).indexes);
     }
 }

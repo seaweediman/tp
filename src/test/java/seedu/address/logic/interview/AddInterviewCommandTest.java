@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
 import static seedu.address.testutil.TypicalPositions.HR_MANAGER;
@@ -42,7 +43,9 @@ class AddInterviewCommandTest {
     public void execute_interviewAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingInterviewAdded modelStub = new ModelStubAcceptingInterviewAdded();
         Interview validInterview = new InterviewBuilder().build();
-        CommandResult commandResult = new AddInterviewCommand(validInterview, new HashSet<>()).execute(modelStub);
+        Set<Index> indexSet = new HashSet<>();
+        indexSet.add(INDEX_FIRST_PERSON);
+        CommandResult commandResult = new AddInterviewCommand(validInterview, indexSet).execute(modelStub);
 
         assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, validInterview.getDisplayString()),
                 commandResult.getFeedbackToUser());
@@ -357,7 +360,9 @@ class AddInterviewCommandTest {
         }
     }
 
-
+    /**
+     * A Model stub that has ObservableList fields.
+     */
     private class ModelStubWithObservable extends ModelStub {
         private ObservableList<Person> emptyPersonList = FXCollections.observableArrayList();
         private ObservableList<Position> emptyPositionList = FXCollections.observableArrayList();
@@ -417,7 +422,6 @@ class AddInterviewCommandTest {
         }
     }
 
-
     /**
      * A Model stub that contains no Position.
      */
@@ -444,6 +448,16 @@ class AddInterviewCommandTest {
         final ArrayList<Interview> interviewsAdded = new ArrayList<>();
         private ObservableList<Person> personsList = FXCollections.observableArrayList();
         private ObservableList<Position> positionsList = FXCollections.observableArrayList();
+
+        private ModelStubAcceptingInterviewAdded() {
+            personsList.add(BENSON);
+        }
+
+        @Override
+        public Person getPerson(Index index) {
+            requireNonNull(index);
+            return personsList.get(index.getZeroBased());
+        }
 
         @Override
         public boolean hasPosition(Position position) {
