@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
@@ -73,7 +75,12 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
         person.getInterviews().stream()
                 .sorted(Comparator.comparing(Interview::getDate))
-                .forEach(interview -> interviews.getChildren().add(new Label(interview.getDisplayString())));
+                .forEach(interview -> {
+                    Text itext = new Text(interview.getDisplayStringWithoutNames());
+                    itext.wrappingWidthProperty().bind(interviews.widthProperty().subtract(10));
+                    itext.setId("person-interview");
+                    interviews.getChildren().add(itext);
+                });
     }
 
     @Override
