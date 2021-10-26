@@ -59,8 +59,8 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
                     .parseInterviewStatus(argMultimap.getValue(PREFIX_INTERVIEW_STATUS).get()));
         }
         if (argMultimap.getValue(PREFIX_CANDIDATE_INDEX).isPresent()) {
-            editInterviewDescriptor.setCandidateIndexes(ParserUtil.
-                    parseCandidateIndex(argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get()));
+            editInterviewDescriptor.setCandidateIndexes(ParserUtil
+                    .parseCandidateIndex(argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get()));
         }
 
         if (!editInterviewDescriptor.isAnyFieldEdited()) {
