@@ -269,5 +269,13 @@ public class Interview {
                 + getEndTime() + " "
                 + getStatusInString() + "]";
     }
+
+    public String getDisplayStringWithoutNames() {
+        return "[" + getPositionTitle().toString() + " "
+                + getDisplayDate() + " "
+                + getStartTime() + " - "
+                + getEndTime() + " "
+                + getStatusInString() + "]";
+    }
 }
 

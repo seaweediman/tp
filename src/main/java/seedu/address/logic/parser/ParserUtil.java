@@ -317,4 +317,23 @@ public class ParserUtil {
         }
         return indexSet;
     }
+
+    /**
+     * Parses {@code String indexes} into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseCandidateIndex(String indexes) throws ParseException {
+        requireNonNull(indexes);
+        String trimmedKeywords = indexes.trim();
+        Set<Index> characterIndexes = new HashSet<>();
+
+        List<String> temp = new ArrayList<>(Arrays.asList(trimmedKeywords.split("\\s+")));
+
+        temp.removeAll(Arrays.asList(""));
+
+        for (String index : temp) {
+            characterIndexes.add(parseIndex(index));
+        }
+
+        return characterIndexes;
+    }
 }
