@@ -187,7 +187,7 @@ Aspect: Logical operators and combinations for find fields
 * Alternative 2: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
-
+    * 
 ### **List All Interviews Command** ###
 
 The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
@@ -208,7 +208,6 @@ Firstly, the parsing of the command and argument occurs as follows
 Continuing the previous diagram, the ListXCommand is executed, and the corresponding X panel in the UI is updated
 
 ![Execute_sequence_of_list_x](images/ListExcecuteSequenceDiagram.png)
-
 
 --------------------------------------------------------------------------------------------------------------------
 

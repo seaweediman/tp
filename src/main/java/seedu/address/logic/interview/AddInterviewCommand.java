@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import seedu.address.commons.core.Messages;
@@ -31,7 +32,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
-            + "" + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
+            + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
             + PREFIX_DATE + "DD/MM/YYYY "
             + PREFIX_TIME + "HHMM "
             + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"
@@ -65,6 +66,7 @@ public class AddInterviewCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<Person> lastShownPersonList = model.getFilteredPersonList();
 
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
@@ -77,8 +79,8 @@ public class AddInterviewCommand extends Command {
         //loads candidates from set of index
         Set<Person> candidates = new HashSet<>();
         for (Index index : indexes) {
-            if (index.getZeroBased() < model.getFilteredPersonList().size()) {
-                Person person = model.getPerson(index);
+            if (index.getZeroBased() < lastShownPersonList.size()) {
+                Person person = lastShownPersonList.get(index.getZeroBased());
                 //checks if person applied for position
                 if (!person.appliedForPosition(position)) {
                     throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
