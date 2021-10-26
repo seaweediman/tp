@@ -209,22 +209,6 @@ Continuing the previous diagram, the ListXCommand is executed, and the correspon
 
 ![Execute_sequence_of_list_x](images/ListExcecuteSequenceDiagram.png)
 
---------------------------------------------------------------------------------------------------------------------
-
-## **Appendix: Requirements**
-### Product scope
-
-**Target user profile**:
-
-* is HR professional
-* has to manage multiple applicants, roles, and interviews
-* prefer desktop apps over other types
-* can type fast
-* prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
-
-**Value proposition**: help them quickly enter the data into the system, reminders of interview timings and ranking of candidates for roles
-
 ### Add position
 #### Implementation
 `add_p` is a command for the app to add a position into the list of positions. When the user wants to use this command, the title of the position must be indicated.
@@ -262,7 +246,22 @@ The activity diagram of this `addShift` command is shown below:
 <img src="images/AddPosition/AddPositionSequence.png" width="1303" />
 
 Notes:
-1. A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to a default value of `OPEN`.
+1. A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to the default value, `OPEN`.
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Requirements**
+### Product scope
+
+**Target user profile**:
+
+* is HR professional
+* has to manage multiple applicants, roles, and interviews
+* prefer desktop apps over other types
+* can type fast
+* prefers typing to mouse interactions
+* is reasonably comfortable using CLI apps
+
+**Value proposition**: help them quickly enter the data into the system, reminders of interview timings and ranking of candidates for roles
 
 ### User stories
 
