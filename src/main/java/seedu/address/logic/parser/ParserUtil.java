@@ -67,6 +67,46 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a string of time keyword delimited by spaces.
+     * @param keywords Input String.
+     * @return List of LocalTimes.
+     * @throws ParseException Input string is not valid time format HHMM.
+     */
+    public static List<LocalTime> parseTimeKeywords(String keywords) throws ParseException {
+        requireNonNull(keywords);
+        String trimmedKeywords = keywords.trim();
+
+        List<String> timeStrings = new ArrayList<String>(Arrays.asList(trimmedKeywords.split("\\s+")));
+
+        timeStrings.removeAll(Arrays.asList(""));
+
+        List<LocalTime> output = new ArrayList<>();
+
+        String timeFormat = "^[0-9]{4}$";
+
+
+        for (String time : timeStrings) {
+            Pattern p = Pattern.compile(timeFormat);
+            Matcher m = p.matcher(time);
+            if (m.find()) {
+                int hour = Integer.parseInt(time.substring(0, 2));
+                int min = Integer.parseInt(time.substring(2));
+                try {
+                    output.add(LocalTime.of(hour, min));
+                } catch (DateTimeException e) {
+                    System.out.println(e.getMessage());
+                    throw new ParseException(Interview.MESSAGE_TIME_CONSTRAINTS);
+                }
+            } else {
+                throw new ParseException(Interview.MESSAGE_TIME_CONSTRAINTS);
+            }
+
+        }
+
+        return output;
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *

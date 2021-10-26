@@ -246,8 +246,9 @@ public class Interview {
                 + getStatusInString() + "]";
     }
 
-    public String getEndTime() {
-        return startTime.plusMinutes(duration.toMinutes()).toString();
+
+    public LocalTime getEndTime() {
+        return startTime.plusMinutes(duration.toMinutes());
     }
 
     public String getDisplayDate() {
