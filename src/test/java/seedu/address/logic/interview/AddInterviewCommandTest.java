@@ -62,7 +62,6 @@ class AddInterviewCommandTest {
         Interview validInterview = new InterviewBuilder().build();
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         ModelStubWithInterviewAndPosition modelStub = new ModelStubWithInterviewAndPosition(validInterview);
-
         assertThrows(CommandException.class, AddInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW, () ->
                 addInterviewCommand.execute(modelStub));
     }
@@ -358,6 +357,11 @@ class AddInterviewCommandTest {
         public boolean isPositionClosed(Position toCheck) {
             return false;
         }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return FXCollections.observableArrayList();
+        }
     }
 
     /**
@@ -438,6 +442,11 @@ class AddInterviewCommandTest {
         @Override
         public boolean hasInterview(Interview toAdd) {
             return false;
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return FXCollections.observableArrayList();
         }
     }
 

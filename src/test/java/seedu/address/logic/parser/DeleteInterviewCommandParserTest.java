@@ -9,7 +9,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.interview.DeleteInterviewCommand;
 
-class DeleteInterviewCommandParserTest {
+public class DeleteInterviewCommandParserTest {
+
     private DeleteInterviewCommandParser parser = new DeleteInterviewCommandParser();
 
     @Test
