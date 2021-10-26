@@ -78,7 +78,7 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(interview -> {
                     Text itext = new Text(interview.getDisplayStringWithoutNames());
                     itext.wrappingWidthProperty().bind(interviews.widthProperty().subtract(10));
-                    itext.setId("person-interview");
+                    itext.setId("person-interview-text");
                     interviews.getChildren().add(itext);
                 });
     }
