@@ -87,7 +87,8 @@ public class UnassignInterviewCommand extends Command {
             Set<Person> emptyCandidatesSet = new HashSet<>();
             interview.setCandidates(emptyCandidatesSet);
             model.deleteInterviewFromPerson(interview);
-            result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED, interview.getDisplayString()),
+            result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED,
+                    interview.getDisplayStringWithoutNames()),
                     false, false, true, false, false, false, false,
                     false);
         } else {
