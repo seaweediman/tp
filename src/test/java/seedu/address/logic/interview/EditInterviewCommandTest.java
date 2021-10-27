@@ -10,7 +10,7 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_EMPTY_CANDIDAT
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.CommandTestUtil.assertEditCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
@@ -54,7 +54,7 @@ public class EditInterviewCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -69,7 +69,7 @@ public class EditInterviewCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class EditInterviewCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

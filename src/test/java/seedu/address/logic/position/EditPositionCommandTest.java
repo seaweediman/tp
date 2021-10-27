@@ -8,7 +8,7 @@ import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPER;
 import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.position.CommandTestUtil.assertEditCommandSuccess;
 import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
@@ -47,7 +47,7 @@ public class EditPositionCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
 
-        assertCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -60,7 +60,7 @@ public class EditPositionCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        assertCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class EditPositionCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
 
-        assertCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
+        assertEditCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

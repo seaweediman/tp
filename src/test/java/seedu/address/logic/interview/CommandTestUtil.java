@@ -130,6 +130,62 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    private static boolean isEditCCommand(Command command) {
+        String commandClassName = command.getClass().getSimpleName();
+        return commandClassName.equals("EditCandidateCommand");
+    }
+
+    private static boolean isEditPCommand(Command command) {
+        String commandClassName = command.getClass().getSimpleName();
+        return commandClassName.equals("EditPositionCommand");
+    }
+
+    private static boolean isEditICommand(Command command) {
+        String commandClassName = command.getClass().getSimpleName();
+        return commandClassName.equals("EditInterviewCommand");
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the given {@code command} is an edit command <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertEditCommandSuccess(Command command, Model actualModel,
+                                                CommandResult expectedEditCommandResult, Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedEditCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertEditCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertEditCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                Model expectedModel) {
+        boolean isListC = false;
+        boolean isListP = false;
+        boolean isListI = false;
+        if (isEditCCommand(command)) {
+            isListC = true;
+        } else if (isEditPCommand(command)) {
+            isListP = true;
+        } else if (isEditICommand(command)) {
+            isListI = true;
+        } else {
+            throw new AssertionError("Command should be an edit command");
+        }
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                false, false, isListC, isListP, isListI, false, false, false);
+        assertEditCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
