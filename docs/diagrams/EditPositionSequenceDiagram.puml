@@ -59,7 +59,7 @@ activate EditPositionCommand
 EditPositionCommand -> Model : setPosition(1, d)
 activate Model
 
-EditPositionCommand -> Model : updateFilteredPersonList()
+EditPositionCommand -> Model : updateFilteredPositionList()
 deactivate Model
 
 create CommandResult

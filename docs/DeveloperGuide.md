@@ -229,7 +229,7 @@ component works when a command is executed.
 
 As an example, the parsing and execution of an edit_p command is as follows
 
-![Execute_sequence_of_edit_p](images/EditPositionSequenceDiagram.png)
+![Execute_sequence_of_edit_x](images/EditPositionSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
