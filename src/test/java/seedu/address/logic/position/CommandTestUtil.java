@@ -78,19 +78,9 @@ public class CommandTestUtil {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
-    private static boolean isEditCCommand(Command command) {
-        String commandClassName = command.getClass().getSimpleName();
-        return commandClassName.equals("EditCandidateCommand");
-    }
-
     private static boolean isEditPCommand(Command command) {
         String commandClassName = command.getClass().getSimpleName();
         return commandClassName.equals("EditPositionCommand");
-    }
-
-    private static boolean isEditICommand(Command command) {
-        String commandClassName = command.getClass().getSimpleName();
-        return commandClassName.equals("EditInterviewCommand");
     }
 
     /**
@@ -99,8 +89,8 @@ public class CommandTestUtil {
      * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
      * - the {@code actualModel} matches {@code expectedModel}
      */
-    public static void assertEditCommandSuccess(Command command, Model actualModel,
-                                                CommandResult expectedEditCommandResult, Model expectedModel) {
+    public static void assertEditPositionCommandSuccess(Command command, Model actualModel,
+                                                        CommandResult expectedEditCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedEditCommandResult, result);
@@ -111,27 +101,18 @@ public class CommandTestUtil {
     }
 
     /**
-     * Convenience wrapper to {@link #assertEditCommandSuccess(Command, Model, CommandResult, Model)}
+     * Convenience wrapper to {@link #assertEditPositionCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
-    public static void assertEditCommandSuccess(Command command, Model actualModel, String expectedMessage,
-                                                Model expectedModel) {
-        boolean isListC = false;
-        boolean isListP = false;
-        boolean isListI = false;
-        if (isEditCCommand(command)) {
-            isListC = true;
-        } else if (isEditPCommand(command)) {
-            isListP = true;
-        } else if (isEditICommand(command)) {
-            isListI = true;
-        } else {
-            throw new AssertionError("Command should be an edit command");
+    public static void assertEditPositionCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                        Model expectedModel) {
+        if (!isEditPCommand(command)) {
+            throw new AssertionError("Command should be an EditPositionCommand");
         }
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, isListC, isListP, isListI, false, false, false);
-        assertEditCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+                false, false, false, true, false, false, false, false);
+        assertEditPositionCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**

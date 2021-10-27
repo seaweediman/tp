@@ -8,7 +8,7 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidate.CommandTestUtil.assertEditCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.assertEditCandidateCommandSuccess;
 import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -46,7 +46,7 @@ public class EditCandidateCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertEditCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,7 +67,7 @@ public class EditCandidateCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertEditCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -80,7 +80,7 @@ public class EditCandidateCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        assertEditCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -97,7 +97,7 @@ public class EditCandidateCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertEditCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
