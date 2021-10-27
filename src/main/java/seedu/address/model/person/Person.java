@@ -124,18 +124,26 @@ public class Person {
 
     /**
      * Adds an interview into a person's list of interviews, and since the person has the upcoming added interview,
-     * this method always sets the the status as scheduled
+     * this method always sets the status as scheduled.
      * @param i interview object to be added to person
      */
     public void addInterview(Interview i) {
         interviews.add(i);
-        if (status != Status.SCHEDULED) {
+        if (status == Status.APPLIED) {
             status = Status.SCHEDULED;
         }
     }
 
+    /**
+     * Delets an interviwe from a person's list of interviews. If the person does not have any upcoming interview
+     * this method sets the status as applied.
+     * @param i
+     */
     public void deleteInterview(Interview i) {
         interviews.remove(i);
+        if (interviews.isEmpty()) {
+            status = Status.APPLIED;
+        }
     }
 
     /**

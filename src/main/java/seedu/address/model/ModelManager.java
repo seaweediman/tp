@@ -207,7 +207,6 @@ public class ModelManager implements Model {
         hrManager.deletePersonFromInterview(person);
     }
 
-
     //=========== Filtered Person List Accessors =============================================================
 
     /**

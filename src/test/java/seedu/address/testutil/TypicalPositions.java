@@ -14,4 +14,7 @@ public class TypicalPositions {
 
     public static final Position ACCOUNTANT = new PositionBuilder().withTitle("Accountant")
             .build();
+
+    public static final Position CLOSED_POSITION_CLERK = new PositionBuilder().withTitle("Clerk")
+            .withStatus(Position.PositionStatus.CLOSED).build();
 }
