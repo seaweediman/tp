@@ -149,17 +149,17 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#373132, 20%);
+     -fx-background-color: derive(#303030, 10%);
      -fx-border-color: transparent;
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#373132, 30%);
+    -fx-background-color: derive(#303030, 30%);
 }
 
 .result-display {
-    -fx-background-color: #443537;
+    -fx-background-color: transparent;
     -fx-font-family: "Open Sans Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -197,7 +197,7 @@
 }
 
 .context-menu {
-    -fx-background-color: #846239;
+    -fx-background-color: derive(#1d1d1d, 50%);
 }
 
 .context-menu .label {
@@ -205,7 +205,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#373132, 20%);
+    -fx-background-color: derive(#303030, 20%);
 }
 
 .menu-bar .label {
@@ -294,7 +294,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#342d2a, 20%);
+    -fx-background-color: derive(#2a2a2a, 20%);
 }
 
 .scroll-bar .thumb {
@@ -330,9 +330,9 @@
 }
 
 #commandTextField {
-    -fx-background-color: #4f4748;
+    -fx-background-color: #545454;
     -fx-background-insets: 0;
-    -fx-border-color: #443537;
+    -fx-border-color: #303030;
     -fx-border-insets: 0;
     -fx-border-width: 1;
     -fx-font-family: "Open Sans Light";
@@ -345,7 +345,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #4f4748;
+    -fx-background-color: #545454;
     -fx-background-radius: 0;
 }
 
