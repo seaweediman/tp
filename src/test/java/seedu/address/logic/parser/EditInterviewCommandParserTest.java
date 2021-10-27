@@ -7,6 +7,8 @@ import static seedu.address.logic.interview.CommandTestUtil.INVALID_INDEX_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_TIME_DESC;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_DESC_ALICE;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_DESC_BOB;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE_OTHER_DATE;
@@ -202,4 +204,5 @@ public class EditInterviewCommandParserTest {
         expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }

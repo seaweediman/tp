@@ -7,12 +7,15 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -236,5 +239,15 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration("string"));
+    }
+
+    @Test
+    public void parseDate_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate("222/12/2021"));
+    }
+
+    @Test
+    public void parseTime_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("22222"));
     }
 }

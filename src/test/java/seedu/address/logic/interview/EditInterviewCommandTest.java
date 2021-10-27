@@ -19,6 +19,7 @@ import static seedu.address.model.interview.Interview.MESSAGE_POSITION_CONSTRAIN
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERVIEW;
+import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.JOHN;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -26,6 +27,7 @@ import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -224,7 +226,7 @@ public class EditInterviewCommandTest {
         Interview editedInterview = new InterviewBuilder().build();
         EditInterviewDescriptor descriptor =
                 new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes("1").build();
+                        .withCandidateIndexes("2").build();
         descriptor.setPosition(CLOSED_POSITION_CLERK);
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
@@ -252,6 +254,25 @@ public class EditInterviewCommandTest {
         assertEditCommandSuccess(modelStub, expectedPerson, 0, editInterviewCommand);
     }
 
+    @Test
+    public void execute_editJohnWithNoCandidateIndexSpecified_success() {
+        ModelStubWithJohn modelStub = new ModelStubWithJohn();
+        Interview editedInterview = new InterviewBuilder().withCandidates(new HashSet<>()).build();
+        EditInterviewDescriptor descriptor =
+                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET).build();
+        //edit to bookkeeper on 22/12/2021
+        descriptor.setPosition(BOOKKEEPER);
+        descriptor.setDate(LocalDate.of(2021, 12, 22));
+        EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
+
+        //check if John has been edited
+        Person expectedPerson = new PersonBuilder(JOHN).withStatus("scheduled").build();
+        Interview expectedInterview = new InterviewBuilder().withPosition(BOOKKEEPER).withCandidates(Set.of(JOHN))
+                .withDate(LocalDate.of(2021, 12, 22)).build();
+        expectedPerson.setInterviews(Set.of(expectedInterview));
+        assertEditCommandSuccess(modelStub, expectedPerson, 0, editInterviewCommand);
+    }
+
     private void assertEditCommandSuccess(ModelStub modelStub, Person expected,
                                           int index, EditInterviewCommand command) {
         try {
@@ -272,6 +293,7 @@ public class EditInterviewCommandTest {
 
         ModelStubWithJohn() {
             persons.add(JOHN);
+            persons.add(ALICE);
             positions.add(CLOSED_POSITION_CLERK);
             positions.add(BOOKKEEPER);
             interviews.add(new InterviewBuilder().withCandidates(Set.of(JOHN)).withPosition(BOOKKEEPER).build());
