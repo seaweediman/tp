@@ -51,6 +51,7 @@ activate AddPositionCommand
 AddPositionCommand -> Model : hasPosition(p)
 activate Model
 AddPositionCommand -> Model : addPosition(p)
+Model --> AddPositionCommand
 
 deactivate Model
 
