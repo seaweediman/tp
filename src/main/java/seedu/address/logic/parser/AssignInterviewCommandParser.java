@@ -8,36 +8,35 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.interview.UnassignInterviewCommand;
+import seedu.address.logic.interview.AssignInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
-public class UnassignInterviewCommandParser implements Parser<UnassignInterviewCommand> {
+public class AssignInterviewCommandParser implements Parser<AssignInterviewCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the UnassignInterviewCommand
-     * and returns a UnassignInterviewCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AssignInterviewCommand
+     * and returns an AssignInterviewCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format.
      */
-    public UnassignInterviewCommand parse(String args) throws ParseException {
+    @Override
+    public AssignInterviewCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_CANDIDATE_INDEX, PREFIX_INTERVIEW_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CANDIDATE_INDEX, PREFIX_INTERVIEW_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UnassignInterviewCommand.MESSAGE_USAGE));
+                    AssignInterviewCommand.MESSAGE_USAGE));
         }
 
         Index interviewIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERVIEW_INDEX).get());
         Set<Index> candidateIndexes;
         String candidateIndexInput = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get();
-        if (candidateIndexInput.equals("*")) {
-            return new UnassignInterviewCommand(interviewIndex, true);
-        } else {
-            candidateIndexes = ParserUtil.parseCandidateIndex(candidateIndexInput);
-            return new UnassignInterviewCommand(interviewIndex, candidateIndexes);
-        }
+
+        candidateIndexes = ParserUtil.parseCandidateIndex(candidateIndexInput);
+        return new AssignInterviewCommand(interviewIndex, candidateIndexes);
+
     }
 
     /**
@@ -47,5 +46,4 @@ public class UnassignInterviewCommandParser implements Parser<UnassignInterviewC
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }
