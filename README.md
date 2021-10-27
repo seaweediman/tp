@@ -4,7 +4,7 @@
 
 ## HR Manager
 
-HR manager's interviewee manager (tentative) will help you manage the people to be interviewed, making the scheduling process **easier** and **faster** for your company!
+HR Manager will help you manage the people to be interviewed, making the scheduling process **easier** and **faster** for your company!
 
 Tired of losing track of scheduled interviews?
 HR manager's interviewee manager’s easy to use features will help you to arrange for upcoming interviews quickly and in your desired manner.
