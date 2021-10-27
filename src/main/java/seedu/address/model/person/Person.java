@@ -129,7 +129,7 @@ public class Person {
      */
     public void addInterview(Interview i) {
         interviews.add(i);
-        if (status != Status.SCHEDULED) {
+        if (status == Status.APPLIED) {
             status = Status.SCHEDULED;
         }
     }

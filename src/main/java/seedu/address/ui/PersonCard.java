@@ -7,11 +7,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.Text;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -60,6 +61,7 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
+        address.setWrapText(true);
         email.setText(person.getEmail().value);
         remark.setText(person.getRemark().value);
         status.setText(person.getStatus().toString());
@@ -72,7 +74,12 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
         person.getInterviews().stream()
                 .sorted(Comparator.comparing(Interview::getDate))
-                .forEach(interview -> interviews.getChildren().add(new Label(interview.getDisplayString())));
+                .forEach(interview -> {
+                    Text itext = new Text(interview.getDisplayStringWithoutNames());
+                    itext.wrappingWidthProperty().bind(interviews.widthProperty().subtract(10));
+                    itext.setId("person-interview-text");
+                    interviews.getChildren().add(itext);
+                });
     }
 
     @Override
