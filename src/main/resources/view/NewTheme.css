@@ -330,7 +330,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: #3a3435;
+    -fx-background-color: #4f4748;
     -fx-background-insets: 0;
     -fx-border-color: #292425 #292425 #b3a38e #292425;
     -fx-border-insets: 0;
@@ -345,7 +345,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #3a3435;
+    -fx-background-color: #4f4748;
     -fx-background-radius: 0;
 }
 
