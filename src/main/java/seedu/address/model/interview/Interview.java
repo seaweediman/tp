@@ -228,6 +228,10 @@ public class Interview {
         candidates.remove(person);
     }
 
+    public void addCandidate(Person person) {
+        candidates.add(person);
+    }
+
     @Override
     public int hashCode() {
         return Objects.hash(position, date, startTime, duration, status);
@@ -246,8 +250,9 @@ public class Interview {
                 + getStatusInString() + "]";
     }
 
-    public String getEndTime() {
-        return startTime.plusMinutes(duration.toMinutes()).toString();
+
+    public LocalTime getEndTime() {
+        return startTime.plusMinutes(duration.toMinutes());
     }
 
     public String getDisplayDate() {
@@ -260,6 +265,14 @@ public class Interview {
         Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
         return names.toString();
     }
+
+    public String getCandidateNameString() {
+        assert this.candidates != null;
+        Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
+        return names.toString().replace("[", "").replace("]", " ")
+                .replace(",", "");
+    }
+
 
     public String getDisplayString() {
         return "[" + getPositionTitle().toString() + " "
