@@ -46,7 +46,7 @@ public class FindInterviewCommandPredicate implements Predicate<Interview> {
     @Override
     public boolean test(Interview interview) {
         boolean candidateCheck = candidateKeywords.isEmpty() || candidateKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(interview.getCandidatesNames(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(interview.getCandidateNameString(), keyword));
 
         boolean dateCheck = dateKeywords.isEmpty() || dateKeywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(interview.getDateInFormattedString(), keyword));
@@ -59,8 +59,6 @@ public class FindInterviewCommandPredicate implements Predicate<Interview> {
                         interview.getPositionTitle().fullTitle, keyword));
 
 
-        System.out.println(interview.getStartTime());
-        System.out.println(interview.getEndTime());
         boolean timeCheck = timeKeywords.isEmpty() || timeKeywords.stream()
                 .anyMatch(time -> (interview.getStartTime().isBefore(time) || interview.getStartTime().equals(time))
                         && (interview.getEndTime().isAfter(time) || interview.getEndTime().equals(time)));

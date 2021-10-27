@@ -94,7 +94,6 @@ public class ParserUtil {
                 try {
                     output.add(LocalTime.of(hour, min));
                 } catch (DateTimeException e) {
-                    System.out.println(e.getMessage());
                     throw new ParseException(Interview.MESSAGE_TIME_CONSTRAINTS);
                 }
             } else {

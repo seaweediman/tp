@@ -262,6 +262,14 @@ public class Interview {
         return names.toString();
     }
 
+    public String getCandidateNameString() {
+        assert this.candidates != null;
+        Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
+        return names.toString().replace("[", "").replace("]", " ")
+                .replace(",", "");
+    }
+
+
     public String getDisplayString() {
         return "[" + getPositionTitle().toString() + " "
                 + getCandidatesNames() + " "
