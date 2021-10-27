@@ -187,7 +187,7 @@ Aspect: Logical operators and combinations for find fields
 * Alternative 2: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
-    
+
 ### **List All Interviews Command** ###
 
 The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. The position title the user provided already exists in the position list.
 
   * 1b1. HR Manager shows an error message.
-    
+
       Use case ends.
 
 <u>**Use case: UC05 - List all positions**</u>
@@ -404,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HR Manager shows an error message.
 
       Use case resumes at step 3.
-    
+
 * 3b. The given index is invalid.
 
     * 3b1. HR Manager shows an error message.
