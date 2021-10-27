@@ -1,7 +1,10 @@
 package seedu.address.logic.position;
 
+import static java.util.Objects.requireNonNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.position.CommandTestUtil.DESC_ADMIN_ASSISTANT;
 import static seedu.address.logic.position.CommandTestUtil.DESC_BOOKKEEPER;
 import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
@@ -10,22 +13,40 @@ import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_BOOKKEEPE
 import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.JOHN;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
+import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
+import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
+import seedu.address.testutil.ModelStub;
+import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PositionBuilder;
+
+import java.util.ArrayList;
+import java.util.function.Predicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPositionCommand.
@@ -154,6 +175,101 @@ public class EditPositionCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPositionCommand(INDEX_FIRST_POSITION, DESC_BOOKKEEPER)));
+    }
+
+    @Test
+    public void execute_someFieldsSpecified_success() {
+        ModelStubAcceptingPositionEdited modelStub = new ModelStubAcceptingPositionEdited();
+
+        Position editedPosition =
+                new PositionBuilder().withTitle("Business Analyst").build();
+        EditPositionCommand.EditPositionDescriptor descriptor =
+                new EditPositionDescriptorBuilder(editedPosition).build();
+        EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION, descriptor);
+
+        String expectedMessage = String.format(EditPositionCommand.MESSAGE_EDIT_POSITION_SUCCESS, editedPosition);
+
+        assertEditSuccess(editPositionCommand, expectedMessage, modelStub);
+
+        //check that person with corresponding position is edited
+        Person expectedPerson = new PersonBuilder(JOHN).withPositions("Business Analyst",
+                CLOSED_POSITION_CLERK.getTitle().fullTitle).build();
+        assertEquals(expectedPerson, modelStub.getPerson(INDEX_FIRST_PERSON));
+    }
+
+    private void assertEditSuccess(EditPositionCommand command, String expectedMessage, Model model) {
+        try {
+            CommandResult result = command.execute(model);
+            assertEquals(result, new CommandResult(expectedMessage));
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * A Model stub that always accept the person being added.
+     */
+    private class ModelStubAcceptingPositionEdited extends ModelStub {
+        final ObservableList<Position> positions = FXCollections.observableArrayList();
+        final ObservableList<Person> persons = FXCollections.observableArrayList();
+
+        ModelStubAcceptingPositionEdited() {
+            persons.add(JOHN);
+            positions.add(BOOKKEEPER);
+            positions.add(CLOSED_POSITION_CLERK);
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            requireNonNull(position);
+            return positions.stream().anyMatch(position::isSamePosition);
+        }
+
+        @Override
+        public void addPosition(Position position) {
+            requireNonNull(position);
+            positions.add(position);
+        }
+
+        @Override
+        public void setPosition(Position target, Position editedPosition) {
+            int index = positions.indexOf(target);
+            positions.set(index, editedPosition);
+        }
+
+        @Override
+        public Person getPerson(Index index) {
+            return persons.get(index.getZeroBased());
+        }
+
+        @Override
+        public ObservableList<Position> getFilteredPositionList() {
+            return positions;
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return persons;
+        }
+
+        @Override
+        public void setPerson(Person target, Person editedPerson) {
+            int index = persons.indexOf(target);
+            persons.set(index, editedPerson);
+        }
+
+        @Override
+        public ReadOnlyHrManager getHrManager() {
+            return new HrManager();
+        }
+
+        @Override
+        public void updateFilteredPositionList(Predicate<Position> predicate) {
+        }
+
+        @Override
+        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        }
     }
 
 }

@@ -56,18 +56,18 @@ public class EditInterviewCommand extends Command {
 
 
     private final Index index;
-    private final EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor;
+    private final EditInterviewDescriptor editInterviewDescriptor;
 
     /**
      * @param index                of the interview in the filtered interview list to edit
      * @param editInterviewDescriptor details to edit the interview with
      */
-    public EditInterviewCommand(Index index, EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor) {
+    public EditInterviewCommand(Index index, EditInterviewDescriptor editInterviewDescriptor) {
         requireNonNull(index);
         requireNonNull(editInterviewDescriptor);
 
         this.index = index;
-        this.editInterviewDescriptor = new EditInterviewCommand.EditInterviewDescriptor(editInterviewDescriptor);
+        this.editInterviewDescriptor = new EditInterviewDescriptor(editInterviewDescriptor);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class EditInterviewCommand extends Command {
      * edited with {@code editInterviewDescriptor}.
      */
     public static Tuple<Interview, Set<Index>> createEditedInterview(
-            Interview interviewToEdit, EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor) {
+            Interview interviewToEdit, EditInterviewDescriptor editInterviewDescriptor) {
         assert interviewToEdit != null;
 
         Position updatedPosition = editInterviewDescriptor.getPosition().orElse(interviewToEdit.getPosition());
@@ -199,7 +199,7 @@ public class EditInterviewCommand extends Command {
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditInterviewDescriptor(EditInterviewCommand.EditInterviewDescriptor toCopy) {
+        public EditInterviewDescriptor(EditInterviewDescriptor toCopy) {
             setPosition(toCopy.position);
             setCandidateIndexes(toCopy.candidateIndexes);
             setDate(toCopy.date);
@@ -228,7 +228,7 @@ public class EditInterviewCommand extends Command {
          * A defensive copy of {@code candidateIndexes} is used internally.
          */
         public void setCandidateIndexes(Set<Index> candidatesIndex) {
-            this.candidateIndexes = candidatesIndex;
+            this.candidateIndexes = (candidatesIndex != null) ? new HashSet<>(candidatesIndex) : null;
         }
 
         /**
@@ -282,12 +282,12 @@ public class EditInterviewCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditInterviewCommand.EditInterviewDescriptor)) {
+            if (!(other instanceof EditInterviewDescriptor)) {
                 return false;
             }
 
             // state check
-            EditInterviewCommand.EditInterviewDescriptor e = (EditInterviewCommand.EditInterviewDescriptor) other;
+            EditInterviewDescriptor e = (EditInterviewDescriptor) other;
 
             return getPosition().equals(e.getPosition())
                     && getCandidateIndexes().equals(e.getCandidateIndexes())

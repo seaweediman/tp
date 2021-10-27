@@ -25,10 +25,12 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_STATUS_APPLIED;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TITLE_HR_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,6 +47,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -174,6 +177,12 @@ public class EditCandidateCommandParserTest {
         // positions
         userInput = targetIndex.getOneBased() + POSITION_HR_MANAGER;
         descriptor = new EditPersonDescriptorBuilder().withPositions(VALID_TITLE_HR_MANAGER).build();
+        expectedCommand = new EditCandidateCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // status
+        userInput = targetIndex.getOneBased() + " " + PREFIX_STATUS + VALID_STATUS_APPLIED;
+        descriptor = new EditPersonDescriptorBuilder().withStatus(Status.APPLIED).build();
         expectedCommand = new EditCandidateCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
