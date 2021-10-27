@@ -228,10 +228,6 @@ public class Interview {
         candidates.remove(person);
     }
 
-    public void addCandidate(Person person) {
-        candidates.add(person);
-    }
-
     @Override
     public int hashCode() {
         return Objects.hash(position, date, startTime, duration, status);
