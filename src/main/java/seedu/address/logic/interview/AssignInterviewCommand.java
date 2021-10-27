@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
@@ -63,9 +65,17 @@ public class AssignInterviewCommand extends Command {
         }
 
         Interview interview = lastShownInterviewList.get(interviewIndex.getZeroBased());
+        EditInterviewCommand.EditInterviewDescriptor descriptor = new EditInterviewCommand.EditInterviewDescriptor();
+        descriptor.setCandidateIndexes(candidateIndexes);
+
+        Interview assignedInterview = EditInterviewCommand.createEditedInterview(interview, descriptor).getFirst();
+        Set<Person> newCandidates = interview.getCandidates();
 
         StringBuilder candidatesAdded = new StringBuilder();
         candidatesAdded.append("\n");
+
+        EditCandidateCommand.EditPersonDescriptor personDescriptor = new EditCandidateCommand.EditPersonDescriptor();
+        personDescriptor.setInterviews(new HashSet<>(List.of(assignedInterview)));
 
         int count = 1;
         for (Index candidateIndex : candidateIndexes) {
@@ -73,25 +83,28 @@ public class AssignInterviewCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
+            newCandidates.add(candidate);
             Position position = interview.getPosition();
 
             if (!candidate.appliedForPosition(position)) {
                 throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                         candidateIndex.getOneBased(), candidate.getName(), interview.getPositionTitle()));
             }
-            interview.addCandidate(candidate);
-            candidate.addInterview(interview);
+
+            Person editedPerson = EditCandidateCommand.createEditedPerson(candidate, personDescriptor);
+            model.setPerson(candidate, editedPerson);
+            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
             candidatesAdded.append(count + ". " + candidate.getName() + "\n");
             count++;
         }
+        assignedInterview.setCandidates(newCandidates);
+        model.setInterview(interview, assignedInterview);
 
         result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
                 candidatesAdded), false, false, true, false, false,
                 false, false, false);
 
-
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }

@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
+import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -72,10 +73,7 @@ public class AssignInterviewCommandTest {
                 true, false, false, false, false,
                 false);
 
-        ModelManager expectedModel = new ModelManager(getTypicalHrManager(), new UserPrefs());
-        expectedModel.setInterview(interviewToAssign, assignedInterview);
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), copyOfAlice);
-
+        Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         assertCommandSuccess(assignInterviewCommand, model, expectedCommandResult, expectedModel);
     }
 

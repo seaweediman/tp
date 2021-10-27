@@ -23,6 +23,7 @@ import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -155,6 +156,7 @@ public class EditCandidateCommand extends Command {
         private Set<Tag> tags;
         private Status status;
         private Set<Position> positions;
+        private Set<Interview> interviews;
 
         public EditPersonDescriptor() {
         }
@@ -171,13 +173,14 @@ public class EditCandidateCommand extends Command {
             setTags(toCopy.tags);
             setStatus(toCopy.status);
             setPositions(toCopy.positions);
+            setInterviews(toCopy.interviews);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions, interviews);
         }
 
         public void setName(Name name) {
@@ -254,6 +257,23 @@ public class EditCandidateCommand extends Command {
             return (positions != null) ? Optional.of(Collections.unmodifiableSet(positions)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code positions} to this object's {@code positions}.
+         * A defensive copy of {@code positions} is used internally.
+         */
+        public void setInterviews(Set<Interview> interviews) {
+            this.interviews = (interviews != null) ? new HashSet<>(interviews) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code positions} is null.
+         */
+        public Optional<Set<Interview>> getInterviews() {
+            return (interviews != null) ? Optional.of(Collections.unmodifiableSet(interviews)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -275,7 +295,8 @@ public class EditCandidateCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getStatus().equals(e.getStatus())
-                    && getPositions().equals(e.getPositions());
+                    && getPositions().equals(e.getPositions())
+                    && getInterviews().equals(e.getInterviews());
         }
     }
 }
