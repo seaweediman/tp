@@ -15,16 +15,30 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_DURATION_TIME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_NAME_ALICE;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_ASST_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_STATUS_COMPLETED_DESC;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_STATUS_PENDING_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_TIME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_TIME_DESC;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.interview.AddInterviewCommand;
 import seedu.address.model.interview.Interview;
+import seedu.address.testutil.InterviewBuilder;
+
+
 
 class AddInterviewCommandParserTest {
     private AddInterviewCommandParser parser = new AddInterviewCommandParser();
@@ -102,6 +116,21 @@ class AddInterviewCommandParserTest {
                         + VALID_CANDIDATE_DESC_BOB
                         + VALID_DATE_DESC + VALID_TIME_DESC + VALID_DURATION_DESC,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_allFieldsPresent_success() {
+        Interview expectedInterview = new InterviewBuilder().withPosition(ADMIN_ASSISTANT)
+                //at the time when AddInterviewCommand is created, the candidate couldn't have been added before
+                //execute is called, hence testing with no candidates
+                .withCandidates(new HashSet<>())
+                .withDate(LocalDate.of(2021, 10, 18))
+                .withStartTime(LocalTime.of(12, 0)).withDuration(Duration.ofMinutes(180))
+                .build();
+        String userInput = VALID_POSITION_ADMIN_ASST_DESC + VALID_CANDIDATE_DESC_ALICE
+                + VALID_DATE_DESC + VALID_TIME_DESC + VALID_DURATION_DESC + VALID_STATUS_PENDING_DESC;
+        assertParseSuccess(parser, userInput, new AddInterviewCommand(expectedInterview,
+                Set.of(Index.fromZeroBased(0))));
     }
 
 }

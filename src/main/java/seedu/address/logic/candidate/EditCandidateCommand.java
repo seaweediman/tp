@@ -23,6 +23,7 @@ import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -100,6 +101,13 @@ public class EditCandidateCommand extends Command {
             }
         }
 
+        //Remove the old person and add the new one
+        Set<Interview> interviews = personToEdit.getInterviews();
+        for (Interview i : interviews) {
+            i.removeCandidate(personToEdit);
+            i.addCandidate(editedPerson);
+        }
+
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
@@ -121,9 +129,16 @@ public class EditCandidateCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Status updatedStatus = editPersonDescriptor.getStatus().orElse(personToEdit.getStatus());
         Set<Position> updatedPositions = editPersonDescriptor.getPositions().orElse(personToEdit.getPositions());
+        Set<Interview> interviews = personToEdit.getInterviews();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark, updatedTags,
-                updatedStatus, updatedPositions);
+        Person updatedPerson = new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedRemark,
+                updatedTags, updatedStatus, updatedPositions);
+
+        for (Interview i : interviews) {
+            updatedPerson.addInterview(i);
+        }
+
+        return updatedPerson;
     }
 
     @Override
@@ -156,6 +171,7 @@ public class EditCandidateCommand extends Command {
         private Set<Tag> tags;
         private Status status;
         private Set<Position> positions;
+        private Set<Interview> interviews;
 
         public EditPersonDescriptor() {
         }

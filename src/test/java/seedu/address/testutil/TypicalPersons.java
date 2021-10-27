@@ -59,6 +59,11 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").withStatus("Applied").withPositions("Bookkeeper")
             .build();
 
+    public static final Person JOHN = new PersonBuilder().withName("John Doe").withPhone("98780121")
+            .withEmail("johnDoe@example.com").withAddress("chicago").withStatus("Scheduled").withPositions("Clerk",
+                    "Bookkeeper").build();
+
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
@@ -114,7 +119,7 @@ public class TypicalPersons {
 
     public static List<Position> getTypicalPositions() {
         return new ArrayList<>(Arrays.asList(TypicalPositions.ADMIN_ASSISTANT, TypicalPositions.BOOKKEEPER,
-                TypicalPositions.HR_MANAGER, TypicalPositions.ACCOUNTANT));
+                TypicalPositions.HR_MANAGER, TypicalPositions.ACCOUNTANT, TypicalPositions.CLOSED_POSITION_CLERK));
     }
 
     //this follows typicalInterviewHrManager.json data
