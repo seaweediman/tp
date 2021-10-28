@@ -3,6 +3,7 @@ package seedu.address.model.position;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -71,5 +72,33 @@ public class FindPositionCommandPredicateTest {
         predicate = new FindPositionCommandPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PositionBuilder().withTitle("Alice").withStatus(Position.PositionStatus.OPEN)
                 .build()));
+    }
+
+    @Test
+    public void test_statusContainsKeywords_returnsTrue() {
+        //find closed
+        FindPositionCommandPredicate predicate = new FindPositionCommandPredicate(
+                new ArrayList<>(), Collections.singletonList("closed"));
+        assertTrue(predicate.test(new PositionBuilder()
+                .withStatus(Position.PositionStatus.CLOSED).build()));
+
+        //find open
+        predicate = new FindPositionCommandPredicate(
+                new ArrayList<>(), Collections.singletonList("open"));
+        assertTrue(predicate.test(new PositionBuilder()
+                .withStatus(Position.PositionStatus.OPEN).build()));
+    }
+
+    @Test
+    public void test_statusContainsInvalidKeywords_returnsFalse() {
+        FindPositionCommandPredicate predicate = new FindPositionCommandPredicate(
+                new ArrayList<>(), Collections.singletonList("close"));
+        assertFalse(predicate.test(new PositionBuilder()
+                .withStatus(Position.PositionStatus.CLOSED).build()));
+
+        predicate = new FindPositionCommandPredicate(
+                new ArrayList<>(), Collections.singletonList("1"));
+        assertFalse(predicate.test(new PositionBuilder()
+                .withStatus(Position.PositionStatus.OPEN).build()));
     }
 }

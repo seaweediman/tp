@@ -18,8 +18,8 @@ import seedu.address.model.person.Remark;
 
 class RemarkCandidateCommandParserTest {
 
+    private RemarkCandidateCommandParser parser = new RemarkCandidateCommandParser();
     private Model model = new ModelManager(getTypicalHrManager(), new UserPrefs());
-    RemarkCandidateCommandParser parser = new RemarkCandidateCommandParser();
 
     @Test
     public void execute_invalidPersonIndex_throwsCommandException() {
@@ -32,8 +32,7 @@ class RemarkCandidateCommandParserTest {
     public void execute_validPersonIndex_success() {
         Index index = Index.fromOneBased(model.getFilteredPersonList().size() - 1);
         RemarkCandidateCommand expectedCommand = new RemarkCandidateCommand(index, new Remark(VALID_REMARK_BOB));
-        String userInput = " " + (index.getOneBased()) + " " +  PREFIX_REMARK + VALID_REMARK_BOB;
-        System.out.println(userInput);
+        String userInput = " " + (index.getOneBased()) + " " + PREFIX_REMARK + VALID_REMARK_BOB;
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 }

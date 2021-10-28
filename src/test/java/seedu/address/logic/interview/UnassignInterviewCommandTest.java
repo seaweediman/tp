@@ -1,7 +1,6 @@
 package seedu.address.logic.interview;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_ALL_CANDIDATES_REMOVED;
@@ -21,10 +20,10 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
@@ -122,8 +121,8 @@ public class UnassignInterviewCommandTest {
         UnassignInterviewCommand unassignInterviewCommand = new UnassignInterviewCommand(validInterviewIndex,
                 Set.of(invalidCandidateIndex));
 
-        assertThrows(CommandException.class, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX,
-                () -> unassignInterviewCommand.execute(model));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> unassignInterviewCommand.execute(model));
     }
 
     @Test
@@ -135,8 +134,8 @@ public class UnassignInterviewCommandTest {
 
         assertThrows(CommandException.class, String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                 index.getOneBased(), model.getPerson(index).getName(),
-                model.getFilteredInterviewList().get(index.getZeroBased()).getDisplayString()),
-                () -> unassignInterviewCommand.execute(model));
+                model.getFilteredInterviewList().get(index.getZeroBased())
+                        .getDisplayString()), () -> unassignInterviewCommand.execute(model));
     }
 
     @Test
