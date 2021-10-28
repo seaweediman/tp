@@ -235,26 +235,6 @@ public class EditInterviewCommandTest {
     }
 
     @Test
-    public void execute_editJohn_success() {
-        ModelStubWithJohn modelStub = new ModelStubWithJohn();
-        Interview editedInterview = new InterviewBuilder().build();
-        EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes("0").build();
-        //edit to bookkeeper on 21/12/2021
-        descriptor.setPosition(BOOKKEEPER);
-        descriptor.setDate(LocalDate.of(2021, 12, 21));
-        EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
-
-        //check if John has been edited
-        Person expectedPerson = new PersonBuilder(JOHN).withStatus("scheduled").build();
-        Interview expectedInterview = new InterviewBuilder().withPosition(BOOKKEEPER).withCandidates(Set.of(JOHN))
-                .withDate(LocalDate.of(2021, 12, 21)).build();
-        expectedPerson.setInterviews(Set.of(expectedInterview));
-        assertEditCommandSuccess(modelStub, expectedPerson, 0, editInterviewCommand);
-    }
-
-    @Test
     public void execute_editJohnWithNoCandidateIndexSpecified_success() {
         ModelStubWithJohn modelStub = new ModelStubWithJohn();
         Interview editedInterview = new InterviewBuilder().withCandidates(new HashSet<>()).build();
