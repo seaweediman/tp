@@ -231,6 +231,44 @@ As an example, the parsing and execution of an edit_p command is as follows
 
 ![Execute_sequence_of_edit_x](images/EditPositionSequenceDiagram.png)
 
+### Add position
+#### Implementation
+`add_p` is a command for the app to add a position into the list of positions. When the user wants to use this command, the title of the position must be indicated.
+
+The add position functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
+- `ModelManager#hasPosition` — Check if this position already exists. If so, `CommandException` will be thrown.
+
+- `ModelManager#addPosition()` — Add a position to the list of positions. If that position already exists, a
+  `DuplicatePositionException` will be thrown.
+
+`AddPositionCommandParser` and `AddPositionCommand` are created to achieve this functionality.
+
+<img src="images/AddPosition/AddPositionClassDiagram.png" width="347" />
+
+Given below is an example usage scenario and the workflow of the`add_p` command.
+
+Step 1. The user executes command `add_p title=Accountant`.
+`Ui` component reads the command as a string from user's input. After that, `MainWindow`
+passes the string to `LogicManager` to manipulate the command.
+
+Step 2. `LogicManager` passes the command to `HrManagerParser` to parse the command. Since the command starts
+with `add_p`, a new `AddPositionParser` is created to parse the command further.
+
+Step 3. `AddPositionParser` uses `ArgumentMultimap` to tokenize the prefixes part the command. After extracting the
+information such as title and status, a new `Position` is created and a new
+`AddPositionCommand` is created with that `Position`. In this case, the title of the position is Accountant.
+
+Step 4. `AddPositionCommand` passes the given `Position` to `ModelManager#hasPosition`. If the position does not exist in the app, `AddPositionCommand`
+passes the `Position` to `ModelManager#addPosition()`.
+
+Step 5. `Modelmanager#addShift()` updates the position list with the new added `Position`.
+
+The activity diagram of this `addShift` command is shown below:
+
+<img src="images/AddPosition/AddPositionSequence.png" width="1303" />
+
+Notes:
+1. A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to the default value, `OPEN`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**

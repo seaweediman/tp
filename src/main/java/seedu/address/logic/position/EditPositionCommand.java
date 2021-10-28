@@ -100,7 +100,8 @@ public class EditPositionCommand extends Command {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_POSITION_SUCCESS, editedPosition));
+        return new CommandResult(String.format(MESSAGE_EDIT_POSITION_SUCCESS, editedPosition),
+                false, false, false, true, false, false, false, false);
     }
 
     /**

@@ -19,6 +19,7 @@ import seedu.address.logic.general.HelpCommand;
 import seedu.address.logic.interview.AddInterviewCommand;
 import seedu.address.logic.interview.DeleteInterviewCommand;
 import seedu.address.logic.interview.EditInterviewCommand;
+import seedu.address.logic.interview.FindInterviewCommand;
 import seedu.address.logic.interview.ListInterviewCommand;
 import seedu.address.logic.interview.UnassignInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -109,9 +110,11 @@ public class HrManagerParser {
         case DeleteInterviewCommand.COMMAND_WORD:
             return new DeleteInterviewCommandParser().parse(arguments);
 
+        case FindInterviewCommand.COMMAND_WORD:
+            return new FindInterviewCommandParser().parse(arguments);
+
         case UnassignInterviewCommand.COMMAND_WORD:
             return new UnassignInterviewCommandParser().parse(arguments);
-
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

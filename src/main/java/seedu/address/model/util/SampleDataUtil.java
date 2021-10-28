@@ -37,7 +37,7 @@ public class SampleDataUtil {
     private static final Person BERNICE = new Person(new Name("Bernice Yu"), new Phone("99272758"),
             new Email("berniceyu@example.com"),
             new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK,
-            new HashSet<>(), Status.ACCEPTED, getPositionSet("Admin Assistant"));
+            new HashSet<>(), Status.ACCEPTED, getPositionSet("Admin Assistant", "Bookkeeper"));
 
     private static final Person CHARLOTTE = new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"),
             new Email("charlotte@example.com"),
@@ -52,7 +52,7 @@ public class SampleDataUtil {
     private static final Person IRFAN = new Person(new Name("Irfan Ibrahim"), new Phone("92492021"),
             new Email("irfan@example.com"),
             new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK,
-            new HashSet<>(), Status.REJECTED, getPositionSet("Project Manager"));
+            new HashSet<>(), Status.REJECTED, getPositionSet("Project Manager", "Sales Representative"));
 
     private static final Person ROY = new Person(new Name("Roy Balakrishnan"), new Phone("92624417"),
             new Email("royb@example.com"),
@@ -137,14 +137,5 @@ public class SampleDataUtil {
                 .map(Title::new)
                 .map(Position::new)
                 .collect(Collectors.toSet());
-    }
-
-    /**
-     * Returns a person set containing the list of persons given.
-     * @param persons the given list of persons.
-     * @return a person set.
-     */
-    public static Set<Person> getPersonSet(Person... persons) {
-        return new HashSet<Person>(Arrays.asList(persons));
     }
 }
