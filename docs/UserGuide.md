@@ -330,6 +330,23 @@ Edits a specific interview in the list of interviews.
   <br>
   <br>
 
+#### <u>Assign candidates to interview:</u> `unassign`
+
+*Assigns candidates to interview*
+
+<u>Format:</u>
+
+    assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+
+<u>Example:</u>
+`assign i=1 c=2 4`
+
+* You can input any number of candidates but only 1 interview.
+* Adds candidates with candidate index 2 and 4 to the first interview.
+* NOTE: If the candidate has not applied to the position, attempting to assign the candidate to an interview
+  for that position will result in an error message displayed.
+  <br>
+  <br>
 
 ### Feature: Storage
 
@@ -417,4 +434,5 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
 | **Delete an interview** | `delete_i <INDEX>` e.g.. `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
 | **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] |
-| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li
+| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
