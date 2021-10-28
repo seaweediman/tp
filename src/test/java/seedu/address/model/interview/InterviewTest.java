@@ -1,6 +1,8 @@
 package seedu.address.model.interview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATES_SET;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DURATION;
@@ -14,6 +16,7 @@ import static seedu.address.testutil.TypicalInterviews.BOOKKEEPER_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 
+import java.time.Duration;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
@@ -103,6 +106,39 @@ public class InterviewTest {
         // different status -> return false
         editedAssistantInterview = new InterviewBuilder(ASSISTANT_INTERVIEW).withStatus(VALID_STATUS_COMPLETED).build();
         assertFalse(ASSISTANT_INTERVIEW.equals(editedAssistantInterview));
+
+        //toString returns same value
+        assertEquals(ASSISTANT_INTERVIEW.toString(), assistantInterviewCopy.toString());
     }
 
+    @Test
+    public void durationFormatting() {
+        Interview interview = new InterviewBuilder().withDuration(VALID_DURATION).build();
+        //only in hours
+        assertEquals(interview.getDurationInFormattedString(), "180");
+
+        //only in minutes
+        interview = new InterviewBuilder().withDuration(Duration.ofMinutes(20)).build();
+        assertEquals(interview.getDurationInFormattedString(), "20");
+
+        //hours and minutes
+        interview = new InterviewBuilder().withDuration(Duration.ofMinutes(125)).build();
+        assertEquals(interview.getDurationInFormattedString(), "125");
+    }
+
+    @Test
+    public void interview_nullStatus_throwsException() {
+        Interview interview = new InterviewBuilder().build();
+        assertThrows(NullPointerException.class, () -> interview.setStatus(null));
+    }
+
+    @Test
+    public void setStatus_success() {
+        Interview interview = new InterviewBuilder().build();
+        interview.setStatus(Interview.InterviewStatus.COMPLETED);
+        assertEquals(interview.getStatus(), Interview.InterviewStatus.COMPLETED);
+
+        interview.setStatus(Interview.InterviewStatus.PENDING);
+        assertEquals(interview.getStatus(), Interview.InterviewStatus.PENDING);
+    }
 }

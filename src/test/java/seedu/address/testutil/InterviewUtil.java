@@ -11,8 +11,6 @@ import seedu.address.logic.interview.AddInterviewCommand;
 import seedu.address.model.interview.Interview;
 
 public class InterviewUtil {
-    public final static String standardInput = "add_i position=Accountant "
-            + "c=1 date=15/10/2021 time=1400 duration=120 interviewed=pending";
 
     /**
      * Returns an add interview command string for adding the {@code interview}.

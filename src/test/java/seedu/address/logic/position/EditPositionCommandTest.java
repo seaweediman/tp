@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.position.CommandTestUtil.DESC_ADMIN_ASSISTANT;
 import static seedu.address.logic.position.CommandTestUtil.DESC_BOOKKEEPER;
 import static seedu.address.logic.position.CommandTestUtil.VALID_STATUS_OPEN;
@@ -16,16 +15,17 @@ import static seedu.address.logic.position.CommandTestUtil.showPositionAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_POSITION;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.JOHN;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import java.util.function.Predicate;
+
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.CommandResult;
@@ -37,16 +37,11 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.exceptions.DuplicatePersonException;
-import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PositionBuilder;
-
-import java.util.ArrayList;
-import java.util.function.Predicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditPositionCommand.

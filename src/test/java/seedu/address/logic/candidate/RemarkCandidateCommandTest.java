@@ -7,7 +7,6 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_REMARK_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -16,7 +15,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
