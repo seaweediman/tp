@@ -130,6 +130,43 @@ public class CommandTestUtil {
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
+    private static boolean isEditICommand(Command command) {
+        String commandClassName = command.getClass().getSimpleName();
+        return commandClassName.equals("EditInterviewCommand");
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the given {@code command} is an edit command <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertEditInterviewCommandSuccess(Command command, Model actualModel,
+                                                         CommandResult expectedEditCommandResult, Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedEditCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertEditInterviewCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertEditInterviewCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                         Model expectedModel) {
+        if (!isEditICommand(command)) {
+            throw new AssertionError("Command should be an EditInterviewCommand");
+        }
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                false, false, false, false, true, false, false, false);
+        assertEditInterviewCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
     /**
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>

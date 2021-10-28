@@ -11,7 +11,7 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_EMPTY_CANDIDAT
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.CommandTestUtil.assertEditInterviewCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.interview.EditInterviewCommand.MESSAGE_CANDIDATE_DID_NOT_APPLY;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
@@ -75,7 +75,7 @@ public class EditInterviewCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditInterviewCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class EditInterviewCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditInterviewCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -111,7 +111,7 @@ public class EditInterviewCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
 
-        assertCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
+        assertEditInterviewCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }
 
     @Test

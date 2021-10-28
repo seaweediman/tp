@@ -135,7 +135,8 @@ public class EditInterviewCommand extends Command {
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()));
+        return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()),
+                false, false, false, false, true, false, false, false);
     }
 
     /**
