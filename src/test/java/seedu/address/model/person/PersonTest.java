@@ -115,7 +115,7 @@ public class PersonTest {
     @Test
     public void appliedForPosition() {
         //ALICE initially has position HR Manager
-        assertTrue(ALICE.appliedForPosition(new Position(new Title("HR Manager"))));
+        assertTrue(ALICE.appliedForPosition(new Position(new Title("Accountant"))));
 
         assertFalse(ALICE.appliedForPosition(new Position(new Title("Bookkeeper"))));
 

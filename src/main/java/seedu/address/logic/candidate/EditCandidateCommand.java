@@ -188,13 +188,14 @@ public class EditCandidateCommand extends Command {
             setTags(toCopy.tags);
             setStatus(toCopy.status);
             setPositions(toCopy.positions);
+            setInterviews(toCopy.interviews);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions, interviews);
         }
 
         public void setName(Name name) {
@@ -271,6 +272,23 @@ public class EditCandidateCommand extends Command {
             return (positions != null) ? Optional.of(Collections.unmodifiableSet(positions)) : Optional.empty();
         }
 
+        /**
+         * Sets {@code positions} to this object's {@code positions}.
+         * A defensive copy of {@code positions} is used internally.
+         */
+        public void setInterviews(Set<Interview> interviews) {
+            this.interviews = (interviews != null) ? new HashSet<>(interviews) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code positions} is null.
+         */
+        public Optional<Set<Interview>> getInterviews() {
+            return (interviews != null) ? Optional.of(Collections.unmodifiableSet(interviews)) : Optional.empty();
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -292,7 +310,8 @@ public class EditCandidateCommand extends Command {
                     && getAddress().equals(e.getAddress())
                     && getTags().equals(e.getTags())
                     && getStatus().equals(e.getStatus())
-                    && getPositions().equals(e.getPositions());
+                    && getPositions().equals(e.getPositions())
+                    && getInterviews().equals(e.getInterviews());
         }
     }
 }
