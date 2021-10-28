@@ -83,14 +83,13 @@ public class AssignInterviewCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
             }
             Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
-            newCandidates.add(candidate);
             Position position = interview.getPosition();
 
             if (!candidate.appliedForPosition(position)) {
                 throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                         candidateIndex.getOneBased(), candidate.getName(), interview.getPositionTitle()));
             }
-
+            newCandidates.add(candidate);
             Person editedPerson = EditCandidateCommand.createEditedPerson(candidate, personDescriptor);
             model.setPerson(candidate, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
