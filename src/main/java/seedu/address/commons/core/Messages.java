@@ -12,5 +12,6 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_POSITIONS_LISTED_OVERVIEW = "%1$d positions listed!";
     public static final String MESSAGE_INVALID_POSITION_DISPLAYED_INDEX = "The position index provided is invalid";
+    public static final String MESSAGE_INTERVIEW_LISTED_OVERVIEW = "%1$d interviews listed!";
 
 }

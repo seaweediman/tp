@@ -21,10 +21,6 @@ public class FindInterviewCommandPredicate implements Predicate<Interview> {
 
     public FindInterviewCommandPredicate() {}
 
-    public FindInterviewCommandPredicate(List<String> candidateKeywords) {
-        this.candidateKeywords = candidateKeywords;
-    }
-
     /**
      * Alternative Constructor with keyword field.
      * @param candidateKeywords
