@@ -160,7 +160,7 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 --------------------------------------------------------------------------------------------------------------------
 ## **Feature Implementation** ##
 
-### **Find Command** ###
+### **Find Commands** ###
 
 The `find_c`, `find_p` and `find_i` command allows users to search for candidates, positions and interviews using their parameters.
 Generally, they are called `find_x` in this section
@@ -188,7 +188,8 @@ Aspect: Logical operators and combinations for find fields
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
 
-### **List All Interviews Command** ###
+
+### **List Commands** ###
 
 The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
 Generally, they are called `list_x` in this section
@@ -208,6 +209,28 @@ Firstly, the parsing of the command and argument occurs as follows
 Continuing the previous diagram, the ListXCommand is executed, and the corresponding X panel in the UI is updated
 
 ![Execute_sequence_of_list_x](images/ListExcecuteSequenceDiagram.png)
+
+### **Edit Commands** ###
+
+The `edit_c`, `edit_p` and `edit_i` commands allow users to edit a specific candidate, position 
+or interview in the respective display panel.
+
+Generally, they are called `edit_x` in this section. 
+
+The edit mechanism is facilitated by `editXDescriptor`, where X is the object to be edited, for example
+`editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and 
+`editinterviewDescriptor` for editing interviews, and each non-empty field value will replace the corresponding
+field value of the object that is being edited. `editXDescriptor` stores the details to edit the candidate,
+position or interview with. `editXCommand` extends `Command` and implements the 
+`Command#execute()` operation, which executes the command and returns a result message to be displayed.
+
+Similar to any other command, the `Command#execute()` operation is exposed in the `Logic` interface as
+`Logic#execute()`. Please refer to the 'Logic component' under 'Design' for information on how the `Logic`
+component works when a command is executed.
+
+As an example, the parsing and execution of an edit_p command is as follows
+
+![Execute_sequence_of_edit_x](images/EditPositionSequenceDiagram.png)
 
 ### Add position
 #### Implementation
@@ -250,6 +273,7 @@ Notes:
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
+
 ### Product scope
 
 **Target user profile**:
