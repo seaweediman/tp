@@ -237,4 +237,14 @@ public class ParserUtilTest {
     public void parseDuration_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration("string"));
     }
+
+    @Test
+    public void parseDate_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate("222/12/2021"));
+    }
+
+    @Test
+    public void parseTime_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("22222"));
+    }
 }

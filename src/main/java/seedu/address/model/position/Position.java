@@ -98,7 +98,7 @@ public class Position {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
                 && title.equals(((Position) other).title)
-                && status.equals(((Position) other).getStatus())); // status check
+                && status == ((Position) other).getStatus()); // status check
     }
 
     @Override

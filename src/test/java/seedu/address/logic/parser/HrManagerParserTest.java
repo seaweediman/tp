@@ -5,17 +5,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_REMARK_AMY;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_DURATION_TIME;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_ASSISTANT;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_STATUS_PENDING;
+import static seedu.address.logic.interview.CommandTestUtil.VALID_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_POSITION;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Command;
 import seedu.address.logic.candidate.AddCandidateCommand;
 import seedu.address.logic.candidate.DeleteCandidateCommand;
 import seedu.address.logic.candidate.EditCandidateCommand;
@@ -26,18 +42,29 @@ import seedu.address.logic.candidate.RemarkCandidateCommand;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.logic.general.ExitCommand;
 import seedu.address.logic.general.HelpCommand;
+import seedu.address.logic.interview.AddInterviewCommand;
+import seedu.address.logic.interview.DeleteInterviewCommand;
+import seedu.address.logic.interview.EditInterviewCommand;
+import seedu.address.logic.interview.EditInterviewCommand.EditInterviewDescriptor;
 import seedu.address.logic.interview.ListInterviewCommand;
+import seedu.address.logic.interview.UnassignInterviewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.position.AddPositionCommand;
 import seedu.address.logic.position.DeletePositionCommand;
 import seedu.address.logic.position.EditPositionCommand;
 import seedu.address.logic.position.EditPositionCommand.EditPositionDescriptor;
+import seedu.address.logic.position.FindPositionCommand;
 import seedu.address.logic.position.ListPositionCommand;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.FindCandidateCommandPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.FindPositionCommandPredicate;
 import seedu.address.model.position.Position;
+import seedu.address.testutil.EditInterviewDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
+import seedu.address.testutil.InterviewBuilder;
+import seedu.address.testutil.InterviewUtil;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PositionBuilder;
@@ -64,6 +91,19 @@ public class HrManagerParserTest {
     }
 
     @Test
+    public void parseCommand_addInterview() throws Exception {
+        //use the prompt message from the main app, a string as it is
+        String standardInput = "add_i position=Accountant "
+                + "c=1 date=15/10/2021 time=1400 duration=120 interviewed=pending";
+        Command command = parser.parseCommand(standardInput);
+        assertTrue(command instanceof AddInterviewCommand);
+
+        Interview interview = new InterviewBuilder().build();
+        Command otherCommand = parser.parseCommand(InterviewUtil.getAddInterviewCommand(interview));
+        assertTrue(otherCommand instanceof AddInterviewCommand);
+    }
+
+    @Test
     public void parseCommand_clear() throws Exception {
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD) instanceof ClearCommand);
         assertTrue(parser.parseCommand(ClearCommand.COMMAND_WORD + " 3") instanceof ClearCommand);
@@ -84,6 +124,13 @@ public class HrManagerParserTest {
     }
 
     @Test
+    public void parseCommand_deleteInterview() throws Exception {
+        DeleteInterviewCommand command = (DeleteInterviewCommand) parser.parseCommand(
+                DeleteInterviewCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERVIEW.getOneBased());
+        assertEquals(new DeleteInterviewCommand(INDEX_FIRST_INTERVIEW), command);
+    }
+
+    @Test
     public void parseCommand_editCandidate() throws Exception {
         Person person = new PersonBuilder().build();
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(person).build();
@@ -92,6 +139,25 @@ public class HrManagerParserTest {
                 + " " + INDEX_FIRST_POSITION.getOneBased()
                         + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
         assertEquals(new EditCandidateCommand(INDEX_FIRST_POSITION, descriptor), command);
+    }
+
+    @Test
+    public void parseCommand_editInterview() throws Exception {
+        String userInput = EditInterviewCommand.COMMAND_WORD + " " + "1" + " "
+                + PREFIX_POSITION + VALID_POSITION_ADMIN_ASSISTANT
+                + " " + PREFIX_DATE + VALID_DATE + " " + PREFIX_TIME + VALID_TIME + " "
+                + " " + PREFIX_DURATION + VALID_DURATION_TIME + " " + PREFIX_INTERVIEW_STATUS
+                + VALID_STATUS_PENDING;
+        EditInterviewDescriptor descriptor =
+                new EditInterviewDescriptorBuilder()
+                        .withPosition(VALID_POSITION_ADMIN_ASSISTANT)
+                        .withDate(VALID_DATE)
+                        .withStartTime(VALID_TIME)
+                        .withDuration(VALID_DURATION_TIME)
+                        .withStatus(VALID_STATUS_PENDING).build();
+        EditInterviewCommand command = (EditInterviewCommand)
+                parser.parseCommand(userInput);
+        assertEquals(new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor), command);
     }
 
     @Test
@@ -115,6 +181,15 @@ public class HrManagerParserTest {
                 FindCandidateCommand.COMMAND_WORD + " "
                         + PREFIX_NAME + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCandidateCommand(new FindCandidateCommandPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findPosition() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        FindPositionCommand command = (FindPositionCommand) parser.parseCommand(
+                FindPositionCommand.COMMAND_WORD + " "
+                        + PREFIX_TITLE + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new FindPositionCommand(new FindPositionCommandPredicate(keywords)), command);
     }
 
     @Test
@@ -165,5 +240,18 @@ public class HrManagerParserTest {
         assertTrue(parser.parseCommand(ListInterviewCommand.COMMAND_WORD) instanceof ListInterviewCommand);
         assertTrue(parser.parseCommand(ListInterviewCommand.COMMAND_WORD
                 + " 3") instanceof ListInterviewCommand);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws Exception {
+        //unassign 1 candidate
+        Command command = parser.parseCommand(UnassignInterviewCommand.COMMAND_WORD + " "
+                + PREFIX_INTERVIEW_INDEX + "1 " + PREFIX_CANDIDATE_INDEX + "1");
+        assertEquals(new UnassignInterviewCommand(INDEX_FIRST_INTERVIEW, new HashSet<>()), command);
+
+        //unassign all candidates
+        Command otherCommand = parser.parseCommand(UnassignInterviewCommand.COMMAND_WORD + " "
+                + PREFIX_INTERVIEW_INDEX + "1 " + PREFIX_CANDIDATE_INDEX + "*");
+        assertEquals(new UnassignInterviewCommand(INDEX_FIRST_INTERVIEW, true), otherCommand);
     }
 }

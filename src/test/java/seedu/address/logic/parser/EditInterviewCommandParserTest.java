@@ -202,4 +202,5 @@ public class EditInterviewCommandParserTest {
         expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
 }

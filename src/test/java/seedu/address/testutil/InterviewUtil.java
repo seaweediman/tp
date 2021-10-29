@@ -25,14 +25,12 @@ public class InterviewUtil {
     public static String getInterviewDetails(Interview interview) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_POSITION + interview.getPosition().getTitle().fullTitle + " ");
-        for (int i = 1; i < interview.getCandidates().size(); i++) {
-            sb.append(PREFIX_CANDIDATE_INDEX + "" + i + " ");
+        for (int i = 0; i < interview.getCandidates().size(); i++) {
+            sb.append(PREFIX_CANDIDATE_INDEX + "" + (i + 1) + " ");
         }
-        //hard coded this for easy testing currently, will change in the next update
-        sb.append(PREFIX_DATE + "30/10/2021" + " ");
-        sb.append(PREFIX_TIME + "1000" + " ");
-        //hard coded this for easy testing currently, will change in the next update
-        sb.append(PREFIX_DURATION + "60" + " ");
+        sb.append(PREFIX_DATE + interview.getDateInFormattedString() + " ");
+        sb.append(PREFIX_TIME + interview.getTimeInFormattedString() + " ");
+        sb.append(PREFIX_DURATION + interview.getDurationInFormattedString() + " ");
         sb.append(PREFIX_INTERVIEW_STATUS + interview.getStatus().toString() + " ");
         return sb.toString();
     }
