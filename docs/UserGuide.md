@@ -119,6 +119,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
   <br>
   <br>
+
 #### <u>Edit a position:</u> `edit_p`
 
 *Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
@@ -134,6 +135,28 @@ Manage a list of job positions posted by your company, with the simple instructi
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position.
 * At least one field must be edited.
+  <br>
+  <br>
+
+#### <u>Find a position:</u> `find_p`
+
+*Filters the position list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
+
+<u>Format:</u>
+
+    find_p [title=<TITLE>]... [status=<STATUS>]...
+
+<u>Example:</u>
+
+    find_p status=closed title=Accountant Engineer
+
+* Finds all positions that are closed and title contains "Accountant" or "Engineer"
+  * (status contains word "closed") AND (title contains word "Accountant" OR "Engineer")
+* Within 1 field, keywords are separated by a space
+  * Command will find jobs that contains at least 1 of the keywords (OR)
+* Across different fields
+  * Command will return jobs that contain all the fields (AND)
+  
   <br>
   <br>
 
@@ -237,6 +260,35 @@ Manage a list of people who are candidates for your company, with the simple ins
     <br>
 
 
+#### <u>Find a Candidate:</u> `find_c`
+
+*Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
+
+<u>Format:</u>
+
+    find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...
+
+<u>Example:</u>
+
+    find_c name=Alex tag=recommended priority
+
+* Finds all candidates that have the word "Alex" in their name and have tags that contain the word "recommended" or "priority"
+  * (name contains "Alex") AND (title contains Accountant OR Engineer)
+* Candidates that will be found
+  * name="Alex Maslow", tags="recommended", ...
+  * name="alex", tags="priority candidate",...
+* Candidates that will not be found
+  * name="AlexMaslow", tags="recommended", ... (Word "Alex" not in name)
+  * name="Alex Maslow", tags="" (No tags containing word "recommended" or "priority")
+* Within 1 field, keywords are separated by a space
+  * Command will find candidates that contains at least 1 of the keywords (OR)
+* Across different fields
+  * Command will return candidates that contain all the fields (AND)
+
+  <br>
+  <br>
+
+
 ### Feature: Interview Management
 
 Manage a list of interviews for you to select the desired candidates, with the simple instructions below!
@@ -251,7 +303,7 @@ Manage a list of interviews for you to select the desired candidates, with the s
 
 <u>Example:</u>
 
-    add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending
+    add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
 * Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
 * `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
@@ -292,10 +344,10 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+    edit_i <INDEX> [position=POSITION]... [c=<CANDIDATE INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
-`edit_i 2 index=1 index=2 date=18/10/2021 time=1400`
+`edit_i 2 c=1 2 date=18/10/2021 time=1400`
 * Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
 * Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs.
 * At least one field must be edited.
@@ -345,6 +397,33 @@ Edits a specific interview in the list of interviews.
 * Adds candidates with candidate index 2 and 4 to the first interview.
 * NOTE: If the candidate has not applied to the position, attempting to assign the candidate to an interview
   for that position will result in an error message displayed.
+  <br>
+  <br>
+
+#### <u>Find a Interview:</u> `find_i`
+
+*Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
+
+<u>Format:</u>
+
+    find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+
+<u>Example:</u>
+
+    find_i date=21/09/2021 time=1600
+
+* Finds all interviews that are on 21/09/2021 and occur on 1600
+* Interviews that will be found
+  * date="21/09/2021", time="1500-1700"
+  * date="21/09/2021", time="1600-1650"
+* Interviews that will not be found
+  * date="21/09/2020", time="1500-1700", ... (Not on 21/09/2021)
+  * date="21/09/2021", time="1200-1300" (Interview not occurring on 1600)
+* Within 1 field, keywords are separated by a space (except time)
+  * Command will find candidates that contains at least 1 of the keywords (OR)
+* Across different fields
+  * Command will return candidates that contain all the fields (AND)
+
   <br>
   <br>
 
@@ -426,13 +505,16 @@ The transferred save files can then be loaded readily when using this applicatio
 | **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe |
 | **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
 | **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g.. `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
+| **Find candidates** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br> e.g. find_p status=closed title=Accountant Engineer | Candidates Found 
 | **Add position** | `add_p title=<TITLE>` <br> e.g.. `add_p title=Software engineer` | New position added: [Software engineer] |
 | **Delete position** | `delete_p <INDEX>` <br> e.g.. `delete_c 3` | Deleted Position: [Bookkeeper] |
 | **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g.. `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
-| **Add an interview** | `add_i position=<POSITION> [index=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g.. `add_i position=Accountant index=1 index=2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
-| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [index=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 index=1 index=2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
+| **Find a position** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g. find_c name=Alex tag=recommended priority | Candidates found
+| **Add an interview** | `add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g.. `add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
+| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [c=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 c=1 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
 | **Delete an interview** | `delete_i <INDEX>` e.g.. `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
 | **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] |
+| **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br> e.g find_i date=21/09/2021 time=1600 | Interviews found
 | **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
