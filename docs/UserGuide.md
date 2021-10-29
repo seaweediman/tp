@@ -138,7 +138,7 @@ Manage a list of job positions posted by your company, with the simple instructi
   <br>
   <br>
 
-#### <u>Find a position:</u> `edit_p`
+#### <u>Find a position:</u> `find_p`
 
 *Filters the position list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
@@ -260,7 +260,7 @@ Manage a list of people who are candidates for your company, with the simple ins
     <br>
 
 
-#### <u>Find a Candidate:</u> `edit_p`
+#### <u>Find a Candidate:</u> `find_c`
 
 *Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
@@ -400,7 +400,7 @@ Edits a specific interview in the list of interviews.
   <br>
   <br>
 
-#### <u>Find a Interview:</u> `edit_p`
+#### <u>Find a Interview:</u> `find_i`
 
 *Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
