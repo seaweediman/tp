@@ -20,9 +20,9 @@ class TupleTest {
         Interview otherInterview = new InterviewBuilder().withDate(LocalDate.now()).build();
         Index otherIndex = Index.fromZeroBased(2);
 
-        Tuple tuple = new Tuple(interview, index);
-        Tuple otherTuple = new Tuple(otherInterview, otherIndex);
-        Tuple tupleCopy = new Tuple(interview, index);
+        Tuple<Interview, Index> tuple = new Tuple<>(interview, index);
+        Tuple<Interview, Index> otherTuple = new Tuple<>(otherInterview, otherIndex);
+        Tuple<Interview, Index> tupleCopy = new Tuple<>(interview, index);
 
         //same Object returns true
         assertEquals(tuple, tuple);
@@ -35,7 +35,7 @@ class TupleTest {
         assertNotEquals(tuple, otherTuple);
 
         //incompatible types returns false
-        assertNotEquals(tuple, new Tuple(index, otherIndex));
+        assertNotEquals(tuple, new Tuple<>(index, otherIndex));
 
         //different type returns false
         assertNotEquals(tuple, 6);
