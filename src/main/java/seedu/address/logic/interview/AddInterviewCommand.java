@@ -76,12 +76,11 @@ public class AddInterviewCommand extends Command {
         if (model.isPositionClosed(position)) {
             throw new CommandException(String.format(MESSAGE_POSITION_CLOSED, position.getTitle()));
         }
-        //loads candidates from set of index
+
         Set<Person> candidates = new HashSet<>();
         for (Index index : indexes) {
             if (index.getZeroBased() < lastShownPersonList.size()) {
                 Person person = lastShownPersonList.get(index.getZeroBased());
-                //checks if person applied for position
                 if (!person.appliedForPosition(position)) {
                     throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                             person.getName(), position));
@@ -104,7 +103,6 @@ public class AddInterviewCommand extends Command {
         }
 
         model.addInterview(toAdd);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()),
                 CommandResult.CommandType.INTERVIEW);
     }

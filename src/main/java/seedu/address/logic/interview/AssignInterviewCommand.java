@@ -74,9 +74,6 @@ public class AssignInterviewCommand extends Command {
         StringBuilder candidatesAdded = new StringBuilder();
         candidatesAdded.append("\n");
 
-        EditCandidateCommand.EditPersonDescriptor personDescriptor = new EditCandidateCommand.EditPersonDescriptor();
-        personDescriptor.setInterviews(new HashSet<>(List.of(assignedInterview)));
-
         int count = 1;
         for (Index candidateIndex : candidateIndexes) {
             if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
@@ -90,9 +87,7 @@ public class AssignInterviewCommand extends Command {
                         candidateIndex.getOneBased(), candidate.getName(), interview.getPositionTitle()));
             }
             newCandidates.add(candidate);
-            Person editedPerson = EditCandidateCommand.createEditedPerson(candidate, personDescriptor);
-            model.setPerson(candidate, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            candidate.addInterview(assignedInterview);
 
             candidatesAdded.append(count + ". " + candidate.getName() + "\n");
             count++;
@@ -103,7 +98,6 @@ public class AssignInterviewCommand extends Command {
         result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
                 candidatesAdded), CommandResult.CommandType.INTERVIEW);
 
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }
 

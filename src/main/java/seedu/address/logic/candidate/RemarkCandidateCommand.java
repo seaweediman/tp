@@ -60,7 +60,6 @@ public class RemarkCandidateCommand extends Command {
                 personToEdit.getPositions());
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(generateSuccessMessage(editedPerson), CommandResult.CommandType.CANDIDATE);
     }

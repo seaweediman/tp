@@ -248,7 +248,7 @@ public class MainWindow extends UiPart<Stage> {
         interviewListLabel.setText("Interviews (filtered)");
     }
 
-    private void handleEditC() { //Update person and interview lists
+    private void handleC() { //Update person and interview lists
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -259,7 +259,7 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
-    private void handleEditP() { //Update person and position lists
+    private void handleP() { //Update person and position lists
         positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
         positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
 
@@ -270,7 +270,7 @@ public class MainWindow extends UiPart<Stage> {
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
-    private void handleEditI() { //Update person and interview lists
+    private void handleI() { //Update person and interview lists
         interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
         interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
 
@@ -295,26 +295,37 @@ public class MainWindow extends UiPart<Stage> {
             switch(commandResult.getCommandType()) {
             case HELP:
                 handleHelp();
+                break;
             case EXIT:
                 handleExit();
+                break;
             case LIST_C:
                 handleListC();
+                break;
             case LIST_P:
                 handleListP();
+                break;
             case LIST_I:
                 handleListI();
+                break;
             case FIND_C:
                 handleFindC();
+                break;
             case FIND_P:
                 handleFindP();
+                break;
             case FIND_I:
                 handleFindI();
+                break;
             case CANDIDATE:
-                handleEditC();
+                handleC();
+                break;
             case POSITION:
-                handleEditP();
+                handleP();
+                break;
             case INTERVIEW:
-                handleEditI();
+                handleI();
+                break;
             }
 
             return commandResult;

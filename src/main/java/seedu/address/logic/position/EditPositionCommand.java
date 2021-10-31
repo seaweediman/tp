@@ -73,7 +73,6 @@ public class EditPositionCommand extends Command {
         }
 
         model.setPosition(positionToEdit, editedPosition);
-        model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
         // Save updated position in the candidates.json file. //TODO
         for (Person person : lastShownPersonList) {
@@ -87,16 +86,6 @@ public class EditPositionCommand extends Command {
                         && !editPositionDescriptor.getPositionStatus().equals(Optional.of(PositionStatus.CLOSED))) {
                     person.addPosition(editedPosition);
                 }
-
-                EditCandidateCommand.EditPersonDescriptor editPersonDescriptor =
-                        new EditCandidateCommand.EditPersonDescriptor();
-
-                editPersonDescriptor.setPositions(positions);
-
-                Person editedPerson = EditCandidateCommand.createEditedPerson(person, editPersonDescriptor);
-
-                model.setPerson(person, editedPerson);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             }
         }
 

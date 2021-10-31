@@ -113,8 +113,6 @@ public class UnassignInterviewCommand extends Command {
                     removedPersons), CommandResult.CommandType.INTERVIEW);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }
 
