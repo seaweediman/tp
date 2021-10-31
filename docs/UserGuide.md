@@ -507,7 +507,7 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
 | **Find candidates** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br> e.g., find_p status=closed title=Accountant Engineer | Candidates Found 
 | **Add position** | `add_p title=<TITLE>` <br> e.g., `add_p title=Software engineer` | New position added: [Software engineer] |
-| **Delete position** | `delete_p <INDEX>` <br> e.g., `delete_c 3` | Deleted Position: [Bookkeeper] |
+| **Delete position** | `delete_p <INDEX>` <br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
 | **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g., `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
 | **Find a position** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., find_c name=Alex tag=recommended priority | Candidates found
