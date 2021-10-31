@@ -233,4 +233,8 @@ public class Person {
     public void setInterviews(Set<Interview> personInterviews) {
         interviews.addAll(personInterviews);
     }
+
+    public void setPositions(Set<Position> personPositions) {
+        positions = personPositions;
+    }
 }

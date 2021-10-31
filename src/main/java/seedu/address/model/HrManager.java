@@ -134,6 +134,10 @@ public class HrManager implements ReadOnlyHrManager {
         return positions.contains(position);
     }
 
+    public Position getPosition(Position position) {
+        return positions.getPosition(position);
+    }
+
     /**
      * Adds a position to the HR Manager.
      * The position must not already exist in the HR Manager.
@@ -234,7 +238,7 @@ public class HrManager implements ReadOnlyHrManager {
     public void deletePersonFromInterview(Person person) {
         for (Interview interview : interviews) {
             if (interview.hasCandidate(person)) {
-                interview.removeCandidate(person);
+                interview.deleteCandidate(person);
             }
         }
     }

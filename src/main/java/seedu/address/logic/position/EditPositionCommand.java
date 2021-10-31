@@ -18,6 +18,7 @@ import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Position.PositionStatus;
@@ -57,15 +58,16 @@ public class EditPositionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Position> lastShownList = model.getFilteredPositionList();
+        List<Position> lastShownPositionList = model.getFilteredPositionList();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Interview> lastShownInterviewList = model.getFilteredInterviewList();
 
         // Save updated position in the positions.json file.
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownPositionList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_POSITION_DISPLAYED_INDEX);
         }
 
-        Position positionToEdit = lastShownList.get(index.getZeroBased());
+        Position positionToEdit = lastShownPositionList.get(index.getZeroBased());
         Position editedPosition = createEditedPosition(positionToEdit, editPositionDescriptor);
 
         if (!positionToEdit.isSamePosition(editedPosition) && model.hasPosition(editedPosition)) {
@@ -97,6 +99,13 @@ public class EditPositionCommand extends Command {
 
                 model.setPerson(person, editedPerson);
                 model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            }
+        }
+
+        for (Interview interview : lastShownInterviewList) {
+            Position interviewPosition = interview.getPosition();
+            if (interviewPosition.isSamePosition(positionToEdit)) {
+                interview.setPosition(editedPosition);
             }
         }
 
