@@ -170,7 +170,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
+    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>... [status=<STATUS>] [tag=<TAG>]...
 
 <u>Example:</u>
 
@@ -505,7 +505,7 @@ The transferred save files can then be loaded readily when using this applicatio
 | **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g., `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
 | **Find a position** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br> e.g., `find_p title=Accountant Engineer status=closed` | Candidates found
-| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...`  <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
+| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>...[status=<STATUS>] [tag=<TAG>]...`  <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
 | **Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
 | **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe |
 | **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
