@@ -115,7 +115,6 @@ public class EditInterviewCommand extends Command {
         }
 
         model.setInterview(interviewToEdit, editedInterview);
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
 
         // update candidate list
         if (isCandidateSetEdited) {
@@ -136,7 +135,7 @@ public class EditInterviewCommand extends Command {
         }
 
         return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()),
-                false, false, false, false, true, false, false, false);
+                false, false, false, false, true, false, false, false, false, false, true);
     }
 
     /**

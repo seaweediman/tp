@@ -248,6 +248,39 @@ public class MainWindow extends UiPart<Stage> {
         interviewListLabel.setText("Interviews (filtered)");
     }
 
+    private void handleEditC(CommandResult commandResult) { //Update person and interview lists
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleEditP(CommandResult commandResult) { //Update person and position lists
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleEditI(CommandResult commandResult) { //Update person and interview lists
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
     /**
      * Executes the command and returns the result.
      *
@@ -275,6 +308,12 @@ public class MainWindow extends UiPart<Stage> {
                 handleFindP(commandResult);
             } else if (commandResult.isFindI()) {
                 handleFindI(commandResult);
+            } else if (commandResult.isEditC()) {
+                handleEditC(commandResult);
+            } else if (commandResult.isEditP()) {
+                handleEditP(commandResult);
+            } else if (commandResult.isEditI()) {
+                handleEditI(commandResult);
             }
 
             return commandResult;

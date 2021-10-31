@@ -4,8 +4,10 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.FindCandidateCommand;
 import seedu.address.logic.candidate.ListCandidateCommand;
+import seedu.address.logic.interview.FindInterviewCommand;
 import seedu.address.logic.interview.ListInterviewCommand;
 import seedu.address.logic.position.FindPositionCommand;
 import seedu.address.logic.position.ListPositionCommand;
@@ -14,6 +16,11 @@ import seedu.address.logic.position.ListPositionCommand;
  * Represents the result of a command execution.
  */
 public class CommandResult {
+
+    public enum CommandType {
+        HELP,
+        LIST_C,
+    }
 
     private final String feedbackToUser;
 
@@ -58,11 +65,29 @@ public class CommandResult {
     private final boolean isFindI;
 
     /**
+     * The application should display interview list.
+     */
+    private final boolean isEditC;
+
+    /**
+     * The application should display interview list.
+     */
+    private final boolean isEditP;
+
+    /**
+     * The application should display interview list.
+     */
+    private final boolean isEditI;
+
+
+
+    /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser,
                          boolean isShowHelp, boolean isExit, boolean isListC, boolean isListP, boolean isListI,
-                        boolean isFindC, boolean isFindP, boolean isFindI) {
+                        boolean isFindC, boolean isFindP, boolean isFindI, boolean isEditC, boolean isEditP,
+                         boolean isEditI) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.isShowHelp = isShowHelp;
         this.isExit = isExit;
@@ -72,6 +97,9 @@ public class CommandResult {
         this.isFindC = isFindC;
         this.isFindP = isFindP;
         this.isFindI = isFindI;
+        this.isEditC = isEditC;
+        this.isEditP = isEditP;
+        this.isEditI = isEditI;
     }
 
     /**
@@ -85,6 +113,9 @@ public class CommandResult {
                 feedbackToUser.equals(ListInterviewCommand.MESSAGE_SUCCESS),
                 feedbackToUser.equals(FindCandidateCommand.MESSAGE_SUCCESS),
                 feedbackToUser.equals(FindPositionCommand.MESSAGE_SUCCESS),
+                feedbackToUser.equals(FindInterviewCommand.MESSAGE_SUCCESS),
+                false,
+                false,
                 false);
     }
 
@@ -122,6 +153,17 @@ public class CommandResult {
 
     public boolean isFindI() {
         return isFindI;
+    }
+
+    public boolean isEditC() {
+        return isEditC;
+    }
+
+    public boolean isEditP() {
+        return isEditP;
+    }
+    public boolean isEditI() {
+        return isEditI;
     }
 
     @Override

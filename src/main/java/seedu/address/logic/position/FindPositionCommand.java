@@ -42,7 +42,7 @@ public class FindPositionCommand extends Command {
         model.updateFilteredPositionList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_POSITIONS_LISTED_OVERVIEW, model.getFilteredPositionList().size()),
-            false, false, false, false, false, false, true, false);
+            false, false, false, false, false, false, true, false, false, false, false);
 
     }
 

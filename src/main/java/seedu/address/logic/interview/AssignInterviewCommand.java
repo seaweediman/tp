@@ -92,7 +92,6 @@ public class AssignInterviewCommand extends Command {
             newCandidates.add(candidate);
             Person editedPerson = EditCandidateCommand.createEditedPerson(candidate, personDescriptor);
             model.setPerson(candidate, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
             candidatesAdded.append(count + ". " + candidate.getName() + "\n");
             count++;
@@ -101,10 +100,9 @@ public class AssignInterviewCommand extends Command {
         model.setInterview(interview, assignedInterview);
 
         result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                candidatesAdded), false, false, true, false, false,
-                false, false, false);
+                candidatesAdded), false, false, false, false, false,
+                false, false, false, false, false, true);
 
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }
 
