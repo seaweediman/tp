@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_NO_POSITION_FOUND;
-import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
@@ -61,7 +61,7 @@ public class AddCandidateCommandTest {
         Person validPerson = new PersonBuilder(ALICE).withPositions("Admin").build();
         ModelStubWithSomePositionsAndBob modelStub = new ModelStubWithSomePositionsAndBob();
         AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
-        String expectedMessage = String.format(MESSAGE_NO_POSITION_FOUND, "Admin");
+        String expectedMessage = String.format(MESSAGE_POSITION_DOES_NOT_EXIST, "Admin");
 
         assertThrows(CommandException.class, expectedMessage, () ->
                 addCandidateCommand.execute(modelStub));
@@ -150,6 +150,11 @@ public class AddCandidateCommandTest {
             return false;
         }
 
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
+        }
+
         //For some reason p.getStatus() is always open even when building with closed
         @Override
         public boolean isPositionClosed(Position p) {
@@ -193,6 +198,11 @@ public class AddCandidateCommandTest {
         @Override
         public boolean isPositionClosed(Position p) {
             return false;
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
     }
 }

@@ -97,6 +97,18 @@ public class UniquePositionList implements Iterable<Position> {
         internalList.setAll(positions);
     }
 
+
+    public Position getPosition(Position position) {
+        assert internalList.contains(position);
+
+        for (Position p : internalList) {
+            if (p.isSamePosition(position)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */

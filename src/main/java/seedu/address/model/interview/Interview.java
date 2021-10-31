@@ -32,7 +32,7 @@ public class Interview {
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
     public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
 
-    private final Position position;
+    private Position position;
 
     private InterviewStatus status;
 
@@ -126,6 +126,10 @@ public class Interview {
     public Position getPosition() {
         assert this.position != null : "Interview position is non-null";
         return position;
+    }
+
+    public void setPosition(Position newPosition) {
+        position = newPosition;
     }
 
     public Set<Person> getCandidates() {
@@ -224,7 +228,7 @@ public class Interview {
         return candidates.contains(person);
     }
 
-    public void removeCandidate(Person person) {
+    public void deleteCandidate(Person person) {
         candidates.remove(person);
     }
 

@@ -3,6 +3,8 @@ package seedu.address.logic.interview;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.BENSON;
@@ -69,7 +71,7 @@ class AddInterviewCommandTest {
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, new HashSet<>());
         ModelStubWithNoPosition modelStub = new ModelStubWithNoPosition();
 
-        assertThrows(CommandException.class, String.format(AddInterviewCommand.MESSAGE_NO_POSITION_FOUND,
+        assertThrows(CommandException.class, String.format(MESSAGE_POSITION_DOES_NOT_EXIST,
                 validInterview.getPosition().getTitle()), () -> addInterviewCommand.execute(modelStub));
     }
 
@@ -96,7 +98,7 @@ class AddInterviewCommandTest {
                 .withPosition(new Position(new Title("accountant"))).build();
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(interview, temp);
 
-        assertThrows(CommandException.class, String.format(AddInterviewCommand.MESSAGE_NO_POSITION_FOUND,
+        assertThrows(CommandException.class, String.format(MESSAGE_POSITION_DOES_NOT_EXIST,
                 "accountant"), () -> addInterviewCommand.execute(model));
     }
 
@@ -134,7 +136,7 @@ class AddInterviewCommandTest {
                 .build();
         AddInterviewCommand addInterviewCommand = new AddInterviewCommand(validInterview, temp);
 
-        assertThrows(CommandException.class, String.format(AddInterviewCommand.MESSAGE_POSITION_CLOSED,
+        assertThrows(CommandException.class, String.format(MESSAGE_POSITION_CLOSED,
                 "Admin"), () -> addInterviewCommand.execute(model));
     }
 
@@ -164,6 +166,11 @@ class AddInterviewCommandTest {
         @Override
         public boolean hasPosition(Position position) {
             return true;
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
 
         @Override
@@ -217,6 +224,11 @@ class AddInterviewCommandTest {
         @Override
         public boolean hasPosition(Position position) {
             return emptyPositionList.contains(position);
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
 
         @Override
@@ -290,6 +302,11 @@ class AddInterviewCommandTest {
         @Override
         public boolean hasPosition(Position position) {
             return true;
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
 
         @Override
