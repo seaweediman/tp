@@ -75,7 +75,7 @@ public class AssignInterviewCommandTest {
         assertCommandSuccess(assignInterviewCommand, model, expectedCommandResult, expectedModel);
 
         alice.deleteInterview(assignedInterview);
-        assignedInterview.removeCandidate(alice);
+        assignedInterview.deleteCandidate(alice);
     }
 
     @Test
