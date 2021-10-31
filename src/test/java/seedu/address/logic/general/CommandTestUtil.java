@@ -1,11 +1,11 @@
 package seedu.address.logic.general;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CommandTestUtil {
 

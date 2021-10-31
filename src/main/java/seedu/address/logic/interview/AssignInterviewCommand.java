@@ -3,10 +3,7 @@ package seedu.address.logic.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +11,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;

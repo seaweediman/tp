@@ -326,6 +326,7 @@ public class MainWindow extends UiPart<Stage> {
             case INTERVIEW:
                 handleI();
                 break;
+            default:
             }
 
             return commandResult;

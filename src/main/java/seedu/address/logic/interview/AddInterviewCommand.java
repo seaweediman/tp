@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;

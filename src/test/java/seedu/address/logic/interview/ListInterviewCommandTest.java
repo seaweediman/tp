@@ -28,12 +28,14 @@ public class ListInterviewCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showInterviewAtIndex(model, INDEX_FIRST_INTERVIEW);
-        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 }

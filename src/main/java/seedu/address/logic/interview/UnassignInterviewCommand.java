@@ -3,8 +3,6 @@ package seedu.address.logic.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
