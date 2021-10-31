@@ -77,7 +77,6 @@ public class EditPositionCommand extends Command {
         model.setPosition(positionToEdit, editedPosition);
         model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
-        // Save updated position in the candidates.json file. //TODO
         for (Person person : lastShownPersonList) {
             Set<Position> positions = person.getPositions();
             if (positions.contains(positionToEdit)) {

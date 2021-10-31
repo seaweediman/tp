@@ -15,7 +15,6 @@ import static seedu.address.logic.interview.CommandTestUtil.assertEditInterviewC
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.logic.interview.EditInterviewCommand.MESSAGE_CANDIDATE_DID_NOT_APPLY;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
-import static seedu.address.model.interview.Interview.MESSAGE_POSITION_CONSTRAINTS;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
@@ -217,8 +216,8 @@ public class EditInterviewCommandTest {
         descriptor.setPosition(CLOSED_POSITION_CLERK);
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
-        assertThrows(CommandException.class, String.format(MESSAGE_POSITION_CLOSED, CLOSED_POSITION_CLERK.getTitle()),
-                () -> editInterviewCommand.execute(modelStub));
+        assertThrows(CommandException.class, String.format(MESSAGE_POSITION_CLOSED,
+                CLOSED_POSITION_CLERK.getTitle()), () -> editInterviewCommand.execute(modelStub));
     }
 
     @Test
