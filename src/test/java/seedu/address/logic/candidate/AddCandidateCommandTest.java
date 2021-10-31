@@ -150,6 +150,11 @@ public class AddCandidateCommandTest {
             return false;
         }
 
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
+        }
+
         //For some reason p.getStatus() is always open even when building with closed
         @Override
         public boolean isPositionClosed(Position p) {
@@ -193,6 +198,11 @@ public class AddCandidateCommandTest {
         @Override
         public boolean isPositionClosed(Position p) {
             return false;
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
     }
 }
