@@ -382,7 +382,7 @@ Edits a specific interview in the list of interviews.
   <br>
   <br>
 
-#### <u>Assign candidates to interview:</u> `unassign`
+#### <u>Assign candidates to interview:</u> `assign`
 
 *Assigns candidates to interview*
 
