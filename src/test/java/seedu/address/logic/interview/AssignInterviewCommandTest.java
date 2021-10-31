@@ -73,6 +73,9 @@ public class AssignInterviewCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         assertCommandSuccess(assignInterviewCommand, model, expectedCommandResult, expectedModel);
+
+        alice.deleteInterview(assignedInterview);
+        assignedInterview.removeCandidate(alice);
     }
 
     @Test
