@@ -3,6 +3,7 @@ package seedu.address.logic.position;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POSITIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -70,6 +71,7 @@ public class EditPositionCommand extends Command {
         }
 
         model.setPosition(positionToEdit, editedPosition);
+        model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
         // Save updated position in the candidates.json file. //TODO
         for (Person person : lastShownPersonList) {
