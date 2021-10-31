@@ -86,7 +86,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 <u>Example:</u>
 
-    add_p Assistant
+    add_p title=Assistant
 
 * Adds a position with the title of Assistant.
   <br>
