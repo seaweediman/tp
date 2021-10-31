@@ -239,6 +239,17 @@ public class ParserUtilTest {
     }
 
     @Test
+    public void parseDuration_invalidValueMoreThanOneDay_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration("1440"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(String.valueOf(Long.MAX_VALUE)));
+    }
+
+    @Test
+    public void parseDuration_invalidValueTooShort_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration("0"));
+    }
+
+    @Test
     public void parseDate_invalidValueNoPatternFound_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate("222/12/2021"));
     }
