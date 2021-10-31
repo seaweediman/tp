@@ -8,7 +8,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.logic.Command;
@@ -66,15 +69,20 @@ public class AddCandidateCommand extends Command {
         }
 
         Set<Position> positions = toAdd.getPositions();
+        Set<Position> positionReferences = new HashSet<>();
         for (Position p : positions) {
             if (!model.hasPosition(p)) {
-                throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+                throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, p.getTitle()));
             }
             if (model.isPositionClosed(p)) {
-                throw new CommandException("Position " + p.getTitle().fullTitle + " is closed");
+                throw new CommandException(String.format(MESSAGE_POSITION_CLOSED,
+                        model.getPositionReference(p).getTitle()));
             }
+
+            positionReferences.add(model.getPositionReference(p));
         }
 
+        toAdd.setPositions(positionReferences);
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CommandType.CANDIDATE);
     }

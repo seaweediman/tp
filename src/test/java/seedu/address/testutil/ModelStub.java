@@ -94,6 +94,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public Position getPositionReference(Position position) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deletePosition(Position target) {
         throw new AssertionError("This method should not be called.");
     }

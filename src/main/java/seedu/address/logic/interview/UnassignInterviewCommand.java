@@ -101,7 +101,7 @@ public class UnassignInterviewCommand extends Command {
                     throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                             candidateIndex.getOneBased(), candidate.getName(), interview.getDisplayString()));
                 }
-                interview.removeCandidate(candidate);
+                interview.deleteCandidate(candidate);
                 candidate.deleteInterview(interview);
 
                 removedPersons.append(count + ". " + candidate.getName() + "\n");

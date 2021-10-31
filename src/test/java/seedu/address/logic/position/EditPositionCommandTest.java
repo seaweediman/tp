@@ -36,6 +36,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyHrManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.testutil.EditPositionDescriptorBuilder;
@@ -210,6 +211,7 @@ public class EditPositionCommandTest {
     private class ModelStubAcceptingPositionEdited extends ModelStub {
         final ObservableList<Position> positions = FXCollections.observableArrayList();
         final ObservableList<Person> persons = FXCollections.observableArrayList();
+        final ObservableList<Interview> interviews = FXCollections.observableArrayList();
 
         ModelStubAcceptingPositionEdited() {
             persons.add(JOHN);
@@ -221,6 +223,11 @@ public class EditPositionCommandTest {
         public boolean hasPosition(Position position) {
             requireNonNull(position);
             return positions.stream().anyMatch(position::isSamePosition);
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
 
         @Override
@@ -248,6 +255,11 @@ public class EditPositionCommandTest {
         @Override
         public ObservableList<Person> getFilteredPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Interview> getFilteredInterviewList() {
+            return interviews;
         }
 
         @Override

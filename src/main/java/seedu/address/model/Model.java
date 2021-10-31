@@ -131,6 +131,11 @@ public interface Model {
     boolean hasPosition(Position position);
 
     /**
+     * Returns the position stored in HR Manager {@code position}
+     */
+    Position getPositionReference(Position position);
+
+    /**
      * Deletes the given position.
      * The position must exist in the HR Manager.
      */

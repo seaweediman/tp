@@ -11,8 +11,8 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.candidate.CommandTestUtil.assertEditCandidateCommandSuccess;
 import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
-import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_NO_POSITION_FOUND;
-import static seedu.address.logic.interview.AddInterviewCommand.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -201,7 +201,7 @@ public class EditCandidateCommandTest {
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
                 editPersonDescriptor);
         ModelStubWithObservable modelStub = new ModelStubWithObservable();
-        String expectedMessage = String.format(MESSAGE_NO_POSITION_FOUND, "Admin");
+        String expectedMessage = String.format(MESSAGE_POSITION_DOES_NOT_EXIST, "Admin");
 
         assertThrows(CommandException.class, expectedMessage, () ->
                 editCandidateCommand.execute(modelStub));
@@ -263,6 +263,11 @@ public class EditCandidateCommandTest {
         @Override
         public void addPerson(Person person) {
             persons.add(person);
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
         }
 
         @Override

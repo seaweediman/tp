@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 
 import java.util.HashSet;
 import java.util.List;
@@ -46,8 +48,6 @@ public class AddInterviewCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New interview added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
-    public static final String MESSAGE_NO_POSITION_FOUND = "Position %1$s not found in HR Manager";
-    public static final String MESSAGE_POSITION_CLOSED = "Position %1$s is closed";
     public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s did not apply for Position %2$s";
 
     private final Interview toAdd;
@@ -69,13 +69,14 @@ public class AddInterviewCommand extends Command {
 
         Position position = toAdd.getPosition();
         if (!model.hasPosition(position)) {
-            throw new CommandException(String.format(MESSAGE_NO_POSITION_FOUND, position.getTitle()));
+            throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, position.getTitle()));
         }
-
         if (model.isPositionClosed(position)) {
             throw new CommandException(String.format(MESSAGE_POSITION_CLOSED, position.getTitle()));
         }
+        toAdd.setPosition(model.getPositionReference(position));
 
+        //loads candidates from set of index
         Set<Person> candidates = new HashSet<>();
         for (Index index : indexes) {
             if (index.getZeroBased() < lastShownPersonList.size()) {

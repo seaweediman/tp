@@ -152,6 +152,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Position getPositionReference(Position position) {
+        return hrManager.getPosition(position);
+    }
+
+    @Override
     public void deletePosition(Position target) {
         hrManager.removePosition(target);
     }

@@ -53,7 +53,7 @@ public class ParserUtil {
     /**
      * Parses a string of keywords as List delimited by space.
      * @param keywords Input String.
-     * @return List of keywords
+     * @return List of keywords.
      */
     public static List<String> parseKeywords(String keywords) {
         requireNonNull(keywords);
@@ -108,7 +108,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param name Input String.
+     * @return Name of a candidate.
      * @throws ParseException if the given {@code name} is invalid.
      */
     public static Name parseName(String name) throws ParseException {
@@ -123,7 +124,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param tag Input String.
+     * @return Tag of a candidate.
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
@@ -138,7 +140,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param phone Input String.
+     * @return Phone Number of a candidate.
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
@@ -153,7 +156,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param address Input String.
+     * @return Address of a candidate.
      * @throws ParseException if the given {@code address} is invalid.
      */
     public static Address parseAddress(String address) throws ParseException {
@@ -168,7 +172,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param email Input String.
+     * @return Email of a candidate.
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
@@ -181,10 +186,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String status} into a {@code Status}
+     * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException If the given {@code status} is invalid
+     * @param status Input String.
+     * @return Status of a candidate.
+     * @throws ParseException If the given {@code status} is invalid.
      */
     public static Status parseStatus(String status) throws ParseException {
         String trimmedStatus = status.trim().toUpperCase();
@@ -197,6 +203,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * @param tags Input Strings.
+     * @return Tags of a candidate.
+     * @throws ParseException If the given {@code tags} is invalid.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
@@ -210,8 +219,9 @@ public class ParserUtil {
     /**
      * Parses {@code String title} into a {@code Title}
      * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException
+     * @param title Input String.
+     * @return Title of a Job Position.
+     * @throws ParseException If the given {@code title} is invalid.
      */
     public static Title parseTitle(String title) throws ParseException {
         requireNonNull(title);
@@ -223,9 +233,11 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String Position} into a {@code Position}.
+     * Parses a {@code String position} into a {@code Position}.
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param position Input String.
+     * @return A Job Position.
+     * @throws ParseException If the given {@code position} is invalid.
      */
     public static Position parsePosition(String position) throws ParseException {
         requireNonNull(position);
@@ -241,6 +253,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> position} into a {@code Set<Position>}.
+     * @param positions Input Strings.
+     * @return A Set of Job Positions.
+     * @throws ParseException If the given {@code positions} is invalid.
      */
     public static Set<Position> parsePositions(Collection<String> positions) throws ParseException {
         requireNonNull(positions);
@@ -253,6 +268,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String positionStatus} into a {@code PositionStatus}.
+     * @param positionStatus Input String.
+     * @return Status of a Job Position.
+     * @throws ParseException If the given {@code positionStatus} is invalid
      */
     public static PositionStatus parsePositionStatus(String positionStatus) throws ParseException {
         requireNonNull(positionStatus);
@@ -271,6 +289,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String date} into a {@code LocalDate}.
+     * @param date Input String.
+     * @return LocalDate of an Interview.
+     * @throws ParseException If the given {@code date} is invalid
      */
     public static LocalDate parseDate(String date) throws ParseException {
         String dateFormat = "^[0-9]{1,2}[\\\\/][0-9]{1,2}[\\\\/][0-9]{4}$";
@@ -292,6 +313,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String time} into a {@code LocalTime}.
+     * @param time Input String.
+     * @return LocalTime of an Interview.
+     * @throws ParseException If the given {@code time} is invalid
      */
     public static LocalTime parseTime(String time) throws ParseException {
         String timeFormat = "^[0-9]{4}$";
@@ -311,11 +335,15 @@ public class ParserUtil {
 
     /**
      * Parses {@code String duration} into a {@code Duration}.
+     * @param duration Input String.
+     * @return Duration of an Interview.
+     * @throws ParseException If the given {@code duration} is invalid
      */
     public static Duration parseDuration(String duration) throws ParseException {
         try {
-            Long actualDuration = Long.parseLong(duration);
-            if (actualDuration < 0) {
+            long actualDuration = Long.parseLong(duration);
+            //capped at strictly less than 24 hours or 1440 minutes
+            if (actualDuration <= 0 || actualDuration >= 1440) {
                 throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
             }
             return Duration.ofMinutes(actualDuration);
@@ -327,7 +355,8 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into a {@code InterviewStatus}
      * Leading and trailing whitespaces will be trimmed.
-     *
+     * @param status Input String.
+     * @return InterviewStatus of an Interview.
      * @throws ParseException If the given {@code status} is invalid
      */
     public static InterviewStatus parseInterviewStatus(String status) throws ParseException {
@@ -347,6 +376,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> indexes} into a {@code Set<Index>}.
+     * @param indexes Input Strings.
+     * @return A Set of Indexes.
+     * @throws ParseException If the given {@code indexes} is invalid
      */
     public static Set<Index> parseIndexes(Collection<String> indexes) throws ParseException {
         requireNonNull(indexes);
@@ -359,6 +391,9 @@ public class ParserUtil {
 
     /**
      * Parses {@code String indexes} into a {@code Set<Index>}.
+     * @param indexes Input Strings.
+     * @return A Set of Indexes for Candidates.
+     * @throws ParseException If the given {@code indexes} is invalid
      */
     public static Set<Index> parseCandidateIndex(String indexes) throws ParseException {
         requireNonNull(indexes);

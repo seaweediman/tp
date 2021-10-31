@@ -9,6 +9,8 @@ import static java.util.Objects.requireNonNull;
 public class Position {
 
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
+    public static final String MESSAGE_POSITION_CLOSED = "Position %s is closed";
+    public static final String MESSAGE_POSITION_DOES_NOT_EXIST = "Position %s not found in HR Manager";
 
     public final Title title;
 

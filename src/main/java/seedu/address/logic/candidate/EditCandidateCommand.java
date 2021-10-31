@@ -8,6 +8,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+<<<<<<< HEAD
+=======
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
+>>>>>>> master
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -90,18 +96,27 @@ public class EditCandidateCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
         Set<Position> newPositions = editedPerson.getPositions();
+        Set<Position> positionReferences = new HashSet<>();
         for (Position p : newPositions) {
             if (!model.hasPosition(p)) {
-                throw new CommandException("Position " + p.getTitle().fullTitle + " not found in HR Manager");
+                throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, p.getTitle()));
             }
             if (model.isPositionClosed(p)) {
-                throw new CommandException("Position " + p.getTitle().fullTitle + " is closed");
+                throw new CommandException(String.format(MESSAGE_POSITION_CLOSED,
+                        model.getPositionReference(p).getTitle()));
             }
+            positionReferences.add(model.getPositionReference(p));
         }
+<<<<<<< HEAD
+=======
+
+        editedPerson.setPositions(positionReferences);
+
+>>>>>>> master
         //Remove the old person and add the new one
         Set<Interview> interviews = personToEdit.getInterviews();
         for (Interview i : interviews) {
-            i.removeCandidate(personToEdit);
+            i.deleteCandidate(personToEdit);
             i.addCandidate(editedPerson);
         }
         model.setPerson(personToEdit, editedPerson);
