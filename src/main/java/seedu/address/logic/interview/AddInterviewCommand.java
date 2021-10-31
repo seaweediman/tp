@@ -105,7 +105,8 @@ public class AddInterviewCommand extends Command {
 
         model.addInterview(toAdd);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()),
+                CommandResult.CommandType.INTERVIEW);
     }
 
     @Override

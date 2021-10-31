@@ -91,8 +91,7 @@ public class UnassignInterviewCommand extends Command {
             model.deleteInterviewFromPerson(interview);
             result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED,
                     interview.getDisplayStringWithoutNames()),
-                    false, false, true, false, false, false, false,
-                    false);
+                    CommandResult.CommandType.INTERVIEW);
         } else {
             int count = 1;
             for (Index candidateIndex : candidateIndexes) {
@@ -111,8 +110,7 @@ public class UnassignInterviewCommand extends Command {
                 count++;
             }
             result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                    removedPersons), false, false, true, false, false,
-                    false, false, false);
+                    removedPersons), CommandResult.CommandType.INTERVIEW);
         }
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);

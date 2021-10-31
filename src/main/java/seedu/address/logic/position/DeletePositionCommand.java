@@ -44,7 +44,8 @@ public class DeletePositionCommand extends Command {
         model.deletePosition(positionToDelete);
 
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_POSITION_SUCCESS, positionToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_POSITION_SUCCESS, positionToDelete),
+                                CommandResult.CommandType.POSITION);
     }
 
     @Override

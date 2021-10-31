@@ -197,8 +197,7 @@ public class EditPositionCommandTest {
             CommandResult result = command.execute(model);
             //because standard constructor of CommandResult does not update isListP to true
             assertEquals(result, new CommandResult(expectedMessage,
-                    false, false, false,
-                    true, false, false, false, false));
+                    CommandResult.CommandType.POSITION));
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }

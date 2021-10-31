@@ -15,6 +15,7 @@ public class CommandResult {
     public enum CommandType {
         HELP,
         EXIT,
+        GENERAL,
         LIST_C,
         LIST_P,
         LIST_I,

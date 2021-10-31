@@ -101,8 +101,7 @@ public class AssignInterviewCommand extends Command {
         model.setInterview(interview, assignedInterview);
 
         result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                candidatesAdded), false, false, true, false, false,
-                false, false, false);
+                candidatesAdded), CommandResult.CommandType.INTERVIEW);
 
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;

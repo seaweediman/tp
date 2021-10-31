@@ -1,6 +1,6 @@
 package seedu.address.logic.interview;
 
-import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.interview.CommandTestUtil.assertListCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -28,12 +28,12 @@ public class ListInterviewCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showInterviewAtIndex(model, INDEX_FIRST_INTERVIEW);
-        assertCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListInterviewCommand(), model, ListInterviewCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

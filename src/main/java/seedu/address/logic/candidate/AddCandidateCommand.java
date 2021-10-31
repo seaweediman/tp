@@ -76,7 +76,7 @@ public class AddCandidateCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CommandType.CANDIDATE);
     }
 
     @Override

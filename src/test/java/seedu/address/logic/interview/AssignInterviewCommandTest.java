@@ -69,9 +69,7 @@ public class AssignInterviewCommandTest {
         copyOfAlice.addInterview(assignedInterview);
         assignedInterview.addCandidate(copyOfAlice);
 
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
-                true, false, false, false, false,
-                false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.INTERVIEW);
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         assertCommandSuccess(assignInterviewCommand, model, expectedCommandResult, expectedModel);
