@@ -93,6 +93,7 @@ public class EditPositionCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
+        showPositionAtIndex(expectedModel, INDEX_FIRST_POSITION);
 
         assertEditPositionCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }

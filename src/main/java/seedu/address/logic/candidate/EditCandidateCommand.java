@@ -8,7 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -90,7 +89,6 @@ public class EditCandidateCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
-
         Set<Position> newPositions = editedPerson.getPositions();
         for (Position p : newPositions) {
             if (!model.hasPosition(p)) {
@@ -100,16 +98,13 @@ public class EditCandidateCommand extends Command {
                 throw new CommandException("Position " + p.getTitle().fullTitle + " is closed");
             }
         }
-
         //Remove the old person and add the new one
         Set<Interview> interviews = personToEdit.getInterviews();
         for (Interview i : interviews) {
             i.removeCandidate(personToEdit);
             i.addCandidate(editedPerson);
         }
-
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
                 CommandResult.CommandType.CANDIDATE);
     }

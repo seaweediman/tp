@@ -80,6 +80,7 @@ public class RemarkCandidateCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(firstPerson, editedPerson);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
         assertCommandSuccess(remarkCandidateCommand, model, expectedMessage, expectedModel);
     }
