@@ -163,6 +163,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 ### Feature: Candidate Management
 
 Manage a list of people who are candidates for your company, with the simple instructions below!
+Each candidate is uniquely identified by the same name, email and phone number. Different candidates can have the same name as along as the name, email and phone are not all the same!
 
 #### <u>Add a candidate:</u> `add_c`
 
@@ -272,7 +273,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
     find_c name=Alex tag=recommended priority
 
-* Finds all candidates that have the word "Alex" in their name and have tags that contain the word "recommended" or "priority"
+* Finds all candidates that have the word "Alex" in their name and have position that contain the word "Accountant" or "Engineer"
   * (name contains "Alex") AND (title contains Accountant OR Engineer)
 * Candidates that will be found
   * name="Alex Maslow", tags="recommended", ...
