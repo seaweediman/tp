@@ -73,8 +73,7 @@ public class FindInterviewCommandTest {
 
         //have to create a CommandResult manually because assertSuccess uses single parameter constructor
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, false, false,
-                false, false, false, true);
+                CommandResult.CommandType.FIND_I);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
@@ -90,8 +89,7 @@ public class FindInterviewCommandTest {
 
         //have to create a CommandResult manually because assertSuccess uses single parameter constructor
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, false, false,
-                false, false, false, true);
+                CommandResult.CommandType.FIND_I);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }

@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleListC(CommandResult commandResult) {
+    private void handleListC() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -202,7 +202,7 @@ public class MainWindow extends UiPart<Stage> {
         personListLabel.setText("Candidates");
     }
 
-    private void handleListP(CommandResult commandResult) {
+    private void handleListP() {
         positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
         positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
 
@@ -211,7 +211,7 @@ public class MainWindow extends UiPart<Stage> {
         positionListLabel.setText("Positions");
     }
 
-    private void handleListI(CommandResult commandResult) {
+    private void handleListI() {
         interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
         interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
 
@@ -220,7 +220,7 @@ public class MainWindow extends UiPart<Stage> {
         interviewListLabel.setText("Interviews");
     }
 
-    private void handleFindC(CommandResult commandResult) {
+    private void handleFindC() {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
@@ -230,7 +230,7 @@ public class MainWindow extends UiPart<Stage> {
         personListLabel.setText("Candidates (filtered)");
     }
 
-    private void handleFindP(CommandResult commandResult) {
+    private void handleFindP() {
         positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
         positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
 
@@ -239,13 +239,46 @@ public class MainWindow extends UiPart<Stage> {
         positionListLabel.setText("Positions (filtered)");
     }
 
-    private void handleFindI(CommandResult commandResult) {
+    private void handleFindI() {
         interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
         interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
         interviewListLabel.setText("Interviews (filtered)");
+    }
+
+    private void handleC() { //Update person and interview lists
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleP() { //Update person and position lists
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleI() { //Update person and interview lists
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -259,22 +292,41 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            switch(commandResult.getCommandType()) {
+            case HELP:
                 handleHelp();
-            } else if (commandResult.isExit()) {
+                break;
+            case EXIT:
                 handleExit();
-            } else if (commandResult.isListC()) {
-                handleListC(commandResult);
-            } else if (commandResult.isListP()) {
-                handleListP(commandResult);
-            } else if (commandResult.isListI()) {
-                handleListI(commandResult);
-            } else if (commandResult.isFindC()) {
-                handleFindC(commandResult);
-            } else if (commandResult.isFindP()) {
-                handleFindP(commandResult);
-            } else if (commandResult.isFindI()) {
-                handleFindI(commandResult);
+                break;
+            case LIST_C:
+                handleListC();
+                break;
+            case LIST_P:
+                handleListP();
+                break;
+            case LIST_I:
+                handleListI();
+                break;
+            case FIND_C:
+                handleFindC();
+                break;
+            case FIND_P:
+                handleFindP();
+                break;
+            case FIND_I:
+                handleFindI();
+                break;
+            case CANDIDATE:
+                handleC();
+                break;
+            case POSITION:
+                handleP();
+                break;
+            case INTERVIEW:
+                handleI();
+                break;
+            default:
             }
 
             return commandResult;

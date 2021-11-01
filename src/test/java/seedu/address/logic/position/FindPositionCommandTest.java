@@ -63,9 +63,7 @@ public class FindPositionCommandTest {
         FindPositionCommand command = new FindPositionCommand(predicate);
         expectedModel.updateFilteredPositionList(predicate);
         assertEquals(Arrays.asList(ADMIN_ASSISTANT), expectedModel.getFilteredPositionList());
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, false, false,
-                false, false, true, false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.FIND_P);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
@@ -80,8 +78,7 @@ public class FindPositionCommandTest {
 
         //have to create a CommandResult manually because assertSuccess uses single parameter constructor
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, false, false,
-                false, false, true, false);
+                CommandResult.CommandType.FIND_P);
 
         assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }

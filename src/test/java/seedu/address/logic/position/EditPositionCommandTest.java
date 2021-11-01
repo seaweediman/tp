@@ -94,6 +94,7 @@ public class EditPositionCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
+        showPositionAtIndex(expectedModel, INDEX_FIRST_POSITION);
 
         assertEditPositionCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
     }
@@ -198,8 +199,7 @@ public class EditPositionCommandTest {
             CommandResult result = command.execute(model);
             //because standard constructor of CommandResult does not update isListP to true
             assertEquals(result, new CommandResult(expectedMessage,
-                    false, false, false,
-                    true, false, false, false, false));
+                    CommandResult.CommandType.POSITION));
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
         }

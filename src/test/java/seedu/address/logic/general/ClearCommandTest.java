@@ -1,11 +1,10 @@
-package seedu.address.logic.candidate;
+package seedu.address.logic.general;
 
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.general.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -29,5 +28,4 @@ public class ClearCommandTest {
 
         assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
-
 }

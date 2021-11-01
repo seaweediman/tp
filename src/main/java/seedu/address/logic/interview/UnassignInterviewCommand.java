@@ -3,8 +3,6 @@ package seedu.address.logic.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -91,8 +89,7 @@ public class UnassignInterviewCommand extends Command {
             model.deleteInterviewFromPerson(interview);
             result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED,
                     interview.getDisplayStringWithoutNames()),
-                    false, false, true, false, false, false, false,
-                    false);
+                    CommandResult.CommandType.INTERVIEW);
         } else {
             int count = 1;
             for (Index candidateIndex : candidateIndexes) {
@@ -111,12 +108,9 @@ public class UnassignInterviewCommand extends Command {
                 count++;
             }
             result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                    removedPersons), false, false, true, false, false,
-                    false, false, false);
+                    removedPersons), CommandResult.CommandType.INTERVIEW);
         }
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }
 

@@ -65,9 +65,7 @@ public class UnassignInterviewCommandTest {
         candidates.add(alice);
         interviewToUnassign.setCandidates(candidates);
 
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
-                true, false, false, false, false,
-                false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.INTERVIEW);
 
         ModelManager expectedModel = new ModelManager(getTypicalHrManager(), new UserPrefs());
 
@@ -103,9 +101,7 @@ public class UnassignInterviewCommandTest {
         benson.addInterview(interviewToUnassign);
         interviewToUnassign.setCandidates(candidates);
 
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage, false, false,
-                true, false, false, false, false,
-                false);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.INTERVIEW);
 
         ModelManager expectedModel = new ModelManager(getTypicalHrManager(), new UserPrefs());
 
