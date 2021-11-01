@@ -30,7 +30,7 @@ transferable to other devices too!
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g., typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
 * **`list_c`** : Lists all candidates.
@@ -53,22 +53,22 @@ transferable to other devices too!
 **Notes about the command format:**<br>
 
 * Words in `<UPPER_CASE>` are the parameters to be supplied by the user.<br>
-  e.g.. in `add_c name=<NAME>`, `NAME` is a parameter which can be used as `add_c name=John Doe`.
+  e.g., in `add_c name=<NAME>`, `NAME` is a parameter which can be used as `add_c name=John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g. `name=<NAME> [tag=<TAG>] [status=<STATUS>]` can be used as `name=John Doe tag=friend status=scheduled` or as `name=John Doe`.
+  e.g., `name=<NAME> [tag=<TAG>] [status=<STATUS>]` can be used as `name=John Doe tag=friend status=scheduled` or as `name=John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g.. `[position=<POSITION>]...​` can be used as ` ` (i.e. 0 times), `position=Accountant`, `position=Accountant position=Bookkeeper` etc.
+  e.g., `[position=<POSITION>]...​` can be used as ` ` (i.e. 0 times), `position=Accountant`, `position=Accountant position=Bookkeeper` etc.
 
 * Parameters can be in any order.<br>
-  e.g.. if the command specifies `name=NAME phone=PHONE_NUMBER`, `phone=PHONE_NUMBER name=NAME` is also acceptable.
+  e.g., if the command specifies `name=NAME phone=PHONE_NUMBER`, `phone=PHONE_NUMBER name=NAME` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
-  e.g.. if you specify `phone=12341234 phone=56785678`, only `phone=56785678` will be taken.
+  e.g., if you specify `phone=12341234 phone=56785678`, only `phone=56785678` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
-  e.g.. if the command specifies `help 123`, it will be interpreted as `help`.
+  e.g., if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
@@ -86,7 +86,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 <u>Example:</u>
 
-    add_p Assistant
+    add_p title=Assistant
 
 * Adds a position with the title of Assistant.
   <br>
@@ -170,7 +170,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
+    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>... [status=<STATUS>] [tag=<TAG>]...
 
 <u>Example:</u>
 
@@ -186,7 +186,7 @@ Manage a list of people who are candidates for your company, with the simple ins
   * `Rejected`
   * `Withdrawn`
 * `POSITION` must be added to HR Manager before it can be used as a parameter
-  * e.g. if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
+  * e.g., if the position, `Project Manager` has not been added to HR Manager, `add_c position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
     <br>
     <br>
 
@@ -247,7 +247,7 @@ Manage a list of people who are candidates for your company, with the simple ins
 
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
 * `POSITION` must be added to HR Manager before it can be used as a parameter
-* e.g. if the position, `Project Manager` has not been added to HR Manager, `edit_c 3 position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
+* e.g., if the position, `Project Manager` has not been added to HR Manager, `edit_c 3 position=Project Manager` will throw an error : `Position Project Manager not found in HR Manager`
 * `STATUS` field can take the following values
   * `None`
   * `Applied`
@@ -307,16 +307,16 @@ Manage a list of interviews for you to select the desired candidates, with the s
 
 * Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
 * `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
-  * e.g. if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
+  * e.g., if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
-  * e.g. if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-  * e.g. if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-* `TIME` must be in HHMM form, following 24-hour form, e.g. `1800` and `0600` for 6 P.M. and 6 A.M. respectively
-  * e.g. if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
+  * e.g., if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+  * e.g., if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
+* `TIME` must be in HHMM form, following 24-hour form, e.g., `1800` and `0600` for 6 P.M. and 6 A.M. respectively
+  * e.g., if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
 * `DURATION` must be in numbers and is set to be in minutes
-  * e.g. if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
+  * e.g., if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * `STATUS` must be either `pending` or `completed`
-  * e.g. if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
+  * e.g., if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
     <br>
     <br>
 
@@ -382,7 +382,7 @@ Edits a specific interview in the list of interviews.
   <br>
   <br>
 
-#### <u>Assign candidates to interview:</u> `unassign`
+#### <u>Assign candidates to interview:</u> `assign`
 
 *Assigns candidates to interview*
 
@@ -500,21 +500,22 @@ The transferred save files can then be loaded readily when using this applicatio
 
 | Action | Format, Examples | Expected result |
 | -------- | ------------------ | ------------------ |
-| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...`  <br> e.g.., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
-| **Delete a candidate** | `delete_c <INDEX>`<br> e.g.., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
+| **Add position** | `add_p title=<TITLE>` <br> e.g., `add_p title=Software engineer` | New position added: [Software engineer] |
+| **Delete position** | `delete_p <INDEX>` <br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
+| **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
+| **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g., `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
+| **Find a position** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br> e.g., `find_p title=Accountant Engineer status=closed` | Candidates found
+| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>...[status=<STATUS>] [tag=<TAG>]...`  <br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
+| **Delete a candidate** | `delete_c <INDEX>`<br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
 | **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe |
 | **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
-| **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g.. `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
-| **Find candidates** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br> e.g. find_p status=closed title=Accountant Engineer | Candidates Found 
-| **Add position** | `add_p title=<TITLE>` <br> e.g.. `add_p title=Software engineer` | New position added: [Software engineer] |
-| **Delete position** | `delete_p <INDEX>` <br> e.g.. `delete_c 3` | Deleted Position: [Bookkeeper] |
-| **List all positions** | `list_p` | Listed all positions <br> 1. Assistant <br> 2. Manager |
-| **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` e.g.. `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
-| **Find a position** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g. find_c name=Alex tag=recommended priority | Candidates found
-| **Add an interview** | `add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g.. `add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
-| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [c=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g. `edit_i 2 c=1 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
-| **Delete an interview** | `delete_i <INDEX>` e.g.. `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] |
-| **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 2021-10-18 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING] |
-| **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br> e.g find_i date=21/09/2021 time=1600 | Interviews found
-| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
-| **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g.. `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 2021-10-20 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
+| **Find candidates** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `find_c name=Alex tag=recommended priority` | Candidates Found
+| **Add an interview** | `add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br> e.g., `add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
+| **Delete an interview** | `delete_i <INDEX>` e.g., `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
+| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [c=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` e.g., `edit_i 2 c=1 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
+| **List all interviews** | `list_i` | Listed all interviews <br> 1. [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING] |
+| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g., `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found
+
