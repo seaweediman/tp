@@ -28,8 +28,6 @@ public class JsonSerializableHrManagerCandidatesTest {
                 JsonSerializableHrManagerCandidates.class).get();
         HrManager addressBookFromFile = dataFromFile.toModelType();
         HrManager typicalPersonsAddressBook = TypicalPersons.getTypicalHrManagerWithOnlyTypicalPersons();
-        System.out.println("TEST" + addressBookFromFile.getPersonList());
-        System.out.println("TEST" + typicalPersonsAddressBook.getPersonList());
         assertEquals(addressBookFromFile, typicalPersonsAddressBook);
     }
 
