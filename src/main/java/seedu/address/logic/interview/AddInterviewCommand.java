@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
 
@@ -75,7 +74,6 @@ public class AddInterviewCommand extends Command {
         if (model.isPositionClosed(position)) {
             throw new CommandException(String.format(MESSAGE_POSITION_CLOSED, position.getTitle()));
         }
-
         toAdd.setPosition(model.getPositionReference(position));
 
         //loads candidates from set of index
@@ -83,7 +81,6 @@ public class AddInterviewCommand extends Command {
         for (Index index : indexes) {
             if (index.getZeroBased() < lastShownPersonList.size()) {
                 Person person = lastShownPersonList.get(index.getZeroBased());
-                //checks if person applied for position
                 if (!person.appliedForPosition(position)) {
                     throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                             person.getName(), position));
@@ -106,8 +103,8 @@ public class AddInterviewCommand extends Command {
         }
 
         model.addInterview(toAdd);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.getDisplayString()),
+                CommandResult.CommandType.INTERVIEW);
     }
 
     @Override

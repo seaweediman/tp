@@ -75,9 +75,10 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.POSITION);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
+
     private static boolean isEditPCommand(Command command) {
         String commandClassName = command.getClass().getSimpleName();
         return commandClassName.equals("EditPositionCommand");
@@ -111,8 +112,18 @@ public class CommandTestUtil {
         }
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage,
-                false, false, false, true, false, false, false, false);
+                CommandResult.CommandType.POSITION);
         assertEditPositionCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertListCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.LIST_P);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
     /**

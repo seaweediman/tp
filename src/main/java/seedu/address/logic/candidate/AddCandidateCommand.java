@@ -84,7 +84,7 @@ public class AddCandidateCommand extends Command {
 
         toAdd.setPositions(positionReferences);
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandResult.CommandType.CANDIDATE);
     }
 
     @Override

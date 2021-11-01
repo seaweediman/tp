@@ -3,10 +3,7 @@ package seedu.address.logic.interview;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_INDEX;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERVIEWS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -14,7 +11,6 @@ import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
@@ -74,9 +70,6 @@ public class AssignInterviewCommand extends Command {
         StringBuilder candidatesAdded = new StringBuilder();
         candidatesAdded.append("\n");
 
-        EditCandidateCommand.EditPersonDescriptor personDescriptor = new EditCandidateCommand.EditPersonDescriptor();
-        personDescriptor.setInterviews(new HashSet<>(List.of(assignedInterview)));
-
         int count = 1;
         for (Index candidateIndex : candidateIndexes) {
             if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
@@ -90,9 +83,7 @@ public class AssignInterviewCommand extends Command {
                         candidateIndex.getOneBased(), candidate.getName(), interview.getPositionTitle()));
             }
             newCandidates.add(candidate);
-            Person editedPerson = EditCandidateCommand.createEditedPerson(candidate, personDescriptor);
-            model.setPerson(candidate, editedPerson);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            candidate.addInterview(assignedInterview);
 
             candidatesAdded.append(count + ". " + candidate.getName() + "\n");
             count++;
@@ -101,10 +92,8 @@ public class AssignInterviewCommand extends Command {
         model.setInterview(interview, assignedInterview);
 
         result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                candidatesAdded), false, false, true, false, false,
-                false, false, false);
+                candidatesAdded), CommandResult.CommandType.INTERVIEW);
 
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
         return result;
     }
 
