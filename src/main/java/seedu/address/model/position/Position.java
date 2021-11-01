@@ -1,5 +1,7 @@
 package seedu.address.model.position;
 
+import java.util.Locale;
+
 import static java.util.Objects.requireNonNull;
 
 /**
@@ -35,7 +37,7 @@ public class Position {
          * Only "open" and "closed" are valid strings for status.
          */
         public static boolean isValidPositionStatus(String test) {
-            return (((test).equals("open") || (test).equals("closed"))
+            return (((test.toLowerCase()).equals("open") || (test.toLowerCase()).equals("closed"))
                     && test.matches(VALIDATION_REGEX));
         }
     }

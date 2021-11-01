@@ -1,6 +1,8 @@
 package seedu.address.ui;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -8,6 +10,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.interview.Interview;
+import seedu.address.model.person.Person;
 
 /**
  * A UI component that displays information of a {@code Interview}.
@@ -60,9 +63,17 @@ public class InterviewCard extends UiPart<Region> {
         Interview.InterviewStatus status = interview.getStatus();
         tags.getChildren().add(new Label(status.name()));
 
-        interview.getCandidates().stream()
-                .sorted(Comparator.comparing(candidate -> candidate.getName().fullName))
-                .forEach(candidate -> candidates.getChildren().add(new Label(candidate.getName().fullName + " | ")));
+        List<Person> processedCandidates = interview.getCandidates().stream()
+                .sorted(Comparator.comparing(candidate -> candidate.getName().fullName)).collect(Collectors.toList());
+
+        for (int i = 0; i < processedCandidates.size(); i++) {
+            Person c = processedCandidates.get(i);
+            if (i != processedCandidates.size() - 1) {
+                candidates.getChildren().add(new Label(c.getName().fullName + " | "));
+            } else {
+                candidates.getChildren().add(new Label(c.getName().fullName));
+            }
+        }
     }
 
     @Override
