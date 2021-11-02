@@ -249,8 +249,7 @@ public class Interview {
         return "[" + getPositionTitle().toString() + " "
                 + getCandidates().toString() + " "
                 + getDate() + " "
-                + getStartTime().toString() + " - "
-                + getDuration().toString() + " "
+                + getDisplayTimePeriod() + " "
                 + getStatusInString() + "]";
     }
 
@@ -287,11 +286,14 @@ public class Interview {
                 + getStatusInString() + "]";
     }
 
+    public String getDisplayTimePeriod() {
+        return getStartTime() + " ~ " + getEndTime();
+    }
+
     public String getDisplayStringWithoutNames() {
         return "[" + getPositionTitle().toString() + " "
                 + getDisplayDate() + " "
-                + getStartTime() + " - "
-                + getEndTime() + " "
+                + getDisplayTimePeriod() + " "
                 + getStatusInString() + "]";
     }
 }
