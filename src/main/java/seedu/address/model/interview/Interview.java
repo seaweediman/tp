@@ -267,7 +267,6 @@ public class Interview {
 
     public String getCandidatesNames() {
         Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
-        System.out.println(names.toString());
         return names.toString();
     }
 

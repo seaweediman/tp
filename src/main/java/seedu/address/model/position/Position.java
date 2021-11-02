@@ -1,7 +1,5 @@
 package seedu.address.model.position;
 
-import java.util.Locale;
-
 import static java.util.Objects.requireNonNull;
 
 /**

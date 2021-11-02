@@ -101,7 +101,6 @@ public class FindInterviewCommandTest {
     private FindInterviewCommandPredicate preparePredicate(String userInput) {
         List<String> output = new ArrayList<String>(Arrays.asList(userInput.split("\\s+")));
         output.removeAll(Arrays.asList("", null));
-        System.out.println(output);
         return new FindInterviewCommandPredicate(Arrays.asList(), Arrays.asList(),
                 output, Arrays.asList(), Arrays.asList());
     }
@@ -114,8 +113,6 @@ public class FindInterviewCommandTest {
                                  Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            System.out.println(result.getFeedbackToUser());
-            System.out.println(expectedCommandResult.getFeedbackToUser());
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
 
