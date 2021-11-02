@@ -125,6 +125,7 @@ public class Person {
     /**
      * Adds an interview into a person's list of interviews, and since the person has the upcoming added interview,
      * this method always sets the status as scheduled.
+     *
      * @param i interview object to be added to person
      */
     public void addInterview(Interview i) {
@@ -137,6 +138,7 @@ public class Person {
     /**
      * Delets an interviwe from a person's list of interviews. If the person does not have any upcoming interview
      * this method sets the status as applied.
+     *
      * @param i
      */
     public void deleteInterview(Interview i) {
@@ -204,7 +206,6 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append(" Remark: ")
                 .append(getRemark())
                 .append(" Status: ")
                 .append(getStatus());
@@ -213,6 +214,10 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        if (!remark.toString().equals("")) {
+            builder.append("; Remark: ").append(remark);
         }
 
         Set<Position> positions = getPositions();
