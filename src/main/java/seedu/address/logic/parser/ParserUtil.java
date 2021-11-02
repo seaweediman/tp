@@ -14,6 +14,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -395,7 +396,7 @@ public class ParserUtil {
      * @return A Set of Indexes for Candidates.
      * @throws ParseException If the given {@code indexes} is invalid
      */
-    public static Set<Index> parseCandidateIndex(String indexes) throws ParseException {
+    public static Set<Index> parseCandidateIndexes(String indexes) throws ParseException {
         requireNonNull(indexes);
         String trimmedKeywords = indexes.trim();
         Set<Index> characterIndexes = new HashSet<>();
@@ -404,7 +405,11 @@ public class ParserUtil {
 
         temp.removeAll(Arrays.asList(""));
 
-        for (String index : temp) {
+        List<String> tempWithoutDuplicates = temp.stream()
+                .distinct()
+                .collect(Collectors.toList());
+
+        for (String index : tempWithoutDuplicates) {
             characterIndexes.add(parseIndex(index));
         }
 

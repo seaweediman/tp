@@ -34,7 +34,7 @@ public class AssignInterviewCommandParser implements Parser<AssignInterviewComma
         Set<Index> candidateIndexes;
         String candidateIndexInput = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get();
 
-        candidateIndexes = ParserUtil.parseCandidateIndex(candidateIndexInput);
+        candidateIndexes = ParserUtil.parseCandidateIndexes(candidateIndexInput);
         return new AssignInterviewCommand(interviewIndex, candidateIndexes);
 
     }

@@ -35,7 +35,7 @@ public class UnassignInterviewCommandParser implements Parser<UnassignInterviewC
         if (candidateIndexInput.equals("*")) {
             return new UnassignInterviewCommand(interviewIndex, true);
         } else {
-            candidateIndexes = ParserUtil.parseCandidateIndex(candidateIndexInput);
+            candidateIndexes = ParserUtil.parseCandidateIndexes(candidateIndexInput);
             return new UnassignInterviewCommand(interviewIndex, candidateIndexes);
         }
     }
