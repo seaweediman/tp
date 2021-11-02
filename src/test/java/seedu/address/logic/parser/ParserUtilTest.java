@@ -262,7 +262,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCandidateIndexes_validValues_returnsCandidateIndexes() throws ParseException{
+    public void parseCandidateIndexes_validValues_returnsCandidateIndexes() throws ParseException {
         Set<Index> indexes = new HashSet<>();
         indexes.add(INDEX_FIRST_PERSON);
         indexes.add(INDEX_SECOND_PERSON);
@@ -284,7 +284,7 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseCandidateIndex_duplicateValues_removesDuplicates() throws ParseException{
+    public void parseCandidateIndexes_duplicateValues_returnsCandidateIndexesWithoutDuplicates() throws ParseException {
         Set<Index> indexes = new HashSet<>();
         indexes.add(INDEX_FIRST_PERSON);
         indexes.add(INDEX_SECOND_PERSON);
