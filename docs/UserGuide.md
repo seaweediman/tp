@@ -12,6 +12,7 @@ title: User Guide
 ## Introduction
 HR Manager will help you manage the candidates to be interviewed,
 making the scheduling process easier and faster for your company!<br>
+It is easy to interact with the app through simple to learn and easy to share text commands!<br>
 Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
 The data you have provided will also be stored safely and securely for subsequent uses,
@@ -483,11 +484,6 @@ For an interview,
 ```
 
 ## FAQs
-
-**Q**: What is this application? <br>
-**A**: This is an easy and fast application to track candidates applying for job positions in your company.
-You will interact with the application through typed commands.
-
 **Q**: When will my data be saved? <br>
 **A**: Your data will be automatically saved after any command.
 
