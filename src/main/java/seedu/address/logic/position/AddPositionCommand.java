@@ -13,9 +13,9 @@ public class AddPositionCommand extends Command {
 
     public static final String COMMAND_WORD = "add_p";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a position to the HR Manager. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a position to the HR Manager.\n"
             + "Parameters: "
-            + PREFIX_TITLE + "TITLE:\n"
+            + PREFIX_TITLE + "TITLE\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TITLE + "Accountant";
 

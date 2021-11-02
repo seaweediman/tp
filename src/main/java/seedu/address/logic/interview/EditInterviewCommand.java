@@ -42,7 +42,7 @@ public class EditInterviewCommand extends Command {
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_POSITION + "POSITION] "
-            + "[" + PREFIX_CANDIDATE_INDEX + "CANDIDATE]...\n"
+            + "[" + PREFIX_CANDIDATE_INDEX + "CANDIDATE]... "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_TIME + "TIME] "
             + "[" + PREFIX_DURATION + "DURATION] "
