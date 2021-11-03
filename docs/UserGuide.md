@@ -77,9 +77,20 @@ transferable to other devices too!
 
 Manage a list of job positions posted by your company, with the simple instructions below!
 
+<div markdown="block" class="alert alert-info">
+
+**Notes:**<br>
+
+* Each position consists of a job position title, e.g. 'Accountant', 'Business Analyst', etc and a
+  position status that is either 'open' or 'closed'.
+  
+* Valid input for position status only include 'open' and 'closed'. E.g.`status=open` or `status=closed`.
+
+</div>
+
 #### <u>Add a position:</u> `add_p`
 
-*Adds a position to the list of positions.*
+*Adds a job position to the list of positions.*
 
 <u>Format:</u>
 
@@ -89,7 +100,10 @@ Manage a list of job positions posted by your company, with the simple instructi
 
     add_p title=Assistant
 
-* Adds a position with the title of Assistant.
+* Adds a job position with the title of Assistant, with a default status of 'open'.
+  
+* Adding a job position always sets the position status to 'open'. Refer to `edit_p` on how you can change the status
+  of a job position to 'closed'.
   <br>
   <br>
 
@@ -123,19 +137,33 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 #### <u>Edit a position:</u> `edit_p`
 
-*Edits a specific position's details. Only one edit field is needed. Users cannot edit both fields.*
+*Edits a specific position's details. Only one edit field is needed, but users cannot edit both fields.
+  For instance, you can either choose to edit the title of a position, or the status of the position,
+  but not both at the same time.*
 
 <u>Format:</u>
 
-    edit_p <INDEX> [title=<TITLE>]... [status=<STATUS>]...
+    edit_p <INDEX> [title=<TITLE>]
 
+OR<br> 
+
+    edit_p <INDEX> [status=<STATUS>]
 <u>Example:</u>
 
+    edit_p 2 title=Data Analyst
+
+* Edits the title of the 2nd position in the list to 'Data Analyst'.
+  
+* Editing the title  of the specified position will update the position title in any scheduled interviews for
+  that position, along with any candidates who have applied for that position.
+  <br>
+  <br>
+
+    
     edit_p 3 status=closed
 
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position.
-* At least one field must be edited.
   <br>
   <br>
 
