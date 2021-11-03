@@ -54,11 +54,6 @@ class AddInterviewCommandParserTest {
                         + VALID_TIME_DESC + VALID_DURATION_DESC + VALID_STATUS_COMPLETED_DESC,
                 expectedMessage);
 
-        // missing candidate names prefix
-        assertParseFailure(parser, VALID_POSITION_ADMIN_DESC + " " + VALID_NAME_ALICE + " " + VALID_NAME_BOB
-                        + VALID_DATE_DESC + VALID_TIME_DESC + VALID_DURATION_DESC,
-                expectedMessage);
-
         // missing date prefix
         assertParseFailure(parser, VALID_POSITION_ADMIN_DESC + VALID_CANDIDATE_DESC_ALICE + VALID_CANDIDATE_DESC_BOB
                         + " " + VALID_DATE + VALID_TIME_DESC + VALID_DURATION_DESC,

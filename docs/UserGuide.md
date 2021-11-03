@@ -310,7 +310,9 @@ Use the following command to record the details of an interview session with the
 
 * Adds a 120-minutes interview session on 18th October 2021 at 14:00 for the position of Accountant with the 1st and 2nd candidate from the list of candidates.
 
-Click [here](#Table of Inputs for Interview Management) to see the constraints and examples for the possible inputs.
+Click [here](#table-of-inputs-for-interview-management) to see the constraints and examples for the possible inputs.
+<br>
+<br>
 
 #### <u>Delete an interview:</u> `delete_i`
 
@@ -431,8 +433,9 @@ Note that `data` will be in the same folder as HR Manager.
 
 If any entry from any of the data files is invalid, HR Manager will launch without any data entries.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
 
+:exclamation: **Caution:** <br>
 The remaining segment for storage is for advanced users, regarding how the storage component is implemented.
 
 </div>
@@ -482,10 +485,12 @@ Certain fields are editable directly without repercussions <U>as long as the for
 However, the same cannot be said for fields of different files sharing the same information, like **positions** in `Candidates.json` and the entire `Positions.json` file.
 Any discrepancy could cause HR Manager to display misrepresented information.
 
-<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+<div markdown="span" class="alert alert-warning">
+
+:exclamation:**Caution:** <br>
 In general, modifying stored data directly is strongly discouraged.
 
-If your changes to the data file makes its format invalid, HR Manager will discard all stored data and start with an empty data file at the next run.
+If your changes to the data file made its format invalid, HR Manager will discard all stored data and start with an empty data file at the next run.
 </div>
 
 
