@@ -107,6 +107,16 @@ Manage a list of job positions posted by your company, with the simple instructi
   <br>
   <br>
 
+#### <u>List all positions:</u> `list_p`
+
+*Displays a list of all the positions stored in the application.*
+
+<u>Format:</u>
+
+    list_p
+
+  <br>
+
 #### <u>Delete a position:</u> `delete_p`
 
 *Deletes a position from the list of positions.*
@@ -121,17 +131,6 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
-  <br>
-  <br>
-
-#### <u>List all positions:</u> `list_p`
-
-*Displays a list of all the positions stored in the application.*
-
-<u>Format:</u>
-
-    list_p
-
   <br>
   <br>
 
@@ -220,6 +219,16 @@ Each candidate is uniquely identified by the same name, email and phone number. 
     <br>
     <br>
 
+#### <u>List all candidates:</u> `list_c`
+
+*Displays a list of all the candidates stored in the application.*
+
+<u>Format:</u>
+
+    list_c
+
+  <br>
+
 #### <u>Delete a candidate:</u> `delete_c`
 
 *Deletes a candidate along with his/her details from the list of candidates.*
@@ -235,17 +244,7 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
   <br>
   <br>
-
-#### <u>List all candidates:</u> `list_c`
-
-*Displays a list of all the candidates stored in the application.*
-
-<u>Format:</u>
-
-    list_c
-
-  <br>
-  <br>
+  
 
 #### <u>Remark a candidate:</u> `remark_c`
 
@@ -342,7 +341,6 @@ Input fields of all interview commands should follow the following formats:
 </div>
 
   <br>
-  <br>
 
 #### <u>Add an interview:</u> `add_i`
 
@@ -359,6 +357,19 @@ Input fields of all interview commands should follow the following formats:
 * Adds an interview for the position of Accountant, for the 1st and 2nd candidates in the candidate list.
   The interview is scheduled to be on 18 October 2020, at 2p.m. and has a duration of 120 minutes. The interview's
   status is also provided as "pending", meaning that the interview has yet to be completed.
+  
+  <br>
+  <br>
+
+#### <u>List all interviews:</u> `list_i`
+
+*Displays a list of all the interviews stored in the application.*
+
+<u>Format:</u>
+
+    list_i
+
+  <br>
 
 #### <u>Delete an interview:</u> `delete_i`
 
@@ -396,16 +407,6 @@ Edits a specific interview in the list of interviews.
   `c=1 2` for the candidates assigned to the interview, `date=18/10/2021` for the date of the interview and `time=1400`
   for the time the interview is scheduled for.
   <br>
-  <br>
-
-#### <u>List all interviews:</u> `list_i`
-
-*Displays a list of all the interviews stored in the application.*
-
-<u>Format:</u>
-
-    list_i
-
   <br>
 
 #### <u>Unassign candidates from interview:</u> `unassign`
