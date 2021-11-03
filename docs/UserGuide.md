@@ -42,6 +42,12 @@ transferable to other devices too!
 
 * **`clear`** : Deletes all candidates, positions, interviews.
 
+<div markdown="block" class="alert alert-info">
+
+WARNING: Please note that `clear` is an irreversible command and all existing data will be permanently deleted.
+
+</div>
+
 * **`exit`** : Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
