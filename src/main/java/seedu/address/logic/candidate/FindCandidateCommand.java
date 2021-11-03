@@ -26,14 +26,14 @@ public class FindCandidateCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters:" + PREFIX_NAME + "[NAME]..."
-            + PREFIX_ADDRESS + "[ADDRESS]..."
-            + PREFIX_EMAIL + "[EMAIL]..."
-            + PREFIX_PHONE + "[PHONE]..."
-            + PREFIX_POSITION + "[POSITION]..."
-            + PREFIX_STATUS + "[STATUS]..."
+            + "Parameters:" + PREFIX_NAME + "[NAME]... "
+            + PREFIX_ADDRESS + "[ADDRESS]... "
+            + PREFIX_EMAIL + "[EMAIL]... "
+            + PREFIX_PHONE + "[PHONE]... "
+            + PREFIX_POSITION + "[POSITION]... "
+            + PREFIX_STATUS + "[STATUS]... "
             + PREFIX_TAG + "[TAG]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "alice bob charlie";
     public static final String MESSAGE_SUCCESS = "Listed all found candidates";
 
     private final FindCandidateCommandPredicate predicate;

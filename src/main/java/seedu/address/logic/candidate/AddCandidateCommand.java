@@ -28,24 +28,24 @@ public class AddCandidateCommand extends Command {
 
     public static final String COMMAND_WORD = "add_c";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to the HR Manager. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a candidate to the HR Manager.\n"
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + PREFIX_POSITION + "POSITION... "
             + "[" + PREFIX_STATUS + "STATUS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "[" + PREFIX_POSITION + "POSITION]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + PREFIX_POSITION + "Accountant "
             + PREFIX_STATUS + "Scheduled "
             + PREFIX_TAG + "pending "
-            + PREFIX_TAG + "reviewRequired "
-            + PREFIX_POSITION + "Accountant";
+            + PREFIX_TAG + "reviewRequired";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the HR Manager";

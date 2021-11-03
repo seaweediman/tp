@@ -30,7 +30,7 @@ import seedu.address.model.position.Position;
 public class AddInterviewCommand extends Command {
     public static final String COMMAND_WORD = "add_i";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an interview to the HR Manager.\n"
             + "Parameters: "
             + PREFIX_POSITION + "POSITION "
             + PREFIX_CANDIDATE_INDEX + "INDEX (must be a positive integer)... "
