@@ -57,8 +57,8 @@ public class InterviewCard extends UiPart<Region> {
         this.interview = interview;
         id.setText(displayedIndex + ". ");
         position.setText(interview.getPositionTitle().fullTitle);
-        date.setText("Date: " + interview.getDate().toString());
-        time.setText(interview.getStartTime().toString() + " ~ " + interview.getEndTime());
+        date.setText("Date: " + interview.getDisplayDate());
+        time.setText("Time: " + interview.getDisplayTimePeriod());
         duration.setText("Duration: " + interview.getDuration().toMinutes() + " min");
         Interview.InterviewStatus status = interview.getStatus();
         tags.getChildren().add(new Label(status.name()));
