@@ -298,7 +298,7 @@ Manage a list of scheduled interviews, with the simple instructions below!
 <div markdown="block" class="alert alert-info">
 **Notes on the command format:**
 
-Parameters of all interview commands should follow the following formats: 
+Input fields of all interview commands should follow the following formats: 
 * `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
   * e.g., if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
@@ -310,9 +310,10 @@ Parameters of all interview commands should follow the following formats:
   * e.g., if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
 * `STATUS` must be either `pending` or `completed`
   * e.g., if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
-    <br>
-    <br>
 </div>
+
+  <br>
+  <br>
 
 #### <u>Add an interview:</u> `add_i`
 
@@ -362,7 +363,9 @@ Edits a specific interview in the list of interviews.
 * Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
 * All input fields should be provided in the correct format. Please refer to notes on interview command format shown
   above to see what constitutes a valid input.
-* At least one input field must be edited.
+* At least one input field must be edited. For instance, in the above example, three input fields have been edited - 
+  `c=1 2` for the candidates assigned to the interview, `date=18/10/2021` for the date of the interview and `time=1400`
+  for the time the interview is scheduled for.
   <br>
   <br>
 
@@ -378,7 +381,7 @@ Edits a specific interview in the list of interviews.
 
 #### <u>Unassign candidates from interview:</u> `unassign`
 
-*Unassigns candidates from interview*
+*Unassigns candidates from a specified interview.*
 
 <u>Format:</u>
 
@@ -387,7 +390,7 @@ Edits a specific interview in the list of interviews.
 <u>Example:</u>
 `unassign i=1 c=2 4`
 
-* You can only input any number of candidates but only 1 interview.
+* You can input any number of candidates but only 1 interview.
 * Removes candidates with candidate index 2 and 4 from the first interview.
 * Inputting `c=*` removes all candidates from an interview.
   <br>
@@ -395,7 +398,7 @@ Edits a specific interview in the list of interviews.
 
 #### <u>Assign candidates to interview:</u> `assign`
 
-*Assigns candidates to interview*
+*Assigns candidates to a specified interview.*
 
 <u>Format:</u>
 
@@ -406,24 +409,33 @@ Edits a specific interview in the list of interviews.
 
 * You can input any number of candidates but only 1 interview.
 * Adds candidates with candidate index 2 and 4 to the first interview.
-* NOTE: If the candidate has not applied to the position, attempting to assign the candidate to an interview
+
+<div markdown="block" class="alert alert-info">
+**WARNING:**
+* If the candidate has not applied to the position, attempting to assign the candidate to an interview
   for that position will result in an error message displayed.
+</div>
   <br>
   <br>
 
-#### <u>Find a Interview:</u> `find_i`
+#### <u>Find an Interview:</u> `find_i`
 
 *Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
 <u>Format:</u>
 
-    find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+    find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]...
+    [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
 
     find_i date=21/09/2021 time=1600
 
 * Finds all interviews that are on 21/09/2021 and occur on 1600
+
+<div markdown="block" class="alert alert-info">
+**NOTE:**
+
 * Interviews that will be found
   * date="21/09/2021", time="1500-1700"
   * date="21/09/2021", time="1600-1650"
@@ -434,7 +446,7 @@ Edits a specific interview in the list of interviews.
   * Command will find candidates that contains at least 1 of the keywords (OR)
 * Across different fields
   * Command will return candidates that contain all the fields (AND)
-
+</div>
   <br>
   <br>
 
