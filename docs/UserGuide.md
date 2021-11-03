@@ -296,31 +296,21 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 Manage a list of interviews for you to select the desired candidates, with the simple instructions below!
 
 #### <u>Add an interview:</u> `add_i`
+Use the following command to record the details of an interview session with the candidate(s) for a position!
 
 *Adds an interview to the list of interviews.*
 
 <u>Format:</u>
 
-    add_i position=<POSITION> index=<INDEX>... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+    add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
 
 <u>Example:</u>
 
     add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
 
-* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
-* `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
-  * e.g., if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
-* `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
-  * e.g., if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-  * e.g., if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-* `TIME` must be in HHMM form, following 24-hour form, e.g., `1800` and `0600` for 6 P.M. and 6 A.M. respectively
-  * e.g., if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
-* `DURATION` must be in numbers and is set to be in minutes
-  * e.g., if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
-* `STATUS` must be either `pending` or `completed`
-  * e.g., if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
-    <br>
-    <br>
+* Adds a 120-minutes interview session on 18th October 2021 at 14:00 for the position of Accountant with the 1st and 2nd candidate from the list of candidates.
+
+Click [here](#Table of Inputs for Interview Management) to see the constraints and examples for the possible inputs.
 
 #### <u>Delete an interview:</u> `delete_i`
 
@@ -431,19 +421,23 @@ Edits a specific interview in the list of interviews.
 
 ### Feature: Storage
 
-Save all candidate, position and interview records into a data file locally, on your device itself.
+Save information of all candidates, positions and interviews into a data file locally, on your device itself.
 
-When a candidate, position or interview is added, edited or deleted, the change will be done accordingly in the local save file in real time.
+Modification of any information will be recorded immediately.
 
-The data will be saved in separate files: `/data/candidates.json`, `/data/positions.json`, and `/data/interviews.json`.
+They will be saved in `data` folder in separate files: `/data/candidates.json`, `/data/positions.json`, and `/data/interviews.json`.
 
-By replacing it with another save file with the same name, the data will be loaded accordingly into the application, if the data format is valid.
+Note that `data` will be in the same folder as HR Manager.
 
-If any data is invalid, HR Manager will launch without any data entries.
+If any entry from any of the data files is invalid, HR Manager will launch without any data entries.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+
+The remaining segment for storage is for advanced users, regarding how the storage component is implemented.
+
+</div>
 
 The candidate, position and interview information will be saved using the JSON format below.
-
-*Note that interview does not save a candidate but its unique ID generated within the application.*
 
 For a candidate,
 ```json
@@ -482,6 +476,18 @@ For an interview,
   "status" : "PENDING"
 }]
 ```
+*Note that interview does not save a candidate but its unique ID generated within the application.*
+
+Certain fields are editable directly without repercussions <U>as long as the format is valid (as shown above)</U>, like **date**, **startTime**, **duration** and **status** in `Interviews.json`
+However, the same cannot be said for fields of different files sharing the same information, like **positions** in `Candidates.json` and the entire `Positions.json` file.
+Any discrepancy could cause HR Manager to display misrepresented information.
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+In general, modifying stored data directly is strongly discouraged.
+
+If your changes to the data file makes its format invalid, HR Manager will discard all stored data and start with an empty data file at the next run.
+</div>
+
 
 ## FAQs
 **Q**: When will my data be saved? <br>
@@ -516,3 +522,14 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found
 
+
+## Table of Inputs for Interview Management
+
+| Parameter | Examples | Constraints |
+| -------- | ------------------ | ------------------ |
+| **POSITION** | `Software engineer`, `Accountant`| Must be added to HR Manager and must have been applied by corresponding candidates before it can be used |
+| **INDEX** | `1`, `2`| Must be a positive integer corresponding to the index of the intended candidate in the <U>currently displayed list of candidates<U/>|
+| **DATE** | `18/10/2021` for 18th October 2021, `1/9/2021` for 1st September 2021 | Must be in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits |
+| **TIME** | `0600` for 6 a.m., `1800` for 6 p.m. | Must be in HHMM, following 24-hour format |
+| **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
+| **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview |
