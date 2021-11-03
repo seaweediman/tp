@@ -296,6 +296,7 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 Manage a list of scheduled interviews, with the simple instructions below!
 
 <div markdown="block" class="alert alert-info">
+
 **Notes on the command format:**
 
 Input fields of all interview commands should follow the following formats: 
@@ -411,6 +412,7 @@ Edits a specific interview in the list of interviews.
 * Adds candidates with candidate index 2 and 4 to the first interview.
 
 <div markdown="block" class="alert alert-info">
+
 **WARNING:**
 * If the candidate has not applied to the position, attempting to assign the candidate to an interview
   for that position will result in an error message displayed.
@@ -434,6 +436,7 @@ Edits a specific interview in the list of interviews.
 * Finds all interviews that are on 21/09/2021 and occur on 1600
 
 <div markdown="block" class="alert alert-info">
+
 **NOTE:**
 
 * Interviews that will be found
