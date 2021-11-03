@@ -293,21 +293,12 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 
 ### Feature: Interview Management
 
-Manage a list of interviews for you to select the desired candidates, with the simple instructions below!
+Manage a list of scheduled interviews, with the simple instructions below!
 
-#### <u>Add an interview:</u> `add_i`
+<div markdown="block" class="alert alert-info">
+**Notes on the command format:**
 
-*Adds an interview to the list of interviews.*
-
-<u>Format:</u>
-
-    add_i position=<POSITION> index=<INDEX>... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
-
-<u>Example:</u>
-
-    add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
-
-* Adds an interview with the position of Accountant and the 1st and 2nd candidate in the list.
+Parameters of all interview commands should follow the following formats: 
 * `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
   * e.g., if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
 * `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
@@ -321,6 +312,23 @@ Manage a list of interviews for you to select the desired candidates, with the s
   * e.g., if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
     <br>
     <br>
+</div>
+
+#### <u>Add an interview:</u> `add_i`
+
+*Adds an interview to the list of interviews.*
+
+<u>Format:</u>
+
+    add_i position=<POSITION> index=<INDEX>... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+
+<u>Example:</u>
+
+    add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
+
+* Adds an interview for the position of Accountant, for the 1st and 2nd candidates in the candidate list.
+  The interview is scheduled to be on 18 October 2020, at 2p.m. and has a duration of 120 minutes. The interview's
+  status is also provided as "pending", meaning that the interview has yet to be completed.
 
 #### <u>Delete an interview:</u> `delete_i`
 
@@ -346,13 +354,15 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    edit_i <INDEX> [position=POSITION]... [c=<CANDIDATE INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+    edit_i <INDEX> [position=POSITION]... [c=<CANDIDATE INDEX>]... [date=DATE]... [time=TIME]...
+    [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
 `edit_i 2 c=1 2 date=18/10/2021 time=1400`
 * Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
-* Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs.
-* At least one field must be edited.
+* All input fields should be provided in the correct format. Please refer to notes on interview command format shown
+  above to see what constitutes a valid input.
+* At least one input field must be edited.
   <br>
   <br>
 
@@ -364,7 +374,6 @@ Edits a specific interview in the list of interviews.
 
     list_i
 
-  <br>
   <br>
 
 #### <u>Unassign candidates from interview:</u> `unassign`
