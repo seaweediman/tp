@@ -64,13 +64,6 @@ public class PersonCard extends UiPart<Region> {
         remark.setText(person.getRemark().value);
         status.setText(person.getStatus().toString());
 
-        name.setWrapText(true);
-        phone.setWrapText(true);
-        address.setWrapText(true);
-        email.setWrapText(true);
-        remark.setWrapText(true);
-        status.setWrapText(true);
-
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
