@@ -328,26 +328,6 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 
 Manage a list of scheduled interviews, with the simple instructions below!
 
-<div markdown="block" class="alert alert-info">
-
-**Notes on the command format:**
-
-Input fields of all interview commands should follow the following formats: 
-* `POSITION` must be added to HR Manager and must have been applied by corresponding candidates before it can be used as a parameter.
-  * e.g., if the position, `Accountant` has not been added to HR Manager, the above command will result in an error : `Position Accountant not found in HR Manager`
-* `DATE` must be in numbers in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits.
-  * e.g., if the date, `2021/10/18` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-  * e.g., if the date, `18 Oct 21` was used instead, HR Manager will show an error : `Date should be be valid and in DD/MM/YYYY format.`
-* `TIME` must be in HHMM form, following 24-hour form, e.g., `1800` and `0600` for 6 P.M. and 6 A.M. respectively
-  * e.g., if the time, `6pm` was used instead, HR Manager will show an error : `Time should be be valid and in HHMM format..`
-* `DURATION` must be in numbers and is set to be in minutes
-  * e.g., if the duration, `twenty` was used instead, HR Manager will show an error : `Duration should be in numbers.`
-* `STATUS` must be either `pending` or `completed`
-  * e.g., if the status, `tbc` was used instead, HR Manager will show an error :`Interview Status can ony take the values:pending completed`
-</div>
-
-  <br>
-
 #### <u>Add an interview:</u> `add_i`
 
 *Adds an interview to the list of interviews.*
