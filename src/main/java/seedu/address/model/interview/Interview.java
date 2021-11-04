@@ -30,7 +30,8 @@ public class Interview {
     public static final String MESSAGE_POSITION_CONSTRAINTS = "Position is closed or does not exist.";
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be valid and in DD/MM/YYYY format.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
-    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
+    public static final String MESSAGE_DURATION_CONSTRAINTS =
+            "Duration should be a positive integer and less than 1 day (1440 minutes).";
 
     private Position position;
 
