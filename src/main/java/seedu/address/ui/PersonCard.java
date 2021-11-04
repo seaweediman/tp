@@ -48,7 +48,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane positions;
     @FXML
-    private FlowPane interviews;
+    private Label interviews;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -77,13 +77,19 @@ public class PersonCard extends UiPart<Region> {
         person.getPositions().stream()
                 .sorted(Comparator.comparing(position -> position.getTitle().fullTitle))
                 .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
+
+        //instead of individual labels with wrap text, create one label with all interviews and then wrap
+        StringBuilder stringBuilder = new StringBuilder();
         person.getInterviews().stream()
                 .sorted(Comparator.comparing(Interview::getDate))
                 .forEach(interview -> {
-                    Label interviewDetails = new Label(interview.getDisplayStringWithoutNames());
-                    interviewDetails.setId("person-interview-text");
-                    interviews.getChildren().add(interviewDetails);
+                    stringBuilder.append(interview.getDisplayStringWithoutNames() + "\n");
                 });
+
+        if (!stringBuilder.toString().equals("")) {
+            interviews.setText(stringBuilder.toString());
+            interviews.setStyle("-fx-text-fill: khaki;");
+        }
     }
 
     @Override
