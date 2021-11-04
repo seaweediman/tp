@@ -295,6 +295,20 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 
 Manage a list of interviews for you to select the desired candidates, with the simple instructions below!
 
+Note that inputs for all interview commands should follow the conditions in the table below:
+
+### Table of Inputs for Interview Management
+
+| Parameter | Examples | Conditions |
+| -------- | ------------------ | ------------------ |
+| **POSITION** | `Software engineer`, `Accountant`| Must be added to HR Manager and must have been applied by corresponding candidates before it can be used |
+| **INDEX** | `1`, `2`| Must be a positive integer corresponding to the index of the intended candidate in the <U>currently displayed list of candidates<U/>|
+| **DATE** | `18/10/2021` for 18th October 2021, `1/9/2021` for 1st September 2021 | Must be in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits |
+| **TIME** | `0600` for 6 a.m., `1800` for 6 p.m. | Must be in HHMM, following 24-hour format |
+| **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
+| **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview |
+
+
 #### <u>Add an interview:</u> `add_i`
 Use the following command to record the details of an interview session with the candidate(s) for a position!
 
@@ -526,15 +540,3 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g., `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found
-
-
-## Table of Inputs for Interview Management
-
-| Parameter | Examples | Constraints |
-| -------- | ------------------ | ------------------ |
-| **POSITION** | `Software engineer`, `Accountant`| Must be added to HR Manager and must have been applied by corresponding candidates before it can be used |
-| **INDEX** | `1`, `2`| Must be a positive integer corresponding to the index of the intended candidate in the <U>currently displayed list of candidates<U/>|
-| **DATE** | `18/10/2021` for 18th October 2021, `1/9/2021` for 1st September 2021 | Must be in DD/MM/YYYY form and can tolerate single digit for day and month, but year must be 4 digits |
-| **TIME** | `0600` for 6 a.m., `1800` for 6 p.m. | Must be in HHMM, following 24-hour format |
-| **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
-| **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview |
