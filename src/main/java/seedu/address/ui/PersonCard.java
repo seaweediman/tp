@@ -77,7 +77,7 @@ public class PersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(Interview::getDate))
                 .forEach(interview -> {
                     String temp = interview.getDisplayStringWithoutNames();
-                    for (int i = 0; i < temp.length(); i+= 60) {
+                    for (int i = 0; i < temp.length(); i += 60) {
                         if (i + 60 < temp.length()) {
                             stringBuilder.append(temp.substring(i, i + 60) + "\n");
                         } else {
