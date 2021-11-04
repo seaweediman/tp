@@ -20,8 +20,8 @@ public class DeletePositionCommandParser implements Parser<DeletePositionCommand
             Index index = ParserUtil.parseIndex(args);
             return new DeletePositionCommand(index);
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeletePositionCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
+                    + "\n" + DeletePositionCommand.MESSAGE_USAGE, pe);
         }
     }
 }

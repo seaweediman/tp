@@ -28,7 +28,8 @@ import seedu.address.testutil.EditPositionDescriptorBuilder;
 public class EditPositionCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPositionCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ParserUtil.MESSAGE_INVALID_INDEX) + "\n" + EditPositionCommand.MESSAGE_USAGE;
 
     private EditPositionCommandParser parser = new EditPositionCommandParser();
 

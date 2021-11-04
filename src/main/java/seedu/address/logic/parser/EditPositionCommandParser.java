@@ -22,8 +22,8 @@ public class EditPositionCommandParser implements Parser<EditPositionCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPositionCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
+                    + "\n" + EditPositionCommand.MESSAGE_USAGE, pe);
         }
 
         EditPositionCommand.EditPositionDescriptor editPositionDescriptor =

@@ -40,7 +40,8 @@ import seedu.address.testutil.EditInterviewDescriptorBuilder;
 public class EditInterviewCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInterviewCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ParserUtil.MESSAGE_INVALID_INDEX) + "\n" + EditInterviewCommand.MESSAGE_USAGE;
 
     private EditInterviewCommandParser parser = new EditInterviewCommandParser();
 

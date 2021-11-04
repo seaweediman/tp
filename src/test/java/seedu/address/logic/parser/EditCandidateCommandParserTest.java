@@ -57,7 +57,8 @@ public class EditCandidateCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCandidateCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ParserUtil.MESSAGE_INVALID_INDEX) + "\n" + EditCandidateCommand.MESSAGE_USAGE;
 
     private EditCandidateCommandParser parser = new EditCandidateCommandParser();
 
