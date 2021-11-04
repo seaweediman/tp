@@ -346,11 +346,11 @@ public class ParserUtil {
             long actualDuration = Long.parseLong(duration);
             //capped at strictly less than 24 hours or 1440 minutes
             if (actualDuration <= 0 || actualDuration >= 1440) {
-                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER);
             }
             return Duration.ofMinutes(actualDuration);
         } catch (NumberFormatException e) {
-            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_NOT_A_NUMBER);
         }
     }
 
