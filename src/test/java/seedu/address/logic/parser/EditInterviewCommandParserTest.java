@@ -83,7 +83,7 @@ public class EditInterviewCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_TIME_DESC, Interview.MESSAGE_TIME_CONSTRAINTS);
 
         //invalid duration
-        assertParseFailure(parser, "1" + INVALID_DURATION_TIME, Interview.MESSAGE_DURATION_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_DURATION_TIME, Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER);
 
         //invalid candidate index
         assertParseFailure(parser, "1" + INVALID_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);

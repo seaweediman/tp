@@ -109,7 +109,7 @@ class JsonAdaptedInterviewTest {
         JsonAdaptedInterview interview =
                 new JsonAdaptedInterview(VALID_POSITION, VALID_CANDIDATE_ID_SET,
                         VALID_DATE, VALID_TIME, INVALID_DURATION_NOT_NUMBER, VALID_INTERVIEW_STATUS_PENDING);
-        String expectedMessage = Interview.MESSAGE_DURATION_CONSTRAINTS;
+        String expectedMessage = Interview.MESSAGE_DURATION_CONSTRAINTS_NOT_A_NUMBER;
         assertThrows(IllegalValueException.class, expectedMessage, interview::toModelType);
     }
 
@@ -118,7 +118,7 @@ class JsonAdaptedInterviewTest {
         JsonAdaptedInterview interview =
                 new JsonAdaptedInterview(VALID_POSITION, VALID_CANDIDATE_ID_SET,
                         VALID_DATE, VALID_TIME, INVALID_DURATION_NEGATIVE, VALID_INTERVIEW_STATUS_PENDING);
-        String expectedMessage = Interview.MESSAGE_DURATION_CONSTRAINTS;
+        String expectedMessage = Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER;
         assertThrows(IllegalValueException.class, expectedMessage, interview::toModelType);
     }
 
