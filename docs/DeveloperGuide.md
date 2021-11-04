@@ -232,8 +232,8 @@ As an example, the parsing and execution of an edit_p command is as follows
 
 ![Execute_sequence_of_edit_x](images/EditPositionSequenceDiagram.png)
 
-### Add position
-#### Implementation
+### **Add position**
+
 `add_p` is a command for the app to add a position into the list of positions. When the user wants to use this command, the title of the position must be indicated.
 
 The add position functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
@@ -269,7 +269,7 @@ The activity diagram of this `addShift` command is shown below:
 <img src="images/AddPosition/AddPositionSequence.png" width="1303" />
 
 Notes:
-1. A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to the default value, `OPEN`.
+* A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to the default value, `OPEN`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**

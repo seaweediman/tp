@@ -22,7 +22,7 @@ transferable to other devices too!
 
 ## Quick start
 
-1. Ensure you have Java `11` or above installed in your Computer.
+1. Ensure you have Java `11` or above installed in your Computer. You can check what version of Java you have by following this guide [here](https://www.java.com/en/download/help/version_manual.html).
 
 2. Download the latest `HRManager.jar` from [here](https://github.com/AY2122S1-CS2103T-W13-1/tp/releases).
 
@@ -31,7 +31,7 @@ transferable to other devices too!
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-5. Type the command in the command box and press Enter to execute it. e.g., typing **`help`** and pressing Enter will open the help window.<br>
+5. Type a command in the command box, which is the box that says "Enter command here..." and press Enter to execute it. e.g., typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
 * **`list_c`** : Lists all candidates.
@@ -330,7 +330,7 @@ Manage a list of scheduled interviews, with the simple instructions below!
 
 Note that inputs for all interview commands should follow the conditions in the table below:
 
-### Table of Inputs for Interview Management
+#### Table of Inputs for Interview Management
 
 | Parameter | Examples | Conditions |
 | -------- | ------------------ | ------------------ |
@@ -412,23 +412,6 @@ Edits a specific interview in the list of interviews.
   <br>
   <br>
 
-#### <u>Unassign candidates from interview:</u> `unassign`
-
-*Unassigns candidates from a specified interview.*
-
-<u>Format:</u>
-
-    unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
-
-<u>Example:</u>
-`unassign i=1 c=2 4`
-
-* You can input any number of candidates but only 1 interview.
-* Removes candidates with candidate index 2 and 4 from the first interview.
-* Inputting `c=*` removes all candidates from an interview.
-  <br>
-  <br>
-
 #### <u>Assign candidates to interview:</u> `assign`
 
 *Assigns candidates to a specified interview.*
@@ -449,6 +432,23 @@ Edits a specific interview in the list of interviews.
 * If the candidate has not applied to the position, attempting to assign the candidate to an interview
   for that position will result in an error message displayed.
 </div>
+  <br>
+  <br>
+
+#### <u>Unassign candidates from interview:</u> `unassign`
+
+*Unassigns candidates from a specified interview.*
+
+<u>Format:</u>
+
+    unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+
+<u>Example:</u>
+`unassign i=1 c=2 4`
+
+* You can input any number of candidates but only 1 interview.
+* Removes candidates with candidate index 2 and 4 from the first interview.
+* Inputting `c=*` removes all candidates from an interview.
   <br>
   <br>
 
