@@ -346,13 +346,25 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    edit_i <INDEX> [position=POSITION]... [c=<CANDIDATE INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+    edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
-`edit_i 2 c=1 2 date=18/10/2021 time=1400`
-* Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
+`edit_i 2 date=18/10/2021 time=1400`
+* Edits the second interview in the interview list and updates the date and time of the interview.
+  
 * Similar to `add_i` command, POSITION, DATE, TIME, DURATION AND STATUS must be valid inputs.
+  
 * At least one field must be edited.
+
+<div markdown="block" class="alert alert-info">
+
+**NOTE:**
+`edit_i` cannot be used to edit the candidates assigned to the specified interview.
+  Please refer to `assign` and `unassign` commands below to see how you can add and remove candidates
+  from a scheduled interview.
+
+</div>
+
   <br>
   <br>
 

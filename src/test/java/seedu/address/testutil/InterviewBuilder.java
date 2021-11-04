@@ -4,7 +4,6 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.interview.Interview;
@@ -18,7 +17,7 @@ public class InterviewBuilder {
 
 
     private Position position = TypicalPositions.HR_MANAGER;
-    private Set<Person> candidates = new HashSet<>(List.of(TypicalPersons.BENSON));
+    private Set<Person> candidates = new HashSet<>();
     private LocalDate localDate = LocalDate.of(2021, 10, 15);
     private LocalTime startTime = LocalTime.of(10, 0);
     private Duration duration = Duration.ofHours(1);

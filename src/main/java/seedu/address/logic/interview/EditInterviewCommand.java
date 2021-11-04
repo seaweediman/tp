@@ -1,7 +1,6 @@
 package seedu.address.logic.interview;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
@@ -29,7 +28,6 @@ import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.interview.Interview.InterviewStatus;
-import seedu.address.model.interview.Tuple;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 
@@ -86,28 +84,6 @@ public class EditInterviewCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_INTERVIEW);
         }
 
-//        Set<Index> newCandidateIndexes = parsedDetails.getSecond();
-//
-//        boolean isCandidateSetEdited = newCandidateIndexes.size() != 0;
-//
-//        // if candidates field is edited, list of updated candidate indexed will not be empty
-//        if (isCandidateSetEdited) {
-//            Set<Person> newCandidates = new HashSet<>();
-//            for (Index i : newCandidateIndexes) {
-//                if (i.getZeroBased() < model.getFilteredPersonList().size()) {
-//                    Person person = model.getPerson(i);
-//                    if (!person.appliedForPosition(editedInterview.getPosition())) {
-//                        throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
-//                                person.getName(), editedInterview.getPosition()));
-//                    }
-//                    newCandidates.add(person);
-//                } else {
-//                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-//                }
-//            }
-//            editedInterview.setCandidates(newCandidates); // update edited interview with updated list of candidates
-//        }
-
         Position newPosition = editedInterview.getPosition();
         if (!model.hasPosition(newPosition)) {
             throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, newPosition.getTitle()));
@@ -122,23 +98,10 @@ public class EditInterviewCommand extends Command {
         model.setInterview(interviewToEdit, editedInterview);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
 
-        // update candidate list
-//        if (isCandidateSetEdited) {
-//            // if candidate set is edited, delete old interview from all initial candidates,
-//            // then add edited interview to all candidates in updated candidate set
-//            for (Person candidate : interviewToEdit.getCandidates()) {
-//                candidate.deleteInterview(interviewToEdit);
-//            }
-//            for (Person candidate : editedInterview.getCandidates()) {
-//                candidate.addInterview(editedInterview);
-//            }
-//        } else {
-//            // if candidate set not edited, update interviews of candidates from initial candidate set.
-//            for (Person candidate : interviewToEdit.getCandidates()) {
-//                candidate.deleteInterview(interviewToEdit);
-//                candidate.addInterview(editedInterview);
-//            }
-//        }
+        for (Person candidate : interviewToEdit.getCandidates()) {
+            candidate.deleteInterview(interviewToEdit);
+            candidate.addInterview(editedInterview);
+        }
 
         return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()),
               CommandResult.CommandType.INTERVIEW);

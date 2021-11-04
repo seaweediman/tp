@@ -97,10 +97,10 @@ public class CommandTestUtil {
 
     static {
         DESC_INTERVIEW_ADMIN_ASSISTANT = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_ADMIN_NAME)
-                .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDate(VALID_DATE).withStartTime(VALID_TIME)
                 .withDuration(VALID_DURATION_TIME).withStatus(VALID_STATUS_PENDING).build();
         DESC_INTERVIEW_MANAGER = new EditInterviewDescriptorBuilder().withPosition(VALID_POSITION_MANAGER_NAME)
-                .withCandidateIndexes(VALID_CANDIDATE_INDEX_2).withDate(VALID_DATE).withStartTime(VALID_TIME)
+                .withDate(VALID_DATE).withStartTime(VALID_TIME)
                 .withDuration(VALID_DURATION_TIME_OTHER_DURATION).withStatus(VALID_STATUS_PENDING).build();
     }
 
