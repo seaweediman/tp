@@ -132,7 +132,8 @@ public class AssignInterviewCommandTest {
                 .withTags("friends")
                 .withStatus("Applied").build();
 
-        String expectedMessage = String.format(AssignInterviewCommand.MESSAGE_CANDIDATE_HAS_INTERVIEW);
+        String expectedMessage = String.format(AssignInterviewCommand.MESSAGE_CANDIDATE_HAS_INTERVIEW,
+                INDEX_FIRST_PERSON.getOneBased(), alice.getName(), assignedInterview.getDisplayStringWithoutNames());
 
         copyOfAlice.addInterview(assignedInterview);
         assignedInterview.addCandidate(copyOfAlice);
