@@ -5,6 +5,7 @@ import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_ALL_CANDIDATES_REMOVED;
 import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_CANDIDATE_DID_NOT_APPLY;
+import static seedu.address.logic.interview.UnassignInterviewCommand.MESSAGE_CANDIDATE_INDEX_NOT_VALID;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -118,7 +119,8 @@ public class UnassignInterviewCommandTest {
                 Set.of(invalidCandidateIndex));
 
         assertThrows(CommandException.class,
-                Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> unassignInterviewCommand.execute(model));
+                String.format(MESSAGE_CANDIDATE_INDEX_NOT_VALID, invalidCandidateIndex.getOneBased()), (
+                        )-> unassignInterviewCommand.execute(model));
     }
 
     @Test
