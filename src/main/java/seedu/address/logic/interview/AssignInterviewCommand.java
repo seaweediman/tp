@@ -33,6 +33,8 @@ public class AssignInterviewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Candidates added to interview %1$s: %2$s";
     public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) did not apply for "
             + "this position: %3$s";
+    public static final String MESSAGE_CANDIDATE_HAS_INTERVIEW = "The candidate(s) has/have already been assigned"
+            + " to this interview.";
 
     private Index interviewIndex;
 
@@ -82,6 +84,11 @@ public class AssignInterviewCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                         candidateIndex.getOneBased(), candidate.getName(), interview.getPositionTitle()));
             }
+
+            if (candidate.hasInterview(assignedInterview)) {
+                throw new CommandException(String.format(MESSAGE_CANDIDATE_HAS_INTERVIEW));
+            }
+
             newCandidates.add(candidate);
             candidate.addInterview(assignedInterview);
 
