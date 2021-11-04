@@ -76,9 +76,15 @@ public class PersonCard extends UiPart<Region> {
         person.getInterviews().stream()
                 .sorted(Comparator.comparing(Interview::getDate))
                 .forEach(interview -> {
-                    stringBuilder.append(interview.getDisplayStringWithoutNames() + "\n");
+                    String temp = interview.getDisplayStringWithoutNames();
+                    for (int i = 0; i < temp.length(); i+= 60) {
+                        if (i + 60 < temp.length()) {
+                            stringBuilder.append(temp.substring(i, i + 60) + "\n");
+                        } else {
+                            stringBuilder.append(temp.substring(i) + "\n");
+                        }
+                    }
                 });
-
         if (!stringBuilder.toString().equals("")) {
             interviews.setText(stringBuilder.toString());
             interviews.setStyle("-fx-text-fill: khaki;");
