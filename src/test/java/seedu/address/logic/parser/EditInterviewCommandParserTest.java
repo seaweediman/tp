@@ -119,7 +119,6 @@ public class EditInterviewCommandParserTest {
                         .withStatus(VALID_STATUS_PENDING).build();
         EditInterviewCommand expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
 
-        //TODO linked to parse_oneFieldSpecified_success(), works if candidates not included
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
