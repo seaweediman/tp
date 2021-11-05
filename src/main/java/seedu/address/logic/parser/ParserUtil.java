@@ -36,6 +36,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
+    public static final String MESSAGE_EMPTY_CANDIDATE_INDEXES = "You must enter at least one candidate index";
     public static final String MESSAGE_INVALID_INDEX =
             "Index should be a non-zero unsigned integer, and less than the maximum value (2147483647).\n";
 
@@ -436,6 +437,10 @@ public class ParserUtil {
 
         for (String index : tempWithoutDuplicates) {
             characterIndexes.add(parseIndex(index));
+        }
+
+        if (characterIndexes.isEmpty()) {
+            throw new ParseException(MESSAGE_EMPTY_CANDIDATE_INDEXES);
         }
 
         return characterIndexes;
