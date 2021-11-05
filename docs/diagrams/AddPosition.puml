@@ -11,13 +11,13 @@ skinparam class {
 
 class Parser << Interface >> LOGIC_COLOR
 class Command LOGIC_COLOR
-class AddPositionCommandParser LOGIC_COLOR
-class AddPositionCommand LOGIC_COLOR
+class AddXCommandParser LOGIC_COLOR
+class AddXCommand LOGIC_COLOR
 
 skinparam shadowing false
 
-Parser <|.. AddPositionCommandParser
-Command <|-- AddPositionCommand
+Parser <|.. AddXCommandParser
+Command <|-- AddXCommand
 
 hide methods
 hide fields
