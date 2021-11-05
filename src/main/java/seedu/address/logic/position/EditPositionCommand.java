@@ -36,7 +36,7 @@ public class EditPositionCommand extends Command {
             + PREFIX_POSITION_STATUS + "closed\n";
 
     public static final String MESSAGE_EDIT_POSITION_SUCCESS = "Edited Position: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "Only one field to edit can be provided.";
+    public static final String MESSAGE_NOT_EDITED = "One field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_POSITION = "This position already exists in the position list.";
 
     private final Index index;
