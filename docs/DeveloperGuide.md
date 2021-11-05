@@ -212,16 +212,16 @@ Continuing the previous diagram, the ListXCommand is executed, and the correspon
 
 ### **Edit Commands** ###
 
-The `edit_c`, `edit_p` and `edit_i` commands allow users to edit a specific candidate, position 
+The `edit_c`, `edit_p` and `edit_i` commands allow users to edit a specific candidate, position
 or interview in the respective display panel.
 
-Generally, they are called `edit_x` in this section. 
+Generally, they are called `edit_x` in this section.
 
 The edit mechanism is facilitated by `editXDescriptor`, where X is the object to be edited, for example
-`editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and 
+`editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and
 `editinterviewDescriptor` for editing interviews, and each non-empty field value will replace the corresponding
 field value of the object that is being edited. `editXDescriptor` stores the details to edit the candidate,
-position or interview with. `editXCommand` extends `Command` and implements the 
+position or interview with. `editXCommand` extends `Command` and implements the
 `Command#execute()` operation, which executes the command and returns a result message to be displayed.
 
 Similar to any other command, the `Command#execute()` operation is exposed in the `Logic` interface as

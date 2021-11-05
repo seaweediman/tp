@@ -89,7 +89,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 * Each position consists of a job position title, e.g. 'Accountant', 'Business Analyst', etc and a
   position status that is either 'open' or 'closed'.
-  
+
 * Valid input for position status only include 'open' and 'closed'. E.g.`status=open` or `status=closed`.
 
 </div>
@@ -107,7 +107,7 @@ Manage a list of job positions posted by your company, with the simple instructi
     add_p title=Assistant
 
 * Adds a job position with the title of Assistant, with a default status of 'open'.
-  
+
 * Adding a job position always sets the position status to 'open'. Refer to `edit_p` on how you can change the status
   of a job position to 'closed'.
   <br>
@@ -150,7 +150,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
     edit_p <INDEX> [title=<TITLE>]
 
-OR<br> 
+OR<br>
 
     edit_p <INDEX> [status=<STATUS>]
 <u>Example:</u>
@@ -158,13 +158,13 @@ OR<br>
     edit_p 2 title=Data Analyst
 
 * Edits the title of the 2nd position in the list to 'Data Analyst'.
-  
+
 * Editing the title  of the specified position will update the position title in any scheduled interviews for
   that position, along with any candidates who have applied for that position.
   <br>
   <br>
 
-    
+
     edit_p 3 status=closed
 
 * Edits the status of the 3rd position in the list to closed.
@@ -190,7 +190,7 @@ OR<br>
   * Command will find jobs that contains at least 1 of the keywords (OR)
 * Across different fields
   * Command will return jobs that contain all the fields (AND)
-  
+
   <br>
   <br>
 
@@ -250,7 +250,7 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
   <br>
   <br>
-  
+
 
 #### <u>Remark a candidate:</u> `remark_c`
 
@@ -359,7 +359,7 @@ Use the following command to record the details of an interview session with the
 * Adds an interview for the position of Accountant, for the 1st and 2nd candidates in the candidate list.
   The interview is scheduled to be on 18 October 2020, at 2p.m. and has a duration of 120 minutes. The interview's
   status is also provided as "pending", meaning that the interview has yet to be completed.
-  
+
   Click [here](#table-of-inputs-for-interview-management) to see the conditions and examples for possible inputs.
   <br>
   <br>
@@ -406,7 +406,7 @@ Edits a specific interview in the list of interviews.
 * Edits the second interview in the interview list and updates the candidate set, date and time of the interview.
 * All input fields should be provided in the correct format. Please refer to notes on interview command format shown
   above to see what constitutes a valid input.
-* At least one input field must be edited. For instance, in the above example, three input fields have been edited - 
+* At least one input field must be edited. For instance, in the above example, three input fields have been edited -
   `c=1 2` for the candidates assigned to the interview, `date=18/10/2021` for the date of the interview and `time=1400`
   for the time the interview is scheduled for.
   <br>
