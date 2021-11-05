@@ -18,12 +18,21 @@ HR manager's easy to use features will help you to arrange for upcoming intervie
 The data you have provided will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
 
+### Purpose
+The purpose of this user guide is to give a complete documentation of HR Manger and allow you to easily get started on HR Manager.
+The user guide is also the easiest way for you to troubleshoot any issues and clarify any questions you have with HR Manager.<br>
+Lets simply your HR processes!
+
 ### How to use this user guide?
-This user guide is a complete guide for all commands and features for HR Manager.<br>
+This user guide is a complete guide for all commands and features for HR Manager.
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
 Alternatively, you can quickly get started using the [Quick Start](#Quick start) and [Command Summary](#Command summary).<br>
 If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
+
+### Complete Product Information
+HR Manger is a simple to use and easy to learn local desktop application that allows you to easily manage your candidates, positions and interviews.
+HR Manager is built on Java and can be run on all major desktop operating systems. HR Manager has a graphic user interface to display information and uses text-based commands to interact with the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
