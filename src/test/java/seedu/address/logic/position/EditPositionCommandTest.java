@@ -52,11 +52,27 @@ public class EditPositionCommandTest {
     private Model model = new ModelManager(getTypicalHrManager(), new UserPrefs());
 
     @Test
-    public void execute_allFieldsSpecifiedUnfilteredList_success() {
+    public void execute_titleSpecifiedUnfilteredList_success() {
         Position editedPosition =
                 new PositionBuilder().withTitle("Business Analyst").withStatus(VALID_STATUS_OPEN).build();
         EditPositionCommand.EditPositionDescriptor descriptor =
-                new EditPositionDescriptorBuilder(editedPosition).build();
+                new EditPositionDescriptorBuilder().withTitle(editedPosition.getTitle().fullTitle).build();
+        EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION, descriptor);
+
+        String expectedMessage = String.format(EditPositionCommand.MESSAGE_EDIT_POSITION_SUCCESS, editedPosition);
+
+        Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
+        expectedModel.setPosition(model.getFilteredPositionList().get(0), editedPosition);
+
+        assertEditPositionCommandSuccess(editPositionCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_statusSpecifiedUnfilteredList_success() {
+        Position editedPosition =
+                new PositionBuilder().withTitle("Administrative Assistant").withStatus(VALID_STATUS_OPEN).build();
+        EditPositionCommand.EditPositionDescriptor descriptor =
+                new EditPositionDescriptorBuilder().withPositionStatus(editedPosition.getStatus()).build();
         EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION, descriptor);
 
         String expectedMessage = String.format(EditPositionCommand.MESSAGE_EDIT_POSITION_SUCCESS, editedPosition);
@@ -103,7 +119,7 @@ public class EditPositionCommandTest {
     public void execute_duplicatePositionUnfilteredList_failure() {
         Position firstPosition = model.getFilteredPositionList().get(INDEX_FIRST_POSITION.getZeroBased());
         EditPositionCommand.EditPositionDescriptor descriptor =
-                new EditPositionDescriptorBuilder(firstPosition).build();
+                new EditPositionDescriptorBuilder().withTitle(firstPosition.getTitle().fullTitle).build();
         EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_SECOND_POSITION, descriptor);
 
         assertCommandFailure(editPositionCommand, model, EditPositionCommand.MESSAGE_DUPLICATE_POSITION);
@@ -116,7 +132,7 @@ public class EditPositionCommandTest {
         // edit position in filtered list into a duplicate in HR Manager
         Position positionInList = model.getHrManager().getPositionList().get(INDEX_SECOND_POSITION.getZeroBased());
         EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION,
-                new EditPositionDescriptorBuilder(positionInList).build());
+                new EditPositionDescriptorBuilder().withTitle(positionInList.getTitle().fullTitle).build());
 
         assertCommandFailure(editPositionCommand, model, EditPositionCommand.MESSAGE_DUPLICATE_POSITION);
     }
@@ -146,6 +162,15 @@ public class EditPositionCommandTest {
                 new EditPositionDescriptorBuilder().withTitle(VALID_TITLE_BOOKKEEPER).build());
 
         assertCommandFailure(editPositionCommand, model, Messages.MESSAGE_INVALID_POSITION_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_bothFieldsEdited_failure() {
+        EditPositionCommand.EditPositionDescriptor descriptor = new EditPositionDescriptorBuilder()
+                .withTitle("Business Analyst")
+                .withPositionStatus(VALID_STATUS_OPEN).build();
+        EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION, descriptor);
+        assertCommandFailure(editPositionCommand, model, EditPositionCommand.MESSAGE_BOTH_FIELDS_EDITED);
     }
 
     @Test
@@ -181,7 +206,7 @@ public class EditPositionCommandTest {
         Position editedPosition =
                 new PositionBuilder().withTitle("Business Analyst").build();
         EditPositionCommand.EditPositionDescriptor descriptor =
-                new EditPositionDescriptorBuilder(editedPosition).build();
+                new EditPositionDescriptorBuilder().withTitle(editedPosition.getTitle().fullTitle).build();
         EditPositionCommand editPositionCommand = new EditPositionCommand(INDEX_FIRST_POSITION, descriptor);
 
         String expectedMessage = String.format(EditPositionCommand.MESSAGE_EDIT_POSITION_SUCCESS, editedPosition);
