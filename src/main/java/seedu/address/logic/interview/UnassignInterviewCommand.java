@@ -36,6 +36,7 @@ public class UnassignInterviewCommand extends Command {
     public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s (%2$s) is not scheduled for "
                 + "this Interview: %3$s";
     public static final String MESSAGE_ALL_CANDIDATES_REMOVED = "All candidates removed from interview: %1$s";
+    public static final String MESSAGE_CANDIDATE_INDEX_NOT_VALID = "The person index %1$s is invalid";
 
     private Index interviewIndex;
 
@@ -78,37 +79,44 @@ public class UnassignInterviewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERVIEW_DISPLAYED_INDEX);
         }
 
-        Interview interview = lastShownInterviewList.get(interviewIndex.getZeroBased());
+        Interview interviewToUnassign = lastShownInterviewList.get(interviewIndex.getZeroBased());
+
+        for (Index candidateIndex : candidateIndexes) {
+            if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
+                throw new CommandException(String.format(MESSAGE_CANDIDATE_INDEX_NOT_VALID,
+                        candidateIndex.getOneBased()));
+            }
+
+            Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
+            if (!candidate.hasInterview(interviewToUnassign)) {
+                throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
+                        candidateIndex.getOneBased(), candidate.getName(), interviewToUnassign.getDisplayString()));
+            }
+        }
 
         StringBuilder removedPersons = new StringBuilder();
         removedPersons.append("\n");
 
         if (isTotalWipe) {
             Set<Person> emptyCandidatesSet = new HashSet<>();
-            interview.setCandidates(emptyCandidatesSet);
-            model.deleteInterviewFromPerson(interview);
+            interviewToUnassign.setCandidates(emptyCandidatesSet);
+            model.deleteInterviewFromPerson(interviewToUnassign);
             result = new CommandResult(String.format(MESSAGE_ALL_CANDIDATES_REMOVED,
-                    interview.getDisplayStringWithoutNames()),
+                    interviewToUnassign.getDisplayStringWithoutNames()),
                     CommandResult.CommandType.INTERVIEW);
         } else {
             int count = 1;
             for (Index candidateIndex : candidateIndexes) {
-                if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
-                    throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-                }
                 Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
-                if (!candidate.hasInterview(interview)) {
-                    throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
-                            candidateIndex.getOneBased(), candidate.getName(), interview.getDisplayString()));
-                }
-                interview.deleteCandidate(candidate);
-                candidate.deleteInterview(interview);
+                interviewToUnassign.deleteCandidate(candidate);
+                candidate.deleteInterview(interviewToUnassign);
 
                 removedPersons.append(count + ". " + candidate.getName() + "\n");
                 count++;
             }
-            result = new CommandResult(String.format(MESSAGE_SUCCESS, interview.getDisplayStringWithoutNames(),
-                    removedPersons), CommandResult.CommandType.INTERVIEW);
+            result = new CommandResult(String.format(MESSAGE_SUCCESS,
+                    interviewToUnassign.getDisplayStringWithoutNames(), removedPersons),
+                    CommandResult.CommandType.INTERVIEW);
         }
 
         return result;
