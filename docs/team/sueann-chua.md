@@ -33,7 +33,11 @@ Given below are my contributions to the project.
 
 * **Enhancement: bugfix for `edit_c` command where editing of candidate's applied position was not reflected in the
 list of interviews**
-    * 
+    * Before, there was a bug where changes to the positions a candidate had applied to was not reflected in the list of
+      interviews. Refer to [Issue #194](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/194) for more details on the
+      bug.
+    * With this bugfix, `EditCandidateCommand#Execute` now checks if the edited candidate's positions match the 
+      positions of their scheduled interviews and updates the interview list accordingly.
 
 ### 3. Contributions to the UG
 * Added the documentation for the following features:
