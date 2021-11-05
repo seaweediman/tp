@@ -72,7 +72,7 @@ public class AssignInterviewCommand extends Command {
         StringBuilder candidatesAdded = new StringBuilder();
         candidatesAdded.append("\n");
 
-        int count = 1;
+        //checking
         for (Index candidateIndex : candidateIndexes) {
             if (candidateIndex.getZeroBased() >= lastShownCandidateList.size()) {
                 throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
@@ -89,6 +89,12 @@ public class AssignInterviewCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_CANDIDATE_HAS_INTERVIEW,
                         candidateIndex.getOneBased(), candidate.getName(), interview.getDisplayStringWithoutNames()));
             }
+        }
+
+        //executing
+        int count = 1;
+        for (Index candidateIndex : candidateIndexes) {
+            Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
 
             newCandidates.add(candidate);
             candidate.addInterview(assignedInterview);
@@ -96,6 +102,7 @@ public class AssignInterviewCommand extends Command {
             candidatesAdded.append(count + ". " + candidate.getName() + "\n");
             count++;
         }
+
         assignedInterview.setCandidates(newCandidates);
         model.setInterview(interview, assignedInterview);
 
