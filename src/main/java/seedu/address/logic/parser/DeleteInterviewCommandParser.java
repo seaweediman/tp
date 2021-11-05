@@ -19,7 +19,7 @@ public class DeleteInterviewCommandParser implements Parser<DeleteInterviewComma
             return new DeleteInterviewCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
-                    + "\n" + DeleteInterviewCommand.MESSAGE_USAGE, pe);
+                    + DeleteInterviewCommand.MESSAGE_USAGE, pe);
         }
     }
 }

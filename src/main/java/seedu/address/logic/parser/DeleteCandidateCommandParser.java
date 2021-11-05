@@ -22,7 +22,7 @@ public class DeleteCandidateCommandParser implements Parser<DeleteCandidateComma
             return new DeleteCandidateCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
-                            + "\n" + DeleteCandidateCommand.MESSAGE_USAGE, pe);
+                            + DeleteCandidateCommand.MESSAGE_USAGE, pe);
         }
     }
 
