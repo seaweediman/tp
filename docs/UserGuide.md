@@ -18,6 +18,13 @@ HR manager's easy to use features will help you to arrange for upcoming intervie
 The data you have provided will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
 
+### How to use this user guide?
+This user guide is a complete guide for all commands and features for HR Manager.<br>
+You can read the whole guide for a comprehensive understanding of the application.
+<br><br>
+Alternatively, you can quickly get started using the [Quick Start](#Quick start) and [Command Summary](#Command summary).<br>
+If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
