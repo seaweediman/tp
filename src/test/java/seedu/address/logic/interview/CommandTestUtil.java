@@ -195,6 +195,26 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command} twice, confirms that <br>
+     * - a {@code CommandException} is thrown <br>
+     * - the CommandException message matches {@code expectedMessage} <br>
+     * - the HR Manager, filtered interview list and selected interview in {@code actualModel} remain unchanged
+     */
+    public static void assertCommandFailureRepeatedAssign(Command command, Model actualModel, String expectedMessage) {
+        HrManager expectedHrManager = new HrManager(actualModel.getHrManager());
+        List<Interview> expectedFilteredList = new ArrayList<>(actualModel.getFilteredInterviewList());
+
+        try {
+            command.execute(actualModel);
+            assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
+            assertEquals(expectedHrManager, actualModel.getHrManager());
+            assertEquals(expectedFilteredList, actualModel.getFilteredInterviewList());
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Updates {@code model}'s filtered list to show only the interview at the given {@code targetIndex} in the
      * {@code model}'s HR Manager.
      */

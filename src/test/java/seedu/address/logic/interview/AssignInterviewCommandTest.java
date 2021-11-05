@@ -1,6 +1,7 @@
 package seedu.address.logic.interview;
 
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailureRepeatedAssign;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -39,7 +40,6 @@ public class AssignInterviewCommandTest {
         indexes.add(INDEX_FIRST_PERSON);
         AssignInterviewCommand assignInterviewCommand = new AssignInterviewCommand(INDEX_FIRST_INTERVIEW,
                 indexes);
-        Interview interviewToAssign = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
         Interview assignedInterview = new InterviewBuilder()
                 .withPosition(new Position(new Title("Accountant")))
                 .withCandidates(new HashSet<>())
@@ -107,4 +107,40 @@ public class AssignInterviewCommandTest {
         assertCommandFailure(assignInterviewCommand, model, expectedMessage);
     }
 
+    @Test
+    public void execute_candidateHasInterviewUnfilteredList_throwsCommandException() {
+        Set<Index> indexes = new HashSet<>();
+        indexes.add(INDEX_FIRST_PERSON);
+        AssignInterviewCommand assignInterviewCommand = new AssignInterviewCommand(INDEX_FIRST_INTERVIEW,
+                indexes);
+        Interview assignedInterview = new InterviewBuilder()
+                .withPosition(new Position(new Title("Accountant")))
+                .withCandidates(new HashSet<>())
+                .withDate(LocalDate.of(2021, 10, 15))
+                .withStartTime(LocalTime.of(14, 0))
+                .withDuration(Duration.ofMinutes(120))
+                .withStatus(Interview.InterviewStatus.PENDING).build();
+
+        Person alice = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person copyOfAlice = new PersonBuilder()
+                .withName("Alice Pauline")
+                .withPositions("Accountant")
+                .withAddress("123, Jurong West Ave 6, #08-111")
+                .withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withRemark("She likes aardvarks.")
+                .withTags("friends")
+                .withStatus("Applied").build();
+
+        String expectedMessage = String.format(AssignInterviewCommand.MESSAGE_CANDIDATE_HAS_INTERVIEW,
+                INDEX_FIRST_PERSON.getOneBased(), alice.getName(), assignedInterview.getDisplayStringWithoutNames());
+
+        copyOfAlice.addInterview(assignedInterview);
+        assignedInterview.addCandidate(copyOfAlice);
+
+        assertCommandFailureRepeatedAssign(assignInterviewCommand, model, expectedMessage);
+
+        alice.deleteInterview(assignedInterview);
+        assignedInterview.deleteCandidate(alice);
+    }
 }
