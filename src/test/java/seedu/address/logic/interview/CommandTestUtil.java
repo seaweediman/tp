@@ -155,7 +155,6 @@ public class CommandTestUtil {
                                                          CommandResult expectedEditCommandResult, Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
-            actualModel.updateFilteredInterviewList(Model.PREDICATE_SHOW_ALL_INTERVIEWS);
             assertEquals(expectedEditCommandResult, result);
             assertEquals(expectedModel, actualModel);
         } catch (CommandException ce) {
