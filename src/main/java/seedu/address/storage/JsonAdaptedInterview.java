@@ -127,11 +127,11 @@ public class JsonAdaptedInterview {
             Long actualDuration = Long.parseLong(duration);
             //capped at strictly less than 24 hours or 1440 minutes
             if (actualDuration <= 0 || actualDuration >= 1440) {
-                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER);
             }
             return Duration.ofMinutes(actualDuration);
         } catch (NumberFormatException e) {
-            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_NOT_A_NUMBER);
         }
     }
 
@@ -181,7 +181,8 @@ public class JsonAdaptedInterview {
         try {
             duration = parseDuration(this.duration);
         } catch (ParseException e) {
-            throw new IllegalValueException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            //getMessage() is used because parseDuration can throw an exception with 2 different messages
+            throw new IllegalValueException(e.getMessage());
         }
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
