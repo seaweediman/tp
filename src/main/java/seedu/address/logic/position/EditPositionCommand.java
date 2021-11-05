@@ -27,14 +27,16 @@ public class EditPositionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the position identified "
             + "by the index number used in the displayed position list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "NOTE: only one field can be edited at one time.\n"
+            + "Valid status values: open, closed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_POSITION_STATUS + "POSITION STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POSITION_STATUS + "close";
+            + PREFIX_POSITION_STATUS + "closed\n";
 
     public static final String MESSAGE_EDIT_POSITION_SUCCESS = "Edited Position: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "Only one field to edit can be provided.";
     public static final String MESSAGE_DUPLICATE_POSITION = "This position already exists in the position list.";
 
     private final Index index;
