@@ -3,11 +3,7 @@ package seedu.address.testutil;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.interview.EditInterviewCommand.EditInterviewDescriptor;
 import seedu.address.model.interview.Interview;
 import seedu.address.model.position.Position;
@@ -31,10 +27,9 @@ public class EditInterviewDescriptorBuilder {
     /**
      * Returns an {@code EditInterviewDescriptor} with fields containing {@code Interview}'s details.
      */
-    public EditInterviewDescriptorBuilder(Interview interview, Set<Index> candidateIndexes) {
+    public EditInterviewDescriptorBuilder(Interview interview) {
         descriptor = new EditInterviewDescriptor();
         descriptor.setPosition(interview.getPosition());
-        descriptor.setCandidateIndexes(candidateIndexes); //todo
         descriptor.setDate(interview.getDate());
         descriptor.setStartTime(interview.getStartTime());
         descriptor.setDuration(interview.getDuration());
@@ -46,17 +41,6 @@ public class EditInterviewDescriptorBuilder {
      */
     public EditInterviewDescriptorBuilder withPosition(String position) {
         descriptor.setPosition(new Position(new Title(position)));
-        return this;
-    }
-
-    /**
-     * Parses the {@code candidateIndexes} into a {@code Set<Index>} and set it to the {@code EditInterviewDescriptor}
-     * that we are building.
-     */
-    public EditInterviewDescriptorBuilder withCandidateIndexes(String... indexes) {
-        Set<Index> candidateIndexes = Stream.of(indexes).map(Integer::parseInt)
-                .map(Index::fromZeroBased).collect(Collectors.toSet());
-        descriptor.setCandidateIndexes(candidateIndexes);
         return this;
     }
 

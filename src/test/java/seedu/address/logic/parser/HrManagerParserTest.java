@@ -69,6 +69,7 @@ import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.PositionBuilder;
 import seedu.address.testutil.PositionUtil;
+import seedu.address.testutil.TypicalPersons;
 
 public class HrManagerParserTest {
 
@@ -98,7 +99,8 @@ public class HrManagerParserTest {
         Command command = parser.parseCommand(standardInput);
         assertTrue(command instanceof AddInterviewCommand);
 
-        Interview interview = new InterviewBuilder().build();
+        Interview interview =
+                new InterviewBuilder().withCandidates(new HashSet<>(List.of(TypicalPersons.BENSON))).build();
         Command otherCommand = parser.parseCommand(InterviewUtil.getAddInterviewCommand(interview));
         assertTrue(otherCommand instanceof AddInterviewCommand);
     }

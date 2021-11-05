@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_ADMIN_ASSISTANT;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_MANAGER;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_2;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DATE_OTHER_DATE;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_DURATION_TIME_OTHER_DURATION;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
@@ -40,11 +39,6 @@ public class EditInterviewDescriptorTest {
         EditInterviewCommand.EditInterviewDescriptor editedInterview =
                 new EditInterviewDescriptorBuilder(DESC_INTERVIEW_ADMIN_ASSISTANT)
                         .withPosition(VALID_POSITION_MANAGER_NAME).build();
-        assertFalse(DESC_INTERVIEW_ADMIN_ASSISTANT.equals(editedInterview));
-
-        // different candidate -> returns false
-        editedInterview = new EditInterviewDescriptorBuilder(DESC_INTERVIEW_ADMIN_ASSISTANT)
-                .withCandidateIndexes(VALID_CANDIDATE_INDEX_2).build();
         assertFalse(DESC_INTERVIEW_ADMIN_ASSISTANT.equals(editedInterview));
 
         // different date -> returns false

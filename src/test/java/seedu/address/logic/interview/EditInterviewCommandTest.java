@@ -2,32 +2,24 @@ package seedu.address.logic.interview;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_ADMIN_ASSISTANT;
 import static seedu.address.logic.interview.CommandTestUtil.DESC_INTERVIEW_MANAGER;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_1;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_CANDIDATE_INDEX_SET;
-import static seedu.address.logic.interview.CommandTestUtil.VALID_EMPTY_CANDIDATE_INDEX_SET;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_ADMIN_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAGER_NAME;
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.interview.CommandTestUtil.assertEditInterviewCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
-import static seedu.address.logic.interview.EditInterviewCommand.MESSAGE_CANDIDATE_DID_NOT_APPLY;
 import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_INTERVIEW;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.JOHN;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
 
-import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -50,7 +42,6 @@ import seedu.address.model.position.Position;
 import seedu.address.testutil.EditInterviewDescriptorBuilder;
 import seedu.address.testutil.InterviewBuilder;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.TypicalPositions;
 
 
@@ -65,8 +56,7 @@ public class EditInterviewCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() { //todo
         Interview editedInterview = new InterviewBuilder().build();
         EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).build();
+                new EditInterviewDescriptorBuilder(editedInterview).build();
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
         String expectedMessage =
@@ -118,7 +108,7 @@ public class EditInterviewCommandTest {
     public void execute_duplicateInterviewUnfilteredList_failure() {
         Interview firstInterview = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
         EditInterviewCommand.EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(firstInterview, VALID_CANDIDATE_INDEX_SET).build();
+                new EditInterviewDescriptorBuilder(firstInterview).build();
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_SECOND_INTERVIEW, descriptor);
 
         assertCommandFailure(editInterviewCommand, model, EditInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW);
@@ -131,7 +121,7 @@ public class EditInterviewCommandTest {
         // edit interview in filtered list into a duplicate in HR Manager
         Interview interviewInList = model.getHrManager().getInterviewList().get(INDEX_SECOND_INTERVIEW.getZeroBased());
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW,
-                new EditInterviewDescriptorBuilder(interviewInList, VALID_CANDIDATE_INDEX_SET).build());
+                new EditInterviewDescriptorBuilder(interviewInList).build());
 
         assertCommandFailure(editInterviewCommand, model, EditInterviewCommand.MESSAGE_DUPLICATE_INTERVIEW);
     }
@@ -192,75 +182,16 @@ public class EditInterviewCommandTest {
     }
 
     @Test
-    public void execute_candidateDidNotApply_throwsCommandException() {
-        Interview editedInterview = new InterviewBuilder().build();
-        EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes(VALID_CANDIDATE_INDEX_1).build();
-        descriptor.setPosition(BOOKKEEPER);
-        EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
-
-        String expectedMessage = String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY, BENSON.getName(), BOOKKEEPER);
-
-
-        assertThrows(CommandException.class, expectedMessage, () -> editInterviewCommand.execute(model));
-    }
-
-    @Test
     public void execute_positionIsClosed_throwsCommandException() {
         ModelStubWithJohn modelStub = new ModelStubWithJohn();
         Interview editedInterview = new InterviewBuilder().build();
         EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes("0").build();
+                new EditInterviewDescriptorBuilder(editedInterview).build();
         descriptor.setPosition(CLOSED_POSITION_CLERK);
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
 
         assertThrows(CommandException.class, String.format(MESSAGE_POSITION_CLOSED,
                 CLOSED_POSITION_CLERK.getTitle()), () -> editInterviewCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_invalidIndex_throwsCommandException() {
-        ModelStubWithJohn modelStub = new ModelStubWithJohn();
-        Interview editedInterview = new InterviewBuilder().build();
-        EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET)
-                        .withCandidateIndexes("2").build();
-        descriptor.setPosition(CLOSED_POSITION_CLERK);
-        EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
-
-        assertThrows(CommandException.class,
-                MESSAGE_INVALID_PERSON_DISPLAYED_INDEX, () -> editInterviewCommand.execute(modelStub));
-    }
-
-    @Test
-    public void execute_editJohnWithNoCandidateIndexSpecified_success() {
-        ModelStubWithJohn modelStub = new ModelStubWithJohn();
-        Interview editedInterview = new InterviewBuilder().withCandidates(new HashSet<>()).build();
-        EditInterviewDescriptor descriptor =
-                new EditInterviewDescriptorBuilder(editedInterview, VALID_EMPTY_CANDIDATE_INDEX_SET).build();
-        //edit to bookkeeper on 22/12/2021
-        descriptor.setPosition(BOOKKEEPER);
-        descriptor.setDate(LocalDate.of(2021, 12, 22));
-        EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW, descriptor);
-
-        //check if John has been edited
-        Person expectedPerson = new PersonBuilder(JOHN).withStatus("scheduled").build();
-        Interview expectedInterview = new InterviewBuilder().withPosition(BOOKKEEPER).withCandidates(Set.of(JOHN))
-                .withDate(LocalDate.of(2021, 12, 22)).build();
-        expectedPerson.setInterviews(Set.of(expectedInterview));
-        assertEditCommandSuccess(modelStub, expectedPerson, 0, editInterviewCommand);
-    }
-
-    private void assertEditCommandSuccess(ModelStub modelStub, Person expected,
-                                          int index, EditInterviewCommand command) {
-        try {
-            command.execute(modelStub);
-            assertTrue(expected.equals(modelStub.getPerson(Index.fromZeroBased(index))));
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
-        }
     }
 
     /**
