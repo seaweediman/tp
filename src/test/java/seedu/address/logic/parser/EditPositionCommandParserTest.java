@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.logic.position.CommandTestUtil.INVALID_POSITION_STATUS;
@@ -29,20 +30,27 @@ public class EditPositionCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    ParserUtil.MESSAGE_INVALID_INDEX) + "\n" + EditPositionCommand.MESSAGE_USAGE;
+                    ParserUtil.MESSAGE_INVALID_INDEX) + EditPositionCommand.MESSAGE_USAGE;
+
+    private static final String MESSAGE_INVALID_FORMAT_EMPTY_INDEX =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPositionCommand.MESSAGE_USAGE);
 
     private EditPositionCommandParser parser = new EditPositionCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // no index specified, followed by field name=value
+        assertParseFailure(parser,
+                " " + PREFIX_TITLE + VALID_TITLE_ADMIN_ASSISTANT, MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
+
+        // no index specified, immediately followed by field value
         assertParseFailure(parser, VALID_TITLE_ADMIN_ASSISTANT, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditPositionCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
     }
 
     @Test
