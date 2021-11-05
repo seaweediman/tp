@@ -27,7 +27,7 @@ public class RemarkCandidateCommandParser implements Parser<RemarkCandidateComma
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ive.getMessage())
-                    + "\n" + RemarkCandidateCommand.MESSAGE_USAGE, ive);
+                    + RemarkCandidateCommand.MESSAGE_USAGE, ive);
         }
 
         Remark remark = new Remark(argMultimap.getValue(PREFIX_REMARK).orElse(""));
