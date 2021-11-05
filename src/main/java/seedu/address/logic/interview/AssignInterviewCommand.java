@@ -64,7 +64,7 @@ public class AssignInterviewCommand extends Command {
         EditInterviewCommand.EditInterviewDescriptor descriptor = new EditInterviewCommand.EditInterviewDescriptor();
         descriptor.setCandidateIndexes(candidateIndexes);
 
-        Interview assignedInterview = EditInterviewCommand.createEditedInterview(interview, descriptor).getFirst();
+        Interview assignedInterview = EditInterviewCommand.createEditedInterview(interview, descriptor);
         Set<Person> newCandidates = interview.getCandidates();
 
         StringBuilder candidatesAdded = new StringBuilder();

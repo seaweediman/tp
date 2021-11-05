@@ -2,17 +2,11 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_CANDIDATE_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.interview.EditInterviewCommand;
@@ -28,8 +22,8 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
     public EditInterviewCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_CANDIDATE_INDEX, PREFIX_DATE,
-                        PREFIX_TIME, PREFIX_DURATION, PREFIX_INTERVIEW_STATUS);
+                ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_DATE, PREFIX_TIME,
+                        PREFIX_DURATION, PREFIX_INTERVIEW_STATUS);
         Index index;
 
         try {
@@ -49,7 +43,8 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
             editInterviewDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         if (argMultimap.getValue(PREFIX_TIME).isPresent()) {
-            editInterviewDescriptor.setStartTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).orElse("")));
+            editInterviewDescriptor
+                    .setStartTime(ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).orElse("")));
         }
         if (argMultimap.getValue(PREFIX_DURATION).isPresent()) {
             editInterviewDescriptor.setDuration(ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get()));
@@ -58,8 +53,6 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
             editInterviewDescriptor.setStatus(ParserUtil
                     .parseInterviewStatus(argMultimap.getValue(PREFIX_INTERVIEW_STATUS).get()));
         }
-        parseCandidatesForEdit(argMultimap.getAllValues(PREFIX_CANDIDATE_INDEX))
-                .ifPresent(editInterviewDescriptor::setCandidateIndexes);
 
         if (!editInterviewDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditInterviewCommand.MESSAGE_NOT_EDITED);
@@ -68,20 +61,4 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
         return new EditInterviewCommand(index, editInterviewDescriptor);
     }
 
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
-     */
-    private Optional<Set<Index>> parseCandidatesForEdit(Collection<String> candidatesIndex) throws ParseException {
-        assert candidatesIndex != null;
-
-        if (candidatesIndex.isEmpty()) {
-            return Optional.empty();
-        }
-        Collection<String> candidateSet = candidatesIndex.size() == 1 && candidatesIndex.contains("")
-                ? Collections.emptySet()
-                : candidatesIndex;
-        return Optional.of(ParserUtil.parseIndexes(candidateSet));
-    }
 }

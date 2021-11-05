@@ -3,7 +3,6 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_DURATION_TIME;
-import static seedu.address.logic.interview.CommandTestUtil.INVALID_INDEX_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_POSITION_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_STATUS_DESC;
 import static seedu.address.logic.interview.CommandTestUtil.INVALID_TIME_DESC;
@@ -92,9 +91,6 @@ public class EditInterviewCommandParserTest {
         //invalid duration
         assertParseFailure(parser, "1" + INVALID_DURATION_TIME, Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER);
 
-        //invalid candidate index
-        assertParseFailure(parser, "1" + INVALID_INDEX_DESC, ParserUtil.MESSAGE_INVALID_INDEX);
-
         //invalid status
         assertParseFailure(parser, "1" + INVALID_STATUS_DESC, Interview.InterviewStatus.MESSAGE_CONSTRAINTS);
 
@@ -126,7 +122,6 @@ public class EditInterviewCommandParserTest {
                         .withStatus(VALID_STATUS_PENDING).build();
         EditInterviewCommand expectedCommand = new EditInterviewCommand(targetIndex, descriptor);
 
-        //TODO linked to parse_oneFieldSpecified_success(), works if candidates not included
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
