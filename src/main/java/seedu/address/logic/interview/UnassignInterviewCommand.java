@@ -94,9 +94,6 @@ public class UnassignInterviewCommand extends Command {
             }
         }
 
-        StringBuilder removedPersons = new StringBuilder();
-        removedPersons.append("\n");
-
         if (isTotalWipe) {
             Set<Person> emptyCandidatesSet = new HashSet<>();
             interviewToUnassign.setCandidates(emptyCandidatesSet);
@@ -106,6 +103,9 @@ public class UnassignInterviewCommand extends Command {
                     CommandResult.CommandType.INTERVIEW);
         } else {
             int count = 1;
+            StringBuilder removedPersons = new StringBuilder();
+            removedPersons.append("\n");
+
             for (Index candidateIndex : candidateIndexes) {
                 Person candidate = lastShownCandidateList.get(candidateIndex.getZeroBased());
                 interviewToUnassign.deleteCandidate(candidate);
@@ -114,6 +114,7 @@ public class UnassignInterviewCommand extends Command {
                 removedPersons.append(count + ". " + candidate.getName() + "\n");
                 count++;
             }
+
             result = new CommandResult(String.format(MESSAGE_SUCCESS,
                     interviewToUnassign.getDisplayStringWithoutNames(), removedPersons),
                     CommandResult.CommandType.INTERVIEW);

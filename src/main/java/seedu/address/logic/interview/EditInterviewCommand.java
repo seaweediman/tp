@@ -92,22 +92,21 @@ public class EditInterviewCommand extends Command {
             throw new CommandException(String.format(MESSAGE_POSITION_CLOSED,
                     model.getPositionReference(newPosition).getTitle()));
         }
-        editedInterview.setPosition(model.getPositionReference(newPosition));
-
-
-        model.setInterview(interviewToEdit, editedInterview);
-        model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
 
         for (Person candidate : interviewToEdit.getCandidates()) {
-            candidate.deleteInterview(interviewToEdit);
-            if (candidate.appliedForPosition(newPosition)) {
-                candidate.addInterview(editedInterview);
-            } else {
+            if (!candidate.appliedForPosition(newPosition)) {
                 throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                         candidate.getName(), editedInterview.getPosition()));
             }
-
         }
+
+        for (Person candidate : interviewToEdit.getCandidates()) {
+            candidate.deleteInterview(interviewToEdit);
+            candidate.addInterview(editedInterview);
+        }
+
+        editedInterview.setPosition(model.getPositionReference(newPosition));
+        model.setInterview(interviewToEdit, editedInterview);
 
         return new CommandResult(String.format(MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString()),
               CommandResult.CommandType.INTERVIEW);
