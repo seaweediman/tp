@@ -40,20 +40,27 @@ import seedu.address.testutil.EditInterviewDescriptorBuilder;
 public class EditInterviewCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ParserUtil.MESSAGE_INVALID_INDEX) + EditInterviewCommand.MESSAGE_USAGE;
+
+    private static final String MESSAGE_INVALID_FORMAT_EMPTY_INDEX =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInterviewCommand.MESSAGE_USAGE);
 
     private EditInterviewCommandParser parser = new EditInterviewCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
-        assertParseFailure(parser, VALID_DATE_DESC, MESSAGE_INVALID_FORMAT);
+        // no index specified, followed by field name=value
+        assertParseFailure(parser, VALID_DATE_DESC, MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
+
+        // no index specified, immediately followed by field value
+        assertParseFailure(parser, VALID_DATE, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditInterviewCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
     }
 
     @Test

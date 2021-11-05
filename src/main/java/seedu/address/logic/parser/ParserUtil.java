@@ -36,15 +36,21 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
 
-    public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_INDEX =
+            "Index should be a non-zero unsigned integer, and less than the maximum value (2147483647).\n";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
      * trimmed.
+     *
      * @throws ParseException if the specified index is invalid (not non-zero unsigned integer).
      */
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
+        if (trimmedIndex.equals("")) {
+            throw new ParseException("");
+        }
+
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
             throw new ParseException(MESSAGE_INVALID_INDEX);
         }
@@ -53,6 +59,7 @@ public class ParserUtil {
 
     /**
      * Parses a string of keywords as List delimited by space.
+     *
      * @param keywords Input String.
      * @return List of keywords.
      */
@@ -69,6 +76,7 @@ public class ParserUtil {
 
     /**
      * Parses a string of time keyword delimited by spaces.
+     *
      * @param keywords Input String.
      * @return List of LocalTimes.
      * @throws ParseException Input string is not valid time format HHMM.
@@ -109,6 +117,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param name Input String.
      * @return Name of a candidate.
      * @throws ParseException if the given {@code name} is invalid.
@@ -125,6 +134,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String tag} into a {@code Tag}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param tag Input String.
      * @return Tag of a candidate.
      * @throws ParseException if the given {@code tag} is invalid.
@@ -141,6 +151,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String phone} into a {@code Phone}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param phone Input String.
      * @return Phone Number of a candidate.
      * @throws ParseException if the given {@code phone} is invalid.
@@ -157,6 +168,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param address Input String.
      * @return Address of a candidate.
      * @throws ParseException if the given {@code address} is invalid.
@@ -173,6 +185,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String email} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param email Input String.
      * @return Email of a candidate.
      * @throws ParseException if the given {@code email} is invalid.
@@ -189,6 +202,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into a {@code Status}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param status Input String.
      * @return Status of a candidate.
      * @throws ParseException If the given {@code status} is invalid.
@@ -204,6 +218,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     *
      * @param tags Input Strings.
      * @return Tags of a candidate.
      * @throws ParseException If the given {@code tags} is invalid.
@@ -220,6 +235,7 @@ public class ParserUtil {
     /**
      * Parses {@code String title} into a {@code Title}
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param title Input String.
      * @return Title of a Job Position.
      * @throws ParseException If the given {@code title} is invalid.
@@ -236,6 +252,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String position} into a {@code Position}.
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param position Input String.
      * @return A Job Position.
      * @throws ParseException If the given {@code position} is invalid.
@@ -254,6 +271,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> position} into a {@code Set<Position>}.
+     *
      * @param positions Input Strings.
      * @return A Set of Job Positions.
      * @throws ParseException If the given {@code positions} is invalid.
@@ -269,6 +287,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String positionStatus} into a {@code PositionStatus}.
+     *
      * @param positionStatus Input String.
      * @return Status of a Job Position.
      * @throws ParseException If the given {@code positionStatus} is invalid
@@ -290,6 +309,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String date} into a {@code LocalDate}.
+     *
      * @param date Input String.
      * @return LocalDate of an Interview.
      * @throws ParseException If the given {@code date} is invalid
@@ -314,6 +334,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String time} into a {@code LocalTime}.
+     *
      * @param time Input String.
      * @return LocalTime of an Interview.
      * @throws ParseException If the given {@code time} is invalid
@@ -336,6 +357,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String duration} into a {@code Duration}.
+     *
      * @param duration Input String.
      * @return Duration of an Interview.
      * @throws ParseException If the given {@code duration} is invalid
@@ -356,6 +378,7 @@ public class ParserUtil {
     /**
      * Parses a {@code String status} into a {@code InterviewStatus}
      * Leading and trailing whitespaces will be trimmed.
+     *
      * @param status Input String.
      * @return InterviewStatus of an Interview.
      * @throws ParseException If the given {@code status} is invalid
@@ -377,6 +400,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code Collection<String> indexes} into a {@code Set<Index>}.
+     *
      * @param indexes Input Strings.
      * @return A Set of Indexes.
      * @throws ParseException If the given {@code indexes} is invalid
@@ -392,6 +416,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String indexes} into a {@code Set<Index>}.
+     *
      * @param indexes Input Strings.
      * @return A Set of Indexes for Candidates.
      * @throws ParseException If the given {@code indexes} is invalid
