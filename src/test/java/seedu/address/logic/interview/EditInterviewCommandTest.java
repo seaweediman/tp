@@ -9,7 +9,6 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAG
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.interview.CommandTestUtil.assertEditInterviewCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
-import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
@@ -43,7 +42,6 @@ import seedu.address.model.position.Position;
 import seedu.address.testutil.EditInterviewDescriptorBuilder;
 import seedu.address.testutil.InterviewBuilder;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.TypicalPositions;
 
 
 /**
