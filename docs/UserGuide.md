@@ -109,7 +109,9 @@ Manage a list of job positions posted by your company, with the simple instructi
 | **INDEX** | `1`, `2`| Must be a positive integer smaller than 2147483647 corresponding to the index of the intended position in the <U>currently displayed list of candidates<U/>|
 | **STATUS** | `open`, `closed` | Must only be either of the 2 examples for the status of an interview, case insensitive |
 
-* All commands below are subjected to these restrictions except `find_p`
+All commands below are subjected to these restrictions except `find_p`
+
+> Refer to the [Notes about the command format](#Features) for the details on the command format
 #### <u>Add a position:</u> `add_p`
 
 *Adds a job position to the list of positions.*
@@ -192,7 +194,7 @@ OR<br>
 
 *Filters the position list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
-All fields are not subjected to the restriction in the table and can take any string.
+All fields are not subjected to the restriction in the input table and can take any string.
 
 <u>Format:</u>
 
@@ -214,9 +216,9 @@ All fields are not subjected to the restriction in the table and can take any st
 
 ### Feature: Candidate Management
 
-Manage a list of people who are candidates for your company, with the simple instructions below!
-Each candidate is uniquely identified by the same name, email and phone number. Different candidates can have the same name as along as the name, email and phone are not all the same!
-
+Manage a list of candidates for your company, with the simple instructions below!
+Each candidate is uniquely identified by the same name, email and phone number. 
+Different candidates can have the same name as along as the name, email and phone are not all the same.
 #### Table of Inputs for Candidate Management
 
 | Parameter | Examples | Conditions |
@@ -230,19 +232,22 @@ Each candidate is uniquely identified by the same name, email and phone number. 
 | **TAG** | `experienced`, `priority` | Must be alphanumeric, without spaces |
 | **INDEX** | `1`,`2` | Must be a positive integer smaller than 2147483647 corresponding to the index of the intended candidate in the <U>currently displayed list of candidate<U> |
 | **REMARK** | `Great Experience`, `@@@ ___ Test Remark` | Any string, leading or trailing spaces are removed|
+> Status for candidates are different then statuses for position amd interviews
 
 All commands in this section are subjected to the restriction in this table except `find_c`
+
+> Refer to the [Notes about the command format](#Features) for the details on the command format
 #### <u>Add a candidate:</u> `add_c`
 
 *Adds a candidate to the list of candidates.*
 
 <u>Format:</u>
 
-    add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>... [status=<STATUS>] [tag=<TAG>]...
+`add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>... [status=<STATUS>] [tag=<TAG>]...`
 
 <u>Example:</u>
 
-    add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled
+`add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled`
 
 * Subjected to all constraints per the Table of Inputs for Candidate Management
 * `STATUS` will default to `Applied` if field is left empty
@@ -255,7 +260,7 @@ All commands in this section are subjected to the restriction in this table exce
 
 <u>Format:</u>
 
-    list_c
+`list_c`
 
   <br>
 
@@ -265,11 +270,11 @@ All commands in this section are subjected to the restriction in this table exce
 
 <u>Format:</u>
 
-    delete_c <INDEX>
+`delete_c <INDEX>`
 
 <u>Example:</u>
 
-    delete_c 3
+`delete_c 3`
 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
   <br>
@@ -282,27 +287,28 @@ All commands in this section are subjected to the restriction in this table exce
 
 <u>Format:</u>
 
-    remark_c <INDEX> remark=<REMARK>
+`remark_c <INDEX> remark=<REMARK>`
 
 <u>Example:</u>
 
-    remark_c 1 remark=20 years of experience
+`remark_c 1 remark=20 years of experience`
 
 * Adds a remark to the 1st candidate that he/she has 20 years of experience.
+* There is practically no limit to the length of remark you can add
   <br>
   <br>
 
 #### <u>Edit a candidate:</u> `edit_c`
 
-*Edits a candidate's details. At least 1 edit field is needed. Fields specified will be <U>replaced</U> with the new value*
+*Edits a candidate's details. All the details of the candidate can potentially be edited. At least 1 edit field is needed. Fields specified will be <U>replaced</U> with the new value*
 
 <u>Format:</u>
 
-    edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...
+`edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...`
 
 <u>Example:</u>
 
-    edit_c 3 name=Ryan Koh
+`edit_c 3 name=Ryan Koh`
 
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
 
@@ -311,15 +317,15 @@ All commands in this section are subjected to the restriction in this table exce
 
 *Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
 
-All fields are not subjected to the restriction in the table and can take any string
+All fields are not subjected to the restriction in the input table and can take any string
 
 <u>Format:</u>
 
-    find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...
+`find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...`
 
 <u>Example:</u>
 
-    `find_c name=Alex tag=recommended priority
+`find_c name=Alex tag=recommended priority`
 
 * Finds all candidates that have the word "Alex" in their name and have position that contain the word "Accountant" or "Engineer"
   * (name contains "Alex") AND (title contains Accountant OR Engineer)
@@ -343,8 +349,6 @@ All fields are not subjected to the restriction in the table and can take any st
 
 Manage a list of scheduled interviews, with the simple instructions below!
 
-Note that inputs for all interview commands should follow the conditions in the table below:
-
 #### Table of Inputs for Interview Management
 
 | Parameter | Examples | Conditions |
@@ -356,7 +360,9 @@ Note that inputs for all interview commands should follow the conditions in the 
 | **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
 | **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview, case insensitive |
 
+All commands in this section are subjected to the restriction in this table except `find_i`
 
+> Refer to the [Notes about the command format](#Features) for the details on the command format
 #### <u>Add an interview:</u> `add_i`
 Use the following command to record the details of an interview session with the candidate(s) for a position!
 
@@ -491,6 +497,8 @@ Edits a specific interview in the list of interviews.
 #### <u>Find an Interview:</u> `find_i`
 
 *Filters the candidate list based on the parameters provided. Minimum of 1 field is needed. Searching is case-insensitive*
+
+All fields are not subjected to the restriction in the input table and can take any string.
 
 <u>Format:</u>
 
