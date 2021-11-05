@@ -38,6 +38,7 @@ public class EditPositionCommand extends Command {
     public static final String MESSAGE_EDIT_POSITION_SUCCESS = "Edited Position: %1$s";
     public static final String MESSAGE_NOT_EDITED = "One field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_POSITION = "This position already exists in the position list.";
+    public static final String MESSAGE_BOTH_FIELDS_EDITED = "Only one field can be edited at one time.";
 
     private final Index index;
     private final EditPositionCommand.EditPositionDescriptor editPositionDescriptor;
@@ -68,6 +69,10 @@ public class EditPositionCommand extends Command {
 
         Position positionToEdit = lastShownPositionList.get(index.getZeroBased());
         Position editedPosition = createEditedPosition(positionToEdit, editPositionDescriptor);
+
+        if (editPositionDescriptor.isBothFieldsEdited()) {
+            throw new CommandException(MESSAGE_BOTH_FIELDS_EDITED);
+        }
 
         if (!positionToEdit.isSamePosition(editedPosition) && model.hasPosition(editedPosition)) {
             throw new CommandException(MESSAGE_DUPLICATE_POSITION);
@@ -156,6 +161,13 @@ public class EditPositionCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(title, status);
+        }
+
+        /**
+         * Returns true if both fields are edited.
+         */
+        public boolean isBothFieldsEdited() {
+            return (CollectionUtil.isAnyNonNull(title) && CollectionUtil.isAnyNonNull(status));
         }
 
         public void setTitle(Title title) {
