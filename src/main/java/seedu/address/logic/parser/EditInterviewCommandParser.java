@@ -29,8 +29,8 @@ public class EditInterviewCommandParser implements Parser<EditInterviewCommand> 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditInterviewCommand.MESSAGE_USAGE),
-                    pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
+                    + EditInterviewCommand.MESSAGE_USAGE, pe);
         }
 
         EditInterviewCommand.EditInterviewDescriptor editInterviewDescriptor =

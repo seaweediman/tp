@@ -25,7 +25,7 @@ class RemarkCandidateCommandParserTest {
     public void execute_invalidPersonIndex_throwsCommandException() {
         assertParseFailure(parser, model.getFilteredPersonList().size()
                 + VALID_REMARK_BOB, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                RemarkCandidateCommand.MESSAGE_USAGE));
+                ParserUtil.MESSAGE_INVALID_INDEX) + RemarkCandidateCommand.MESSAGE_USAGE);
     }
 
     @Test
