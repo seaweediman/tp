@@ -16,15 +16,15 @@ Given below are my contributions to the project.
 
 ### 2. Enhancements implemented
 * **New Feature**: Added the ability to remark candidates. `remark_c`
-  * This feature allows user to give remarks to a specific candidate. The remark is then displayed together with the 
-  candidate's other information. This enables users to give comments to noteworthy candidates.
+  * This feature allows user to give remarks to a specific candidate. The remark is then displayed together with the
+    candidate's other information. This enables users to give comments to noteworthy candidates.
 
 * **New Feature**: Added the ability to add job positions. `add_p`
-    * This feature allows user to add job positions that just opened in the company hence enabling them to keep track 
+  * This feature allows user to add job positions that just opened in the company hence enabling them to keep track
     of the positions in the company.
 
 * **New Feature**: Added the ability to delete interviews. `delete_i`
-    * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from 
+  * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from
     HR Manager to reduce clutter.
 
 * **New Feature**: Added the ability to 'unassign' candidates from a specific interview. `unassign`
@@ -33,8 +33,8 @@ Given below are my contributions to the project.
     to simplify the process of 'unassigning' a candidate to an interview.
 
 * **Enhancements: Updated commands to allow multiple candidate indexes after a single `c=` prefix input**
-  * Before, to add candidate indexes to add_i command, you had to do `c=1 c=2`. Now, you can put it under a single prefix input, 
-   `c=1 2`. 
+  * Before, to add candidate indexes to add_i command, you had to do `c=1 c=2`. Now, you can put it under a single prefix input,
+    `c=1 2`.
   * Refer to [Issue #131](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/131) for more details of the issue.
   * Refer to [PR #144](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/144) for more details of the fix.
 
@@ -50,7 +50,7 @@ Given below are my contributions to the project.
 
 ### 3. Contributions to the UG
 * Added the documentation for the following features:
-  * Added first iteration of command summary 
+  * Added first iteration of command summary
   * `remark_c`
   * `add_p`
   * `delete_i`
@@ -75,7 +75,7 @@ Given below are my contributions to the project.
 * Often helped teammates in resolving bugs
 
 ### 6. Review contributions
-* Reported bugs and suggestions for other teams in the class 
+* Reported bugs and suggestions for other teams in the class
   * Examples: [1](https://github.com/seaweediman/ped/issues/4), [2](https://github.com/seaweediman/ped/issues/3), [3](https://github.com/seaweediman/ped/issues/14)
   * [Full list of bugs and suggestions](https://github.com/seaweediman/ped/issues/)
 * Non-exhaustive list of some PRs reviewed:

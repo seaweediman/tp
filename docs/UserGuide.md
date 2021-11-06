@@ -31,7 +31,9 @@ This user guide is a complete guide for all commands and features for HR Manager
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
 Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
-If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
+If you face any issues, you can check the details for each command under the [Features](#features) section.
+There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management)
+Each section has its own input table that details the requirements and restrictions of each input of that section.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -490,7 +492,7 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]...
+    find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
     [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
