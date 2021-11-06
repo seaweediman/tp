@@ -108,7 +108,7 @@ public class EditCandidateCommand extends Command {
         Set<Interview> interviews = personToEdit.getInterviews();
 
         newPositions = positionReferences;
-        
+
         // Checks if positions was edited, remove from interviews for positions that candidate no longer applies to.
         if (editPersonDescriptor.isPositionEdited()) {
             for (Interview i : interviews) {
