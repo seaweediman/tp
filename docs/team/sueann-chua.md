@@ -15,6 +15,14 @@ Given below are my contributions to the project.
 [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=sueann-chua&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 ### 2. Enhancements implemented
+
+As mentioned below, I helped implement the features for `edit_p` and `edit_i` and helped in bugfixes for`edit_c`, 
+`edit_p` and `edit_i` as well. The edit features were sometimes a challenge to implement due to the cascading effects
+on the other objects when one object was edited. For example, editing a position would mean that the candidates
+applied to the position, and the interviews scheduled for that position would need to be updated as well. There were 
+some instances in which I had missed out certain possibilities and this resulted in certain bugs that were eventually 
+fixed.
+
 * **New feature: Added the functionality to edit positions** `edit_p`
     * The feature was added such that users might be able to edit the job positions added to the HR Manager app.
     The command allows users to edit either the title of the position or the status of the position.
@@ -36,8 +44,33 @@ list of interviews**
     * Before, there was a bug where changes to the positions a candidate had applied to was not reflected in the list of
       interviews. Refer to [Issue #194](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/194) for more details on the
       bug.
-    * With this bugfix, `EditCandidateCommand#Execute` now checks if the edited candidate's positions match the positions of their scheduled interviews and updates the interview list accordingly.
+    * With this bugfix, `EditCandidateCommand#Execute` now checks if the edited candidate's positions match the
+      positions of their scheduled interviews and updates the interview list accordingly.
 
+
+* **Enhancement: bugfix for `edit_p` command where users were able to edit both title and status of the position.**
+    * We decided against this behaviour as we did not want users to use edit_p as an alternative to adding new
+      positions. Refer to [PR #265](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/265) or 
+      [Issue #169](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/169) for more details.
+
+
+* **Enhancement: change edit functionality for `edit_i` command**
+    * Initially, the `edit_i` command allowed users to edit the position, set of candidates assigned, date, time,
+      duration and status of the interview. However, this resulted in a few bugs that were caught by other teams in the
+      PED. Hence, we decided to remove the functionality to edit the set of candidates assigned to an interview using the 
+      `edit_i` command. Instead, we restricted editing of candidates assigned to `assign` and `unassign` commands.
+    * My contribution to this enhancement was to remove the functionality to edit candidates using the `edit_i` command.
+    * Please refer to [Issue ##220](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/220) or 
+      [PR #254](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/254) for more details.
+
+
+* **Enhancement: GUI for position labels for candidate list and status labels for position list.**
+    * Before the positions a candidate had applied to was shown as just text. I edited the `DarkTheme.css` to add labels
+      for the positions instead.
+    * Similarly, for the position status, it was displayed as text in the list of positions. I also edited the 
+      `DarkTheme.css` to add labels for the position statuses instead.
+    * Please refer to [PR #78](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/78) for more details.
+  
 ### 3. Contributions to the UG
 * Added the documentation for the following features:
     * `add c`
@@ -62,9 +95,6 @@ list of interviews**
 
 ### 6. Review contributions
 * Non-exhaustive list of some PRs reviewed:
-    * [PR #17](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/17)
-    * [PR #22](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/22)
-    * [PR #25](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/25)
     * [PR #26](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/26)
     * [PR #72](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/72)
     * [PR #75](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/75)
@@ -73,4 +103,7 @@ list of interviews**
     * [PR #99](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/99)
     * [PR #124](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/124)
     * [PR #146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
+  
+* [Complete list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3A%40me)
+  of PRs reviewed by me.
 
