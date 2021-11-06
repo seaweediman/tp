@@ -39,7 +39,7 @@ public class AddInterviewCommand extends Command {
             + PREFIX_DURATION + "MINUTES (must be a positive integer) \n"
             + "[" + PREFIX_INTERVIEW_STATUS + "STATUS]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_POSITION + "Accountant "
+            + PREFIX_POSITION + "Bookkeeper "
             + PREFIX_CANDIDATE_INDEX + "1 "
             + PREFIX_DATE + "15/10/2021 "
             + PREFIX_TIME + "1400 "
