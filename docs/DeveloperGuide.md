@@ -14,6 +14,22 @@ title: Developer Guide
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction** ##
+
+HR Manger is a simple to use and easy to learn local desktop application that allows you to easily manage your candidates, positions and interviews.
+HR Manager is built on Java and can be run on all major desktop operating systems. HR Manager has a graphic user interface to display information and uses text-based commands to interact with the application.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Purpose** ##
+
+The purpose of this guide is to provide a comprehensive documentation of the design and overview of the application for developers to quickly onboard and develop the applciation.
+
+You can read the entire guide from teh start, which will give you a complete view of the structure of HR Manager.
+
+Alternatively, you can quickly get started by through the [Setting Up](setting-up-getting-started) and [Design](design) to get a overview of the application.
+You can then read the [Feature Implementation](feature-implementation) for more details of specific features.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -117,6 +133,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns back as a `Command` object.
+    * Most significantly, the ArgumentTokeniser is used to parse the arguments using the provided prefixes to retrieve the inputs from the user
 * All `XYZCommandParser` classes (e.g., `AddCandidateCommandParser`, `DeletePositionCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
