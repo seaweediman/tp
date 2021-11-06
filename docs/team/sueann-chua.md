@@ -29,15 +29,14 @@ Given below are my contributions to the project.
     * Since the edit_i feature does not allow for users to edit the candidates assigned to the interview, this feature
       was added such that users might be able to assign candidates to a scheduled interview. This command was created
       to simplify the process of assigning a candidate to an interview.
-      
+
 
 * **Enhancement: bugfix for `edit_c` command where editing of candidate's applied position was not reflected in the
 list of interviews**
     * Before, there was a bug where changes to the positions a candidate had applied to was not reflected in the list of
       interviews. Refer to [Issue #194](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/194) for more details on the
       bug.
-    * With this bugfix, `EditCandidateCommand#Execute` now checks if the edited candidate's positions match the 
-      positions of their scheduled interviews and updates the interview list accordingly.
+    * With this bugfix, `EditCandidateCommand#Execute` now checks if the edited candidate's positions match the positions of their scheduled interviews and updates the interview list accordingly.
 
 ### 3. Contributions to the UG
 * Added the documentation for the following features:
@@ -46,7 +45,7 @@ list of interviews**
     * `edit_p`
     * `edit_i`
     * `assign`
-    
+
 ### 4. Contributions to the DG
 * Added an extension for use case: Deleting a candidate.
 
