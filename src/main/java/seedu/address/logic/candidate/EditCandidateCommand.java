@@ -91,8 +91,10 @@ public class EditCandidateCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
         Set<Position> newPositions = editedPerson.getPositions();
         Set<Position> positionReferences = new HashSet<>();
+
         for (Position p : newPositions) {
             if (!model.hasPosition(p)) {
                 throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, p.getTitle()));

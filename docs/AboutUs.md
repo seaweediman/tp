@@ -23,7 +23,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="images/jeffzincatz.png" width="200px">
 
-[[github](http://github.com/JeffZincatz)] [[portfolio](team/jiheng.md)]
+[[github](http://github.com/JeffZincatz)] [[portfolio](team/jeffzincatz.md)]
 
 * Role: Developer
 * Responsibilities: WIP
@@ -41,7 +41,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="images/seaweediman.png" width="200px">
 
-[[github](http://github.com/seaweediman)] [[portfolio](team/noriman.md)]
+[[github](http://github.com/seaweediman)] [[portfolio](team/seaweediman.md)]
 
 * Role: Developer
 * Responsibilities: WIP
@@ -50,7 +50,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="images/wanyu-l.png" width="200px">
 
-[[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu.md)]
+[[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu-l.md)]
 
 * Role: Developer
 * Responsibilities: WIP
