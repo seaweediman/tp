@@ -3,6 +3,7 @@ package seedu.address.logic.candidate;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -10,6 +11,7 @@ import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
@@ -57,6 +59,13 @@ public class RemarkCandidateCommand extends Command {
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
                 personToEdit.getAddress(), remark, personToEdit.getTags(), personToEdit.getStatus(),
                 personToEdit.getPositions());
+
+        Set<Interview> personInterviews = personToEdit.getInterviews();
+        for (Interview i : personInterviews) {
+            editedPerson.addInterview(i);
+            i.deleteCandidate(personToEdit);
+            i.addCandidate(editedPerson);
+        }
 
         model.setPerson(personToEdit, editedPerson);
 
