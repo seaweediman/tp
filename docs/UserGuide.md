@@ -30,7 +30,7 @@ Lets simplify your HR processes!
 This user guide is a complete guide for all commands and features for HR Manager.
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
-Alternatively, you can quickly get started using the [Quick Start](#Quick start) and [Command Summary](#Command summary).<br>
+Alternatively, you can quickly get started using the [Quick Start](#quick start) and [Command Summary](#command summary).<br>
 If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
 
 
@@ -217,7 +217,7 @@ All fields are not subjected to the restriction in the input table and can take 
 ### Feature: Candidate Management
 
 Manage a list of candidates for your company, with the simple instructions below!
-Each candidate is uniquely identified by the same name and email. 
+Each candidate is uniquely identified their email. 
 Different candidates can have the same name as along as the name, email and phone are not all the same.
 #### Table of Inputs for Candidate Management
 
@@ -232,7 +232,7 @@ Different candidates can have the same name as along as the name, email and phon
 | **TAG** | `experienced`, `priority` | Must be alphanumeric, without spaces |
 | **INDEX** | `1`,`2` | Must be a positive integer smaller than 2147483647 corresponding to the index of the intended candidate in the <U>currently displayed list of candidate<U> |
 | **REMARK** | `Great Experience`, `@@@ ___ Test Remark` | Any string, leading or trailing spaces are removed|
-> Status for candidates are different then statuses for position amd interviews
+> Status for candidates are different then statuses for position and interviews
 
 All commands in this section are subjected to the restriction in this table except `find_c`
 
