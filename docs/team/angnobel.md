@@ -60,9 +60,9 @@ Given below are my contributions to the project.
 
 ### Review contributions
 * Non-exhaustive list of some PRs reviewed:
-    * [PR=276](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/276)
-    * [PR-258](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/258)
-    * [PR-156](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/156)
-    * [PR-146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
-    * [PR-142](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/142)
+    * [PR #276](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/276)
+    * [PR #258](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/258)
+    * [PR #156](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/156)
+    * [PR #146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
+    * [PR #142](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/142)
     
