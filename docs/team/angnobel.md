@@ -19,7 +19,7 @@ Given below are my contributions to the project.
 * **New Feature: `find_c`**
     * What it does: The existing `find` command was changed to `find_c` and users are allowed to search across all fields present in candidate
     * Justification: This greatly increases the capabilities of the find command, allowing searches specific to all potential fields. Searches could be done across different fields with "and" combinator
-    
+
 * **New Feature: `find_p`**
     * What it does: Similar to the `find_c` command, searches for positions that fulfills the keyword requirement.
     * Justification: This extends the search functionality to position list, which is crucial to manage many positions.
@@ -34,15 +34,15 @@ Given below are my contributions to the project.
 
 * **New Feature: Filtered label on GUI**
     * Added a label about each list to indicate what the list represents. The label updates to indicate that the list is filtered if a `find_x` command is run.
-    
+
 * **Various Bugfixes**
-    * Fixed small bugs, the non-exhaustive list below 
-        * Clear command returns Address book has been cleared
-        * Position status not accepting case-insensetive inputs
-        * Additional | showing up for interview candidates
+  * Fixed small bugs, the non-exhaustive list below 
+      * Clear command returns Address book has been cleared
+      * Position status not accepting case-insensetive inputs
+      * Additional | showing up for interview candidates
 
 ### Contributions to the UG
-* Added inital documentation of storage (for candidates) 
+* Added initial documentation of storage (for candidates)
 * Added purpose of UG and *How to use this user guide section*
 * Added *Table of Inputs* for position and interviews
 * Added details and examples for `find_c`, `find_p` and `find_i` commands
@@ -65,4 +65,3 @@ Given below are my contributions to the project.
     * [PR #156](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/156)
     * [PR #146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
     * [PR #142](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/142)
-    
