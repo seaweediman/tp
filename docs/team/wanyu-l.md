@@ -35,7 +35,7 @@ Given below are my contributions to the project.
 * Added FAQs
 * Added Parameter Table for interview related commands
 * Added the documentation for feature `add_i`
-* Drafted and Edited the documentation for storage component
+* Updated the documentation for storage component
 
 
 ### Contributions to the DG
