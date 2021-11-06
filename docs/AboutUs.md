@@ -50,7 +50,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 <img src="images/wanyu-l.png" width="200px">
 
-[[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu.md)]
+[[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu-l.md)]
 
 * Role: Developer
 * Responsibilities: WIP
