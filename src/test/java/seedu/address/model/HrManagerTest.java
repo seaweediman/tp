@@ -153,9 +153,9 @@ public class HrManagerTest {
         HrManager testManager = new HrManager();
         Position hrManager = new Position(new Title("HR Manager"));
         List<Person> persons = testManager.getPersonList();
-        testManager.addPerson(new PersonBuilder().withName("A").build());
-        testManager.addPerson(new PersonBuilder().withName("B").build());
-        testManager.addPerson(new PersonBuilder().withName("C").build());
+        testManager.addPerson(new PersonBuilder().withName("A").withEmail("A@yahoo.com").build());
+        testManager.addPerson(new PersonBuilder().withName("B").withEmail("B@gmail.com").build());
+        testManager.addPerson(new PersonBuilder().withName("C").withEmail("C@outlook.com").build());
 
         // All persons applied for HrManager
         for (Person p : persons) {

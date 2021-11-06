@@ -158,9 +158,10 @@ public class Person {
         }
 
         return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail());
+                //same name and same email
+                && otherPerson.getName().equals(getName()) && otherPerson.getEmail().equals(getEmail())
+                //same email
+                || (otherPerson != null && otherPerson.getEmail().equals(getEmail()));
     }
 
     /**
@@ -206,7 +207,6 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append(getRemark())
                 .append(" Status: ")
                 .append(getStatus());
 
