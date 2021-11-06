@@ -212,16 +212,16 @@ Continuing the previous diagram, the ListXCommand is executed, and the correspon
 
 ### **Edit Commands** ###
 
-The `edit_c`, `edit_p` and `edit_i` commands allow users to edit a specific candidate, position 
+The `edit_c`, `edit_p` and `edit_i` commands allow users to edit a specific candidate, position
 or interview in the respective display panel.
 
-Generally, they are called `edit_x` in this section. 
+Generally, they are called `edit_x` in this section.
 
 The edit mechanism is facilitated by `editXDescriptor`, where X is the object to be edited, for example
-`editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and 
+`editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and
 `editinterviewDescriptor` for editing interviews, and each non-empty field value will replace the corresponding
 field value of the object that is being edited. `editXDescriptor` stores the details to edit the candidate,
-position or interview with. `editXCommand` extends `Command` and implements the 
+position or interview with. `editXCommand` extends `Command` and implements the
 `Command#execute()` operation, which executes the command and returns a result message to be displayed.
 
 Similar to any other command, the `Command#execute()` operation is exposed in the `Logic` interface as
@@ -232,44 +232,43 @@ As an example, the parsing and execution of an edit_p command is as follows
 
 ![Execute_sequence_of_edit_x](images/EditPositionSequenceDiagram.png)
 
-### **Add position**
+### **Add commands** ###
 
-`add_p` is a command for the app to add a position into the list of positions. When the user wants to use this command, the title of the position must be indicated.
+The `add_c`, `add_p` and `add_i` commands allow users to add a candidate, position
+or interview in the respective display panel.
 
-The add position functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
-- `ModelManager#hasPosition` — Check if this position already exists. If so, `CommandException` will be thrown.
+Generally, they are called `add_x` in this section. I will also be using X to represent a candidate, position or interview here.
 
-- `ModelManager#addPosition()` — Add a position to the list of positions. If that position already exists, a
+The add_x functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
+- `ModelManager#hasX` — Check if the candidate, position or interview already exists within Hr Manager. If so, `CommandException` will be thrown.
+
+- `ModelManager#addX()` — Adds a candidate, position or interview to Hr Manager. If that position already exists, a
   `DuplicatePositionException` will be thrown.
 
-`AddPositionCommandParser` and `AddPositionCommand` are created to achieve this functionality.
+`AddXCommandParser` and `AddXCommand` are created to achieve this functionality.
+![Class_diagram_of_add_x](images/AddPosition/AddPositionClassDiagram.png)
 
-<img src="images/AddPosition/AddPositionClassDiagram.png" width="347" />
+Given below is an example usage scenario and the workflow of the`add_x` command.
 
-Given below is an example usage scenario and the workflow of the`add_p` command.
-
-Step 1. The user executes command `add_p title=Accountant`.
+Step 1. The user executes command `add_x...`.
 `Ui` component reads the command as a string from user's input. After that, `MainWindow`
 passes the string to `LogicManager` to manipulate the command.
 
 Step 2. `LogicManager` passes the command to `HrManagerParser` to parse the command. Since the command starts
-with `add_p`, a new `AddPositionParser` is created to parse the command further.
+with `add_x`, a new `AddXCommandParser` is created to parse the command further.
 
-Step 3. `AddPositionParser` uses `ArgumentMultimap` to tokenize the prefixes part the command. After extracting the
-information such as title and status, a new `Position` is created and a new
-`AddPositionCommand` is created with that `Position`. In this case, the title of the position is Accountant.
+Step 3. `AddXCommandParser` uses `ArgumentMultimap` to tokenize the prefixes part the command. After extracting the
+information of the object such as the title of a position or the name of a candidate, a new `X` is created and a new
+`AddXCommand` is created with that `X`.
 
-Step 4. `AddPositionCommand` passes the given `Position` to `ModelManager#hasPosition`. If the position does not exist in the app, `AddPositionCommand`
+Step 4. `AddXCommand` passes the given `X` to `ModelManager#hasX`. If the position does not exist in the app, `AddXCommand`
 passes the `Position` to `ModelManager#addPosition()`.
 
-Step 5. `Modelmanager#addShift()` updates the position list with the new added `Position`.
+Step 5. `Modelmanager#addX()` updates the respective list with the new added `X`.
 
-The activity diagram of this `addShift` command is shown below:
+To better illustrate this example, the parsing and execution of an add_p command is as follows
+![Execute_sequence_of_add_p](images/AddPosition/AddPositionSequence.png)
 
-<img src="images/AddPosition/AddPositionSequence.png" width="1303" />
-
-Notes:
-* A `Position` object has a `PositionStatus` field. When the position is initially added, the `PositionStatus` field is set to the default value, `OPEN`.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Requirements**
