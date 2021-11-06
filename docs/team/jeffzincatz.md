@@ -84,4 +84,3 @@ Given below are my contributions to the project.
   * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
   * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
   * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
-  * 
