@@ -157,11 +157,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                //same name and same email
-                && otherPerson.getName().equals(getName()) && otherPerson.getEmail().equals(getEmail())
-                //same email
-                || (otherPerson != null && otherPerson.getEmail().equals(getEmail()));
+        return otherPerson != null && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
