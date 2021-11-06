@@ -30,11 +30,30 @@ Given below are my contributions to the project.
 * **New Feature**: Added functionality to add an interview. `add_i`
     * This feature allows the user to add details of a scheduled interview session for a particular job position in the company to HR Manager. 
 
-### Contributions to UG
+### Contributions to the UG
+* Added Introduction
+* Added FAQs
+* Added Parameter Table for interview related commands
+* Added the documentation for feature `add_i`
+* Drafted and Edited the documentation for storage component
 
-* **Documentation**:
-    * User Guide:
-        * Added Introduction
-        * Added FAQs
-    * Developer Guide:
-        * Added use case for deleting a candidate
+
+### Contributions to the DG
+* Added use case for adding an interview
+* Updated StorageClassDiagram
+* Renamed AddressBook to HrManager in the following diagrams:
+    * ParserClasses diagram
+    * LogicClass diagram
+    
+### Contributions to team-based tasks
+* Renamed Address App to HR Manager as title of App
+
+### Review/mentoring contributions
+* Non-exhaustive list of some PRs reviewed:
+    * [PR #43](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/43)
+    * [PR #64](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/64)
+    * [PR #67](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/67)
+    * [PR #78](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/78)
+    * [PR #234](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/234)
+    * [PR #235](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/235)
+    
