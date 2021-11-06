@@ -10,6 +10,9 @@ title: User Guide
 </aside>
 
 ## Introduction
+HR Manger is a simple to use and easy to learn local desktop application that allows you to easily manage your candidates, positions and interviews.
+HR Manager is built on Java and can be run on all major desktop operating systems. HR Manager has a graphic user interface to display information and uses text-based commands to interact with the application.
+
 HR Manager will help you manage the candidates to be interviewed,
 making the scheduling process easier and faster for your company!<br>
 It is easy to interact with the app through simple to learn and easy to share text commands!<br>
@@ -21,7 +24,7 @@ transferable to other devices too!
 ### Purpose
 The purpose of this user guide is to give a complete documentation of HR Manger and allow you to easily get started on HR Manager.
 The user guide is also the easiest way for you to troubleshoot any issues and clarify any questions you have with HR Manager.<br>
-Lets simply your HR processes!
+Lets simplify your HR processes!
 
 ### How to use this user guide?
 This user guide is a complete guide for all commands and features for HR Manager.
@@ -30,9 +33,6 @@ You can read the whole guide for a comprehensive understanding of the applicatio
 Alternatively, you can quickly get started using the [Quick Start](#Quick start) and [Command Summary](#Command summary).<br>
 If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
 
-### Complete Product Information
-HR Manger is a simple to use and easy to learn local desktop application that allows you to easily manage your candidates, positions and interviews.
-HR Manager is built on Java and can be run on all major desktop operating systems. HR Manager has a graphic user interface to display information and uses text-based commands to interact with the application.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -217,7 +217,7 @@ All fields are not subjected to the restriction in the input table and can take 
 ### Feature: Candidate Management
 
 Manage a list of candidates for your company, with the simple instructions below!
-Each candidate is uniquely identified by the same name, email and phone number. 
+Each candidate is uniquely identified by the same name and email. 
 Different candidates can have the same name as along as the name, email and phone are not all the same.
 #### Table of Inputs for Candidate Management
 
