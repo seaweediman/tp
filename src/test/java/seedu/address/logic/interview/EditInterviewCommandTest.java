@@ -9,7 +9,6 @@ import static seedu.address.logic.interview.CommandTestUtil.VALID_POSITION_MANAG
 import static seedu.address.logic.interview.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.interview.CommandTestUtil.assertEditInterviewCommandSuccess;
 import static seedu.address.logic.interview.CommandTestUtil.showInterviewAtIndex;
-import static seedu.address.logic.position.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_INTERVIEW;
@@ -20,6 +19,7 @@ import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 import static seedu.address.testutil.TypicalPositions.BOOKKEEPER;
 import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
 
+import java.time.LocalDate;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -42,7 +42,6 @@ import seedu.address.model.position.Position;
 import seedu.address.testutil.EditInterviewDescriptorBuilder;
 import seedu.address.testutil.InterviewBuilder;
 import seedu.address.testutil.ModelStub;
-import seedu.address.testutil.TypicalPositions;
 
 
 /**
@@ -90,16 +89,18 @@ public class EditInterviewCommandTest {
         Interview interviewInFilteredList = model.getFilteredInterviewList().get(INDEX_FIRST_INTERVIEW.getZeroBased());
 
         Interview editedInterview =
-                new InterviewBuilder(interviewInFilteredList).withPosition(TypicalPositions.ADMIN_ASSISTANT).build();
+                new InterviewBuilder(interviewInFilteredList)
+                        .withDate(LocalDate.of(2021, 7, 28)).build();
 
         EditInterviewCommand editInterviewCommand = new EditInterviewCommand(INDEX_FIRST_INTERVIEW,
-                new EditInterviewDescriptorBuilder().withPosition(VALID_TITLE_ADMIN_ASSISTANT).build());
+                new EditInterviewDescriptorBuilder().withDate("28/7/2021").build());
 
         String expectedMessage =
                 String.format(EditInterviewCommand.MESSAGE_EDIT_INTERVIEW_SUCCESS, editedInterview.getDisplayString());
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setInterview(model.getFilteredInterviewList().get(0), editedInterview);
+        showInterviewAtIndex(expectedModel, INDEX_FIRST_INTERVIEW);
 
         assertEditInterviewCommandSuccess(editInterviewCommand, model, expectedMessage, expectedModel);
     }

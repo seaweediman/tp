@@ -27,15 +27,18 @@ public class EditPositionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the position identified "
             + "by the index number used in the displayed position list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "NOTE: only one field can be edited at one time.\n"
+            + "Valid status values: open, closed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_POSITION_STATUS + "POSITION STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POSITION_STATUS + "close";
+            + PREFIX_POSITION_STATUS + "closed\n";
 
     public static final String MESSAGE_EDIT_POSITION_SUCCESS = "Edited Position: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "One field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_POSITION = "This position already exists in the position list.";
+    public static final String MESSAGE_BOTH_FIELDS_EDITED = "Only one field can be edited at one time.";
 
     private final Index index;
     private final EditPositionCommand.EditPositionDescriptor editPositionDescriptor;
@@ -66,6 +69,10 @@ public class EditPositionCommand extends Command {
 
         Position positionToEdit = lastShownPositionList.get(index.getZeroBased());
         Position editedPosition = createEditedPosition(positionToEdit, editPositionDescriptor);
+
+        if (editPositionDescriptor.isBothFieldsEdited()) {
+            throw new CommandException(MESSAGE_BOTH_FIELDS_EDITED);
+        }
 
         if (!positionToEdit.isSamePosition(editedPosition) && model.hasPosition(editedPosition)) {
             throw new CommandException(MESSAGE_DUPLICATE_POSITION);
@@ -154,6 +161,13 @@ public class EditPositionCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(title, status);
+        }
+
+        /**
+         * Returns true if both fields are edited.
+         */
+        public boolean isBothFieldsEdited() {
+            return (CollectionUtil.isAnyNonNull(title) && CollectionUtil.isAnyNonNull(status));
         }
 
         public void setTitle(Title title) {

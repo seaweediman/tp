@@ -91,8 +91,10 @@ public class EditCandidateCommand extends Command {
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
+
         Set<Position> newPositions = editedPerson.getPositions();
         Set<Position> positionReferences = new HashSet<>();
+
         for (Position p : newPositions) {
             if (!model.hasPosition(p)) {
                 throw new CommandException(String.format(MESSAGE_POSITION_DOES_NOT_EXIST, p.getTitle()));
@@ -105,12 +107,12 @@ public class EditCandidateCommand extends Command {
         }
         editedPerson.setPositions(positionReferences);
 
-        //Remove the old person and add the new one
         Set<Interview> interviews = personToEdit.getInterviews();
         for (Interview i : interviews) {
             i.deleteCandidate(personToEdit);
             i.addCandidate(editedPerson);
         }
+
         model.setPerson(personToEdit, editedPerson);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson),
                 CommandResult.CommandType.CANDIDATE);

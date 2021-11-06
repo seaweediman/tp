@@ -304,4 +304,9 @@ public class ParserUtilTest {
 
         assertEquals(indexesInIntegers, testAsIntegers);
     }
+
+    @Test
+    public void parseCandidateIndexes_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCandidateIndexes(""));
+    }
 }
