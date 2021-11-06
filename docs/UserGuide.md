@@ -403,10 +403,10 @@ Edits a specific interview in the list of interviews.
 <u>Example:</u>
 `edit_i 2 date=18/10/2021 time=1400`
 * Edits the second interview in the interview list and updates the date and time of the interview.
-  
+
 * All input fields should be provided in the correct format. Please refer to notes on interview command format shown
   above to see what constitutes a valid input.
-  
+
 * At least one input field must be edited. For instance, in the above example, two input fields have been edited -
   `date=18/10/2021` for the date of the interview and `time=1400` for the time the interview is scheduled for.
 

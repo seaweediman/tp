@@ -54,7 +54,7 @@ Given below are my contributions to the project.
 
 * Developer Guide:
   * Added use cases for features including:
-    * `list_c` 
+    * `list_c`
     * `delete_c`
     * `list_p`
     * `delete_p`
@@ -84,3 +84,4 @@ Given below are my contributions to the project.
   * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
   * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
   * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
+  * 
