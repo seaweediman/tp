@@ -68,7 +68,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+* Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,17 +114,18 @@ Manage a list of job positions posted by your company, with the simple instructi
 All commands below are subjected to these restrictions except `find_p`
 
 > Refer to the [Notes about the command format](#Features) for the details on the command format
+
 #### <u>Add a position:</u> `add_p`
 
 *Adds a job position to the list of positions.*
 
 <u>Format:</u>
 
-    add_p title=<TITLE>
+`add_p title=<TITLE>`
 
 <u>Example:</u>
 
-    add_p title=Assistant
+`add_p title=Assistant`
 
 * Adds a job position with the title of Assistant, with a default status of 'open'.
 
@@ -139,7 +140,7 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    list_p
+`list_p`
 
   <br>
 
@@ -149,11 +150,11 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    delete_p <INDEX>
+`delete_p <INDEX>`
 
 <u>Example:</u>
 
-    delete_p 3
+`delete_p 3`
 
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
@@ -168,14 +169,15 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    edit_p <INDEX> [title=<TITLE>]
+`edit_p <INDEX> [title=<TITLE>]`
 
 OR<br>
 
-    edit_p <INDEX> [status=<STATUS>]
+`edit_p <INDEX> [status=<STATUS>]`
+
 <u>Example:</u>
 
-    edit_p 2 title=Data Analyst
+`edit_p 2 title=Data Analyst`
 
 * Edits the title of the 2nd position in the list to 'Data Analyst'.
 
@@ -184,8 +186,7 @@ OR<br>
   <br>
   <br>
 
-
-    edit_p 3 status=closed
+`edit_p 3 status=closed`
 
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position.
@@ -200,11 +201,11 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_p [title=<TITLE>]... [status=<STATUS>]...
+`find_p [title=<TITLE>]... [status=<STATUS>]...`
 
 <u>Example:</u>
 
-    find_p status=closed title=Accountant Engineer
+`find_p status=closed title=Accountant Engineer`
 
 * Finds all positions that are closed and title contains "Accountant" or "Engineer"
   * (status contains word "closed") AND (title contains word "Accountant" OR "Engineer")
@@ -234,11 +235,13 @@ Different candidates can have the same name as along as the name, email and phon
 | **TAG** | `experienced`, `priority` | Must be alphanumeric, without spaces |
 | **INDEX** | `1`,`2` | Must be a positive integer smaller than 2147483647 corresponding to the index of the intended candidate in the <U>currently displayed list of candidate<U> |
 | **REMARK** | `Great Experience`, `@@@ ___ Test Remark` | Any string, leading or trailing spaces are removed|
+
 > Status for candidates are different then statuses for position and interviews
 
 All commands in this section are subjected to the restriction in this table except `find_c`
 
 > Refer to the [Notes about the command format](#Features) for the details on the command format
+
 #### <u>Add a candidate:</u> `add_c`
 
 *Adds a candidate to the list of candidates.*
@@ -313,6 +316,7 @@ All commands in this section are subjected to the restriction in this table exce
 `edit_c 3 name=Ryan Koh`
 
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
+* If a candidate has an [interview](#feature-interview-management), editing a status that is not `Applied` back to `Applied` is not allowed, and will be automatically changed to `Scheduled`. You can choose to change to other status such as `None`.
 
 
 #### <u>Find a Candidate:</u> `find_c`
@@ -373,11 +377,11 @@ Use the following command to record the details of an interview session with the
 
 <u>Format:</u>
 
-    add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+`add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]`
 
 <u>Example:</u>
 
-    add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
+`add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending`
 
 
 * Adds an interview for the position of Accountant, for the 1st and 2nd candidates in the candidate list.
@@ -394,7 +398,7 @@ Use the following command to record the details of an interview session with the
 
 <u>Format:</u>
 
-    list_i
+`list_i`
 
   <br>
 
@@ -408,7 +412,7 @@ Use the following command to record the details of an interview session with the
 
 <u>Example:</u>
 
-    delete_i 3
+`delete_i 3`
 
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
@@ -422,7 +426,7 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+`edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...`
 
 <u>Example:</u>
 `edit_i 2 date=18/10/2021 time=1400`
@@ -451,7 +455,7 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+`assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...`
 
 <u>Example:</u>
 `assign i=1 c=2 4`
@@ -474,9 +478,10 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+`unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...`
 
 <u>Example:</u>
+
 `unassign i=1 c=2 4`
 
 * You can input any number of candidates but only 1 interview.
@@ -493,8 +498,8 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
-    [duration=DURATION]... [interviewed=STATUS]...
+`find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
+    [duration=DURATION]... [interviewed=STATUS]...`
 
 <u>Example:</u>
 
