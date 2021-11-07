@@ -309,7 +309,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | be able to add a remark/status to a candidate | make it more visible for the next course of administrative action|
 | `* * *`  | user       | be able to edit comments of a candidate | update any further remarks for them|
 | `* * *`  | user       | be able to delete comments of a candidate | remove mistakenly put remarks entirely |
-| `* * *`  | user preparing interviews | be able to know the number of candidates on a certain day | |
 | ` * * `  | user preparing interviews | be reminded what interviews I have the next day | not forget about them |
 | ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | |
 | `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
