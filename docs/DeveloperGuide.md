@@ -248,7 +248,7 @@ or interview in the respective display panel.
 Generally, they are called `add_x` in this section. I will also be using X to represent a candidate, position or interview here.
 
 The add_x functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
-- `ModelManager#hasX` — Check if the candidate, position or interview already exists within Hr Manager. If so, `CommandException` will be thrown.
+- `ModelManager#hasX()` — Check if the candidate, position or interview already exists within Hr Manager. If so, `CommandException` will be thrown.
 
 - `ModelManager#addX()` — Adds a candidate, position or interview to Hr Manager. If that position already exists, a
   `DuplicatePositionException` will be thrown.
