@@ -50,7 +50,7 @@ To set up the application, please refer to the guide [_Setting up and getting st
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -76,7 +76,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -85,7 +85,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![ComponentManagers](images/ComponentManagers.png)
 
 The sections below give more details of each component.
 
@@ -112,7 +112,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HrManagerParser` class to parse the user command.
@@ -129,7 +129,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns back as a `Command` object.
@@ -139,13 +139,21 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="612" />
-
+![ModelClassDiagram](images/ModelClassDiagram.png) <br>
+![PersonClassDiagram](images/PersonClassDiagram.png) <br>
+![PositionClassDiagram](images/PositionClassDiagram.png) <br>
+![InterviewClassDiagram](images/InterviewClassDiagram.png)<br>
 
 The `Model` component,
 
-* stores the HR Manager data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the HR Manager data i.e.
+  * all `Person` objects (which are contained in a `UniquePersonList` object).
+  * all `Position` objects (which are contained in a `UniquePositionList` object).
+  * all `Interview` objects (which are contained in a `UniqueInterviewList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'
+* stores the currently 'selected' `Position` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Position>` that can be 'observed'
+* stores the currently 'selected' `Interview` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Interview>` that can be 'observed'
+>To be 'observed' means that the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -153,7 +161,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="1100" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both HR Manager data and user preference data in json format, and read them back into corresponding objects.
@@ -257,7 +265,7 @@ or interview in the respective display panel.
 Generally, they are called `add_x` in this section. I will also be using X to represent a candidate, position or interview here.
 
 The add_x functionality is facilitated by  `ModelManager`. It uses the following operation of `ModelManager`.
-- `ModelManager#hasX` — Check if the candidate, position or interview already exists within Hr Manager. If so, `CommandException` will be thrown.
+- `ModelManager#hasX()` — Check if the candidate, position or interview already exists within Hr Manager. If so, `CommandException` will be thrown.
 
 - `ModelManager#addX()` — Adds a candidate, position or interview to Hr Manager. If that position already exists, a
   `DuplicatePositionException` will be thrown.
@@ -318,7 +326,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | be able to add a remark/status to a candidate | make it more visible for the next course of administrative action|
 | `* * *`  | user       | be able to edit comments of a candidate | update any further remarks for them|
 | `* * *`  | user       | be able to delete comments of a candidate | remove mistakenly put remarks entirely |
-| `* * *`  | user preparing interviews | be able to know the number of candidates on a certain day | |
 | ` * * `  | user preparing interviews | be reminded what interviews I have the next day | not forget about them |
 | ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | |
 | `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |

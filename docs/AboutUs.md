@@ -9,16 +9,6 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 
 ## Project team
 
-### Jane Doe (Member template)
-
-<img src="images/johndoe.png" width="200px">
-
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
-
-* Role: Team Lead
-* Responsibilities: UI
-
 ### Xu Jiheng
 
 <img src="images/jeffzincatz.png" width="200px">
