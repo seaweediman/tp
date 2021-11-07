@@ -21,6 +21,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
   * List commands (`list_p` and `list_i`)
   * Refactoring GUI components
   * Formatting for UG and DG
+  * Reviewing PRs
 
 ### Chua Sue-Ann
 
