@@ -62,4 +62,6 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/angnobel)] [[portfolio](team/nobel.md)]
 
 * Role: Developer
-* Responsibilities: WIP
+* Responsibilities: 
+    * Handle Github issues and milestones
+    * `find_x` command, documentation and tests
