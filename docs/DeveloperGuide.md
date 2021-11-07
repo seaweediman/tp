@@ -122,13 +122,21 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="612" />
-
+![ModelClassDiagram](images/ModelClassDiagram.png)
+![PositionClassDiagram](images/PositionClassDiagram.png)
+![PersonClassDiagram](images/PersonClassDiagram.png)
+![InterviewClassDiagram](images/InterviewClassDiagram.png)
 
 The `Model` component,
 
-* stores the HR Manager data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the HR Manager data i.e.
+  * all `Person` objects (which are contained in a `UniquePersonList` object).
+  * all `Position` objects (which are contained in a `UniquePositionList` object).
+  * all `Interview` objects (which are contained in a `UniqueInterviewList` object).
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'
+* stores the currently 'selected' `Position` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Position>` that can be 'observed'
+* stores the currently 'selected' `Interview` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Interview>` that can be 'observed'
+>To be 'observed' means that the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -136,7 +144,7 @@ The `Model` component,
 
 **API** : [`Storage.java`](https://github.com/AY2122S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="1100" />
+![StorageClassDiagram](images/StorageClassDiagram.png)
 
 The `Storage` component,
 * can save both HR Manager data and user preference data in json format, and read them back into corresponding objects.
