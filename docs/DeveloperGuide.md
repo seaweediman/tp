@@ -347,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-<u>**Use case: UC01 - Add a candidate**</u>
+#### <u>Use case: UC01 - Add a candidate</u>
 
 **MSS**
 
@@ -371,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-<u>**Use case: UC02 - List all candidates**</u>
+#### Use case: UC02 - List all candidates</u>
 
 **MSS**
 
@@ -387,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC03 - Delete a candidate**</u>
+#### <u>Use case: UC03 - Delete a candidate</u>
 
 **MSS**
 
@@ -405,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-<u>**Use case: UC04 - Add a position**</u>
+#### <u>Use case: UC04 - Add a position</u>
 
 **MSS**
 
@@ -428,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC05 - List all positions**</u>
+#### <u>Use case: UC05 - List all positions</u>
 
 **MSS**
 
@@ -444,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC06 - Delete a position**</u>
+#### <u>Use case: UC06 - Delete a position</u>
 
 **MSS**
 
@@ -463,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-<u>**Use case: UC07 - Add an interview**</u>
+#### <u>Use case: UC07 - Add an interview</u>
 
 **MSS**
 
@@ -513,7 +513,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-<u>**Use case: UC08 - List all interviews**</u>
+#### <u>Use case: UC08 - List all interviews</u>
 
 **MSS**
 
@@ -522,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-<u>**Use case: UC09 - Delete an interview**</u>
+#### <u>Use case: UC09 - Delete an interview</u>
 
 1. User requests to <u>list all interviews (UC08)</u>.
 2. User requests to delete a specific interview.
