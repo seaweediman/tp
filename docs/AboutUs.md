@@ -26,7 +26,11 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/JeffZincatz)] [[portfolio](team/jeffzincatz.md)]
 
 * Role: Developer
-* Responsibilities: WIP
+* Responsibilities:
+  * Position and interview modelling
+  * List commands (`list_p` and `list_i`)
+  * Refactoring GUI components
+  * Formatting for UG and DG
 
 ### Chua Sue-Ann
 

@@ -13,7 +13,7 @@ Given below are my contributions to the project.
 
 ### Code contributed
 
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=zincatz&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=JeffZincatz&zR=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=216.40371024734984&zS=2021-09-17&zFS=&zU=2021-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/#breakdown=true&search=jeffzincatz)
 
 ### Enhancement Implemented
 
@@ -45,7 +45,6 @@ Given below are my contributions to the project.
 * User Guide:
         * Added documentation for the features `list` and `view`
 * Developer Guide:
-    * Added user stories in table format
 
     * Added the documentation for the following features:
       * `list_c`
@@ -68,6 +67,10 @@ Given below are my contributions to the project.
 
 ### Contributions to team-based tasks
 
+* Set up team project repo
+
+* Documenting user stories in table format in Developer Guide
+
 * Fix various documentation bugs in UG and DG
 
 ### Review contributions
@@ -80,7 +83,12 @@ Given below are my contributions to the project.
   * [PR #149](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/149)
   * [PR #150](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/150)
 
+* [A full list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajeffzincatz)
+of PRs reviewed by me.
+
 * Non-exhausted list of bugs and suggestions reported for other teams
   * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
   * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
   * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
+
+* [A full list](https://github.com/JeffZincatz/ped/issues) of bugs reported

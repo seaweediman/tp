@@ -220,7 +220,7 @@ All fields are not subjected to the restriction in the input table and can take 
 ### Feature: Candidate Management
 
 Manage a list of candidates for your company, with the simple instructions below!
-Each candidate is uniquely identified their email. 
+Each candidate is uniquely identified their email.
 Different candidates can have the same name as along as the name, email and phone are not all the same.
 #### Table of Inputs for Candidate Management
 
@@ -345,7 +345,7 @@ All fields are not subjected to the restriction in the input table and can take 
   * Command will find candidates that contains at least 1 of the keywords (OR)
 * Across different fields
   * Command will return candidates that contain all the fields (AND)
-  
+
 
   <br>
   <br>
