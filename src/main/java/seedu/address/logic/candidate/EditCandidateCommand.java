@@ -62,7 +62,7 @@ public class EditCandidateCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "Candidate with Email:"
             + " [ %1$s ] already exists in the HR Manager";
     public static final String MESSAGE_ILLEGAL_PERSON_STATUS = "Unable to change Status of %1$s to APPLIED.\n"
-            + "Candidate %1$s already have scheduled interview(s).";
+            + "Candidate %1$s already has scheduled interview(s).";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
