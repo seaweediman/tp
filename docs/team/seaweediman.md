@@ -102,7 +102,7 @@ Given below are my contributions to the project.
 * Often helped in reviewing teammates' PR
 
 ### 6. Review contributions
-* Reported bugs and suggestions for other teams in the class 
+* Reported bugs and suggestions for other teams in the class
   * Examples: [1](https://github.com/seaweediman/ped/issues/4), [2](https://github.com/seaweediman/ped/issues/3), [3](https://github.com/seaweediman/ped/issues/14)
   * [Full list of bugs and suggestions](https://github.com/seaweediman/ped/issues/)
 * Non-exhaustive list of some PRs reviewed:

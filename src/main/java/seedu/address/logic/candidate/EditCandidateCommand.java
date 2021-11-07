@@ -108,9 +108,28 @@ public class EditCandidateCommand extends Command {
         editedPerson.setPositions(positionReferences);
 
         Set<Interview> interviews = personToEdit.getInterviews();
-        for (Interview i : interviews) {
-            i.deleteCandidate(personToEdit);
-            i.addCandidate(editedPerson);
+
+        newPositions = positionReferences;
+
+        // Checks if positions was edited, remove from interviews for positions that candidate no longer applies to.
+        if (editPersonDescriptor.isPositionEdited()) {
+            for (Interview i : interviews) {
+                i.deleteCandidate(personToEdit);
+
+                if (!newPositions.contains(i.getPosition())) {
+                    // delete interview from candidate if they no longer apply to the position.
+                    editedPerson.deleteInterview(i);
+                } else {
+                    // add edited person to interview, if edited candidate still applies to the position.
+                    i.addCandidate(editedPerson);
+                }
+            }
+        } else {
+            //Remove the old person and add the new one
+            for (Interview i : interviews) {
+                i.deleteCandidate(personToEdit);
+                i.addCandidate(editedPerson);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -200,6 +219,13 @@ public class EditCandidateCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions, interviews);
+        }
+
+        /**
+         * Returns true if position field is edited.
+         */
+        public boolean isPositionEdited() {
+            return CollectionUtil.isAnyNonNull(positions);
         }
 
         public void setName(Name name) {

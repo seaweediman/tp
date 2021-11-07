@@ -14,6 +14,22 @@ title: Developer Guide
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
 
 --------------------------------------------------------------------------------------------------------------------
+## **Introduction** ##
+
+HR Manger is a simple to use and easy to learn local desktop application that allows you to easily manage your candidates, positions and interviews.
+HR Manager is built on Java and can be run on all major desktop operating systems. HR Manager has a graphic user interface to display information and uses text-based commands to interact with the application.
+
+--------------------------------------------------------------------------------------------------------------------
+## **Purpose** ##
+
+The purpose of this guide is to provide a comprehensive documentation of the design and overview of the application for developers to quickly onboard and develop the applciation.
+
+You can read the entire guide from teh start, which will give you a complete view of the structure of HR Manager.
+
+Alternatively, you can quickly get started by through the [Setting Up](setting-up-getting-started) and [Design](design) to get a overview of the application.
+You can then read the [Feature Implementation](feature-implementation) for more details of specific features.
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
 
@@ -117,6 +133,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns back as a `Command` object.
+    * Most significantly, the ArgumentTokeniser is used to parse the arguments using the provided prefixes to retrieve the inputs from the user
 * All `XYZCommandParser` classes (e.g., `AddCandidateCommandParser`, `DeletePositionCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -180,11 +197,11 @@ Continuing the previous diagram, the FindXCommand is executed, and the UI is upd
 
 #### Design Considerations ####
 Aspect: Logical operators and combinations for find fields
-* Alternative 1: AND between separate fields and OR within multiple entries in same field
+* Implemented: AND between separate fields and OR within multiple entries in same field
     * eg: `find_c name=alex brad phone=12345678` === `(phone=12345678) AND (name contains alex OR brad)`
     * Pros: Easy to implement, simple command format for the most common usecase
     * Cons: Unable to search using more complex combination of logical operators
-* Alternative 2: Allow users to specify which operators are used and how they are combined
+* Alternative: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
 
@@ -330,7 +347,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
 
-<u>**Use case: UC01 - Add a candidate**</u>
+#### <u>Use case: UC01 - Add a candidate</u>
 
 **MSS**
 
@@ -354,7 +371,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-<u>**Use case: UC02 - List all candidates**</u>
+#### Use case: UC02 - List all candidates</u>
 
 **MSS**
 
@@ -370,7 +387,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC03 - Delete a candidate**</u>
+#### <u>Use case: UC03 - Delete a candidate</u>
 
 **MSS**
 
@@ -388,7 +405,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-<u>**Use case: UC04 - Add a position**</u>
+#### <u>Use case: UC04 - Add a position</u>
 
 **MSS**
 
@@ -411,7 +428,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC05 - List all positions**</u>
+#### <u>Use case: UC05 - List all positions</u>
 
 **MSS**
 
@@ -427,7 +444,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-<u>**Use case: UC06 - Delete a position**</u>
+#### <u>Use case: UC06 - Delete a position</u>
 
 **MSS**
 
@@ -446,7 +463,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case resumes at step 2.
 
 
-<u>**Use case: UC07 - Add an interview**</u>
+#### <u>Use case: UC07 - Add an interview</u>
 
 **MSS**
 
@@ -496,7 +513,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-<u>**Use case: UC08 - List all interviews**</u>
+#### <u>Use case: UC08 - List all interviews</u>
 
 **MSS**
 
@@ -505,7 +522,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-<u>**Use case: UC09 - Delete an interview**</u>
+#### <u>Use case: UC09 - Delete an interview</u>
 
 1. User requests to <u>list all interviews (UC08)</u>.
 2. User requests to delete a specific interview.

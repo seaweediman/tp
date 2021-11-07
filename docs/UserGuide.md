@@ -31,7 +31,9 @@ This user guide is a complete guide for all commands and features for HR Manager
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
 Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
-If you face any issues, you can check the details for each command under the [Features](#features) section. Each section has its own input table that details the requirements and restrictions of each input of that section.
+If you face any issues, you can check the details for each command under the [Features](#features) section.
+There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management)
+Each section has its own input table that details the requirements and restrictions of each input of that section.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -42,7 +44,7 @@ If you face any issues, you can check the details for each command under the [Fe
 
 2. Download the latest `HRManager.jar` from [here](https://github.com/AY2122S1-CS2103T-W13-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your HR Manager.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -52,7 +54,7 @@ If you face any issues, you can check the details for each command under the [Fe
 
 * **`list_c`** : Lists all candidates.
 
-* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the Address Book.
+* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the HR Manager.
 
 * **`delete_c`**`3` : Deletes the 3rd candidate shown in the current candidate list.
 
@@ -360,9 +362,10 @@ Manage a list of scheduled interviews, with the simple instructions below!
 | **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
 | **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview, case insensitive |
 
-All commands in this section are subjected to the restriction in this table except `find_i`
+All commands in this section are subjected to the restriction in this table except `find_i`.
 
 > Refer to the [Notes about the command format](#Features) for the details on the command format
+
 #### <u>Add an interview:</u> `add_i`
 Use the following command to record the details of an interview session with the candidate(s) for a position!
 
@@ -490,7 +493,7 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]...
+    find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
     [duration=DURATION]... [interviewed=STATUS]...
 
 <u>Example:</u>
