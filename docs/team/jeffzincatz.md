@@ -83,7 +83,12 @@ Given below are my contributions to the project.
   * [PR #149](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/149)
   * [PR #150](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/150)
 
+* [A full list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajeffzincatz)
+of PRs reviewed by me.
+
 * Non-exhausted list of bugs and suggestions reported for other teams
   * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
   * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
   * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
+
+* [A full list](https://github.com/JeffZincatz/ped/issues) of bugs reported
