@@ -44,7 +44,12 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/seaweediman)] [[portfolio](team/seaweediman.md)]
 
 * Role: Developer
-* Responsibilities: WIP
+* Responsibilities:
+  * Remark candidate command (`remark_c`)
+  * Add position command (`add_p`)
+  * Delete interview command (`delete_i`)
+  * 'Unassign' command (`unassign`)
+  * Reviewing PRs
 
 ### Liu Wanyu
 
