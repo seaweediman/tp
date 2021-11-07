@@ -197,11 +197,11 @@ Continuing the previous diagram, the FindXCommand is executed, and the UI is upd
 
 #### Design Considerations ####
 Aspect: Logical operators and combinations for find fields
-* Alternative 1: AND between separate fields and OR within multiple entries in same field
+* Implemented: AND between separate fields and OR within multiple entries in same field
     * eg: `find_c name=alex brad phone=12345678` === `(phone=12345678) AND (name contains alex OR brad)`
     * Pros: Easy to implement, simple command format for the most common usecase
     * Cons: Unable to search using more complex combination of logical operators
-* Alternative 2: Allow users to specify which operators are used and how they are combined
+* Alternative: Allow users to specify which operators are used and how they are combined
     * Pros: Give granular control to the user for find
     * Cons: Very complex command format
 
