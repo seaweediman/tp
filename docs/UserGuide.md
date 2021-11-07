@@ -316,7 +316,7 @@ All commands in this section are subjected to the restriction in this table exce
 `edit_c 3 name=Ryan Koh`
 
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
-* If a candidate has an [interview](#feature:-interview-management), edit a status that is not `Applied` back to `Applied` is not allowed, and will be automatically changed to `Scheduled`. You can choose the change to other status such as `None`.
+* If a candidate has an [interview](#feature-interview-management), edit a status that is not `Applied` back to `Applied` is not allowed, and will be automatically changed to `Scheduled`. You can choose the change to other status such as `None`.
 
 
 #### <u>Find a Candidate:</u> `find_c`
