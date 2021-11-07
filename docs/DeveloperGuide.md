@@ -326,29 +326,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | be able to add a remark/status to a candidate | make it more visible for the next course of administrative action|
 | `* * *`  | user       | be able to edit comments of a candidate | update any further remarks for them|
 | `* * *`  | user       | be able to delete comments of a candidate | remove mistakenly put remarks entirely |
-| ` * * `  | user preparing interviews | be reminded of what interviews I have the next day | keep track of them |
-| ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | so that I can keep up with changes coming from the candidate's end |
-| `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
-| ` * * `  | user preparing interviews | be able to schedule a new interview for a candidate | recruit more talent |
-| ` * * `  | user preparing interviews | be able to delete all other scheduled interview sessions for a particular candidate once I decide to assign him a particular post | |
-| `* * *`  | user preparing interviews | be able to view all candidates who will be interviewed on a particular date | keep track of the interviews planned for that day |
-| ` * * `  | user preparing interviews | be able to delete the interview sessions on a particular date | |
-| `  *  `  | user preparing interviews | add a co-interviewer to an interview | I know who I will be interviewing the candidate with |
-| ` * * `  | user after interviews | be able to mark a candidate as ‘Interviewed’ | |
-| `* * *`  | user after interviews | be able to tag a candidate e.g. by the position they are applying for | group them according to the tags |
 | `* * *`  | user       | be able to edit existing tags of a candidate | |
 | `* * *`  | user       | be able to remove existing tags of a candidate | |
-| ` * * `  | user searching for candidates | be able to filter the candidates for some specific requirements | find the right person for the post more efficiently |
-| `* * *`  | user searching for candidates | be able to search for candidates who have a certain remark/description | find candidates by criteria |
-| ` * * `  | user searching for candidates |  be able to search who applied for certain positions |  I know all the candidates for that specific position |
-| ` * * `  | user preparing interviews | search what interviews I have for a particular date | better prepare for that day |
-| ` * * `  | user       | see all the candidates scheduled for interview sessions for a particular job posting | |
 | `* * *`  | user       | be able to search for a particular candidate to see his/her upcoming sessions | |
-| `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
-| `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
+| `* * *`  | user searching for candidates | be able to search for candidates who have a certain remark/description | find candidates by criteria |
 | `* * *`  | user       | be able to add a job position with its job title |                  |
 | `* * *`  | user       | be able to delete a job position | remove the job posting if it was no longer open |
 | `* * *`  | user       | be able to see all posted job positions | |
+| `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
+| `* * *`  | user preparing interviews | be able to view all candidates who will be interviewed on a particular date | keep track of the interviews planned for that day |
+| `* * *`  | user after interviews | be able to tag a candidate e.g. by the position they are applying for | group them according to the tags |
+| ` * * `  | user       | see all the candidates scheduled for interview sessions for a particular job posting | |
+| ` * * `  | user searching for candidates | be able to filter the candidates for some specific requirements | find the right person for the post more efficiently |
+| ` * * `  | user searching for candidates |  be able to search who applied for certain positions |  I know all the candidates for that specific position |
+| ` * * `  | user after interviews | be able to mark a candidate as ‘Interviewed’ | |
+| ` * * `  | user preparing interviews | be able to schedule a new interview for a candidate | recruit more talent |
+| ` * * `  | user preparing interviews | be able to delete all other scheduled interview sessions for a particular candidate once I decide to assign him a particular post | |
+| ` * * `  | user preparing interviews | be reminded of what interviews I have the next day | keep track of them |
+| ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | so that I can keep up with changes coming from the candidate's end |
+| ` * * `  | user preparing interviews | be able to delete the interview sessions on a particular date | |
+| ` * * `  | user preparing interviews | search what interviews I have for a particular date | better prepare for that day |
+| `  *  `  | user preparing interviews | add a co-interviewer to an interview | I know who I will be interviewing the candidate with |
+| `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
+| `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
 
 ### Use cases
 
@@ -382,8 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all candidates
-2. HR Manager shows a list of all candidates
+1. User requests to list all candidates.
+2. HR Manager shows a list of all candidates.
 
    Use case ends.
 
@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. HR Manager adds interview.
 5. User can see the added job position.
 
-   Use case ends
+   Use case ends.
 
 **Extensions**
 
