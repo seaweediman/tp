@@ -18,10 +18,11 @@ Given below are my contributions to the project.
 
 As mentioned below, I helped implement the features for `edit_p` and `edit_i` and helped in bugfixes for`edit_c`, 
 `edit_p` and `edit_i` as well. The edit features were sometimes a challenge to implement due to the cascading effects
-on the other objects when one object was edited. For example, editing a position would mean that the candidates
-applied to the position, and the interviews scheduled for that position would need to be updated as well. There were 
-some instances in which I had missed out certain possibilities and this resulted in certain bugs that were eventually 
-fixed.
+on the other objects when one object was edited.
+
+For example, editing a position would mean that the candidates applied to the position, and the interviews scheduled for
+that position would need to be updated as well. There were some instances in which I had missed out certain 
+possibilities and this resulted in certain bugs that were eventually fixed.
 
 * **New feature: Added the functionality to edit positions** `edit_p`
     * The feature was added such that users might be able to edit the job positions added to the HR Manager app.
