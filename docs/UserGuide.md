@@ -44,7 +44,7 @@ Each section has its own input table that details the requirements and restricti
 
 2. Download the latest `HRManager.jar` from [here](https://github.com/AY2122S1-CS2103T-W13-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your HR Manager.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -54,7 +54,7 @@ Each section has its own input table that details the requirements and restricti
 
 * **`list_c`** : Lists all candidates.
 
-* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the Address Book.
+* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the HR Manager.
 
 * **`delete_c`**`3` : Deletes the 3rd candidate shown in the current candidate list.
 
