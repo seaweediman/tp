@@ -362,9 +362,10 @@ Manage a list of scheduled interviews, with the simple instructions below!
 | **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
 | **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview, case insensitive |
 
-All commands in this section are subjected to the restriction in this table except `find_i`
+All commands in this section are subjected to the restriction in this table except `find_i`.
 
 > Refer to the [Notes about the command format](#Features) for the details on the command format
+
 #### <u>Add an interview:</u> `add_i`
 Use the following command to record the details of an interview session with the candidate(s) for a position!
 
