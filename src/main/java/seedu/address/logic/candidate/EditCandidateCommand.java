@@ -59,7 +59,10 @@ public class EditCandidateCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Candidate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Candidate with Email:"
+            + " [ %1$s ] already exists in the HR Manager";
+    public static final String MESSAGE_ILLEGAL_PERSON_STATUS = "Candidate: [ %1$s ]"
+            + " already have scheduled interview(s)";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -89,7 +92,14 @@ public class EditCandidateCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, editedPerson.getEmail()));
+        }
+
+        if (editPersonDescriptor.getStatus().isPresent()) {
+            Status editedPersonStatus = editPersonDescriptor.getStatus().get();
+            if (personToEdit.getInterviews().size() > 0 && editedPersonStatus == Status.APPLIED) {
+                throw new CommandException(String.format(MESSAGE_ILLEGAL_PERSON_STATUS, personToEdit.getName()));
+            }
         }
 
         Set<Position> newPositions = editedPerson.getPositions();
