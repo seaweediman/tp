@@ -122,10 +122,10 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2122S1-CS2103T-W13-1/tp/tree/master/src/main/java/seedu/address/model/Model.java)
 
-![ModelClassDiagram](images/ModelClassDiagram.png)
-![PositionClassDiagram](images/PositionClassDiagram.png)
-![PersonClassDiagram](images/PersonClassDiagram.png)
-![InterviewClassDiagram](images/InterviewClassDiagram.png)
+![ModelClassDiagram](images/ModelClassDiagram.png) <br>
+![PersonClassDiagram](images/PersonClassDiagram.png) <br>
+![PositionClassDiagram](images/PositionClassDiagram.png) <br>
+![InterviewClassDiagram](images/InterviewClassDiagram.png)<br>
 
 The `Model` component,
 
