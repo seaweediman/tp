@@ -59,7 +59,10 @@ public class EditCandidateCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Candidate: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Candidate with Email:"
+            + " [ %1$s ] already exists in the HR Manager";
+    public static final String MESSAGE_ILLEGAL_PERSON_STATUS = "Unable to change Status of %1$s to APPLIED.\n"
+            + "Candidate %1$s already has scheduled interview(s).";
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
@@ -89,7 +92,14 @@ public class EditCandidateCommand extends Command {
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, editedPerson.getEmail()));
+        }
+
+        if (editPersonDescriptor.getStatus().isPresent()) {
+            Status editedPersonStatus = editPersonDescriptor.getStatus().get();
+            if (personToEdit.getInterviews().size() > 0 && editedPersonStatus == Status.APPLIED) {
+                throw new CommandException(String.format(MESSAGE_ILLEGAL_PERSON_STATUS, personToEdit.getName()));
+            }
         }
 
         Set<Position> newPositions = editedPerson.getPositions();
@@ -108,9 +118,28 @@ public class EditCandidateCommand extends Command {
         editedPerson.setPositions(positionReferences);
 
         Set<Interview> interviews = personToEdit.getInterviews();
-        for (Interview i : interviews) {
-            i.deleteCandidate(personToEdit);
-            i.addCandidate(editedPerson);
+
+        newPositions = positionReferences;
+
+        // Checks if positions was edited, remove from interviews for positions that candidate no longer applies to.
+        if (editPersonDescriptor.isPositionEdited()) {
+            for (Interview i : interviews) {
+                i.deleteCandidate(personToEdit);
+
+                if (!newPositions.contains(i.getPosition())) {
+                    // delete interview from candidate if they no longer apply to the position.
+                    editedPerson.deleteInterview(i);
+                } else {
+                    // add edited person to interview, if edited candidate still applies to the position.
+                    i.addCandidate(editedPerson);
+                }
+            }
+        } else {
+            //Remove the old person and add the new one
+            for (Interview i : interviews) {
+                i.deleteCandidate(personToEdit);
+                i.addCandidate(editedPerson);
+            }
         }
 
         model.setPerson(personToEdit, editedPerson);
@@ -200,6 +229,13 @@ public class EditCandidateCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, status, positions, interviews);
+        }
+
+        /**
+         * Returns true if position field is edited.
+         */
+        public boolean isPositionEdited() {
+            return CollectionUtil.isAnyNonNull(positions);
         }
 
         public void setName(Name name) {

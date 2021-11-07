@@ -52,7 +52,8 @@ public class AddCandidateCommandTest {
         AddCandidateCommand addCandidateCommand = new AddCandidateCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, () ->
+        assertThrows(CommandException.class,
+                String.format(AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, validPerson.getEmail()), () ->
                 addCandidateCommand.execute(modelStub));
     }
 
