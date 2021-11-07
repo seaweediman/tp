@@ -34,7 +34,7 @@ To set up the application, please refer to the guide [_Setting up and getting st
 
 ### Architecture
 
-<img src="images/ArchitectureDiagram.png" width="280" />
+![ArchitectureDiagram](images/ArchitectureDiagram.png)
 
 The ***Architecture Diagram*** given above explains the high-level design of the App.
 
@@ -60,7 +60,7 @@ The rest of the App consists of four components.
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+![ArchitectureSequenceDiagram](images/ArchitectureSequenceDiagram.png)
 
 Each of the four main components (also shown in the diagram above),
 
@@ -69,7 +69,7 @@ Each of the four main components (also shown in the diagram above),
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class (reason: to prevent outside component's being coupled to the implementation of a component), as illustrated in the (partial) class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+![ComponentManagers](images/ComponentManagers.png)
 
 The sections below give more details of each component.
 
@@ -96,7 +96,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+![LogicClassDiagram](images/LogicClassDiagram.png)
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `HrManagerParser` class to parse the user command.
@@ -113,7 +113,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
 * When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns back as a `Command` object.
