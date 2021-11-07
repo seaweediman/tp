@@ -48,7 +48,8 @@ public class AddCandidateCommand extends Command {
             + PREFIX_TAG + "reviewRequired";
 
     public static final String MESSAGE_SUCCESS = "New candidate added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This candidate already exists in the HR Manager";
+    public static final String MESSAGE_DUPLICATE_PERSON = "Candidate with Email:"
+            + " [ %1$s ] already exists in the HR Manager";
 
     private final Person toAdd;
 
@@ -65,7 +66,7 @@ public class AddCandidateCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, toAdd.getEmail()));
         }
 
         Set<Position> positions = toAdd.getPositions();

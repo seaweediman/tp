@@ -126,7 +126,8 @@ public class EditCandidateCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCandidateCommand, model, EditCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCandidateCommand, model,
+                String.format(EditCandidateCommand.MESSAGE_DUPLICATE_PERSON, firstPerson.getEmail()));
     }
 
     @Test
@@ -138,7 +139,8 @@ public class EditCandidateCommandTest {
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCandidateCommand, model, EditCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCandidateCommand, model,
+                String.format(EditCandidateCommand.MESSAGE_DUPLICATE_PERSON, personInList.getEmail()));
     }
 
     @Test
