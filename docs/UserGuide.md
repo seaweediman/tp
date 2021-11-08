@@ -114,6 +114,34 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 </div>
 
+### Feature: General Commands
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the help page.
+
+![help message](images/helpMessage.png)
+
+<u>Format:</u> 
+
+`help`
+
+#### Clearing all entries : `clear`
+
+Clears all entries from HR Manager
+
+<u>Format:</u> 
+
+`clear`
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+<u>Format:</u> 
+
+`exit`
+
 ### Feature: Job Position Management
 
 
