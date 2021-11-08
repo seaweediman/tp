@@ -213,16 +213,25 @@ public class Interview {
      */
     public boolean hasOverLapWith(Interview other) {
         LocalDateTime toScheduleStart = LocalDateTime.of(other.getDate(), other.getStartTime());
+        LocalDateTime toScheduleEnd = LocalDateTime.of(other.getDate(), other.getEndTime());
 
         LocalDateTime start = LocalDateTime.of(getDate(), getStartTime());
         LocalDateTime end = LocalDateTime.of(getDate(), getEndTime());
 
-        if (getStartTime().getHour() > getEndTime().getHour()) {
+        if (getStartTime().getHour() > getEndTime().getHour()
+        || (getStartTime().getHour() == getEndTime().getHour() && getDuration().toHours() > 22)) {
             end = LocalDateTime.of(getDate().plusDays(1), getEndTime());
         }
 
-        return toScheduleStart.isAfter(start) && toScheduleStart.isBefore(end)
-                || start.isEqual(toScheduleStart);
+        if (other.getStartTime().getHour() > other.getEndTime().getHour()
+                || (other.getStartTime().getHour() == other.getEndTime().getHour()
+                && other.getDuration().toHours() > 22)) {
+            toScheduleEnd = LocalDateTime.of(other.getDate().plusDays(1), getEndTime());
+        }
+
+        return (toScheduleStart.isAfter(start) && toScheduleStart.isBefore(end))
+                || start.isEqual(toScheduleStart)
+                || (start.isAfter(toScheduleStart) && start.isBefore(toScheduleEnd));
     }
 
     @Override
