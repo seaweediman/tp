@@ -17,14 +17,9 @@ Given below are my contributions to the project.
 
 ### Enhancement Implemented
 
-* **New Feature: Add job position into the HR Manager system**
-  * What it does: Implements a functional model of job positions, containing information including the job position title and posting status.
-  * Justification: This feature is the foundation to allow user to manager job positions in their system.
-  * Relevant test cases of the position model are added.
-
-* **New Feature: Add position list into the HR Manager system**
-  * What it does: Implements a job position list in to the HR Manager model, to store a list of all job positions.
-  * Justification: This feature is to enable the user to access all the stored position data in the system later with other related commands.
+* **New Feature: Add job position and position list into the HR Manager**
+  * What it does: Implements a functional model of job positions and position list, containing information including the job position title and posting status of all positions, with relevant test cases.
+  * Justification: This feature is the foundation to allow user to access and manage all the stored position data in the system later with other related commands.
   * Relevant test cases of the position model are added.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_p`**
@@ -32,52 +27,31 @@ Given below are my contributions to the project.
     * Justification: This feature gives the users a comprehensive overview of all the existing job positions for further management.
     * Relevant test cases of the position list are added.
 
-* **New Feature: Adds interviews into the HR Manager system**
-    * What it does: Implements a functional model of interviews, containing information including the job position interviewed, date, time, duration, candidates, and interview status.
-    * Justification: This feature is the foundation to allow user to manager interviews in their system.
-    * Relevant test cases of the interview model are added.
-    * Relevant test cases of the position model are added.
-
-* **New Feature: Add interview list into the HR Manager system**
-  * What it does: Implements an interview list in to the HR Manager model, to store a list of all interview sessions.
-  * Justification: This feature is to enable the user to access all the stored interview data in the system later with other related commands.
-  * Relevant test cases of the interview list are added.
+* **New Feature: Adds interviews and interview list into the HR Manager**
+  * What it does: Implements a functional model of interviews and interview list, containing information including the job position interviewed, date, time, duration, candidates, and interview status of all interviews, with relevant test cases.
+  * Justification: This feature is the foundation to allow user to access and manage all the stored interview data in the system with other related commands.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_i`**
     * What it does: Display a full list of all existing interview sessions stored in the HR Manager, read from the storage.
     * Justification: This feature gives the users a comprehensive overview of all the existing interviews for further management.
 
-* **Enhancement: Improves the display to a 3-panel list**
+* **Enhancement: Improves the UI to a 3-panel display**
   * What it does: Display 3 panels for the lists of candidates, positions, and interviews, at the same time.
-  * Justification: Compared to the old implementation of 1-panel display, this enables the users to easier view all lists without having to replace the previous ones.
+  * Justification: Compared to the old implementation of 1-panel display, this enables the users to easier view all lists without replacing the previous ones.
 
 * **Enhancement: Applies a new colour scheme for HR Manager**
   * What it does: Changes the graphical appearance of the HR Manager, including highlighting the panel lists, making HR Manager more distinct from other applications.
-  * Justification: This makes the HR Manager more distinct as a product.
+  * Justification: This makes the HR Manager a more distinct product.
 
 ### Contribution to Documentations
 
 * User Guide:
   * Added documentation for the features `position` and its storage
-  * Added the documentation for the following features:
-    * `list_c`
-    * `add_p`
-    * `delete_p`
-    * `list_p`
-    * `list_i`
+  * Added the documentation for the following features: `list_c`, `add_p`, `delete_p`, `list_p`, `list_i`.
 
 * Developer Guide:
-  * Added use cases for features including:
-    * `list_c`
-    * `delete_c`
-    * `list_p`
-    * `delete_p`
-    * `list_i`
-    * `delete_i`
-  * Added various user stories for features including:
-    * `add_p`
-    * `delete_p`
-    * `list_p`
+  * Added use cases for features including `list_c`, `delete_c`, `list_p`, `delete_p`, `list_i`, `delete_i`.
+  * Added various user stories for features including `add_p`, `delete_p`, `list_p`.
   * Added an overview of the implementation of all the find features, such as `list_c`, `list_p` and `list_i`. The section also includes a UML diagram for the sequence diagram of a general find command `list_x`.
 
 ### Contributions to team-based tasks
