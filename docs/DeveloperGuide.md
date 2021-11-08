@@ -565,7 +565,7 @@ testers are expected to do more *exploratory* testing.
 
 </div>
 
-### Launch and shutdown
+### Launching the program
 
 1. Initial launch
     1. Download the jar file and copy into an empty folder
