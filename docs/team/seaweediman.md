@@ -14,16 +14,16 @@ Given below are my contributions to the project.
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 * **New Feature**: Added the ability to remark candidates. `remark_c`
-  * This feature allows user to give remarks to a specific candidate, allowing users to give comments to noteworthy candidates.
+  * This feature allows users to give remarks to a specific candidate, allowing users to give comments to noteworthy candidates.
 
 * **New Feature**: Added the ability to add job positions. `add_p`
   * This feature allows users to add job positions into HR Manager, allowing them to keep track of positions in a company.
 
 * **New Feature**: Added the ability to delete interviews. `delete_i`
-  * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from HR Manager to reduce clutter.
+  * This feature allows users to delete interviews from HR Manager, enabling them delete unwanted interviews from HR Manager to reduce clutter.
 
 * **New Feature**: Added the ability to 'unassign' candidates from a specific interview. `unassign`
-  * This feature was added such that users can remove candidates from a specific scheduled interview using candidate indexes.
+  * Since `edit_i` can't be used to remove candidates from an interview, this feature was added such that users can remove candidates from a specific scheduled interview using candidate indexes.
   
 * **Enhancements: Updated commands to allow multiple candidate indexes after a single `c=` prefix input**
   * Before, to add candidate indexes to add_i command, you had to do `c=1 c=2`. Now, you can put it under a single prefix input, 
@@ -33,8 +33,7 @@ Given below are my contributions to the project.
 
 * **Enhancements: Updated commands to automatically update all relevant lists displayed on the GUI at the end of a command's execution.**
   * Before, after every command, the lists will not update automatically and only updates when you click on the person, position or interview card. Now, after each command, the lists will be updated automatically.
-  * Highlights : This required changing the constructor of `CommandResult` to take in an enum `CommandType`. In `MainWindow`, new methods were created to handle updating specific lists for different types of commands. <br>
-    e.g If the command is of `CommandType` `POSITION`, `MainWindow::handleP()` is called to update all 3 lists.
+  * Highlights : This required changing the constructor of `CommandResult` to take in an enum `CommandType`. In `MainWindow`, new methods were created to handle updating specific lists for different types of commands.
   * Refer to [Issue #219](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/219) and [PR #232](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/232) for more details.
 
 * **Enhancements: Updated `add_c` and `edit_c` so that it throws an error when a closed `Position` is inputted.**
