@@ -29,7 +29,13 @@ public class UnassignInterviewCommandParser implements Parser<UnassignInterviewC
                     UnassignInterviewCommand.MESSAGE_USAGE));
         }
 
-        Index interviewIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERVIEW_INDEX).get());
+        Index interviewIndex;
+        try {
+            interviewIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERVIEW_INDEX).orElse(""));
+        } catch (ParseException pe) {
+            throw new ParseException(ParserUtil.MESSAGE_EMPTY_INTERVIEW_INDEXES);
+        }
+
         Set<Index> candidateIndexes;
         String candidateIndexInput = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get();
         if (candidateIndexInput.equals("*")) {

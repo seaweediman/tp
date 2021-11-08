@@ -30,9 +30,15 @@ public class AssignInterviewCommandParser implements Parser<AssignInterviewComma
                     AssignInterviewCommand.MESSAGE_USAGE));
         }
 
-        Index interviewIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERVIEW_INDEX).get());
+        Index interviewIndex;
+        try {
+            interviewIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INTERVIEW_INDEX).orElse(""));
+        } catch (ParseException pe) {
+            throw new ParseException(ParserUtil.MESSAGE_EMPTY_INTERVIEW_INDEXES);
+        }
+
         Set<Index> candidateIndexes;
-        String candidateIndexInput = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).get();
+        String candidateIndexInput = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).orElse("");
 
         candidateIndexes = ParserUtil.parseCandidateIndexes(candidateIndexInput);
         return new AssignInterviewCommand(interviewIndex, candidateIndexes);

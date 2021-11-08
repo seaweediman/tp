@@ -554,3 +554,111 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+
+## **Appendix: Instructions for manual testing**
+
+###Interview Management
+
+####Add an Interview
+
+1. Adding an interview without any candidates to HR Manager<br>
+   i. Prerequisites: Position exists in HR Manager.
+   ii. Test case: `add_i position=Bookkeeper date=15/10/2021 time=1400 duration=120 interviewed=pending`<br>
+   Expected: new interview for `Bookkeeper` on `15 Oct 2021`, `1400 ~ 1600` with status `PENDING` is added to the bottom of the list of interviews.<br>
+
+2. Adding an interview with first candidate to HR Manager<br>
+   i. Prerequisites: Position exits in HR Manager, current displayed list of candidates is not empty and candidate with corresponding index has applied for position.<br>
+   ii. Test case: `add_i position=Bookkeeper c=1 date=15/10/2021 time=1400 duration=120 interviewed=pending`<br>
+   Expected: new interview for `Bookkeeper` on `15 Oct 2021`, `1400 ~ 1600` with status `PENDING`, with first candidate from the currently displayed list of candidates is added to the bottom of the list of interviews.<br>
+
+3. Adding an interview with multiple candidates to HR Manager<br>
+   i. Prerequisites: Position exits in HR Manager, current displayed list of candidates has more than 1 entry and candidates with corresponding indexes has applied for position.<br>
+   ii. Test case: `add_i position=Bookkeeper c=1 2 date=15/10/2021 time=1400 duration=120 interviewed=pending`<br>
+   Expected: new interview for `Bookkeeper` on `15 Oct 2021`, `1400 ~ 1600` with status `PENDING`, with first and second candidates from the currently displayed list of candidates is added to the bottom of the list of interviews.<br>
+   
+4. Incorrect Add Interview Commands<br>
+   i. Test case: `add_i`<br>
+   Expected: no interview added, error message with sample input shown in feedback box.<br>
+   ii. Test case: `add_i position=Accountant date=15/10/2021 time=1400 duration=120` where `Accountant` does not exist in HR Manager.<br>
+   Expected: no interview added, position not found error message shown in feedback box.<br>
+   iii. Test case: `add_i position=Bookkeeper c=0 date=15/10/2021 time=1400 duration=120`<br>
+   Expected: no interview added, invalid index error message shown in feedback box. <br>
+   iv. Test case: `add_i position=Bookkeeper date=32/10/2021 time=1400 duration=120`<br>
+   Expected: no interview added, invalid date error message shown in feedback box. <br>
+   v. Test case:`add_i position=Bookkeeper date=15/10/2021 time=2500 duration=120`<br>
+   Expected: no interview added, invalid time error message shown in feedback box.<br>
+   vi. Test case:`add_i position=Bookkeeper date=15/10/2021 time=1400 duration=2 hours`<br>
+   Expected: no interview added, invalid duration error message shown in feedback box.<br>
+   vii. Other incorrect add interview commands to try: `add_i position=<POSITION>...` where POSITION does not already exist in HR Manager,
+   `add_i ... date=<DATE>` where `DATE` is not a valid day in DD/MM/YYYY form, or any other combination of invalid fields in any form.<br>
+   Expected: no interview added, error message of the first encountered invalid field shown in feedback box.<br>
+
+    
+####List All Interviews
+
+1. Listing all interviews in HR Manager<br>
+    i. Test case: `list_i`<br>
+    Expected: If filtered list of interviews was displayed previously, the complete list of interviews is rendered. Otherwise, the interview list is re-rendered. <br>
+    This command should not fail if typed correctly. <br>
+
+
+####Delete An Interview
+
+1. Deleting an interview from HR Manager<br>
+    i. Prerequisites: Currently displayed list of interviews is not empty.<br>
+   ii. Test case: `delete_i 1`<br>
+   Expected: First interview from the currently displayed list of interviews is deleted from HR Manager.<br>
+   iii. Test case: `delete_i 0`<br>
+   Expected: No interview deleted, error message and sample input shown in feedback box.<br>
+   iv. Other incorrect delete interview commands: `delete_i`, `delete_i one`<br>
+   Expected: No interview deleted, error message and sample input shown in feedback box.<br>
+
+
+####Edit An Interview
+
+1. Editing an interview in HR Manager<br>
+   i. Prerequisites: Currently displayed list of interviews is not empty.<br>
+   ii. Test case: `edit_i 1 date=11/11/2021`<br>
+   Expected: First interview from the currently displayed list of interviews has its date set to 11th November 2021.<br>
+   iii. Test case: `edit_i 0 date=11/11/2021`<br>
+   Expected: No interview edited, error message and sample input shown in feedback box.<br>
+   iv. Other correct edit interview commands: any combination of valid fields of edit as long as there is 1 or more fields to edit.<br>
+   v. Other incorrect edit interview commands: `edit_i`, `edit_i 1 time=twenty`or any other combination of invalid fields in any form.<br>
+   Expected: No interview edited, error message of the first encountered invalid field shown in feedback box.<br>
+
+
+####Assign An Interview
+
+1. Assigning one or more candidates to an interview in HR Manager.<br>
+    i. Prerequisites: Currently displayed lists of interviews and candidates are not empty and candidate has applied for the position that the interview is for.<br>
+   ii. Test case: `assign c=1 i=1`<br>
+   Expected: First candidate from the currently displayed list of candidates is assigned to the first interview of the currently displayed list of interviews.<br>
+   iii. Test case: `assign c=1 2 i=1`<br>
+   Expected: First and second candidates from the currently displayed list of candidates is assigned to the first interview of the currently displayed list of interviews.<br>
+   iv. Test case: `assign c=0 i=1`<br>
+   Expected: No candidates assigned to the first interview of the currently displayed list, invalid index error message shown in feedback box.<br>
+   v. Other incorrect assign commands: `assign` or any other combination of invalid index for candidates or interview<br>
+
+
+####Unassign Candidates
+
+1. Unassigning one or more candidates from an interview in HR Manager.<br>
+   i. Prerequisites: Currently displayed lists of interviews and candidates are not empty and candidate has been assigned to the interview.<br>
+   ii. Test case: `unassign c=1 i=1`<br>
+   Expected: First candidate from the currently displayed list of candidates is unassigned from the first interview of the currently displayed list of interviews.<br>
+   iii. Test case: `unassign c=1 2 i=1`<br>
+   Expected: First and second candidates from the currently displayed list of candidates is unassigned from the first interview of the currently displayed list of interviews.<br>
+   iv. Test case: `unassign c=0 i=1`<br>
+   Expected: No candidates unassigned from the first interview of the currently displayed list, invalid index error message shown in feedback box.<br>
+   v. Other incorrect assign commands: `unassign` or any other combination of invalid index for candidates or interview.<br>
+
+####Find An Interview
+
+1. Finding an interview with certain information in HR Manager.<br>
+    i. Test case: `find_i date=11/11/2021`<br>
+    Expected: All interviews that are scheduled on 11th November 2021 will be shown in the filtered interviews list.<br>
+    ii. Test case: `find_i time=2500`<br>
+    Expected: Command does not execute, invalid time error message is shown in feedback box.<br>
+    iii. Other incorrect find interview commands: `find_i`, or any other forms of invalid time.<br>
+
