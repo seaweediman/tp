@@ -20,12 +20,14 @@ Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
 The data you provide will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Purpose
 The purpose of this user guide is to give a complete documentation of HR Manger and allow you to easily get started on HR Manager.
 The user guide is also the easiest way for you to troubleshoot any issues and clarify any questions you have with HR Manager.<br>
 Lets simplify your HR processes!
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## How to use this user guide?
@@ -36,6 +38,7 @@ Alternatively, you can quickly get started using the [Quick Start](#quick-start)
 If you face any issues, you can check the details for each command under the [Features](#features) section.
 There are 4 sections under the Features section: [General Commands](#feature-general-commands), [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## HR Manager User Interface
@@ -656,6 +659,7 @@ If your changes to the data file made its format invalid, HR Manager will discar
 and transfer it to another system's 'data' folder. <br>
 Or better yet, copy the entire `/data` folder and overwrite the data folder of the system you wish to transfer to.
 The transferred save files can then be loaded readily when using this application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
