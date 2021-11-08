@@ -554,3 +554,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+
+### Candidate Management
+
+#### Add a candidate
+
+1. Adding a candidate<br>
+   i. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager.<br><br>
+   ii. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Accountant`<br>
+   Expected: Candidate John Doe is added to HR Manager. Details of the added candidate shown in command feedback box.<br><br>
+
+2. Adding a candidate applying for a position that does not exist in HR Manager.<br>
+   i. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager. There must not be a `Bookkeeper` position.<br><br>
+   ii. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Bookkeeper`<br>
+   Expected: Candidate is not added. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### List all candidates
+
+1. Listing all candidates<br>
+   i. Prerequisite : There must be at least 1 candidate inside HR Manager.<br><br>
+   ii. Test case: `list_c`<br>
+   Expected: All candidates are listed in HR Manager.
+
+#### Delete a candidate
+
+1. Deleting a candidate<br>
+   i. Prerequisite: There must at least 1 candidate inside HR Manager.<br><br>
+   ii. Test case: `delete_c 1`<br>
+   Expected: First candidate in the list is deleted from the list. Details of the deleted candidate shown in the command feedback box.<br><br>
+
+2. Entering an invalid candidate index<br>
+   i.  Prerequisite: There must at least 1 candidate inside HR Manager<br><br>
+   ii. Test case: `delete_c 0`<br>
+   Expected: No candidate is deleted. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+#### Remark a candidate
+
+1. Remarking a candidate<br>
+   i. Prerequisite: There must at least 1 candidate inside HR Manager.<br><br>
+   ii. Test case: `remark_c 1 remark=Great past experiences"<br>
+   Expected: First candidate in the list is given the remark and the remark is displayed together with the candidate's other details. Details of the remarked candidate shown in command feedback box.<br><br>
+
+2. Entering an invalid candidate index<br>
+   i.  Prerequisite: There must at least 1 candidate inside HR Manager<br><br>
+   ii. Test case: `remark_c 0 remark=Great past experiences"<br>
+   Expected: No candidate is remarked. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+#### Edit a candidate
+
+1. Editing a candidate<br>
+   i. Prerequisite: There must be at least 1 candidate inside HR Manager.<br><br>
+   ii. Test case : `edit_c 1 name=Aiken Lee`<br>
+   Expected: First candidate in the list has their name edited to Aiken Lee. Details of the editedd candidate shown in the command feedback box.<br><br>
+
+2. Editing a candidate's position to a position that does not exist in HR Manager.<br>
+   i. Prerequisite: There must not be a `Bookkeeper` position in HR Manager.<br><br>
+   ii. Test case : `edit_c 1 position=Bookkeeper`<br>
+   Expected: Candidate is not edited. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### Find a candidate
+
+1. Finding a candidate<br>
+   i. Prerequisite: There must be an `Accountant` position in HR Manager. There must be at least 1 candidate inside HR Manager that applied for the `Accountant` position.<br><br>
+   ii. Test case : `find_c position=Accountant`<br>
+   Expected: Candidates that applied for the `Accountant` position are listed in the candidates list.<br>
