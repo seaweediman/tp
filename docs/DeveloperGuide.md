@@ -557,6 +557,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ## **Appendix: Instructions for manual testing**
 
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
 ### Position Management
 
 #### Add a position
@@ -628,3 +635,77 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     1. Prerequisite: No position with the title containing the keyword 'Accountant' inside HR Manager.
     2. Test case: `find_p title=Accountant`
     <br>Expected: No position is listed.
+
+### Candidate Management
+
+#### Add a candidate
+
+1. Adding a candidate
+    1. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager.
+    2. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Accountant`
+       <br>Expected: Candidate John Doe is added to HR Manager. Details of the added candidate shown in command feedback box.
+
+2. Adding a candidate applying for a position that does not exist in HR Manager.
+    1. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager. There must not be a `Bookkeeper` position.
+    2. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Bookkeeper`
+       <br>Expected: Candidate is not added. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### List all candidates
+
+1. Listing all candidates
+    1. Prerequisite : There must be at least 1 candidate inside HR Manager.
+    2. Test case: `list_c`
+       <br>Expected: All candidates are listed in HR Manager.
+
+#### Delete a candidate
+
+1. Deleting a candidate
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c 1`
+       <br>Expected: First candidate in the list is deleted from the list. Details of the deleted candidate shown in the command feedback box.
+
+2. Entering an invalid candidate index
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c 0`
+       <br>Expected: No candidate is deleted. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+3. Not entering any candidate index
+    1.  Prerequisite: There must be at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c`
+       <br>Expected: No candidate is deleted. HR Manager states that the command format is invalid.
+
+#### Remark a candidate
+
+1. Remarking a candidate
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `remark_c 1 remark=Great past experiences"
+       <br>Expected: First candidate in the list is given the remark and the remark is displayed together with the candidate's other details. Details of the remarked candidate shown in command feedback box.
+
+2. Entering an invalid candidate index
+    1.  Prerequisite: There must at least 1 candidate inside HR Manager
+    2. Test case: `remark_c 0 remark=Great past experiences"
+       <br>Expected: No candidate is remarked. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+#### Edit a candidate
+
+1. Editing a candidate
+    1. Prerequisite: There must be at least 1 candidate inside HR Manager.
+    2. Test case : `edit_c 1 name=Aiken Lee`
+       <br>Expected: First candidate in the list has their name edited to Aiken Lee. Details of the editedd candidate shown in the command feedback box.
+
+2. Editing a candidate's position to a position that does not exist in HR Manager.
+    1. Prerequisite: There must not be a `Bookkeeper` position in HR Manager.
+    2. Test case : `edit_c 1 position=Bookkeeper`
+       <br>Expected: Candidate is not edited. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### Find candidates
+
+1. Finding candidates
+    1. Prerequisite: There must be an `Accountant` position in HR Manager. There must be at least 1 candidate inside HR Manager that applied for the `Accountant` position.
+    2. Test case : `find_c position=Accountant`
+       <br>Expected: Candidates that applied for the `Accountant` position are listed in the candidates list.
+
+2. Finding candidates with a position not in HR Manager
+    1. Prerequisite: There must be no `Bookkeeper` position in HR Manager.
+    2. Test case: `find_c position=Bookkeeper`
+       <br>Expected: No candidates listed.
