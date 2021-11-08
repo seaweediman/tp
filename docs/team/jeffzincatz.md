@@ -11,9 +11,7 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-### Code contributed
-
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/#breakdown=true&search=jeffzincatz)
+### Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/#breakdown=true&search=jeffzincatz)
 
 ### Enhancement Implemented
 
@@ -36,7 +34,7 @@ Given below are my contributions to the project.
     * Justification: This feature gives the users a comprehensive overview of all the existing interviews for further management.
 
 * **Enhancement: Improves the UI to a 3-panel display**
-  * What it does: Display 3 panels for the lists of candidates, positions, and interviews, at the same time.
+  * What it does: Display 3 panels for all candidates, positions, and interviews, simultaneously.
   * Justification: Compared to the old implementation of 1-panel display, this enables the users to easier view all lists without replacing the previous ones.
 
 * **Enhancement: Applies a new colour scheme for HR Manager**
@@ -46,13 +44,13 @@ Given below are my contributions to the project.
 ### Contribution to Documentations
 
 * User Guide:
-  * Added documentation for the features `position` and its storage
-  * Added the documentation for the following features: `list_c`, `add_p`, `delete_p`, `list_p`, `list_i`.
+  * Added documentation for `position` and its storage
+  * Added documentation for: `list_c`, `add_p`, `delete_p`, `list_p`, `list_i`.
 
 * Developer Guide:
   * Added use cases for features including `list_c`, `delete_c`, `list_p`, `delete_p`, `list_i`, `delete_i`.
-  * Added various user stories for features including `add_p`, `delete_p`, `list_p`.
-  * Added an overview of the implementation of all the find features, such as `list_c`, `list_p` and `list_i`. The section also includes a UML diagram for the sequence diagram of a general find command `list_x`.
+    * Added user stories for features including `add_p`, `delete_p`, `list_p`.
+  * Added the implementation of the find features (`list_c`, `list_p` and `list_i`), including UML diagrams for relevant classes and general find command execution.
 
 ### Contributions to team-based tasks
 
