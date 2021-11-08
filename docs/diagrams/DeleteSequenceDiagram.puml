@@ -4,7 +4,7 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":HrManagerParser" as HrManagerParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCandidateCommandParser LOGIC_COLOR
+participant ":DeleteCandidateCommandParser" as DeleteCandidateCommandParser LOGIC_COLOR
 participant "d:DeleteCandidateCommand" as DeleteCandidateCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -48,7 +48,13 @@ deactivate HrManagerParser
 LogicManager -> DeleteCandidateCommand : execute()
 activate DeleteCandidateCommand
 
-DeleteCandidateCommand -> Model : deletePerson(1)
+DeleteCandidateCommand -> Model : deletePerson(p)
+activate Model
+
+Model --> DeleteCandidateCommand
+deactivate Model
+
+DeleteCandidateCommand -> Model : deletePersonFromInterview(p)
 activate Model
 
 Model --> DeleteCandidateCommand
