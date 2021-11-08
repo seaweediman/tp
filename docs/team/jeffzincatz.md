@@ -32,7 +32,7 @@ Given below are my contributions to the project.
     * Justification: This feature gives the users a comprehensive overview of all the existing interviews for further management.
 
 * **Enhancement: Improves the UI to a 3-panel display**
-  * What it does: Display 3 panels for all candidates, positions, and interviews, simultaneously.
+  * What it does: Display all candidates, positions, and interviews in 3 panels.
   * Justification: Compared to the old implementation of 1-panel display, this enables the users to easier view all lists without replacing the previous ones.
 
 * **Enhancement: Applies a new colour scheme for HR Manager**
