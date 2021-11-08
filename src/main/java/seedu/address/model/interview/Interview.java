@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -203,6 +204,34 @@ public class Interview {
     public void setStatus(InterviewStatus status) {
         requireNonNull(status);
         this.status = status;
+    }
+
+    /**
+     * Checks if another interview has timing overlaps with this interview.
+     * @param other the interview to check against.
+     * @return true if they start at the same time or if one begins before the other ends.
+     */
+    public boolean hasOverLapWith(Interview other) {
+        LocalDateTime toScheduleStart = LocalDateTime.of(other.getDate(), other.getStartTime());
+        LocalDateTime toScheduleEnd = LocalDateTime.of(other.getDate(), other.getEndTime());
+
+        LocalDateTime start = LocalDateTime.of(getDate(), getStartTime());
+        LocalDateTime end = LocalDateTime.of(getDate(), getEndTime());
+
+        if (getStartTime().getHour() > getEndTime().getHour()
+            || (getStartTime().getHour() == getEndTime().getHour() && getDuration().toHours() > 22)) {
+            end = LocalDateTime.of(getDate().plusDays(1), getEndTime());
+        }
+
+        if (other.getStartTime().getHour() > other.getEndTime().getHour()
+                || (other.getStartTime().getHour() == other.getEndTime().getHour()
+                && other.getDuration().toHours() > 22)) {
+            toScheduleEnd = LocalDateTime.of(other.getDate().plusDays(1), getEndTime());
+        }
+
+        return (toScheduleStart.isAfter(start) && toScheduleStart.isBefore(end))
+                || start.isEqual(toScheduleStart)
+                || (start.isAfter(toScheduleStart) && start.isBefore(toScheduleEnd));
     }
 
     @Override

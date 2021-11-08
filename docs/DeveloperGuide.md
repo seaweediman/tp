@@ -554,3 +554,238 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+
+
+## **Appendix: Instructions for manual testing**
+
+Given below are instructions to test the app manually.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+testers are expected to do more *exploratory* testing.
+
+</div>
+
+### Position Management
+
+#### Add a position
+
+1. Adding a position
+    1. Prerequisite: There must not be a position with `title` 'Software Tester' inside HR Manager.
+    2. Test case: `add_p title=Software Tester status=open`
+    <br>Expected: Position Software Tester with open status is added to HR Manager. Details of the added position are shown in command feedback box.
+
+2. Adding a position with a title already existing in HR Manager.
+    1. Prerequisite: There must be a position with `title` 'Software Tester' inside HR Manager.
+    2. Test case: `add_p title=Software Tester`
+    <br>Expected: Position is not added. HR Manager states that `Software Tester` already exists in HR Manager.
+
+#### List all positions
+
+1. Listing all positions
+    1. Prerequisite: There must be at least 1 position inside HR Manager.
+    2. Test case: `list_p`
+       <br>Expected: All positions are listed in HR Manager.
+
+#### Delete a position
+
+1. Deleting a position
+    1. Prerequisite: There must be at least 1 position inside HR Manager.
+    2. Test case: `delete_p 1`
+    <br>Expected: The first position in the list is deleted from the list. Details of the deleted position shown in the command feedback box.
+
+2. Entering an invalid position index
+    1.  Prerequisite: There must be at least 1 position inside HR Manager
+    2. Test case: `delete_p 0`
+    <br>Expected: No position is deleted. HR Manager states that the position index must be a non-zero unsigned integer.
+
+3. Not entering any position index
+    1.  Prerequisite: There must be at least 1 position inside HR Manager
+    2. Test case: `delete_p`
+    <br>Expected: No position is deleted. HR Manager states that the command format is invalid.
+
+#### Edit a position
+
+1. Editing a position's title
+    1. Prerequisite: There must be at least 1 position inside HR Manager.
+    2. Test case: `edit_p 1 title=Librarian`
+    <br>Expected: The first position in the list has its position edited to 'Librarian'. Details of the edited position are shown in the command feedback box.
+
+2. Editing a position's title to one that already exists in HR Manager.
+    1. Prerequisites: There must be a 'Software Tester' position in HR Manager. The first position's title is not 'Software Tester'.
+    2. Test case: `edit_p 1 name=Software Tester`
+    <br>Expected: The position is not edited. HR Manager states that the position already exists in HR Manager.
+
+3. Editing a position's status
+    1. Prerequisite: There must be at least 1 position inside HR Manager.
+    2. Test case: `edit_p 1 status=closed`
+    <br>Expected: The first position in the list has its status edited to 'closed'. Details of the edited position are shown in the command feedback box. Any candidate with this position will have their position removed.
+
+2. Editing a position's status to an invalid one.
+    1. Prerequisite: There must be at least 1 position inside HR Manager.
+    2. Test case: `edit_p 1 status=invalid`
+    <br>Expected: The position is not edited. HR Manager states that the position status can only be open or closed.
+
+#### Find positions
+
+1. Find positions by title
+    1. Prerequisite: At least 1 position with the title containing keyword 'Software' inside HR Manager.
+    2. Test case: `find_p title=Software`
+    <br>Expected: All positions whose title contains 'Software' are listed.
+
+2. Find positions with a title not in HR Manager
+    1. Prerequisite: No position with the title containing the keyword 'Accountant' inside HR Manager.
+    2. Test case: `find_p title=Accountant`
+    <br>Expected: No position is listed.
+
+### Candidate Management
+
+#### Add a candidate
+
+1. Adding a candidate
+    1. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager.
+    2. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Accountant`
+       <br>Expected: Candidate John Doe is added to HR Manager. Details of the added candidate shown in command feedback box.
+
+2. Adding a candidate applying for a position that does not exist in HR Manager.
+    1. Prerequisites : There must not be candidate with `Email` 'johnd@example.com' inside HR Manager. There must be an `Accountant` position in HR Manager. There must not be a `Bookkeeper` position.
+    2. Test case: `add_c name=John Doe phone=98765432 email=johnd@example.com address=311, Clementi Ave 2, #02-25 position=Bookkeeper`
+       <br>Expected: Candidate is not added. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### List all candidates
+
+1. Listing all candidates
+    1. Prerequisite : There must be at least 1 candidate inside HR Manager.
+    2. Test case: `list_c`
+       <br>Expected: All candidates are listed in HR Manager.
+
+#### Delete a candidate
+
+1. Deleting a candidate
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c 1`
+       <br>Expected: First candidate in the list is deleted from the list. Details of the deleted candidate shown in the command feedback box.
+
+2. Entering an invalid candidate index
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c 0`
+       <br>Expected: No candidate is deleted. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+3. Not entering any candidate index
+    1.  Prerequisite: There must be at least 1 candidate inside HR Manager.
+    2. Test case: `delete_c`
+       <br>Expected: No candidate is deleted. HR Manager states that the command format is invalid.
+
+#### Remark a candidate
+
+1. Remarking a candidate
+    1. Prerequisite: There must at least 1 candidate inside HR Manager.
+    2. Test case: `remark_c 1 remark=Great past experiences"
+       <br>Expected: First candidate in the list is given the remark and the remark is displayed together with the candidate's other details. Details of the remarked candidate shown in command feedback box.
+
+2. Entering an invalid candidate index
+    1.  Prerequisite: There must at least 1 candidate inside HR Manager
+    2. Test case: `remark_c 0 remark=Great past experiences"
+       <br>Expected: No candidate is remarked. HR Manager states that the candidate index must be a non-zero unsigned integer.
+
+#### Edit a candidate
+
+1. Editing a candidate
+    1. Prerequisite: There must be at least 1 candidate inside HR Manager.
+    2. Test case : `edit_c 1 name=Aiken Lee`
+       <br>Expected: First candidate in the list has their name edited to Aiken Lee. Details of the editedd candidate shown in the command feedback box.
+
+2. Editing a candidate's position to a position that does not exist in HR Manager.
+    1. Prerequisite: There must not be a `Bookkeeper` position in HR Manager.
+    2. Test case : `edit_c 1 position=Bookkeeper`
+       <br>Expected: Candidate is not edited. HR Manager states that `Bookkeeper` does not exist in HR Manager.
+
+#### Find candidates
+
+1. Finding candidates
+    1. Prerequisite: There must be an `Accountant` position in HR Manager. There must be at least 1 candidate inside HR Manager that applied for the `Accountant` position.
+    2. Test case : `find_c position=Accountant`
+       <br>Expected: Candidates that applied for the `Accountant` position are listed in the candidates list.
+
+2. Finding candidates with a position not in HR Manager
+    1. Prerequisite: There must be no `Bookkeeper` position in HR Manager.
+    2. Test case: `find_c position=Bookkeeper`
+       <br>Expected: No candidates listed.
+   
+### Interview Management
+
+#### Add an Interview
+
+1. Adding an interview with multiple candidates to HR Manager
+   1. Prerequisites:
+   * Position `Bookkeeper` exists in HR Manager and `Accountant` does not. 
+   * No other interview for `Bookkeeper` with the same date, time and duration that already exist in HR Manager.
+   * Current displayed list of candidates has at least 2 entries and the first and second candidates have applied for `Bookkeeper`.
+   2. Test case: `add_i position=Bookkeeper c=1 2 date=17/10/2021 time=1400 duration=120 interviewed=pending`
+   <br>Expected: new interview for `Bookkeeper` on `17 Oct 2021`, `1400 ~ 1600` with status `PENDING`, with first and second candidates from the current displayed list of candidates is added to the bottom of the list of interviews.
+   3. Test case: `add_i`
+   <br>Expected: no interview added, error message with sample input shown in feedback box.
+   4. Other incorrect add interview commands to try: `add_i ... date=<DATE>` where `DATE` is not a valid day in DD/MM/YYYY form, 
+   or any other combination of invalid fields in any form.
+   <br>Expected: no interview added, error message corresponding to the first encountered invalid field shown in feedback box.
+    
+#### List All Interviews
+
+1. Listing all interviews in HR Manager
+    1. Test case: `list_i`
+    <br>Expected: If filtered list of interviews was displayed previously, the complete list of interviews is rendered. Otherwise, the interview list is re-rendered. This command should not fail if typed correctly. 
+    
+#### Delete An Interview
+
+1. Deleting an interview from HR Manager
+    1. Prerequisites: Current displayed list of interviews is not empty.
+    2. Test case: `delete_i 1`
+    <br>Expected: First interview from the current displayed list of interviews is deleted from HR Manager.
+    3. Test case: `delete_i 0`
+    <br>Expected: No interview deleted, error message and sample input shown in feedback box.
+    4. Other incorrect delete interview commands: `delete_i`, `delete_i one`
+    <br>Expected: No interview deleted, error message and sample input shown in feedback box.
+
+#### Edit An Interview
+
+1. Editing an interview in HR Manager
+   1. Prerequisites: Current displayed list of interviews is not empty.
+   2. Test case: `edit_i 1 date=11/11/2021`
+   <br>Expected: First interview from the current displayed list of interviews has its date set to 11th November 2021.
+   3. Test case: `edit_i 0 date=12/11/2021`
+   <br>Expected: No interview edited, error message and sample input shown in feedback box.
+   4. Other incorrect edit interview commands: `edit_i`, `edit_i 1 time=twenty`or any other combination of invalid fields in any form.
+   <br>Expected: No interview edited, error message corresponding to the first encountered invalid field shown in feedback box.
+
+#### Assign An Interview
+
+1. Assigning multiple candidates to an interview in HR Manager.
+   1. Prerequisites: Current displayed lists of interviews and candidates are not empty and the first two candidates have applied for the position that the first interview is for.
+   2. Test case: `assign c=1 2 i=1`
+   <br>Expected: First and second candidates is assigned to the first interview.
+   3. Test case: `assign c=0 2 i=1`
+   <br>Expected: No candidate is assigned to the first interview, invalid index error message shown in feedback box.
+   4. Other incorrect assign commands: `assign` or any other combination of invalid index for candidates or interview.
+   <br>Expected: No candidate assigned to any interview, error message corresponding to the first encountered invalid field shown in feedback box.
+      
+#### Unassign Candidates
+
+1. Unassigning multiple candidates from an interview in HR Manager
+   1. Prerequisites: Current displayed lists of interviews and candidates are not empty and the first two candidates have been assigned to the first interview.
+   2. Test case: `unassign c=1 2 i=1`
+   <br>Expected: First and second candidates is unassigned from the first interview.
+   3. Test case: `unassign c=0 1 i=1`
+   <br>Expected: No candidates unassigned from the first interview, invalid index error message shown in feedback box.
+   4. Other incorrect unassign commands: `unassign` or any other combination of invalid index for candidates or interview.
+   <br>Expected: No candidates unassigned from any interview, error message corresponding to the first encountered invalid field shown in feedback box.
+    
+#### Find An Interview
+
+1. Finding an interview with certain information in HR Manager.
+    1. Test case: `find_i date=11/11/2021`
+    <br>Expected: All interviews that are scheduled on 11th November 2021 will be shown in the filtered interviews list.
+    2. Test case: `find_i time=2500`
+    <br>Expected: Command does not execute, invalid time error message is shown in feedback box.
+    3. Other incorrect find interview commands: `find_i`, or any other forms of invalid time.
+    <br>Expected: Command does not execute, error message corresponding to the first encountered invalid field shown in feedback box.
+
+
