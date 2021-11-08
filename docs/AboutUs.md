@@ -30,7 +30,7 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/sueann-chua)] [[portfolio](team/sueann-chua.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * Edit and Assign commands (`edit_p`, `edit_i` and `assign`)
     * Proofreading changes to UG and DG
 
@@ -69,6 +69,6 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/angnobel)] [[portfolio](team/angnobel.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
     * Handle Github issues and milestones
     * `find_x` command, documentation and tests
