@@ -36,6 +36,14 @@ Given below are my contributions to the project.
   * Highlights : This required changing the constructor of `CommandResult` to take in an enum `CommandType`. In `MainWindow`, new methods were created to handle updating specific lists for different types of commands. <br>
     e.g If the command is of `CommandType` `POSITION`, `MainWindow::handleP()` is called to update all 3 lists.
   * Refer to [Issue #219](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/219) and [PR #232](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/232) for more details.
+
+* **Enhancements: Updated `add_c` and `edit_c` so that it throws an error when a closed `Position` is inputted.**
+  * Before, you could use `add_c` to add a candidate who is applying for a closed position in the company. Similarly, you could use `edit_c` to edit a candidate to apply for a closed position in the company.
+  * Refer to [Issue #79](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/79) and [PR #97](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/97) for more details.
+
+* **Enhancements: Updated commands that take in position such that regardless of what the user inputs, the position that is stored in the candidate or interview object has the same naming convention as the one in the position list.**
+  * Before, `BOOKKEEPER` and `Bookkeeper` did not refer to the same position, making it possible to have both of them in the app at the same time. With this change, they both refer to the same position.
+  * Refer to [Issue #206](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/206) and [PR #235](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/235) for more details.
   
 **Contributions to team-based tasks** 
 * Integrated Java CI into the team repository
