@@ -11,30 +11,24 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-### 1. Code contributed
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+### 1. Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
 ### 2. Enhancements implemented
 * **New Feature**: Added the ability to remark candidates. `remark_c`
-  * This feature allows user to give remarks to a specific candidate. The remark is then displayed together with the 
-  candidate's other information. This enables users to give comments to noteworthy candidates.
+  * This feature allows user to give remarks to a specific candidate, allowing users to give comments to noteworthy candidates.
 
 * **New Feature**: Added the ability to add job positions. `add_p`
-  * This feature allows user to add job positions that just opened in the company hence enabling them to keep track 
-  of the positions in the company.
+  * This feature allows users to add job positions into HR Manager, allowing them to keep track of positions in a company.
   * Highlights : The implementation of this feature required extensive knowledge on how the `add` feature in AB3 was implemented and to adapt it into `add_p`. 
-    The implementation was difficult as it required adding more classes such as a new `Position` class and its respective components such as `Title`.
+    Adding more classes such as a new `Position` class and its respective components such as `Title` was also required.
 
 * **New Feature**: Added the ability to delete interviews. `delete_i`
-  * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from 
-  HR Manager to reduce clutter.
+  * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from HR Manager to reduce clutter.
   * Highlights : The implementation of this feature required a good understanding on the relationship between candidates and interviews. For example, when deleting an interview, HR Manager needs to check which candidate was scheduled that interview, and delete the interview from the candidate object.
 
 * **New Feature**: Added the ability to 'unassign' candidates from a specific interview. `unassign`
-  * Since the edit_i feature does not allow for users to edit the candidates assigned to the interview, this feature
-    was added such that users might be able to 'unassign' candidates to a scheduled interview. This command was created
-    to simplify the process of 'unassigning' a candidate to an interview.
-  * Highlights : The implementation of this feature needed to take into account 2 cases: When the user inputs `*` and when the user inputs any candidate index. When the user inputs `unassign i=1 c=*`, HR Manager unassigns all candidates from the 1st interview in the list.
+  * This feature was added such that users can remove candidates from a specific scheduled interview using candidate indexes.
+  * Highlights : This feature considers 2 cases: When the user inputs any candidate index and when the user inputs `*`. Entering `*` removes all candidates from an interview.
 
 * **Enhancements: Updated `add_c` and `edit_c` so that it throws an error when a closed `Position` is inputted.**
   * Before, you could use `add_c` to add a candidate who is applying for a closed position in the company. Similarly, you could use `edit_c` to edit a candidate to apply for a closed position in the company.
@@ -60,10 +54,8 @@ Given below are my contributions to the project.
 * Integrated Java CI into the team repository
 * Separated candidate, position, interview classes into separate packages
 * Helped setup github pages for the team repository
-* Updated the sample data in HR Manager. Refer to [PR #123](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/123) for details.
-* Updated index.md to change AB3 references to HR Manager references.
+* Updated index.md to change all AB3 references to HR Manager references.
 * Often helped teammates in resolving bugs
-* Often helped in reviewing teammates' PR
 
 ### 4. Review contributions
 * Reported bugs and suggestions for other teams in the class
@@ -71,8 +63,7 @@ Given below are my contributions to the project.
   * [Full list of PRs reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aseaweediman)
 
 ### 5. Contributions to the UG
-* Added the documentation for the following features: `remark_c`, `add_p`, `delete_i`, `unassign`
-* Updated setup instructions
+* Added the documentation for the following features: `remark_c`, `add_p`, `delete_i`, `unassign`.
 
 ### 6. Contributions to the DG
 * Added a section for add features which provides an overview of the implementation of all the add features, such as
