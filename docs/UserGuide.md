@@ -35,6 +35,23 @@ If you face any issues, you can check the details for each command under the [Fe
 There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
 
+### HR Manager User Interface
+Before going into the features, you may want to familiarise yourself with the user interface. 
+HR Manager has a simple user interface that consists of 6 main components, which are shown in the image below. 
+<br>
+
+![UserInterface](images/UserInterface.png)
+
+#### Table of components of HR Manager's user interface, with reference to the image above
+
+| No. | Component | Description |
+| -------- | ------------------ | ------------------ |
+| **1** | Tool Bar | Provides easy access to Exit and Help functions. |
+| **2** | Command Input Box | This is where you would type in the commands in HR Manager. |
+| **3** | Command Feedback Box | This is where feedback will be displayed after HR Manager receives your command input. |
+| **4** | Candidate List | This is where all the candidates stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
+| **5** | Position List | This is where all the job positions stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
+| **6** | Interview List | This is where all the interviews stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
 
 --------------------------------------------------------------------------------------------------------------------
 
