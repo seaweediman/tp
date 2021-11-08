@@ -22,11 +22,11 @@ HR Manager is built on Java and can be run on all major desktop operating system
 --------------------------------------------------------------------------------------------------------------------
 ## **Purpose** ##
 
-The purpose of this guide is to provide a comprehensive documentation of the design and overview of the application for developers to quickly onboard and develop the applciation.
+The purpose of this guide is to provide a comprehensive documentation of the design and overview of the application for developers to quickly onboard and develop the application.
 
-You can read the entire guide from teh start, which will give you a complete view of the structure of HR Manager.
+You can read the entire guide from the start, which will give you a complete view of the structure of HR Manager.
 
-Alternatively, you can quickly get started by through the [Setting Up](setting-up-getting-started) and [Design](design) to get a overview of the application.
+Alternatively, you can quickly get started by reading through the [Setting Up](setting-up-getting-started) and [Design](design) sections to get a overview of the application.
 You can then read the [Feature Implementation](feature-implementation) for more details of specific features.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -132,8 +132,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 ![ParserClasses](images/ParserClasses.png)
 
 How the parsing works:
-* When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns back as a `Command` object.
-    * Most significantly, the ArgumentTokeniser is used to parse the arguments using the provided prefixes to retrieve the inputs from the user
+* When called upon to parse a user command, the `HrManagerParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCandidateCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCandidateCommand`) which the `HrManagerParser` returns as a `Command` object.
+    * Most significantly, the ArgumentTokenizer is used to parse the arguments using the provided prefixes to retrieve the inputs from the user
 * All `XYZCommandParser` classes (e.g., `AddCandidateCommandParser`, `DeletePositionCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -150,9 +150,9 @@ The `Model` component,
   * all `Person` objects (which are contained in a `UniquePersonList` object).
   * all `Position` objects (which are contained in a `UniquePositionList` object).
   * all `Interview` objects (which are contained in a `UniqueInterviewList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'
-* stores the currently 'selected' `Position` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Position>` that can be 'observed'
-* stores the currently 'selected' `Interview` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Interview>` that can be 'observed'
+* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed'.
+* stores the currently 'selected' `Position` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Position>` that can be 'observed'.
+* stores the currently 'selected' `Interview` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Interview>` that can be 'observed'.
 >To be 'observed' means that the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
@@ -166,7 +166,7 @@ The `Model` component,
 The `Storage` component,
 * can save both HR Manager data and user preference data in json format, and read them back into corresponding objects.
 * inherits from both `HrManagerStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
-* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
+* depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Common classes
 
@@ -188,14 +188,14 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 ### **Find Commands** ###
 
 The `find_c`, `find_p` and `find_i` command allows users to search for candidates, positions and interviews using their parameters.
-Generally, they are called `find_x` in this section
+Generally, they are called `find_x` in this section.
 
-The class structure of an execution of `find_x` command is as follows. Only important classes are shown
+The class structure of an execution of `find_x` command is as follows. Only important classes are shown.
 ![Structure of the find_x command](images/FindClassDiagram.png)
 
 The `FindXCommandPredicate` holds the parsed arguments from the command and a `test` method to check if X fufils the condition
 
-The sequence diagram of a `find_x` command execution is as follows
+The sequence diagram of a `find_x` command execution is as follows:
 
 Firstly, the parsing of the command and argument occurs as follows
 ![Parse_sequence_of_find_x](images/FindParseSequenceDiagram.png)
@@ -217,15 +217,15 @@ Aspect: Logical operators and combinations for find fields
 ### **List Commands** ###
 
 The `list_c`, `list_p` and `list_i` command allows users to list all candidates, positions and interviews in the respective display panel.
-Generally, they are called `list_x` in this section
+Generally, they are called `list_x` in this section.
 
-The class structure of an execution of `list_x` command is as follows. Only important classes are shown
+The class structure of an execution of `list_x` command is as follows. Only important classes are shown.
 
 ![Structure of the list_x command](images/ListClassDiagram.png)
 
 The `ListXCommandPredicate` uses the preset predicate such that all X fulfills the condition.
 
-The sequence diagram of a `list_x` command execution is as follows
+The sequence diagram of a `list_x` command execution is as follows:
 
 Firstly, the parsing of the command and argument occurs as follows
 
@@ -242,9 +242,9 @@ or interview in the respective display panel.
 
 Generally, they are called `edit_x` in this section.
 
-The edit mechanism is facilitated by `editXDescriptor`, where X is the object to be edited, for example
+The edit mechanism is facilitated by `editXDescriptor`, where X is the placeholder for the object to be edited, for example
 `editPersonDescriptor` for editing candidates, `editPositionDescriptor` for editing positions, and
-`editinterviewDescriptor` for editing interviews, and each non-empty field value will replace the corresponding
+`editInterviewDescriptor` for editing interviews, and each non-empty field value will replace the corresponding
 field value of the object that is being edited. `editXDescriptor` stores the details to edit the candidate,
 position or interview with. `editXCommand` extends `Command` and implements the
 `Command#execute()` operation, which executes the command and returns a result message to be displayed.
@@ -326,29 +326,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user       | be able to add a remark/status to a candidate | make it more visible for the next course of administrative action|
 | `* * *`  | user       | be able to edit comments of a candidate | update any further remarks for them|
 | `* * *`  | user       | be able to delete comments of a candidate | remove mistakenly put remarks entirely |
-| ` * * `  | user preparing interviews | be reminded what interviews I have the next day | not forget about them |
-| ` * * `  | user preparing interviews | be able to reschedule the interview session for a candidate | |
-| `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
-| ` * * `  | user preparing interviews | be able to schedule a new interview for a candidate | recruit more members |
-| ` * * `  | user preparing interviews | be able to delete all other scheduled interview sessions for a particular candidate once I decide to assign him a particular post | |
-| `* * *`  | user preparing interviews | be able to view all candidates who will be interviewed on a particular date | keep track of the interviews planned for that day |
-| ` * * `  | user preparing interviews | be able to delete the interview sessions on a particular date | |
-| `  *  `  | user preparing interviews | add a co-interviewer to an interview | I know who I will be interviewing the candidate with |
-| ` * * `  | user after interviews | be able to mark a candidate as ‘Interviewed’ | |
-| `* * *`  | user after interviews | be able to tag a candidate e.g. by the position they are applying for | group them according to the tags |
-| `* * *`  | user       | want to be able to edit existing tags of a candidate | |
+| `* * *`  | user       | be able to edit existing tags of a candidate | |
 | `* * *`  | user       | be able to remove existing tags of a candidate | |
-| ` * * `  | user searching for candidates | be able to filter the candidates for some specific requirements | find the right person for the post more efficiently |
-| `* * *`  | user searching for candidates | be able to search for candidates who have a certain remark/description | find candidates by criteria |
-| ` * * `  | user searching for candidates |  be able to search who applied for certain positions |  I know all the candidates for that specific position |
-| ` * * `  | user preparing interviews | search what interviews I have for a particular date | better prepare for that day |
-| ` * * `  | user       | see all the candidates scheduled for interview sessions for a particular job posting | |
 | `* * *`  | user       | be able to search for a particular candidate to see his/her upcoming sessions | |
-| `  *  `  | user       | be able to password lock the application to prevent unauthorised access | |
-| `  *  `  | user       | encrypt the save file | prevent my data from being easily stolen |
+| `* * *`  | user searching for candidates | be able to search for candidates who have a certain remark/description | find candidates by criteria |
 | `* * *`  | user       | be able to add a job position with its job title |                  |
 | `* * *`  | user       | be able to delete a job position | remove the job posting if it was no longer open |
 | `* * *`  | user       | be able to see all posted job positions | |
+| `* * *`  | user preparing interviews | be able to delete an interview session for a candidate if it no longer takes place | |
+| `* * *`  | user preparing interviews | be able to view all candidates who will be interviewed on a particular date | keep track of the interviews planned for that day |
+| `* * *`  | user after interviews | be able to tag a candidate e.g. by the position they are applying for | group them according to the tags |
+| `* *`  | user       | see all the candidates scheduled for interview sessions for a particular job posting | |
+| `* *`  | user searching for candidates | be able to filter the candidates for some specific requirements | find the right person for the post more efficiently |
+| `* *`  | user searching for candidates |  be able to search who applied for certain positions |  I know all the candidates for that specific position |
+| `* *`  | user after interviews | be able to mark a candidate as ‘Interviewed’ | |
+| `* *`  | user preparing interviews | be able to schedule a new interview for a candidate | recruit more talent |
+| `* *`  | user preparing interviews | be able to delete all other scheduled interview sessions for a particular candidate once I decide to assign him a particular post | |
+| `* *`  | user preparing interviews | be reminded of what interviews I have the next day | keep track of them |
+| `* *`  | user preparing interviews | be able to reschedule the interview session for a candidate | so that I can keep up with changes coming from the candidate's end |
+| `* *`  | user preparing interviews | be able to delete the interview sessions on a particular date | |
+| `* *`  | user preparing interviews | search what interviews I have for a particular date | better prepare for that day |
+| `*`  | user preparing interviews | add a co-interviewer to an interview | I know who I will be interviewing the candidate with |
+| `*`  | user       | be able to password lock the application to prevent unauthorised access | |
+| `*`  | user       | encrypt the save file | prevent my data from being easily stolen |
 
 ### Use cases
 
@@ -382,8 +382,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User requests to list all candidates
-2. HR Manager shows a list of all candidates
+1. User requests to list all candidates.
+2. HR Manager shows a list of all candidates.
 
    Use case ends.
 
@@ -480,7 +480,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 4. HR Manager adds interview.
 5. User can see the added job position.
 
-   Use case ends
+   Use case ends.
 
 **Extensions**
 
