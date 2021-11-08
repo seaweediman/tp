@@ -11,9 +11,10 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-### 1. Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
+* Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
-### 2. Enhancements implemented
+**Enhancements implemented**
+
 * **New Feature**: Added the ability to remark candidates. `remark_c`
   * This feature allows user to give remarks to a specific candidate, allowing users to give comments to noteworthy candidates.
 
@@ -50,22 +51,23 @@ Given below are my contributions to the project.
   * Before, `BOOKKEEPER` and `Bookkeeper` did not refer to the same position, making it possible to have both of them in the app at the same time. With this change, they both refer to the same position.
   * Refer to [Issue #206](https://github.com/AY2122S1-CS2103T-W13-1/tp/issues/206) and [PR #235](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/235) for more details.
   
-### 3. Contributions to team-based tasks
+**Contributions to team-based tasks** 
 * Integrated Java CI into the team repository
 * Separated candidate, position, interview classes into separate packages
 * Helped setup github pages for the team repository
 * Updated index.md to change all AB3 references to HR Manager references.
 * Often helped teammates in resolving bugs
 
-### 4. Review contributions
+**Review contributions**
+
 * Reported bugs and suggestions for other teams in the class
   * [Full list of bugs and suggestions for other teams](https://github.com/seaweediman/ped/issues/)
   * [Full list of PRs reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aseaweediman)
 
-### 5. Contributions to the UG
+**Contributions to the UG**
 * Added the documentation for the following features: `remark_c`, `add_p`, `delete_i`, `unassign`.
 
-### 6. Contributions to the DG
+**Contributions to the DG**
 * Added a section for add features which provides an overview of the implementation of all the add features, such as
   `add_c`, `add_p` and `add_i`. The section also includes a UML diagram for the sequence diagram of the add
   position command `add_p`. Refer to [PR #259](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/259)
