@@ -55,7 +55,12 @@ You can reach us at the email `[GROUP_EMAIL]@comp.nus.edu.sg`
 [[github](http://github.com/wanyu-l)] [[portfolio](team/wanyu-l.md)]
 
 * Role: Developer
-* Responsibilities: WIP
+* Responsibilities:
+  * Draft Position Model
+  * Changes to Storage Component
+  * Delete position command (`delete_p`)
+  * Add interview command (`add_i`)
+  * Code tests
 
 ### Nobel Ang
 
