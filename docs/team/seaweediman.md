@@ -13,23 +13,17 @@ Given below are my contributions to the project.
 
 * Code contributed: [RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=seaweed&sort=groupTitle&sortWithin=title&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=true&checkedFileTypes=docs~functional-code~test-code~other&since=2021-09-17&tabOpen=true&tabType=authorship&tabAuthor=seaweediman&tabRepo=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&authorshipIsMergeGroup=false&authorshipFileTypes=docs~functional-code~test-code&authorshipIsBinaryFileTypeChecked=false)
 
-**Enhancements implemented**
-
 * **New Feature**: Added the ability to remark candidates. `remark_c`
   * This feature allows user to give remarks to a specific candidate, allowing users to give comments to noteworthy candidates.
 
 * **New Feature**: Added the ability to add job positions. `add_p`
   * This feature allows users to add job positions into HR Manager, allowing them to keep track of positions in a company.
-  * Highlights : The implementation of this feature required extensive knowledge on how the `add` feature in AB3 was implemented and to adapt it into `add_p`. 
-    Adding more classes such as a new `Position` class and its respective components such as `Title` was also required.
 
 * **New Feature**: Added the ability to delete interviews. `delete_i`
   * This feature allows user to delete interviews from HR Manager, enabling them delete unwanted interviews from HR Manager to reduce clutter.
-  * Highlights : The implementation of this feature required a good understanding on the relationship between candidates and interviews. For example, when deleting an interview, HR Manager needs to check which candidate was scheduled that interview, and delete the interview from the candidate object.
 
 * **New Feature**: Added the ability to 'unassign' candidates from a specific interview. `unassign`
   * This feature was added such that users can remove candidates from a specific scheduled interview using candidate indexes.
-  * Highlights : This feature considers 2 cases: When the user inputs any candidate index and when the user inputs `*`. Entering `*` removes all candidates from an interview.
 
 * **Enhancements: Updated `add_c` and `edit_c` so that it throws an error when a closed `Position` is inputted.**
   * Before, you could use `add_c` to add a candidate who is applying for a closed position in the company. Similarly, you could use `edit_c` to edit a candidate to apply for a closed position in the company.
@@ -56,13 +50,10 @@ Given below are my contributions to the project.
 * Separated candidate, position, interview classes into separate packages
 * Helped setup github pages for the team repository
 * Updated index.md to change all AB3 references to HR Manager references.
-* Often helped teammates in resolving bugs
 
 **Review contributions**
-
-* Reported bugs and suggestions for other teams in the class
-  * [Full list of bugs and suggestions for other teams](https://github.com/seaweediman/ped/issues/)
-  * [Full list of PRs reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aseaweediman)
+* [Full list of bugs and suggestions for other teams](https://github.com/seaweediman/ped/issues/)
+* [Full list of PRs reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Aseaweediman)
 
 **Contributions to the UG**
 * Added the documentation for the following features: `remark_c`, `add_p`, `delete_i`, `unassign`.
@@ -71,6 +62,4 @@ Given below are my contributions to the project.
 * Added a section for add features which provides an overview of the implementation of all the add features, such as
   `add_c`, `add_p` and `add_i`. The section also includes a UML diagram for the sequence diagram of the add
   position command `add_p`. Refer to [PR #259](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/259)
-* Updated class diagram for Model and UI Component. Refer to [PR #281](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/281) for more details.
-* Updated class diagram for Logic Component. Refer to [PR #301](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/301) for more details.
-
+* Updated class diagram for Model, Logic and UI Component. Refer to [PR #281](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/281) and [PR #301](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/301) for more details.
