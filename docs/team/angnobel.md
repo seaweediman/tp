@@ -28,7 +28,7 @@ Given below are my contributions to the project.
     * What it does: Similar to the `find_c` command, searches for interviews that fulfills the keywords supplied for each field. The time field is specially handled to find interviews that occur during the time provided.
     * Justification: Allows the user to handle many interviews and search for interviews that are occuring at a specific date/time.
 
-* **Enchancement: status attribute for candidates**
+* **Enhancement: status attribute for candidates**
     * Add a Status enum for candidates to tag the candidate with their status in the hiring pipeline
     * Modified all exisiting commands (add, edit, find) and the GUI to handle and display the data
 
@@ -38,29 +38,26 @@ Given below are my contributions to the project.
 * **Various Bugfixes**
   * Fixed small bugs, the non-exhaustive list below 
       * Clear command returns Address book has been cleared
-      * Position status not accepting case-insensetive inputs
-      * Additional | showing up for interview candidates
+      * Position status not accepting case-insensitive inputs
 
-### Contributions to the UG
+#### Contributions to the UG
 * Added initial documentation of storage (for candidates)
 * Added purpose of UG and *How to use this user guide section*
 * Added *Table of Inputs* for position and interviews
 * Added details and examples for `find_c`, `find_p` and `find_i` commands
-* Added reminders to the 3 sections regarding the *Table of Inputs*
 
-### Contributions to the DG
+#### Contributions to the DG
 * Added use case for adding new candidate
 * Added introduction and purpose of DG
 * Added specific details of the `find_x` commands with class diagram, sequence diagram and design consideration for the logical combination within and across fields
 
-### Contributions to team-based tasks
+#### Contributions to team-based tasks
 * Facilitated weekly meetings by setting agenda and distribution of work
 * Handled the creation and management of issues and milestones
 * Filtered and tagged bugs after Mock PE
 
-### Review contributions
+#### Review contributions
 * Non-exhaustive list of some PRs reviewed:
-    * [PR #276](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/276)
     * [PR #258](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/258)
     * [PR #156](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/156)
     * [PR #146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
