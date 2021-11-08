@@ -30,7 +30,7 @@ Lets simplify your HR processes!
 This user guide is a complete guide for all commands and features for HR Manager.
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
-Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
+Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).
 If you face any issues, you can check the details for each command under the [Features](#features) section.
 There are 4 sections under the Features section: [General Commands](#feature-general-commands), [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
@@ -158,7 +158,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 All commands below are subjected to these restrictions except `find_p`
 
-> Refer to the [Notes about the command format](#Features) for the details on the command format
+> Refer to the [Notes about the command format](#features) for the details on the command format
 
 #### <u>Add a position:</u> `add_p`
 
