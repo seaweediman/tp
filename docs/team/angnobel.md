@@ -56,8 +56,4 @@ Given below are my contributions to the project.
 * Filtered and tagged bugs after Mock PE
 
 #### Review contributions
-* Non-exhaustive list of some PRs reviewed:
-    * [PR #258](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/258)
-    * [PR #156](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/156)
-    * [PR #146](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/146)
-    * [PR #142](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/142)
+* Full list of [PR Reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+reviewed-by%3Aangnobel)
