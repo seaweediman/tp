@@ -7,7 +7,7 @@ title: Mohamed Noriman's Project Portfolio Page
 
 HR Manager is a candidate and interview management application used for helping HR Managers of small organisations
 or businesses in managing candidates, job positions and interviews all in one application.
-The user interacts with it using a CLI, and it has a GUI created with JavaFX. It is written in Java.
+The user interacts with it using a CLI, and it has a GUI created with JavaFX.
 
 Given below are my contributions to the project.
 
@@ -59,7 +59,6 @@ Given below are my contributions to the project.
 * Added the documentation for the following features: `remark_c`, `add_p`, `delete_i`, `unassign`.
 
 **Contributions to the DG**
-* Added a section for add features which provides an overview of the implementation of all the add features, such as
-  `add_c`, `add_p` and `add_i`. The section also includes a UML diagram for the sequence diagram of the add
+* Added a section for add features which provides an overview of the implementation of all the add commands. The section also includes a UML diagram for the sequence diagram of the add
   position command `add_p`. Refer to [PR #259](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/259)
 * Updated class diagram for Model, Logic and UI Component. Refer to [PR #281](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/281) and [PR #301](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/301) for more details.
