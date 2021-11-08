@@ -20,21 +20,41 @@ Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
 The data you provide will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
+--------------------------------------------------------------------------------------------------------------------
 
-### Purpose
+## Purpose
 The purpose of this user guide is to give a complete documentation of HR Manger and allow you to easily get started on HR Manager.
 The user guide is also the easiest way for you to troubleshoot any issues and clarify any questions you have with HR Manager.<br>
 Lets simplify your HR processes!
+--------------------------------------------------------------------------------------------------------------------
 
-### How to use this user guide?
+## How to use this user guide?
 This user guide is a complete guide for all commands and features for HR Manager.
 You can read the whole guide for a comprehensive understanding of the application.
 <br><br>
-Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
+Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).
 If you face any issues, you can check the details for each command under the [Features](#features) section.
-There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
+There are 4 sections under the Features section: [General Commands](#feature-general-commands), [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
+--------------------------------------------------------------------------------------------------------------------
 
+## HR Manager User Interface
+Before going into the features, you may want to familiarise yourself with the user interface. 
+HR Manager has a simple user interface that consists of 6 main components, which are shown in the image below. 
+<br>
+
+![UserInterface](images/UserInterface.png)
+
+#### Table of components of HR Manager's user interface, with reference to the image above
+
+| No. | Component | Description |
+| -------- | ------------------ | ------------------ |
+| **1** | Tool Bar | Provides easy access to Exit and Help functions. |
+| **2** | Command Input Box | This is where you would type in the commands in HR Manager. |
+| **3** | Command Feedback Box | This is where feedback will be displayed after HR Manager receives your command input. |
+| **4** | Candidate List | This is where all the candidates stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
+| **5** | Position List | This is where all the job positions stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
+| **6** | Interview List | This is where all the interviews stored in HR Manager will be displayed. The list can be filtered by using the relevant commands. |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -71,7 +91,6 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 * Refer to [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## Features
 <div markdown="block" class="alert alert-info">
 
@@ -97,6 +116,34 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 </div>
 
+### Feature: General Commands
+
+#### Viewing help : `help`
+
+Shows a message explaining how to access the user guide.
+
+![help message](images/helpMessage.png)
+
+<u>Format:</u> 
+
+`help`
+
+#### Clearing all entries : `clear`
+
+Clears all entries from HR Manager
+
+<u>Format:</u> 
+
+`clear`
+
+#### Exiting the program : `exit`
+
+Exits the program.
+
+<u>Format:</u> 
+
+`exit`
+
 ### Feature: Job Position Management
 
 
@@ -113,7 +160,7 @@ Manage a list of job positions posted by your company, with the simple instructi
 
 All commands below are subjected to these restrictions except `find_p`
 
-> Refer to the [Notes about the command format](#Features) for the details on the command format
+> Refer to the [Notes about the command format](#features) for the details on the command format
 
 #### <u>Add a position:</u> `add_p`
 
@@ -598,6 +645,7 @@ In general, modifying stored data directly is strongly discouraged.
 If your changes to the data file made its format invalid, HR Manager will discard all stored data and start with an empty data file at the next run.
 </div>
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## FAQs
 **Q**: When will my data be saved? <br>
@@ -608,11 +656,15 @@ If your changes to the data file made its format invalid, HR Manager will discar
 and transfer it to another system's 'data' folder. <br>
 Or better yet, copy the entire `/data` folder and overwrite the data folder of the system you wish to transfer to.
 The transferred save files can then be loaded readily when using this application.
+--------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 | Action | Format, Examples | Expected result |
 | -------- | ------------------ | ------------------ |
+| **Help** | `help` | Opened help window. |
+| **Clear** | `clear` | HR Manager has been cleared! |
+| **Exit** | `exit` | HR Manager exits |
 | **Add position** | `add_p title=<TITLE>` <br><br> e.g., `add_p title=Software engineer` | New position added: <br> [Software engineer] |
 | **List all positions** | `list_p` | Listed all positions |
 | **Delete position** | `delete_p <INDEX>` <br><br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
