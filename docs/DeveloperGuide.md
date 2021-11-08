@@ -352,8 +352,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
-
 #### <u>Use case: UC01 - Add a candidate</u>
 
 **MSS**
