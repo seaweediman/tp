@@ -80,6 +80,7 @@ Given below are my contributions to the project.
   position command `add_p`. Refer to [PR #259](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/259)
 * Updated class diagram for Model Component. Refer to [PR #281](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/281) for more details.
 * Updated class diagram for Ui Component. Refer to [PR #281](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/281) for more details.
+* Updated class diagram for Logic Component. Refer to [PR #301](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/301) for more details.
 
 ### 5. Contributions to team-based tasks
 * Integrated Java CI into the team repository
