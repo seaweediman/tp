@@ -593,19 +593,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 4. Incorrect Add Interview Commands<br>
    i. Prerequisites: `Accountant` does not exist in HR Manager but `Bookkeeper` does.
-   i. Test case: `add_i`<br>
+   ii. Test case: `add_i`<br>
    Expected: no interview added, error message with sample input shown in feedback box.<br>
-   ii. Test case: `add_i position=Accountant date=21/10/2021 time=1400 duration=120` where `Accountant` does not exist in HR Manager.<br>
+   iii. Test case: `add_i position=Accountant date=21/10/2021 time=1400 duration=120` where `Accountant` does not exist in HR Manager.<br>
    Expected: no interview added, position not found error message shown in feedback box.<br>
-   iii. Test case: `add_i position=Bookkeeper c=0 date=21/10/2021 time=1400 duration=120`<br>
+   iv. Test case: `add_i position=Bookkeeper c=0 date=21/10/2021 time=1400 duration=120`<br>
    Expected: no interview added, invalid index error message shown in feedback box. <br>
-   iv. Test case: `add_i position=Bookkeeper date=32/10/2021 time=1400 duration=120`<br>
+   v. Test case: `add_i position=Bookkeeper date=32/10/2021 time=1400 duration=120`<br>
    Expected: no interview added, invalid date error message shown in feedback box. <br>
-   v. Test case:`add_i position=Bookkeeper date=21/10/2021 time=2500 duration=120`<br>
+   vi. Test case:`add_i position=Bookkeeper date=21/10/2021 time=2500 duration=120`<br>
    Expected: no interview added, invalid time error message shown in feedback box.<br>
-   vi. Test case:`add_i position=Bookkeeper date=21/10/2021 time=1400 duration=2 hours`<br>
+   vii. Test case:`add_i position=Bookkeeper date=21/10/2021 time=1400 duration=2 hours`<br>
    Expected: no interview added, invalid duration error message shown in feedback box.<br>
-   vii. Other incorrect add interview commands to try: `add_i ... date=<DATE>` where `DATE` is not a valid day in DD/MM/YYYY form, 
+   viii. Other incorrect add interview commands to try: `add_i ... date=<DATE>` where `DATE` is not a valid day in DD/MM/YYYY form, 
    or any other combination of invalid fields in any form.<br>
    Expected: no interview added, error message corresponding to the first encountered invalid field shown in feedback box.<br>
 

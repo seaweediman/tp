@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.Duration;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
@@ -203,6 +204,19 @@ public class Interview {
     public void setStatus(InterviewStatus status) {
         requireNonNull(status);
         this.status = status;
+    }
+
+    /**
+     * Checks if another interview has timing overlaps with this interview.
+     * @param other the interview to check against.
+     * @return true if they start at the same time or if one begins before the other ends.
+     */
+    public boolean hasOverLapWith(Interview other) {
+        LocalDateTime start = LocalDateTime.of(getDate(), getStartTime());
+        LocalDateTime end = LocalDateTime.of(getDate(), getEndTime());
+        LocalDateTime toScheduleStart = LocalDateTime.of(other.getDate(), other.getStartTime());
+        return toScheduleStart.isAfter(start) && toScheduleStart.isBefore(end)
+                || start.isEqual(toScheduleStart);
     }
 
     @Override

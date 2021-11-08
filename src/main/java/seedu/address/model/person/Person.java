@@ -136,7 +136,7 @@ public class Person {
     }
 
     /**
-     * Delets an interviwe from a person's list of interviews. If the person does not have any upcoming interview
+     * Deletes an interview from a person's list of interviews. If the person does not have any upcoming interview
      * this method sets the status as applied.
      *
      * @param i
@@ -146,6 +146,21 @@ public class Person {
         if (interviews.isEmpty()) {
             status = Status.APPLIED;
         }
+    }
+
+    /**
+     * Checks if a person is vacant by checking against interviews from a person's list of interviews.
+     * If the person has interviews with overlapping time, return false.
+     *
+     * @param toSchedule interview to be scheduled for person.
+     */
+    public boolean isVacantFor(Interview toSchedule) {
+        for (Interview interview : interviews) {
+            if (interview.hasOverLapWith(toSchedule)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     /**
