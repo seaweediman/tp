@@ -212,9 +212,15 @@ public class Interview {
      * @return true if they start at the same time or if one begins before the other ends.
      */
     public boolean hasOverLapWith(Interview other) {
+        LocalDateTime toScheduleStart = LocalDateTime.of(other.getDate(), other.getStartTime());
+
         LocalDateTime start = LocalDateTime.of(getDate(), getStartTime());
         LocalDateTime end = LocalDateTime.of(getDate(), getEndTime());
-        LocalDateTime toScheduleStart = LocalDateTime.of(other.getDate(), other.getStartTime());
+
+        if (getStartTime().getHour() > getEndTime().getHour()) {
+            end = LocalDateTime.of(getDate().plusDays(1), getEndTime());
+        }
+
         return toScheduleStart.isAfter(start) && toScheduleStart.isBefore(end)
                 || start.isEqual(toScheduleStart);
     }
