@@ -25,10 +25,13 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.candidate.CommandTestUtil.VALID_STATUS_APPLIED;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TITLE_ADMIN_ASSISTANT;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TITLE_HR_MANAGER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -45,6 +48,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Status;
 import seedu.address.model.position.Position;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -54,20 +58,29 @@ public class EditCandidateCommandParserTest {
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    ParserUtil.MESSAGE_INVALID_INDEX) + EditCandidateCommand.MESSAGE_USAGE;
+
+    private static final String MESSAGE_INVALID_FORMAT_EMPTY_INDEX =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCandidateCommand.MESSAGE_USAGE);
+
 
     private EditCandidateCommandParser parser = new EditCandidateCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
-        // no index specified
+        // no index specified, followed by field name=value
+        assertParseFailure(parser, " " + PREFIX_NAME + VALID_NAME_AMY, MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
+
+
+        // no index specified, immediately followed by field value
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCandidateCommand.MESSAGE_NOT_EDITED);
 
         // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT_EMPTY_INDEX);
     }
 
     @Test
@@ -174,6 +187,12 @@ public class EditCandidateCommandParserTest {
         // positions
         userInput = targetIndex.getOneBased() + POSITION_HR_MANAGER;
         descriptor = new EditPersonDescriptorBuilder().withPositions(VALID_TITLE_HR_MANAGER).build();
+        expectedCommand = new EditCandidateCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // status
+        userInput = targetIndex.getOneBased() + " " + PREFIX_STATUS + VALID_STATUS_APPLIED;
+        descriptor = new EditPersonDescriptorBuilder().withStatus(Status.APPLIED).build();
         expectedCommand = new EditCandidateCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

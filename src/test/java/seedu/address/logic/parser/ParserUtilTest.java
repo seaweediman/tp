@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -236,5 +238,75 @@ public class ParserUtilTest {
     @Test
     public void parseDuration_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseDuration("string"));
+    }
+
+    @Test
+    public void parseDuration_invalidValueMoreThanOneDay_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration("1440"));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration(String.valueOf(Long.MAX_VALUE)));
+    }
+
+    @Test
+    public void parseDuration_invalidValueTooShort_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDuration("0"));
+    }
+
+    @Test
+    public void parseDate_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate("222/12/2021"));
+    }
+
+    @Test
+    public void parseTime_invalidValueNoPatternFound_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTime("22222"));
+    }
+
+    @Test
+    public void parseCandidateIndexes_validValues_returnsCandidateIndexes() throws ParseException {
+        Set<Index> indexes = new HashSet<>();
+        indexes.add(INDEX_FIRST_PERSON);
+        indexes.add(INDEX_SECOND_PERSON);
+
+        Set<Index> test = ParserUtil.parseCandidateIndexes("2 1");
+
+        Set<Integer> indexesInIntegers = new HashSet<>();
+        Set<Integer> testAsIntegers = new HashSet<>();
+
+        for (Index index : indexes) {
+            indexesInIntegers.add(index.getZeroBased());
+        }
+
+        for (Index index : test) {
+            testAsIntegers.add(index.getZeroBased());
+        }
+
+        assertEquals(indexesInIntegers, testAsIntegers);
+    }
+
+    @Test
+    public void parseCandidateIndexes_duplicateValues_returnsCandidateIndexesWithoutDuplicates() throws ParseException {
+        Set<Index> indexes = new HashSet<>();
+        indexes.add(INDEX_FIRST_PERSON);
+        indexes.add(INDEX_SECOND_PERSON);
+
+        Set<Index> test = ParserUtil.parseCandidateIndexes("2 1 2 2 2 2 2 2 2 2 2 2 1 1");
+
+        Set<Integer> indexesInIntegers = new HashSet<>();
+        Set<Integer> testAsIntegers = new HashSet<>();
+
+        for (Index index : indexes) {
+            indexesInIntegers.add(index.getZeroBased());
+        }
+
+        for (Index index : test) {
+            testAsIntegers.add(index.getZeroBased());
+        }
+
+        assertEquals(indexesInIntegers, testAsIntegers);
+    }
+
+    @Test
+    public void parseCandidateIndexes_empty_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCandidateIndexes(""));
     }
 }

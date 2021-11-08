@@ -1,5 +1,6 @@
 package seedu.address.logic.candidate;
 
+import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.candidate.CommandTestUtil.DESC_AMY;
@@ -8,24 +9,41 @@ import static seedu.address.logic.candidate.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.candidate.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.assertEditCandidateCommandSuccess;
 import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_CLOSED;
+import static seedu.address.model.position.Position.MESSAGE_POSITION_DOES_NOT_EXIST;
+import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
+import static seedu.address.testutil.TypicalPositions.ADMIN_ASSISTANT;
+import static seedu.address.testutil.TypicalPositions.CLOSED_POSITION_CLERK;
+import static seedu.address.testutil.TypicalPositions.HR_MANAGER;
+
+import java.util.HashSet;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.candidate.EditCandidateCommand.EditPersonDescriptor;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.logic.general.ClearCommand;
 import seedu.address.model.HrManager;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.position.Position;
+import seedu.address.model.position.Title;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.PersonBuilder;
 
 /**
@@ -46,7 +64,7 @@ public class EditCandidateCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -67,7 +85,7 @@ public class EditCandidateCommandTest {
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -80,24 +98,26 @@ public class EditCandidateCommandTest {
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
 
-        assertCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        CommandTestUtil.assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_filteredList_success() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
+        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Person personInFilteredList = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Person editedPerson = new PersonBuilder(personInFilteredList).withName(VALID_NAME_BOB).build();
+        Person editedPerson = new PersonBuilder(personInFilteredList).withPhone(VALID_PHONE_BOB).build();
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
-                new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).build());
 
         String expectedMessage = String.format(EditCandidateCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
 
         Model expectedModel = new ModelManager(new HrManager(model.getHrManager()), new UserPrefs());
-        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+        expectedModel.setPerson(firstPerson, editedPerson);
+        showPersonAtIndex(expectedModel, INDEX_FIRST_PERSON);
 
-        assertCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
+        assertEditCandidateCommandSuccess(editCandidateCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
@@ -106,7 +126,8 @@ public class EditCandidateCommandTest {
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_SECOND_PERSON, descriptor);
 
-        assertCommandFailure(editCandidateCommand, model, EditCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCandidateCommand, model,
+                String.format(EditCandidateCommand.MESSAGE_DUPLICATE_PERSON, firstPerson.getEmail()));
     }
 
     @Test
@@ -118,7 +139,8 @@ public class EditCandidateCommandTest {
         EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
                 new EditPersonDescriptorBuilder(personInList).build());
 
-        assertCommandFailure(editCandidateCommand, model, EditCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(editCandidateCommand, model,
+                String.format(EditCandidateCommand.MESSAGE_DUPLICATE_PERSON, personInList.getEmail()));
     }
 
     @Test
@@ -170,6 +192,90 @@ public class EditCandidateCommandTest {
 
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCandidateCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+    }
+
+    @Test
+    public void execute_positionDoesNotExist_throwsCommandException() {
+        Set<Position> tempSet = new HashSet<>();
+        tempSet.add(new Position(new Title("Admin")));
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setPositions(tempSet);
+        EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
+                editPersonDescriptor);
+        ModelStubWithObservable modelStub = new ModelStubWithObservable();
+        String expectedMessage = String.format(MESSAGE_POSITION_DOES_NOT_EXIST, "Admin");
+
+        assertThrows(CommandException.class, expectedMessage, () ->
+                editCandidateCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_positionIsClosed_throwsCommandException() {
+        Set<Position> tempSet = new HashSet<>();
+        tempSet.add(CLOSED_POSITION_CLERK);
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+        editPersonDescriptor.setPositions(tempSet);
+        EditCandidateCommand editCandidateCommand = new EditCandidateCommand(INDEX_FIRST_PERSON,
+                editPersonDescriptor);
+        ModelStubWithObservable modelStub = new ModelStubWithObservable();
+
+        String expectedMessage = String.format(MESSAGE_POSITION_CLOSED, CLOSED_POSITION_CLERK.getTitle().fullTitle);
+
+        assertThrows(CommandException.class, expectedMessage, () ->
+                editCandidateCommand.execute(modelStub));
+    }
+
+    /**
+     * A Model stub that has position ADMIN_ASSISTANT and a person BOB.
+     */
+    private class ModelStubWithObservable extends ModelStub {
+        private ObservableList<Person> persons = FXCollections.observableArrayList();
+        private ObservableList<Position> positions = FXCollections.observableArrayList();
+
+        ModelStubWithObservable() {
+            persons.add(BOB);
+            persons.add(ALICE);
+            positions.add(ADMIN_ASSISTANT);
+            positions.add(HR_MANAGER);
+            positions.add(CLOSED_POSITION_CLERK);
+        }
+
+        @Override
+        public boolean hasPerson(Person person) {
+            requireNonNull(person);
+            return this.persons.contains(person);
+        }
+
+        @Override
+        public boolean hasPosition(Position position) {
+            for (Position p : positions) {
+                if (p.isSamePosition(position)) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        //For some reason p.getStatus() is always open even when building with closed
+        @Override
+        public boolean isPositionClosed(Position p) {
+            return true;
+        }
+
+        @Override
+        public void addPerson(Person person) {
+            persons.add(person);
+        }
+
+        @Override
+        public Position getPositionReference(Position position) {
+            return position;
+        }
+
+        @Override
+        public ObservableList<Person> getFilteredPersonList() {
+            return persons;
+        }
     }
 
 }

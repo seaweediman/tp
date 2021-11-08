@@ -12,11 +12,10 @@ import seedu.address.logic.CommandResult;
 public class CommandResultTest {
     @Test
     public void equals() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult("feedback", CommandResult.CommandType.GENERAL);
 
         // same values -> returns true
-        assertTrue(commandResult.equals(new CommandResult("feedback")));
-        assertTrue(commandResult.equals(new CommandResult("feedback", false, false, false, false, false)));
+        assertTrue(commandResult.equals(new CommandResult("feedback", CommandResult.CommandType.GENERAL)));
 
         // same object -> returns true
         assertTrue(commandResult.equals(commandResult));
@@ -28,31 +27,34 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(0.5f));
 
         // different feedbackToUser value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("different")));
+        assertFalse(commandResult.equals(new CommandResult("different",
+                CommandResult.CommandType.GENERAL)));
 
-        // different showHelp value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", true, false, false, false, false)));
+        // CommandType.HELP -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandResult.CommandType.HELP)));
 
-        // different exit value -> returns false
-        assertFalse(commandResult.equals(new CommandResult("feedback", false, true, false, false, false)));
+        // CommandType.EXIT -> returns false
+        assertFalse(commandResult.equals(new CommandResult("feedback", CommandResult.CommandType.EXIT)));
     }
 
     @Test
     public void hashcode() {
-        CommandResult commandResult = new CommandResult("feedback");
+        CommandResult commandResult = new CommandResult("feedback", CommandResult.CommandType.GENERAL);
 
         // same values -> returns same hashcode
-        assertEquals(commandResult.hashCode(), new CommandResult("feedback").hashCode());
+        assertEquals(commandResult.hashCode(), new CommandResult("feedback",
+                CommandResult.CommandType.GENERAL).hashCode());
 
         // different feedbackToUser value -> returns different hashcode
-        assertNotEquals(commandResult.hashCode(), new CommandResult("different").hashCode());
+        assertNotEquals(commandResult.hashCode(), new CommandResult("different",
+                CommandResult.CommandType.GENERAL).hashCode());
 
-        // different showHelp value -> returns different hashcode
+        // CommandType.HELP -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", true, false, false, false, false).hashCode());
+                "feedback", CommandResult.CommandType.HELP).hashCode());
 
-        // different exit value -> returns different hashcode
+        // CommandType.EXIT -> returns different hashcode
         assertNotEquals(commandResult.hashCode(), new CommandResult(
-                "feedback", false, true, false, false, false).hashCode());
+                "feedback", CommandResult.CommandType.EXIT).hashCode());
     }
 }

@@ -1,9 +1,9 @@
 package seedu.address.logic.candidate;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -11,11 +11,12 @@ import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Remark;
 
 /**
- * Changes the remark of an existing person in the address book.
+ * Changes the remark of an existing person in the HR Manager.
  */
 public class RemarkCandidateCommand extends Command {
 
@@ -59,10 +60,16 @@ public class RemarkCandidateCommand extends Command {
                 personToEdit.getAddress(), remark, personToEdit.getTags(), personToEdit.getStatus(),
                 personToEdit.getPositions());
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        Set<Interview> personInterviews = personToEdit.getInterviews();
+        for (Interview i : personInterviews) {
+            editedPerson.addInterview(i);
+            i.deleteCandidate(personToEdit);
+            i.addCandidate(editedPerson);
+        }
 
-        return new CommandResult(generateSuccessMessage(editedPerson));
+        model.setPerson(personToEdit, editedPerson);
+
+        return new CommandResult(generateSuccessMessage(editedPerson), CommandResult.CommandType.CANDIDATE);
     }
 
     /**

@@ -17,12 +17,11 @@ Class ReadOnlyUserPrefs
 
 
 Class UniquePersonList
+Class UniquePositionList
+Class UniqueInterviewList
 Class Person
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
+Class Position
+Class Interview
 
 }
 
@@ -32,23 +31,20 @@ HiddenOutside ..> Model
 HrManager .up.|> ReadOnlyHrManager
 
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyHrManager
+Model .left.> ReadOnlyUserPrefs
+Model .right.> ReadOnlyHrManager
 ModelManager -left-> "1" HrManager
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
+HrManager *--> "1" UniquePositionList
+HrManager *--> "1" UniqueInterviewList
 HrManager *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *--> "*" Tag
+UniquePositionList --> "~* all" Position
+UniqueInterviewList --> "~* all" Interview
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
-
+ModelManager -->"~* filtered" Position
 ModelManager -->"~* filtered" Person
+ModelManager -->"~* filtered" Interview
 @enduml

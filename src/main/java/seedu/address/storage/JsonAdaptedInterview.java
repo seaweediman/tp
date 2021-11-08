@@ -72,6 +72,9 @@ public class JsonAdaptedInterview {
 
     /**
      * Parses {@code String date} into a {@code LocalDate}.
+     * @param date Input String.
+     * @return LocalDate of an Interview.
+     * @throws ParseException If the given {@code date} is invalid
      */
     public static LocalDate parseDate(String date) throws ParseException {
         String dateFormat = "^[0-9]{1,2}[\\\\/][0-9]{1,2}[\\\\/][0-9]{4}$";
@@ -93,6 +96,9 @@ public class JsonAdaptedInterview {
 
     /**
      * Parses {@code String time} into a {@code LocalTime}.
+     * @param time Input String.
+     * @return LocalTime of an Interview.
+     * @throws ParseException If the given {@code time} is invalid
      */
     public static LocalTime parseTime(String time) throws ParseException {
         String timeFormat = "^[0-9]{4}$";
@@ -112,16 +118,20 @@ public class JsonAdaptedInterview {
 
     /**
      * Parses {@code String duration} into a {@code Duration}.
+     * @param duration Input String.
+     * @return Duration of an Interview.
+     * @throws ParseException If the given {@code duration} is invalid
      */
     public static Duration parseDuration(String duration) throws ParseException {
         try {
-            long actualDuration = Long.parseLong(duration);
-            if (actualDuration < 0) {
-                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            Long actualDuration = Long.parseLong(duration);
+            //capped at strictly less than 24 hours or 1440 minutes
+            if (actualDuration <= 0 || actualDuration >= 1440) {
+                throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER);
             }
             return Duration.ofMinutes(actualDuration);
         } catch (NumberFormatException e) {
-            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            throw new ParseException(Interview.MESSAGE_DURATION_CONSTRAINTS_NOT_A_NUMBER);
         }
     }
 
@@ -129,7 +139,7 @@ public class JsonAdaptedInterview {
 
     /**
      * Converts this Jackson-friendly adapted position object into the model's {@code Position} object.
-     *
+     * @return An Interview loaded from Json file and yet to have actual candidates added.
      * @throws IllegalValueException if there were any data constraints violated in the adapted position.
      */
     public Interview toModelType() throws IllegalValueException {
@@ -171,7 +181,8 @@ public class JsonAdaptedInterview {
         try {
             duration = parseDuration(this.duration);
         } catch (ParseException e) {
-            throw new IllegalValueException(Interview.MESSAGE_DURATION_CONSTRAINTS);
+            //getMessage() is used because parseDuration can throw an exception with 2 different messages
+            throw new IllegalValueException(e.getMessage());
         }
         if (status == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

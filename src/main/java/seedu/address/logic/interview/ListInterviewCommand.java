@@ -19,6 +19,6 @@ public class ListInterviewCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredInterviewList(PREDICATE_SHOW_ALL_INTERVIEWS);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, false, false, true);
+        return new CommandResult(MESSAGE_SUCCESS, CommandResult.CommandType.LIST_I);
     }
 }

@@ -9,6 +9,8 @@ import static java.util.Objects.requireNonNull;
 public class Position {
 
     public static final String MESSAGE_CONSTRAINTS = "Position names should be alphanumeric";
+    public static final String MESSAGE_POSITION_CLOSED = "Position %s is closed";
+    public static final String MESSAGE_POSITION_DOES_NOT_EXIST = "Position %s not found in HR Manager";
 
     public final Title title;
 
@@ -33,7 +35,7 @@ public class Position {
          * Only "open" and "closed" are valid strings for status.
          */
         public static boolean isValidPositionStatus(String test) {
-            return (((test).equals("open") || (test).equals("closed"))
+            return (((test.toLowerCase()).equals("open") || (test.toLowerCase()).equals("closed"))
                     && test.matches(VALIDATION_REGEX));
         }
     }
@@ -98,7 +100,7 @@ public class Position {
         return other == this // short circuit if same object
                 || (other instanceof Position // instanceof handles nulls
                 && title.equals(((Position) other).title)
-                && status.equals(((Position) other).getStatus())); // status check
+                && status == ((Position) other).getStatus()); // status check
     }
 
     @Override

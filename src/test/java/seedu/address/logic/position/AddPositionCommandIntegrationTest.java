@@ -1,7 +1,7 @@
 package seedu.address.logic.position;
 
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandFailure;
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandFailure;
+import static seedu.address.logic.position.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
 
 import org.junit.jupiter.api.BeforeEach;

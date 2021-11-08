@@ -11,7 +11,7 @@ import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * A UI component that displays information of a {@code Person}.
  */
 public class PersonCard extends UiPart<Region> {
 
@@ -48,7 +48,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane positions;
     @FXML
-    private FlowPane interviews;
+    private Label interviews;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -70,9 +70,25 @@ public class PersonCard extends UiPart<Region> {
         person.getPositions().stream()
                 .sorted(Comparator.comparing(position -> position.getTitle().fullTitle))
                 .forEach(position -> positions.getChildren().add(new Label(position.getTitle().fullTitle + " ")));
+
+        //instead of individual labels with wrap text, create one label with all interviews and then wrap
+        StringBuilder stringBuilder = new StringBuilder();
         person.getInterviews().stream()
                 .sorted(Comparator.comparing(Interview::getDate))
-                .forEach(interview -> interviews.getChildren().add(new Label(interview.getDisplayString())));
+                .forEach(interview -> {
+                    String temp = interview.getDisplayStringWithoutNames();
+                    for (int i = 0; i < temp.length(); i += 60) {
+                        if (i + 60 < temp.length()) {
+                            stringBuilder.append(temp.substring(i, i + 60) + "\n");
+                        } else {
+                            stringBuilder.append(temp.substring(i) + "\n");
+                        }
+                    }
+                });
+        if (!stringBuilder.toString().equals("")) {
+            interviews.setText(stringBuilder.toString());
+            interviews.setStyle("-fx-text-fill: khaki;");
+        }
     }
 
     @Override

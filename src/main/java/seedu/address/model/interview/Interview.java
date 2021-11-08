@@ -27,16 +27,18 @@ public class Interview {
 
     // public static final String MESSAGE_CONSTRAINTS = "";
 
-
     public static final String MESSAGE_DATE_CONSTRAINTS = "Date should be valid and in DD/MM/YYYY format.";
     public static final String MESSAGE_TIME_CONSTRAINTS = "Time should be be valid and in HHMM format.";
-    public static final String MESSAGE_DURATION_CONSTRAINTS = "Duration should be a positive integer.";
 
-    private final Position position;
+    public static final String MESSAGE_DURATION_CONSTRAINTS_NOT_A_NUMBER = "Duration should be a positive integer.";
+    public static final String MESSAGE_DURATION_CONSTRAINTS_INVALID_NUMBER = "Duration is in minutes, "
+            + "it should be more than 0 and less than 1440.";
+
+    private Position position;
 
     private InterviewStatus status;
 
-    private final Set<Person> candidates;
+    private Set<Person> candidates;
 
     private final LocalTime startTime;
 
@@ -68,20 +70,6 @@ public class Interview {
             return validStatus.contains(test);
         }
 
-        /**
-         * Returns the corresponding InterviewStatus Enum given a valid input.
-         *
-         * @param statusInput String input
-         * @return Status
-         */
-        public static InterviewStatus parseStatus(String statusInput) {
-            statusInput = (statusInput == null ? "" : statusInput);
-            if (statusInput.equals("COMPLETED")) {
-                return InterviewStatus.COMPLETED;
-            } else {
-                return InterviewStatus.PENDING;
-            }
-        }
     }
 
     /**
@@ -142,6 +130,10 @@ public class Interview {
         return position;
     }
 
+    public void setPosition(Position newPosition) {
+        position = newPosition;
+    }
+
     public Set<Person> getCandidates() {
         assert this.candidates != null : "Interview candidate names set is non-null.";
         return this.candidates;
@@ -149,6 +141,7 @@ public class Interview {
 
     public void setCandidates(Set<Person> personSet) {
         assert this.candidates != null : "Interview candidate names set is non-null.";
+        this.candidates = new HashSet<>();
         this.candidates.addAll(personSet);
     }
 
@@ -237,8 +230,12 @@ public class Interview {
         return candidates.contains(person);
     }
 
-    public void removeCandidate(Person person) {
+    public void deleteCandidate(Person person) {
         candidates.remove(person);
+    }
+
+    public void addCandidate(Person person) {
+        candidates.add(person);
     }
 
     @Override
@@ -254,13 +251,13 @@ public class Interview {
         return "[" + getPositionTitle().toString() + " "
                 + getCandidates().toString() + " "
                 + getDate() + " "
-                + getStartTime().toString() + " - "
-                + getDuration().toString() + " "
+                + getDisplayTimePeriod() + " "
                 + getStatusInString() + "]";
     }
 
-    public String getEndTime() {
-        return startTime.plusMinutes(duration.toMinutes()).toString();
+
+    public LocalTime getEndTime() {
+        return startTime.plusMinutes(duration.toMinutes());
     }
 
     public String getDisplayDate() {
@@ -274,12 +271,31 @@ public class Interview {
         return names.toString();
     }
 
+    public String getCandidateNameString() {
+        assert this.candidates != null;
+        Set<String> names = candidates.stream().map(c -> c.getName().fullName).collect(Collectors.toSet());
+        return names.toString().replace("[", "").replace("]", " ")
+                .replace(",", "");
+    }
+
+
     public String getDisplayString() {
         return "[" + getPositionTitle().toString() + " "
                 + getCandidatesNames() + " "
                 + getDisplayDate() + " "
                 + getStartTime() + " - "
                 + getEndTime() + " "
+                + getStatusInString() + "]";
+    }
+
+    public String getDisplayTimePeriod() {
+        return getStartTime() + " ~ " + getEndTime();
+    }
+
+    public String getDisplayStringWithoutNames() {
+        return "[" + getPositionTitle().toString() + " "
+                + getDisplayDate() + " "
+                + getDisplayTimePeriod() + " "
                 + getStatusInString() + "]";
     }
 }

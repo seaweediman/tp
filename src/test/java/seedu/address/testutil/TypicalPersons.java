@@ -31,14 +31,14 @@ import seedu.address.model.position.Title;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline").withPositions("Accountant")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withRemark("She likes aardvarks.")
             .withTags("friends").withStatus("Applied").build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+    public static final Person BENSON = new PersonBuilder().withName("Benson Meier").withPositions("HR Manager")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432").withRemark("He can't handle beer!")
-            .withTags("owesMoney", "friends").withStatus("None").build();
+            .withTags("owesMoney", "friends").withStatus("Scheduled").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withStatus("Rejected").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
@@ -59,6 +59,11 @@ public class TypicalPersons {
             .withEmail("hans@example.com").withAddress("chicago ave").withStatus("Applied").withPositions("Bookkeeper")
             .build();
 
+    public static final Person JOHN = new PersonBuilder().withName("John Doe").withPhone("98780121")
+            .withEmail("johnDoe@example.com").withAddress("chicago").withStatus("Scheduled").withPositions("Clerk",
+                    "Bookkeeper").build();
+
+
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND)
@@ -73,7 +78,7 @@ public class TypicalPersons {
     } // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical persons.
+     * Returns an {@code HrManager} with all the typical persons.
      */
     public static HrManager getTypicalHrManager() {
         HrManager ab = new HrManager();
@@ -114,7 +119,7 @@ public class TypicalPersons {
 
     public static List<Position> getTypicalPositions() {
         return new ArrayList<>(Arrays.asList(TypicalPositions.ADMIN_ASSISTANT, TypicalPositions.BOOKKEEPER,
-                TypicalPositions.HR_MANAGER));
+                TypicalPositions.HR_MANAGER, TypicalPositions.ACCOUNTANT, TypicalPositions.CLOSED_POSITION_CLERK));
     }
 
     //this follows typicalInterviewHrManager.json data

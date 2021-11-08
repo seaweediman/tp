@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
@@ -33,7 +32,9 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private DisplayListPanel displayListPanel;
+    private PersonListPanel personListPanel;
+    private PositionListPanel positionListPanel;
+    private InterviewListPanel interviewListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -44,10 +45,22 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private Label listLabel;
+    private Label personListLabel;
 
     @FXML
-    private StackPane displayListPanelPlaceholder;
+    private Label positionListLabel;
+
+    @FXML
+    private Label interviewListLabel;
+
+    @FXML
+    private StackPane personListPanelPlaceholder;
+
+    @FXML
+    private StackPane positionListPanelPlaceholder;
+
+    @FXML
+    private StackPane interviewListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -116,8 +129,14 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        displayListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
+
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -128,7 +147,9 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        listLabel.setText("Candidates");
+        personListLabel.setText("Candidates");
+        positionListLabel.setText("Positions");
+        interviewListLabel.setText("Interviews");
     }
 
     /**
@@ -171,32 +192,96 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
-    private void handleListC(CommandResult commandResult) {
-        displayListPanel = new PersonListPanel(logic.getFilteredPersonList());
-        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+    private void handleListC() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerCandidatesFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        listLabel.setText("Candidates");
+        personListLabel.setText("Candidates");
     }
 
-    private void handleListP(CommandResult commandResult) {
-        displayListPanel = new PositionListPanel(logic.getFilteredPositionList());
-        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+    private void handleListP() {
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerPositionsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-        listLabel.setText("Positions");
+        positionListLabel.setText("Positions");
     }
 
-    private void handleListI(CommandResult commandResult) {
-        displayListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
-        displayListPanelPlaceholder.getChildren().add((Node) displayListPanel.getRoot());
+    private void handleListI() {
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
-        listLabel.setText("Interviews");
+        interviewListLabel.setText("Interviews");
+    }
+
+    private void handleFindC() {
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerCandidatesFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+
+        personListLabel.setText("Candidates (filtered)");
+    }
+
+    private void handleFindP() {
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerPositionsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        positionListLabel.setText("Positions (filtered)");
+    }
+
+    private void handleFindI() {
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        interviewListLabel.setText("Interviews (filtered)");
+    }
+
+    private void handleC() { //Update person and interview lists
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleP() { //Update person and position lists
+        positionListPanel = new PositionListPanel(logic.getFilteredPositionList());
+        positionListPanelPlaceholder.getChildren().add(positionListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+    }
+
+    private void handleI() { //Update person and interview lists
+        interviewListPanel = new InterviewListPanel(logic.getFilteredInterviewList());
+        interviewListPanelPlaceholder.getChildren().add(interviewListPanel.getRoot());
+
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getHrManagerInterviewsFilePath());
+        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
     }
 
     /**
@@ -210,16 +295,41 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            switch(commandResult.getCommandType()) {
+            case HELP:
                 handleHelp();
-            } else if (commandResult.isExit()) {
+                break;
+            case EXIT:
                 handleExit();
-            } else if (commandResult.isListC()) {
-                handleListC(commandResult);
-            } else if (commandResult.isListP()) {
-                handleListP(commandResult);
-            } else if (commandResult.isListI()) {
-                handleListI(commandResult);
+                break;
+            case LIST_C:
+                handleListC();
+                break;
+            case LIST_P:
+                handleListP();
+                break;
+            case LIST_I:
+                handleListI();
+                break;
+            case FIND_C:
+                handleFindC();
+                break;
+            case FIND_P:
+                handleFindP();
+                break;
+            case FIND_I:
+                handleFindI();
+                break;
+            case CANDIDATE:
+                handleC();
+                break;
+            case POSITION:
+                handleP();
+                break;
+            case INTERVIEW:
+                handleI();
+                break;
+            default:
             }
 
             return commandResult;

@@ -26,7 +26,7 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Remark remark;
-    private final Status status;
+    private Status status;
     private Set<Position> positions = new HashSet<>();
     private Set<Interview> interviews = new HashSet<>();
 
@@ -122,12 +122,30 @@ public class Person {
         positions.remove(p);
     }
 
+    /**
+     * Adds an interview into a person's list of interviews, and since the person has the upcoming added interview,
+     * this method always sets the status as scheduled.
+     *
+     * @param i interview object to be added to person
+     */
     public void addInterview(Interview i) {
         interviews.add(i);
+        if (status == Status.APPLIED) {
+            status = Status.SCHEDULED;
+        }
     }
 
+    /**
+     * Delets an interviwe from a person's list of interviews. If the person does not have any upcoming interview
+     * this method sets the status as applied.
+     *
+     * @param i
+     */
     public void deleteInterview(Interview i) {
         interviews.remove(i);
+        if (interviews.isEmpty()) {
+            status = Status.APPLIED;
+        }
     }
 
     /**
@@ -139,10 +157,7 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
-                && otherPerson.getName().equals(getName())
-                && otherPerson.getPhone().equals(getPhone())
-                && otherPerson.getEmail().equals(getEmail());
+        return otherPerson != null && otherPerson.getEmail().equals(getEmail());
     }
 
     /**
@@ -188,8 +203,6 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append(" Remark: ")
-                .append(getRemark())
                 .append(" Status: ")
                 .append(getStatus());
 
@@ -197,6 +210,10 @@ public class Person {
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
+        }
+
+        if (!remark.toString().equals("")) {
+            builder.append("; Remark: ").append(remark);
         }
 
         Set<Position> positions = getPositions();
@@ -216,5 +233,9 @@ public class Person {
 
     public void setInterviews(Set<Interview> personInterviews) {
         interviews.addAll(personInterviews);
+    }
+
+    public void setPositions(Set<Position> personPositions) {
+        positions = personPositions;
     }
 }

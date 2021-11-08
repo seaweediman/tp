@@ -16,6 +16,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.Command;
+import seedu.address.logic.CommandResult;
+import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -59,10 +62,33 @@ public class FindCandidateCommandTest {
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         FindCandidateCommandPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCandidateCommand command = new FindCandidateCommand(predicate);
+        Command command = new FindCandidateCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), expectedModel.getFilteredPersonList());
+
+        //have to create a CommandResult manually because assertSuccess uses single parameter constructor
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.CommandType.FIND_C);
+
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
     }
+
+
+    @Test
+    public void execute_personDoesNotExist_noPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        FindCandidateCommandPredicate predicate = preparePredicate("John");
+        Command command = new FindCandidateCommand(predicate);
+        expectedModel.updateFilteredPersonList(predicate);
+        assertEquals(Arrays.asList(), expectedModel.getFilteredPersonList());
+
+        //have to create a CommandResult manually because assertSuccess uses single parameter constructor
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.CommandType.FIND_C);
+
+        assertCommandSuccess(command, model, expectedCommandResult, expectedModel);
+    }
+
 
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
@@ -71,5 +97,20 @@ public class FindCandidateCommandTest {
         List<String> output = new ArrayList<String>(Arrays.asList(userInput.split("\\s+")));
         output.removeAll(Arrays.asList("", null));
         return new FindCandidateCommandPredicate(output);
+    }
+
+
+    /**
+     * Overrides the method in CommandTestUtil for CommandResult created by find_c
+     */
+    private void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
+                                 Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
     }
 }

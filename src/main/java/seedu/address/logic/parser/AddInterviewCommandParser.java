@@ -35,20 +35,26 @@ public class AddInterviewCommandParser implements Parser<AddInterviewCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_POSITION, PREFIX_CANDIDATE_INDEX, PREFIX_DATE, PREFIX_TIME,
                         PREFIX_DURATION, PREFIX_INTERVIEW_STATUS);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_CANDIDATE_INDEX, PREFIX_DATE, PREFIX_TIME,
+        if (!arePrefixesPresent(argMultimap, PREFIX_POSITION, PREFIX_DATE, PREFIX_TIME,
                 PREFIX_DURATION)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE));
         }
 
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
-        Set<Index> indexes = ParserUtil.parseIndexes(argMultimap.getAllValues(PREFIX_CANDIDATE_INDEX));
-
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
         LocalTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Duration duration = ParserUtil.parseDuration(argMultimap.getValue(PREFIX_DURATION).get());
         InterviewStatus interviewStatus = ParserUtil.parseInterviewStatus(argMultimap
                 .getValue(PREFIX_INTERVIEW_STATUS).orElse(""));
+
+        Set<Index> indexes;
+        String candidateIndexes = argMultimap.getValue(PREFIX_CANDIDATE_INDEX).orElse("");
+        if (candidateIndexes.equals("")) {
+            indexes = new HashSet<>();
+        } else {
+            indexes = ParserUtil.parseCandidateIndexes(candidateIndexes);
+        }
 
         Interview interview = new Interview(position, new HashSet<>(), date, time, duration, interviewStatus);
 

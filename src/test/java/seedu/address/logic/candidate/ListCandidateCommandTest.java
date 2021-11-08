@@ -1,6 +1,6 @@
 package seedu.address.logic.candidate;
 
-import static seedu.address.logic.candidate.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.logic.candidate.CommandTestUtil.assertListCommandSuccess;
 import static seedu.address.logic.candidate.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalHrManager;
@@ -28,12 +28,14 @@ public class ListCandidateCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCandidateCommand(), model, ListCandidateCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListCandidateCommand(), model, ListCandidateCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new ListCandidateCommand(), model, ListCandidateCommand.MESSAGE_SUCCESS, expectedModel);
+        assertListCommandSuccess(new ListCandidateCommand(), model, ListCandidateCommand.MESSAGE_SUCCESS,
+                expectedModel);
     }
 }

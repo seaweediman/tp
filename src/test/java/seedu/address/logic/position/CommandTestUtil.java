@@ -75,7 +75,54 @@ public class CommandTestUtil {
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
                                             Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.POSITION);
+        assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    private static boolean isEditPCommand(Command command) {
+        String commandClassName = command.getClass().getSimpleName();
+        return commandClassName.equals("EditPositionCommand");
+    }
+
+    /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the given {@code command} is an edit command <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertEditPositionCommandSuccess(Command command, Model actualModel,
+                                                        CommandResult expectedEditCommandResult, Model expectedModel) {
+        try {
+            CommandResult result = command.execute(actualModel);
+            assertEquals(expectedEditCommandResult, result);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertEditPositionCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertEditPositionCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                                        Model expectedModel) {
+        if (!isEditPCommand(command)) {
+            throw new AssertionError("Command should be an EditPositionCommand");
+        }
+
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage,
+                CommandResult.CommandType.POSITION);
+        assertEditPositionCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
+    }
+
+    /**
+     * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
+     * that takes a string {@code expectedMessage}.
+     */
+    public static void assertListCommandSuccess(Command command, Model actualModel, String expectedMessage,
+                                            Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, CommandResult.CommandType.LIST_P);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 

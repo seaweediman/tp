@@ -1,7 +1,6 @@
 package seedu.address.logic.position;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -43,8 +42,8 @@ public class DeletePositionCommand extends Command {
         model.deletePositionFromPerson(positionToDelete);
         model.deletePosition(positionToDelete);
 
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_DELETE_POSITION_SUCCESS, positionToDelete));
+        return new CommandResult(String.format(MESSAGE_DELETE_POSITION_SUCCESS, positionToDelete),
+                                CommandResult.CommandType.POSITION);
     }
 
     @Override

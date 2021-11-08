@@ -3,8 +3,6 @@ package seedu.address.logic.position;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_POSITION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_POSITIONS;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,9 +13,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.Command;
 import seedu.address.logic.CommandResult;
-import seedu.address.logic.candidate.EditCandidateCommand;
 import seedu.address.logic.candidate.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.interview.Interview;
 import seedu.address.model.person.Person;
 import seedu.address.model.position.Position;
 import seedu.address.model.position.Position.PositionStatus;
@@ -29,15 +27,18 @@ public class EditPositionCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the position identified "
             + "by the index number used in the displayed position list. "
             + "Existing values will be overwritten by the input values.\n"
+            + "NOTE: only one field can be edited at one time.\n"
+            + "Valid status values: open, closed.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_POSITION_STATUS + "POSITION STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_POSITION_STATUS + "close";
+            + PREFIX_POSITION_STATUS + "closed\n";
 
     public static final String MESSAGE_EDIT_POSITION_SUCCESS = "Edited Position: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED = "One field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_POSITION = "This position already exists in the position list.";
+    public static final String MESSAGE_BOTH_FIELDS_EDITED = "Only one field can be edited at one time.";
 
     private final Index index;
     private final EditPositionCommand.EditPositionDescriptor editPositionDescriptor;
@@ -57,25 +58,28 @@ public class EditPositionCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Position> lastShownList = model.getFilteredPositionList();
+        List<Position> lastShownPositionList = model.getFilteredPositionList();
         List<Person> lastShownPersonList = model.getFilteredPersonList();
+        List<Interview> lastShownInterviewList = model.getFilteredInterviewList();
 
         // Save updated position in the positions.json file.
-        if (index.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownPositionList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_POSITION_DISPLAYED_INDEX);
         }
 
-        Position positionToEdit = lastShownList.get(index.getZeroBased());
+        Position positionToEdit = lastShownPositionList.get(index.getZeroBased());
         Position editedPosition = createEditedPosition(positionToEdit, editPositionDescriptor);
+
+        if (editPositionDescriptor.isBothFieldsEdited()) {
+            throw new CommandException(MESSAGE_BOTH_FIELDS_EDITED);
+        }
 
         if (!positionToEdit.isSamePosition(editedPosition) && model.hasPosition(editedPosition)) {
             throw new CommandException(MESSAGE_DUPLICATE_POSITION);
         }
 
         model.setPosition(positionToEdit, editedPosition);
-        model.updateFilteredPositionList(PREDICATE_SHOW_ALL_POSITIONS);
 
-        // Save updated position in the candidates.json file. //TODO
         for (Person person : lastShownPersonList) {
             Set<Position> positions = person.getPositions();
             if (positions.contains(positionToEdit)) {
@@ -87,20 +91,18 @@ public class EditPositionCommand extends Command {
                         && !editPositionDescriptor.getPositionStatus().equals(Optional.of(PositionStatus.CLOSED))) {
                     person.addPosition(editedPosition);
                 }
-
-                EditCandidateCommand.EditPersonDescriptor editPersonDescriptor =
-                        new EditCandidateCommand.EditPersonDescriptor();
-
-                editPersonDescriptor.setPositions(positions);
-
-                Person editedPerson = EditCandidateCommand.createEditedPerson(person, editPersonDescriptor);
-
-                model.setPerson(person, editedPerson);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             }
         }
 
-        return new CommandResult(String.format(MESSAGE_EDIT_POSITION_SUCCESS, editedPosition));
+        for (Interview interview : lastShownInterviewList) {
+            Position interviewPosition = interview.getPosition();
+            if (interviewPosition.isSamePosition(positionToEdit)) {
+                interview.setPosition(editedPosition);
+            }
+        }
+
+        return new CommandResult(String.format(MESSAGE_EDIT_POSITION_SUCCESS, editedPosition),
+                CommandResult.CommandType.POSITION);
     }
 
     /**
@@ -159,6 +161,13 @@ public class EditPositionCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(title, status);
+        }
+
+        /**
+         * Returns true if both fields are edited.
+         */
+        public boolean isBothFieldsEdited() {
+            return (CollectionUtil.isAnyNonNull(title) && CollectionUtil.isAnyNonNull(status));
         }
 
         public void setTitle(Title title) {
