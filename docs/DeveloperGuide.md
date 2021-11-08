@@ -26,8 +26,8 @@ The purpose of this guide is to provide a comprehensive documentation of the des
 
 You can read the entire guide from the start, which will give you a complete view of the structure of HR Manager.
 
-Alternatively, you can quickly get started by reading through the [Setting Up](setting-up-getting-started) and [Design](design) sections to get a overview of the application.
-You can then read the [Feature Implementation](feature-implementation) for more details of specific features.
+Alternatively, you can quickly get started by reading through the [Setting Up](#setting-up-getting-started) and [Design](#design) sections to get a overview of the application.
+You can then read the [Feature Implementation](#feature-implementation) for more details of specific features.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,8 +352,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `HR Manager` and the **Actor** is the `user`, unless specified otherwise)
-
 #### <u>Use case: UC01 - Add a candidate</u>
 
 **MSS**
@@ -378,7 +376,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
 
 
-#### Use case: UC02 - List all candidates</u>
+#### <u>Use case: UC02 - List all candidates</u>
 
 **MSS**
 

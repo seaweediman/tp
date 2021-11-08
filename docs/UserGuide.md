@@ -18,7 +18,7 @@ making the scheduling process easier and faster for your company!<br>
 It is easy to interact with the app through simple to learn and easy to share text commands!<br>
 Tired of losing track of scheduled interviews?<br>
 HR manager's easy to use features will help you to arrange for upcoming interviews quickly in your desired manner.<br>
-The data you have provided will also be stored safely and securely for subsequent uses,
+The data you provide will also be stored safely and securely for subsequent uses,
 transferable to other devices too!
 
 ### Purpose
@@ -68,7 +68,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 * **`exit`** : Exits the app.
 
-* Refer to the [Features](#features) below for details of each command.
+* Refer to [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -87,7 +87,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
   e.g., `[position=<POSITION>]...​` can be used as ` ` (i.e. 0 times), `position=Accountant`, `position=Accountant position=Bookkeeper` etc.
 
 * Parameters can be in any order.<br>
-  e.g., if the command specifies `name=NAME phone=PHONE_NUMBER`, `phone=PHONE_NUMBER name=NAME` is also acceptable.
+  e.g., if the command specifies `name=<NAME> phone=<PHONE_NUMBER>`, `phone=<PHONE_NUMBER> name=<NAME>` is also acceptable.
 
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g., if you specify `phone=12341234 phone=56785678`, only `phone=56785678` will be taken.
@@ -378,7 +378,7 @@ Use the following command to record the details of an interview session with the
 
 <u>Format:</u>
 
-`add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]`
+`add_i position=<POSITION> date=<DATE> time=<TIME> duration=<DURATION> [c=<INDEX>]... [interviewed=STATUS]`
 
 <u>Example:</u>
 
@@ -427,7 +427,7 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-`edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...`
+`edit_i <INDEX> [position=<POSITION>]... [date=<DATE>]... [time=<TIME>]... [duration=<DURATION>]... [interviewed=<STATUS>]...`
 
 <u>Example:</u>
 `edit_i 2 date=18/10/2021 time=1400`
@@ -499,8 +499,8 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-`find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
-    [duration=DURATION]... [interviewed=STATUS]...`
+`find_i [position=<POSITION>]... [c=<CANDIDATE_NAME>]... [date=<DATE>]... [time=<TIME>]...
+    [duration=<DURATION>]... [interviewed=<STATUS>]...`
 
 <u>Example:</u>
 
@@ -613,21 +613,21 @@ The transferred save files can then be loaded readily when using this applicatio
 
 | Action | Format, Examples | Expected result |
 | -------- | ------------------ | ------------------ |
-| **Add position** | `add_p title=<TITLE>` <br><br> e.g., `add_p title=Software engineer` | New position added: [Software engineer] |
-| **List all positions** | `list_p` | Listed all positions 1. Assistant <br> 2. Manager |
+| **Add position** | `add_p title=<TITLE>` <br><br> e.g., `add_p title=Software engineer` | New position added: <br> [Software engineer] |
+| **List all positions** | `list_p` | Listed all positions |
 | **Delete position** | `delete_p <INDEX>` <br><br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
-| **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` <br><br> e.g., `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
+| **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` <br><br> e.g., `edit_p 3 status=closed` | Edited Position: [Bookkeeper] |
 | **Find a position** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br><br> e.g., `find_p title=Accountant Engineer status=closed` | Candidates found
 | **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>...[status=<STATUS>] [tag=<TAG>]...`  <br><br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
-| **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe |
+| **List all candidates** | `list_c` | Listed all candidates |
 | **Delete a candidate** | `delete_c <INDEX>`<br><br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
 | **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br><br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Remark: 20 years of experience; Positions: [Project Manager] |
 | **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
 | **Find candidates** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `find_c name=Alex tag=recommended priority` | Candidates Found
 | **Add an interview** | `add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br><br> e.g., `add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
-| **List all interviews** | `list_i` | Listed all interviews <br><br> 1. [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING] |
+| **List all interviews** | `list_i` | Listed all interviews |
 | **Delete an interview** | `delete_i <INDEX>`<br><br> e.g., `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
 | **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br>e.g., `edit_i 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
-| **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
-| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
+| **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `unassign i=1 c=4`| Candidates removed from interview: [Project Manager 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Find interview** | `find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found
