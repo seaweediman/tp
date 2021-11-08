@@ -219,7 +219,7 @@ public class Interview {
         LocalDateTime end = LocalDateTime.of(getDate(), getEndTime());
 
         if (getStartTime().getHour() > getEndTime().getHour()
-        || (getStartTime().getHour() == getEndTime().getHour() && getDuration().toHours() > 22)) {
+            || (getStartTime().getHour() == getEndTime().getHour() && getDuration().toHours() > 22)) {
             end = LocalDateTime.of(getDate().plusDays(1), getEndTime());
         }
 
