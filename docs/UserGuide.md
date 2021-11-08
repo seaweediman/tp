@@ -121,7 +121,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 ### Feature: General Commands
 
-#### Viewing help : `help`
+#### <u>Viewing help</u>: `help`
 
 Shows a message explaining how to access the user guide.
 
@@ -131,7 +131,7 @@ Shows a message explaining how to access the user guide.
 
 `help`
 
-#### Clearing all entries : `clear`
+#### <u>Clearing all entries</u> : `clear`
 
 Clears all entries from HR Manager
 
@@ -139,7 +139,7 @@ Clears all entries from HR Manager
 
 `clear`
 
-#### Exiting the program : `exit`
+#### <u>Exiting the program</u> : `exit`
 
 Exits the program.
 
