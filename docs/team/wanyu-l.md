@@ -30,6 +30,15 @@ Given below are my contributions to the project.
 * **New Feature**: Added functionality to add an interview. `add_i`
     * This feature allows the user to add details of a scheduled interview session for a particular job position in the company to HR Manager.
 
+* **Enhanced Feature**: Updated GUI for display of interviews for each candidate.
+    * Previously, the particulars of candidate occasionally overlap with details of interviews upon certain interactions, causing slight inconvenience. 
+      This feature changed the text colour of each candidate's interview(s) and implementation of the display for better visuals and to prevent overlapping display text.
+
+* **Enhanced Feature**: Updated `edit_c` to disallow certain status changes of a candidate.
+    * This feature disallowed user's attempt to edit the status of a candidate to APPLIED when candidate already has interview(s) and was implemented to provide better feedback.
+      It changed the way `edit_c` interacts with the user by rejecting the input and showing an error message, when previously HR Manager accepts the input but does not change candidate's status to APPLIED.
+      
+
 ### Contributions to the UG
 * Added Introduction
 * Added FAQs
@@ -46,7 +55,9 @@ Given below are my contributions to the project.
     * LogicClass diagram
 
 ### Contributions to team-based tasks
-* Renamed Address App to HR Manager as title of App
+* Renamed Address App to HR Manager as title of application
+* Helped teammates in resolving bugs
+* Helped in reviewing teammates' PR
 
 ### Review/mentoring contributions
 * Non-exhaustive list of some PRs reviewed:
@@ -55,4 +66,12 @@ Given below are my contributions to the project.
     * [PR #67](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/67)
     * [PR #78](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/78)
     * [PR #234](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/234)
-    * [PR #235](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/235)
+    * [PR #235](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/235)   
+  
+
+* [Full list of PRs reviewed](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Awanyu-l)
+  
+
+* Reported bugs and suggestions for other teams in the class
+    * [Full list of bugs and suggestions](https://github.com/wanyu-l/ped/issues)
+  
