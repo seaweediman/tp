@@ -203,7 +203,7 @@ public class Person {
                 .append(getEmail())
                 .append("; Address: ")
                 .append(getAddress())
-                .append(" Status: ")
+                .append("; Status: ")
                 .append(getStatus());
 
         Set<Tag> tags = getTags();
