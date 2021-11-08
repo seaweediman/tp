@@ -27,11 +27,11 @@ public class FindInterviewCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all interviews that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
-            + PREFIX_POSITION + "[TITLE]... "
-            + PREFIX_INTERVIEW_STATUS + "[POSITION STATUS]... "
-            + PREFIX_TIME + "[TIME]... "
-            + PREFIX_DATE + "[DATE]... "
-            + PREFIX_CANDIDATE_INDEX + "[CANDIDATE NAME]...\n"
+            + "[" + PREFIX_POSITION + "TITLE]... "
+            + "[" + PREFIX_INTERVIEW_STATUS + "INTERVIEW STATUS]... "
+            + "[" + PREFIX_TIME + "TIME]... "
+            + "[" + PREFIX_DATE + "DATE]... "
+            + "[" + PREFIX_CANDIDATE_INDEX + "CANDIDATE NAME]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_POSITION + "accountant" + " " + PREFIX_DATE + "21/09/2021";
     private final FindInterviewCommandPredicate predicate;
 

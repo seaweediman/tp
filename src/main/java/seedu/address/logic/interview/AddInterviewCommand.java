@@ -49,6 +49,7 @@ public class AddInterviewCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New interview added: %1$s";
     public static final String MESSAGE_DUPLICATE_INTERVIEW = "This interview already exists in the HR Manager";
     public static final String MESSAGE_CANDIDATE_DID_NOT_APPLY = "Candidate %1$s did not apply for Position %2$s";
+    public static final String MESSAGE_CANDIDATE_IS_NOT_VACANT = "Candidate %1$s is not available in this period";
 
     private final Interview toAdd;
     private final Set<Index> indexes;
@@ -84,6 +85,9 @@ public class AddInterviewCommand extends Command {
                 if (!person.appliedForPosition(position)) {
                     throw new CommandException(String.format(MESSAGE_CANDIDATE_DID_NOT_APPLY,
                             person.getName(), position));
+                }
+                if (!person.isVacantFor(toAdd)) {
+                    throw new CommandException(String.format(MESSAGE_CANDIDATE_IS_NOT_VACANT, person.getName()));
                 }
                 candidates.add(person);
             } else {
