@@ -16,21 +16,21 @@ Given below are my contributions to the project.
 ### Enhancement Implemented
 
 * **New Feature: Add job position and position list into the HR Manager**
-  * What it does: Implements a functional model of job positions and position list, containing information including the job position title and posting status of all positions, with relevant test cases.
+  * What it does: Implements a model of job positions and position list, containing information including the job position title and posting status of all positions, with relevant test cases.
   * Justification: This feature is the foundation to allow user to access and manage all the stored position data in the system later with other related commands.
   * Relevant test cases of the position model are added.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_p`**
-    * What it does: Display a full list of all existing job positions stored in the HR Manager, read from the storage.
+    * What it does: Display a full list of all job positions stored in the system, read from the storage.
     * Justification: This feature gives the users a comprehensive overview of all the existing job positions for further management.
     * Relevant test cases of the position list are added.
 
 * **New Feature: Adds interviews and interview list into the HR Manager**
-  * What it does: Implements a functional model of interviews and interview list, containing information including the job position interviewed, date, time, duration, candidates, and interview status of all interviews, with relevant test cases.
+  * What it does: Implements a model of interviews and interview list, containing information including the job position interviewed, date, time, duration, candidates, and interview status of all interviews, with relevant test cases.
   * Justification: This feature is the foundation to allow user to access and manage all the stored interview data in the system with other related commands.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_i`**
-    * What it does: Display a full list of all existing interview sessions stored in the HR Manager, read from the storage.
+    * What it does: Display a full list of all interview sessions stored in the system, read from the storage.
     * Justification: This feature gives the users a comprehensive overview of all the existing interviews for further management.
 
 * **Enhancement: Improves the UI to a 3-panel display**
@@ -44,12 +44,12 @@ Given below are my contributions to the project.
 ### Contribution to Documentations
 
 * User Guide:
-  * Added documentation for `position` and its storage
-  * Added documentation for: `list_c`, `add_p`, `delete_p`, `list_p`, `list_i`.
+  * Add documentation for `position` and its storage
+  * Add documentation for: `list_c`, `add_p`, `delete_p`, `list_p`, `list_i`.
 
 * Developer Guide:
-  * Added use cases for features including `list_c`, `delete_c`, `list_p`, `delete_p`, `list_i`, `delete_i`.
-    * Added user stories for features including `add_p`, `delete_p`, `list_p`.
+  * Add use cases, including for `list_c`, `delete_c`, `list_p`, `delete_p`, `list_i`, `delete_i`.
+  * Add user stories, including for `add_p`, `delete_p`, `list_p`.
   * Added the implementation of the find features (`list_c`, `list_p` and `list_i`), including UML diagrams for relevant classes and general find command execution.
 
 ### Contributions to team-based tasks
