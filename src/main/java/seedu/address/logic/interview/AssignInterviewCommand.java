@@ -35,7 +35,7 @@ public class AssignInterviewCommand extends Command {
             + "this position: %3$s";
     public static final String MESSAGE_CANDIDATE_HAS_INTERVIEW = "Candidate %1$s (%2$s) has already been assigned"
             + " to interview %3$s.";
-    public static final String MESSAGE_CANDIDATE_IS_NOT_VACANT = "Candidate %1$s is not available in this period %2$s";
+    public static final String MESSAGE_CANDIDATE_IS_NOT_VACANT = "Candidate %1$s is not available in this period";
 
     private Index interviewIndex;
 
@@ -92,8 +92,7 @@ public class AssignInterviewCommand extends Command {
             }
 
             if (!candidate.isVacantFor(assignedInterview)) {
-                throw new CommandException(String.format(MESSAGE_CANDIDATE_IS_NOT_VACANT, candidate.getName(),
-                        interview.getDisplayTimePeriod()));
+                throw new CommandException(String.format(MESSAGE_CANDIDATE_IS_NOT_VACANT, candidate.getName()));
             }
         }
 
