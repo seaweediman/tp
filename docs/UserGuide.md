@@ -32,7 +32,7 @@ You can read the whole guide for a comprehensive understanding of the applicatio
 <br><br>
 Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
 If you face any issues, you can check the details for each command under the [Features](#features) section.
-There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
+There are 4 sections under the Features section: [General Commands](#feature-general-commands), [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
 
 ### HR Manager User Interface
@@ -118,7 +118,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 #### Viewing help : `help`
 
-Shows a message explaining how to access the help page.
+Shows a message explaining how to access the user guide.
 
 ![help message](images/helpMessage.png)
 
@@ -658,6 +658,9 @@ The transferred save files can then be loaded readily when using this applicatio
 
 | Action | Format, Examples | Expected result |
 | -------- | ------------------ | ------------------ |
+| **Help** | `help` | Opened help window. |
+| **Clear** | `clear` | HR Manager has been cleared! |
+| **Exit** | `exit` | HR Manager exits |
 | **Add position** | `add_p title=<TITLE>` <br><br> e.g., `add_p title=Software engineer` | New position added: <br> [Software engineer] |
 | **List all positions** | `list_p` | Listed all positions |
 | **Delete position** | `delete_p <INDEX>` <br><br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
