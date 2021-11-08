@@ -269,18 +269,7 @@ public class ParserUtilTest {
 
         Set<Index> test = ParserUtil.parseCandidateIndexes("2 1");
 
-        Set<Integer> indexesInIntegers = new HashSet<>();
-        Set<Integer> testAsIntegers = new HashSet<>();
-
-        for (Index index : indexes) {
-            indexesInIntegers.add(index.getZeroBased());
-        }
-
-        for (Index index : test) {
-            testAsIntegers.add(index.getZeroBased());
-        }
-
-        assertEquals(indexesInIntegers, testAsIntegers);
+        assertEquals(indexes, test);
     }
 
     @Test
@@ -291,18 +280,7 @@ public class ParserUtilTest {
 
         Set<Index> test = ParserUtil.parseCandidateIndexes("2 1 2 2 2 2 2 2 2 2 2 2 1 1");
 
-        Set<Integer> indexesInIntegers = new HashSet<>();
-        Set<Integer> testAsIntegers = new HashSet<>();
-
-        for (Index index : indexes) {
-            indexesInIntegers.add(index.getZeroBased());
-        }
-
-        for (Index index : test) {
-            testAsIntegers.add(index.getZeroBased());
-        }
-
-        assertEquals(indexesInIntegers, testAsIntegers);
+        assertEquals(indexes, test);
     }
 
     @Test

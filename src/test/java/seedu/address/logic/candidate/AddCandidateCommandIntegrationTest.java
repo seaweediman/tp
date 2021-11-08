@@ -40,7 +40,7 @@ public class AddCandidateCommandIntegrationTest {
     public void execute_duplicatePerson_throwsCommandException() {
         Person personInList = model.getHrManager().getPersonList().get(0);
         assertCommandFailure(new AddCandidateCommand(personInList), model,
-                AddCandidateCommand.MESSAGE_DUPLICATE_PERSON);
+               String.format(AddCandidateCommand.MESSAGE_DUPLICATE_PERSON, personInList.getEmail()));
     }
 
 }

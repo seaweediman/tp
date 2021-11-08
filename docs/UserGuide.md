@@ -32,7 +32,7 @@ You can read the whole guide for a comprehensive understanding of the applicatio
 <br><br>
 Alternatively, you can quickly get started using the [Quick Start](#quick-start) and [Command Summary](#command-summary).<br>
 If you face any issues, you can check the details for each command under the [Features](#features) section.
-There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management)
+There are 3 sections under the Features section: [Job Position Management](#feature-job-position-management), [Candidate Management](#feature-candidate-management) and [Interview Management](#feature-interview-management).
 Each section has its own input table that details the requirements and restrictions of each input of that section.
 
 
@@ -44,7 +44,7 @@ Each section has its own input table that details the requirements and restricti
 
 2. Download the latest `HRManager.jar` from [here](https://github.com/AY2122S1-CS2103T-W13-1/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+3. Copy the file to the folder you want to use as the _home folder_ for your HR Manager.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -54,7 +54,7 @@ Each section has its own input table that details the requirements and restricti
 
 * **`list_c`** : Lists all candidates.
 
-* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the Address Book.
+* **`add_c`**`name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager` : Adds a contact named `Bryan Seah` to the HR Manager.
 
 * **`delete_c`**`3` : Deletes the 3rd candidate shown in the current candidate list.
 
@@ -68,7 +68,7 @@ WARNING: Please note that `clear` is an irreversible command and all existing da
 
 * **`exit`** : Exits the app.
 
-6. Refer to the [Features](#features) below for details of each command.
+* Refer to the [Features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -114,17 +114,18 @@ Manage a list of job positions posted by your company, with the simple instructi
 All commands below are subjected to these restrictions except `find_p`
 
 > Refer to the [Notes about the command format](#Features) for the details on the command format
+
 #### <u>Add a position:</u> `add_p`
 
 *Adds a job position to the list of positions.*
 
 <u>Format:</u>
 
-    add_p title=<TITLE>
+`add_p title=<TITLE>`
 
 <u>Example:</u>
 
-    add_p title=Assistant
+`add_p title=Assistant`
 
 * Adds a job position with the title of Assistant, with a default status of 'open'.
 
@@ -139,7 +140,7 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    list_p
+`list_p`
 
   <br>
 
@@ -149,11 +150,11 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    delete_p <INDEX>
+`delete_p <INDEX>`
 
 <u>Example:</u>
 
-    delete_p 3
+`delete_p 3`
 
 * Deletes the 3rd position from the list of positions.
 * Also deletes this position from every candidate who applied for the position
@@ -168,14 +169,15 @@ All commands below are subjected to these restrictions except `find_p`
 
 <u>Format:</u>
 
-    edit_p <INDEX> [title=<TITLE>]
+`edit_p <INDEX> [title=<TITLE>]`
 
 OR<br>
 
-    edit_p <INDEX> [status=<STATUS>]
+`edit_p <INDEX> [status=<STATUS>]`
+
 <u>Example:</u>
 
-    edit_p 2 title=Data Analyst
+`edit_p 2 title=Data Analyst`
 
 * Edits the title of the 2nd position in the list to 'Data Analyst'.
 
@@ -184,8 +186,7 @@ OR<br>
   <br>
   <br>
 
-
-    edit_p 3 status=closed
+`edit_p 3 status=closed`
 
 * Edits the status of the 3rd position in the list to closed.
 * Setting position status to close will delete the position from every candidate who applied for the position.
@@ -200,11 +201,11 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_p [title=<TITLE>]... [status=<STATUS>]...
+`find_p [title=<TITLE>]... [status=<STATUS>]...`
 
 <u>Example:</u>
 
-    find_p status=closed title=Accountant Engineer
+`find_p status=closed title=Accountant Engineer`
 
 * Finds all positions that are closed and title contains "Accountant" or "Engineer"
   * (status contains word "closed") AND (title contains word "Accountant" OR "Engineer")
@@ -220,7 +221,8 @@ All fields are not subjected to the restriction in the input table and can take 
 
 Manage a list of candidates for your company, with the simple instructions below!
 Each candidate is uniquely identified by their email.
-Different candidates can have the same name as along as the name, email and phone are not all the same.
+Different candidates can have the same name as along as they do not share the same email.
+
 #### Table of Inputs for Candidate Management
 
 | Parameter | Examples | Conditions |
@@ -228,17 +230,19 @@ Different candidates can have the same name as along as the name, email and phon
 | **NAME** | `Alex`, `Clarice`| Any string. Any leading or trailing spaces will be removed |
 | **EMAIL** | `alex@gmail.com`, `clarice@usc`| In the format local-part@domain <br> 1. The local-part should only contain alphanumeric characters and these special characters, excluding the parentheses, (+_.-). The local-part may not start or end with any special characters. <br><br>2. This is followed by a '@' and then a domain name. The domain name is made up of domain labels separated by periods. <br> The domain name must: <br> - end with a domain label at least 2 characters long <br> - have each domain label start and end with alphanumeric characters <br> - have each domain label consist of alphanumeric characters, separated only by hyphens|
 | **PHONE_NUMBER** | `928389492, 623792` | At least 3 numbers |
-| **ADDRESS** | `Block 123, Woodlands Avenue 1, #09-34` | Any string, any leading or trailing spaces will be removed |
+| **ADDRESS** | `Block 123, Woodlands Avenue 1, #09-34` | Any string. Any leading or trailing spaces will be removed |
 | **POSITION** | `Software engineer`, `teSTer` | Title of any position that is currently open, case insensitive |
 | **STATUS** | `None`, `Applied`, `Scheduled`, `Interviewed`, `Accepted`, `Rejected`, `Withdrawn` | Must be one of the given examples, case insensitive |
 | **TAG** | `experienced`, `priority` | Must be alphanumeric, without spaces |
 | **INDEX** | `1`,`2` | Must be a positive integer smaller than 2147483647 corresponding to the index of the intended candidate in the <U>currently displayed list of candidate<U> |
 | **REMARK** | `Great Experience`, `@@@ ___ Test Remark` | Any string, leading or trailing spaces are removed|
-> Status for candidates are different then statuses for position and interviews
+
+> Status for candidates are different than statuses for position and interviews
 
 All commands in this section are subjected to the restriction in this table except `find_c`
 
-> Refer to the [Notes about the command format](#Features) for the details on the command format
+> Refer to the [Notes about the command format](#features) for the details on the command format
+
 #### <u>Add a candidate:</u> `add_c`
 
 *Adds a candidate to the list of candidates.*
@@ -279,8 +283,9 @@ All commands in this section are subjected to the restriction in this table exce
 `delete_c 3`
 
 * Deletes the 3rd candidate along with his/her details from the list of candidates.
-  <br>
-  <br>
+  * Also deletes this candidate from any interview he/she was scheduled for.
+    <br>
+    <br>
 
 
 #### <u>Remark a candidate:</u> `remark_c`
@@ -313,6 +318,7 @@ All commands in this section are subjected to the restriction in this table exce
 `edit_c 3 name=Ryan Koh`
 
 * Edit the name of the 3rd candidate in the list to Ryan Koh.
+* If a candidate has an [interview](#feature-interview-management), editing a status that is not `Applied` back to `Applied` is not allowed, and will be automatically changed to `Scheduled`. You can choose to change to other status such as `None`.
 
 
 #### <u>Find a Candidate:</u> `find_c`
@@ -361,9 +367,10 @@ Manage a list of scheduled interviews, with the simple instructions below!
 | **DURATION** | `120` for 120 minutes, `75` for 75 minutes | Must a positive integer more than 0 and less than 1440, number of minutes in a day|
 | **STATUS** | `pending`, `completed` | Must only be either of the 2 examples for the status of an interview, case insensitive |
 
-All commands in this section are subjected to the restriction in this table except `find_i`
+All commands in this section are subjected to the restriction in this table except `find_i`.
 
-> Refer to the [Notes about the command format](#Features) for the details on the command format
+> Refer to the [Notes about the command format](#features) for the details on the command format
+
 #### <u>Add an interview:</u> `add_i`
 Use the following command to record the details of an interview session with the candidate(s) for a position!
 
@@ -371,11 +378,11 @@ Use the following command to record the details of an interview session with the
 
 <u>Format:</u>
 
-    add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]
+`add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]`
 
 <u>Example:</u>
 
-    add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending
+`add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending`
 
 
 * Adds an interview for the position of Accountant, for the 1st and 2nd candidates in the candidate list.
@@ -392,7 +399,7 @@ Use the following command to record the details of an interview session with the
 
 <u>Format:</u>
 
-    list_i
+`list_i`
 
   <br>
 
@@ -406,7 +413,7 @@ Use the following command to record the details of an interview session with the
 
 <u>Example:</u>
 
-    delete_i 3
+`delete_i 3`
 
 * Deletes the 3rd position from the list of interviews.
 * Also deletes this interview from every candidate who were scheduled this interview
@@ -420,7 +427,7 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...
+`edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...`
 
 <u>Example:</u>
 `edit_i 2 date=18/10/2021 time=1400`
@@ -449,7 +456,7 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+`assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...`
 
 <u>Example:</u>
 `assign i=1 c=2 4`
@@ -472,9 +479,10 @@ Edits a specific interview in the list of interviews.
 
 <u>Format:</u>
 
-    unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...
+`unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...`
 
 <u>Example:</u>
+
 `unassign i=1 c=2 4`
 
 * You can input any number of candidates but only 1 interview.
@@ -491,8 +499,8 @@ All fields are not subjected to the restriction in the input table and can take 
 
 <u>Format:</u>
 
-    find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
-    [duration=DURATION]... [interviewed=STATUS]...
+`find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]...
+    [duration=DURATION]... [interviewed=STATUS]...`
 
 <u>Example:</u>
 
@@ -576,7 +584,7 @@ For an interview,
   "status" : "PENDING"
 }]
 ```
-*Note that interview does not save a candidate but its unique ID generated within the application.*
+*Note that an interview does not save a candidate but its unique ID generated within the application.*
 
 Certain fields are editable directly without repercussions <U>as long as the format is valid (as shown above)</U>, like **date**, **startTime**, **duration** and **status** in `Interviews.json`
 However, the same cannot be said for fields of different files sharing the same information, like **positions** in `Candidates.json` and the entire `Positions.json` file.
@@ -610,16 +618,16 @@ The transferred save files can then be loaded readily when using this applicatio
 | **Delete position** | `delete_p <INDEX>` <br><br> e.g., `delete_p 3` | Deleted Position: [Bookkeeper] |
 | **Edit a position** | `edit_p <INDEX> title=<TITLE>` or `edit_p <INDEX> status=<STATUS>` <br><br> e.g., `edit_p 3 status=closed` | Edited Position's Status = CLOSED |
 | **Find a position** | `find_p [title=<TITLE>]... [status=<STATUS>]...` <br><br> e.g., `find_p title=Accountant Engineer status=closed` | Candidates found
-| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>...[status=<STATUS>] [tag=<TAG>]...`  <br><br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
+| **Add a candidate** | `add_c name=<NAME> email=<EMAIL> phone=<PHONE_NUMBER> address=<ADDRESS> position=<POSITION>...[status=<STATUS>] [tag=<TAG>]...`  <br><br> e.g., `add_c name=Bryan Seah email=bsah@gmail.com phone=12345678 address=311, Clementi Ave 2, #02-25 position=Project Manager status=Scheduled` | New candidate added: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
 | **List all candidates** | `list_c` | Listed all candidates <br> 1. James Doe <br> 2. John Doe |
-| **Delete a candidate** | `delete_c <INDEX>`<br><br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark:  Status: SCHEDULED; Positions: [Project Manager] |
-| **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br><br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
-| **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25 Remark: 20 years of experience Status: SCHEDULED; Positions: [Project Manager] |
+| **Delete a candidate** | `delete_c <INDEX>`<br><br> e.g., `delete_c 3` | Deleted Candidate: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
+| **Add remark to a candidate** | `remark_c <INDEX> remark=<REMARK>`<br><br>eg.`remark_c 1 remark=20 years of experience` | Added remark to Person: Bryan Seah; Phone: 12345678; Email: bsah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Remark: 20 years of experience; Positions: [Project Manager] |
+| **Edit a candidate** | `edit_c <INDEX> [name=<NAME>] [email=<EMAIL>] [phone=<PHONE_NUMBER>] [address=<ADDRESS>] [status=<STATUS>] [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `edit_c 3 phone=98602125 email=bryanseah@gmail.com` | Edited Candidate: Bryan Seah; Phone: 98602125; Email: bryanseah@gmail.com; Address: 311, Clementi Ave 2, #02-25; Status: SCHEDULED; Positions: [Project Manager] |
 | **Find candidates** | `find_c [name=<NAME>]... [email=<EMAIL>]... [phone=<PHONE_NUMBER>]... [address=<ADDRESS>]... [status=<STATUS>]... [tag=<TAG>]... [position=<POSITION>]...` <br> e.g., `find_c name=Alex tag=recommended priority` | Candidates Found
 | **Add an interview** | `add_i position=<POSITION> [c=<INDEX>]... date=DATE time=TIME duration=DURATION [interviewed=STATUS]` <br><br> e.g., `add_i position=Accountant c=1 2 date=18/10/2021 time=1400 duration=120 interviewed=pending` | New interview added: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
 | **List all interviews** | `list_i` | Listed all interviews <br><br> 1. [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] <br> 2. [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING] |
 | **Delete an interview** | `delete_i <INDEX>`<br><br> e.g., `delete_i 1` | Deleted Interview: [Accountant [Bernice Yu, David Li] 18 Oct 2021 14:00 - 16:00 PENDING] |
-| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [c=<INDEX>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br>e.g., `edit_i 2 c=1 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
+| **Edit an interview** | `edit_i <INDEX> [position=POSITION]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br>e.g., `edit_i 2 date=21/10/2021 time=1400` | Edited Interview: [Data Analyst [Jenny Lim, Max Tan] 21 Oct 2021 14:00 - 16:00 PENDING] |
 | **Assign candidates** | `assign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `assign i=1 c=4`| Candidates added to interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
 | **Unassign candidates** | `unassign i=<INTERVIEW_INDEX> c=<CANDIDATE_INDEX>...` <br><br>e.g., `unassign i=1 c=4`| Candidates removed from interview: [Project Manager [Bernice Yu] 20 Oct 2021 15:00 - 16:00 PENDING]: <br> 1. David Li |
-| **Find interview** | `find_i [position=POSITION]... [c=<Candidate Name>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found
+| **Find interview** | `find_i [position=POSITION]... [c=<CANDIDATE_NAME>]... [date=DATE]... [time=TIME]... [duration=DURATION]... [interviewed=STATUS]...` <br><br> e.g., `find_i date=21/09/2021 time=1600` | Interviews found

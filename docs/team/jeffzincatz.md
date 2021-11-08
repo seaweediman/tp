@@ -13,44 +13,58 @@ Given below are my contributions to the project.
 
 ### Code contributed
 
-[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/?search=zincatz&sort=groupTitle&sortWithin=title&since=2021-09-17&timeframe=commit&mergegroup=&groupSelect=groupByRepos&breakdown=false&tabOpen=true&tabType=zoom&zA=JeffZincatz&zR=AY2122S1-CS2103T-W13-1%2Ftp%5Bmaster%5D&zACS=216.40371024734984&zS=2021-09-17&zFS=&zU=2021-11-06&zMG=false&zFTF=commit&zFGS=groupByRepos&zFR=false)
+[RepoSense link](https://nus-cs2103-ay2122s1.github.io/tp-dashboard/#breakdown=true&search=jeffzincatz)
 
 ### Enhancement Implemented
 
 * **New Feature: Add job position into the HR Manager system**
-  * What it does: Implements a functional model of job positions, containing information including the job position title and posting status, and store the list of job position in the HR Manager.
+  * What it does: Implements a functional model of job positions, containing information including the job position title and posting status.
   * Justification: This feature is the foundation to allow user to manager job positions in their system.
+  * Relevant test cases of the position model are added.
+
+* **New Feature: Add position list into the HR Manager system**
+  * What it does: Implements a job position list in to the HR Manager model, to store a list of all job positions.
+  * Justification: This feature is to enable the user to access all the stored position data in the system later with other related commands.
+  * Relevant test cases of the position model are added.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_p`**
     * What it does: Display a full list of all existing job positions stored in the HR Manager, read from the storage.
     * Justification: This feature gives the users a comprehensive overview of all the existing job positions for further management.
+    * Relevant test cases of the position list are added.
 
 * **New Feature: Adds interviews into the HR Manager system**
-    * What it does: Implements a functional model of interviews, containing information including the job position interviewed, date, time, duration, candidates, and interview status, and store the list of interviews in the HR Manager.
+    * What it does: Implements a functional model of interviews, containing information including the job position interviewed, date, time, duration, candidates, and interview status.
     * Justification: This feature is the foundation to allow user to manager interviews in their system.
+    * Relevant test cases of the interview model are added.
+    * Relevant test cases of the position model are added.
+
+* **New Feature: Add interview list into the HR Manager system**
+  * What it does: Implements an interview list in to the HR Manager model, to store a list of all interview sessions.
+  * Justification: This feature is to enable the user to access all the stored interview data in the system later with other related commands.
+  * Relevant test cases of the interview list are added.
 
 * **New Feature: Adds the functionality to list all job positions in the display. `list_i`**
     * What it does: Display a full list of all existing interview sessions stored in the HR Manager, read from the storage.
     * Justification: This feature gives the users a comprehensive overview of all the existing interviews for further management.
 
 * **Enhancement: Improves the display to a 3-panel list**
-  * What it does: Display 3 panels for the lists of candidates, positions, and interviews.
-  * Justification: Compared to the old implementation of 1-panel display, this enables the users to view all lists without having to replace the previous ones.
+  * What it does: Display 3 panels for the lists of candidates, positions, and interviews, at the same time.
+  * Justification: Compared to the old implementation of 1-panel display, this enables the users to easier view all lists without having to replace the previous ones.
 
 * **Enhancement: Applies a new colour scheme for HR Manager**
   * What it does: Changes the graphical appearance of the HR Manager, including highlighting the panel lists, making HR Manager more distinct from other applications.
+  * Justification: This makes the HR Manager more distinct as a product.
 
 ### Contribution to Documentations
 
 * User Guide:
-        * Added documentation for the features `list` and `view`
-* Developer Guide:
-    * Added user stories in table format
-
-    * Added the documentation for the following features:
-      * `list_c`
-      * `list_p`
-      * `list_i`
+  * Added documentation for the features `position` and its storage
+  * Added the documentation for the following features:
+    * `list_c`
+    * `add_p`
+    * `delete_p`
+    * `list_p`
+    * `list_i`
 
 * Developer Guide:
   * Added use cases for features including:
@@ -64,10 +78,13 @@ Given below are my contributions to the project.
     * `add_p`
     * `delete_p`
     * `list_p`
-  * Added an overview of the implementation of all the find features, such as `find_c`, `find_p` and `find_i`. The section also includes a UML diagram for the sequence diagram of a general find command `find_x`.
+  * Added an overview of the implementation of all the find features, such as `list_c`, `list_p` and `list_i`. The section also includes a UML diagram for the sequence diagram of a general find command `list_x`.
 
 ### Contributions to team-based tasks
 
+* Set up team project repo
+* Documenting user stories in table format in Developer Guide
+* Refactor existing candidate command's format to include a "_c" suffix, after new models (positions and interviews) were added
 * Fix various documentation bugs in UG and DG
 
 ### Review contributions
@@ -80,7 +97,12 @@ Given below are my contributions to the project.
   * [PR #149](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/149)
   * [PR #150](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/150)
 
+* [A full list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajeffzincatz)
+of PRs reviewed by me.
+
 * Non-exhausted list of bugs and suggestions reported for other teams
   * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
   * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
   * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
+
+* [A full list](https://github.com/JeffZincatz/ped/issues) of bugs reported
