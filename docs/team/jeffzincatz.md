@@ -62,21 +62,9 @@ Given below are my contributions to the project.
 * Fix various documentation bugs in UG and DG
 
 ### Review contributions
-* Non-exhaustive list of some PRs reviewed:
-  * [PR #18](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/18)
-  * [PR #49](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/49)
-  * [PR #71](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/71)
-  * [PR #72](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/72)
-  * [PR #74](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/74)
-  * [PR #149](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/149)
-  * [PR #150](https://github.com/AY2122S1-CS2103T-W13-1/tp/pull/150)
+* Reviewing team PRs
+  * [A full list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajeffzincatz)
+  of PRs reviewed by me.
 
-* [A full list](https://github.com/AY2122S1-CS2103T-W13-1/tp/pulls?q=is%3Apr+is%3Aclosed+reviewed-by%3Ajeffzincatz)
-of PRs reviewed by me.
-
-* Non-exhausted list of bugs and suggestions reported for other teams
-  * [Issue #5](https://github.com/JeffZincatz/ped/issues/5)
-  * [Issue #7](https://github.com/JeffZincatz/ped/issues/7)
-  * [Issue #8](https://github.com/JeffZincatz/ped/issues/8)
-
-* [A full list](https://github.com/JeffZincatz/ped/issues) of bugs reported
+* Reporting bugs for other teams
+  * [A full list](https://github.com/JeffZincatz/ped/issues) of bugs reported
